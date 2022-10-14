@@ -1,10 +1,12 @@
 # SciGuides Part 1 SysID
 
+
+### Additional Info Can Be Found [Here](#https://docs.wpilib.org/en/stable/docs/software/pathplanning/system-identification/index.html)
 ## Table of Contents
-### 1. [What is SysID?](#what-is-SysID )
+### 1. [What is SysID?](#what-is-SysID)
 ### 2. [How does SysID work?](#how-does-sysid-work)
 ### 3. [How do you use SysID?](#how-do-you-use-sysid)
-
+### 4. [SysID for Drivetrain](#sysid-for-drivetrain)
 
 ### What is SysID?
 #### 
@@ -28,5 +30,14 @@
     10. To test on the robot plug in the laptop with the SysID setup. Set logger mode to enabled click apply if NT Connected is shown to the right of it click deploy under team/ip in generator choose a save location on your computer ideally in the sysID folder in the cloned respository run all your tests. Click save now you have your data.
     11. To analyze your data go to analyzer select the sysID data from the folder you stored it run the analyzer and get the Feedback and Feedforward analysis note Feedback will yield PID values and Feedforward will yield SVA values.
     12. Once you get your data now you have PID and SVA Values.
+
+### SysID for Drivetrain
+####
+    4. In loggers go to motor controllers Set your motor controllers to Spark Max Brushless and choose which side of motors are inverted and for encoders use the encoder we are using whether it be CanCoders, Integrated Neos or whatever. Assuming we use swerve with CanCoders Invert one side of the cancoders
+    5. For Gyro set the gyro to pigeon get the CAN ID and as of 2022/2023 we do not have talons
+    6. Encoder Parameters, the counts per revolution on a CanCoder is 4096 Counts Per Revolution and Gearing is just the gear ratio of where the encoder is mounted
+    7. Go to Logger and project parameters have mechanism as Drivetrain and Unit Type as meters and set the Units Per Rotation as the circumfrence of the wheel
+    8. Set up your voltage parameters lower values more precise values but don't be afraid to go wild as long as you have a lot of space
+    9. Basically follow the rest of the steps from SysID for General Mechanisms
 
     
