@@ -34,6 +34,21 @@ Unit testing is a method of testing blocks (or units) of code. JUnit is a common
 
 1. Create path `src/test/java`. All tests should be at this address
 2. OPTIONAL: Instal VSC extension *Test Runner for Java*
+3. Make sure that the following clauses are in `build.gradle`:
+    ```
+    test {
+        useJUnitPlatform()
+        systemProperty 'junit.jupiter.extensions.autodetection.enabled', 'true'
+    }
+    ```
+    ```
+    dependencies {
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+        testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.2'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    }
+    
+    ```
 
 ## Imports
 
@@ -224,18 +239,14 @@ Please read the section on [simulated devices](insert-link-when-it-exists), beca
 
 There are a few practices that are necessary to take when writing robot code to ensure that it is easily testable.
 
-1. Returning devices
-    - Classes that are being tested should have public methods that return whatever information is necessary for testing classes to simulate/access their devices.
-    - For example, subsystems with a CanSparkMAX should generally have a method that returns that spark.
-
-(i can't think of anything else.... maybe i should integrate this into a different section. but honestly we'll probably think of more things... like for example, we might need autoclosable. but it depends on how nt4 is. and if we don't we'll probably do resetting instead)
+(some sort of resetting will be here but we need to figure out what that will look like)
 
 ## Limitations
 
 While unit testing is a great tool, there are some important limitations, especially when it comes to robot code.
 
 1. resetting shuffleboard...???
-    - this will likely be fixed with the next wpilib release se I'm not going to write about it
+    - hopefully this will not be relevant this year so I'm going to hold off writing about it
 2. Sim Accuracy
     - The first and most obvious limitation is that the tests can only be as accurate as sim is
     - There's still a lot of information that you can get, but just because something works in sim, doesn't mean it'll work in the real world
@@ -303,6 +314,8 @@ There are some standards and practices that we try to stick to as a team:
     - naming tests
         - names for tests should be clear and informative, and should always end in the word Test
         - for example, a method that tests the direction of a certain mechanism might be naimed directionTest()
+    - @DisplayName
+        -  The @DisplayName annotation should be used only when the test method name is long or unreadable. Ideally, this won't happen, but if, let's say, you're testing some method with a super long name, the test name might need to be super long as well. In this case, @DisplayName should be used to set a more readable name which will be desplayed when the test runs
 - repeated tests
     - repeated tests should be use whenever the thing being tested has any significant amount of randomness or variability
     - for example, (*insert good example*)
