@@ -260,7 +260,7 @@ There are two ways to run tests:
 2. Running test using WPILib
     - Run the Test Robot Code command from the WPILib menu
 
-## Examples
+## Example code
 
 ### Class structure (write after you have examples)
 
