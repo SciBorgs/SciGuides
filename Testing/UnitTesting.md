@@ -32,20 +32,8 @@ Unit testing is a method of testing blocks (or units) of code. JUnit is a common
 
 ## Setting up JUnit 5
 
-1. Add the following clauses to `build.gradle`:
-    ```
-    test {
-        useJUnitPlatform()
-    }
-    ```
-    ```
-    dependencies {
-        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    }
-    ```
-2. Create path `src/test/java`. All tests should be at this address
-3. OPTIONAL: Instal VSC extension *Test Runner for Java*
+1. Create path `src/test/java`. All tests should be at this address
+2. OPTIONAL: Instal VSC extension *Test Runner for Java*
 
 ## Imports
 
