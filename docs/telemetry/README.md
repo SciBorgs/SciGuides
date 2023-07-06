@@ -1,2 +1,0 @@
-# Telemetry
-coming soon

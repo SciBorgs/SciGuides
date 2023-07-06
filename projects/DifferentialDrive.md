@@ -25,7 +25,7 @@ left.set(xbox.getLeftX()); // sets the left motor to the xbox's left input
 right.set(xbox.getRightX()); // sets the right motor to the xbox's right input
 ```
 
-This drive code works because xbox/joystick inputs are scaled from -1 to 1, and the `MotorController.set()` method takes an input from -1, to 1 because it is duty cycle input.
+This drive code works because xbox/joystick inputs are scaled from -1 to 1, and the `MotorController.set()` method takes a [duty cycle](https://en.wikipedia.org/wiki/Duty_cycle) input.
 
 ## Using WPILib's drive classes
 
@@ -48,10 +48,12 @@ MotorControllerGroup left = new MotorControllerGroup(leftBack, leftMiddle, leftF
 `left` is now a collection of the three left motors, and can be treated as one becuase `MotorControllerGroup` implements `MotorController`.
 
 ```java
-// this will drive according to left and right stick inputs
+// tank drive is the simplest control scheme to implement, and is what you already did in the previous section
 drive.tankDrive(xbox.getLeftX(), xbox.getRightX());
 
-// this will drive according to the magnitude and direction of a single stick
+// in arcade drive, the left stick controls speed and the right stick controls direction
+drive.arcadeDrive(xbox.getLeftY(), xbox.getRightX());
 
-// this will drive similarly to a car, similarly to arcade drive but curving towards instead of facing a direction
+// in curvature drive, the robot moves similarly to arcade, but curves towards the desired direction as if it were a car
+drive.curvatureDrive(xbox.getLeftY(), xbox.getRightX(), true);
 ```
