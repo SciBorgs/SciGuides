@@ -1,4 +1,4 @@
-# Differential Drive Project
+# Basic Differential Drive
 
 This is a fun project to control a differential drive. We will go from a simple implementation to full auto path following and smooth driving. This should be a good introduction to usage of WPILib classes, command framework, controls, and autos.
 
@@ -57,3 +57,7 @@ drive.arcadeDrive(xbox.getLeftY(), xbox.getRightX());
 // in curvature drive, the robot moves similarly to arcade, but curves towards the desired direction as if it were a car
 drive.curvatureDrive(xbox.getLeftY(), xbox.getRightX(), true);
 ```
+
+## Further
+
+Congratulations! You've programmed a very simple differentrial drive robot that can be manually controlled. For more features, such as auto routines and localization, see the [Advanced Differential Drive Project](./DifferentialDriveAdvanced.md).
