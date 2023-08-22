@@ -11,7 +11,7 @@ All motor classes you'll interact with implement WPILib's `MotorController` inte
 ```java
 private final PWMSparkMax left = new PWMSparkMax(0);
 private final PWMSparkMax right = new PWMSparkMax(1);
-private final XboxController controller = new XboxController(0);
+private final XboxController xbox = new XboxController(0);
 ```
 
 ```java
