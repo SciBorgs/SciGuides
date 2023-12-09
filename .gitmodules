@@ -1,0 +1,3 @@
+[submodule "projects/Test"]
+	path = projects/Test
+	url = https://github.com/SciBorgs/Hydrogen.git
