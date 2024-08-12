@@ -244,3 +244,8 @@ Try to do this one by yourself before looking below!
 
 Here's your final challenge! Turn your basic drivetrain subsystem to a subsystem implementation. For simulation, you can use [WPILIB's `DifferentialDrivetrainSim`](https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/simulation/DifferentialDrivetrainSim.html). Good luck!
 
+## The Simulation GUI
+
+Now that you've completed all of your subsystems and mechanisms, it's time for the fun part. Piecing it all together!
+
+You should begin your exploration [here](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/introduction.html). Continuing, open up the sim gui and explore it. More specific details on it can be found in the [next entry](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/simulation-gui.html).
