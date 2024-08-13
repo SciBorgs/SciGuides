@@ -1,6 +1,6 @@
 # Basic Arm Bot Tutorial
 
-(insert image/gif of advantagescope visualizer here)
+![Simulated arm moving side to side](https://i.gyazo.com/8d105b8f9776487789333497fa72cd9e.gif)
 
 ## Description & Prerequisites
 
@@ -277,10 +277,22 @@ Try to do this one by yourself!
 
 ## Converting the drivetrain
 
-Here's your final challenge! Turn your basic drivetrain subsystem to a subsystem implementation. Good luck!
+Here's your final challenge! Turn your basic drivetrain subsystem to a subsystem implementation. If you've completed the previous Differential Drive projects, you should have everything good to go. Good luck!
 
-## The Simulation GUI
+## Simulating the arm
 
 Now that you've completed all of your subsystems and mechanisms, it's time for the fun part. Piecing it all together!
 
-For starters, get the gist of what's happening [here](/Simulation.md). You'll be using a Mechanism2d to simulate your arm like in the blocky gif you say earlier.
+For starters, get the gist of what's happening [here](/Simulation.md). You'll be using a `Mechanism2d` to simulate your arm, like in the blocky arm you saw at the beginning of the tutorial.
+
+We'll only be simulating the arm; the claw won't be that useful.
+
+This section will be heavily based on [these docs](https://docs.wpilib.org/en/stable/docs/software/dashboards/glass/mech2d-widget.html).
+
+In `Arm`, create your initial encapsulating `Mechanism2d`.
+
+```java
+  private final Mechanism2d mech = new Mechanism2d(2, 2);
+```
+
+Continue following the docs above
