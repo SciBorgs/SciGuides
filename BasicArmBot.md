@@ -6,15 +6,14 @@
 
 In this tutorial, you will write code for a robot with a single-jointed arm and simulate its movement. The desired robot will have a single arm joint with an elevated axis of rotation, equipped with a static (non-pivoting) intake mechanism at the end of the arm.
 
-You are expected to have completed some level of the [Differential Drive projects](/DifferentialDriveBasic.md), as this project will build upon that codebase.
-You should also be familiar with the concepts and usage of interfaces, inheritance, and the command-based paradigm.
+You are expected to have completed some level of the [Differential Drive projects](/DifferentialDriveBasic.md), as this project will build upon that codebase. You should also be familiar with the concepts and usage of interfaces, inheritance, and the command-based paradigm.
 
 ## Setting up your environment
 
 Using your knowledge of Git, create a new branch for your arm bot. Name it something like `basic-arm-bot`. *Make sure to also move to that branch!*
 If unfamiliar, please check our [style sheet]() for ideal code and git practices.
 
-In your robot folder of your project, create an [`Arm.java` subsystem]() and an associated `ArmConstants.java` file.
+Before you move on, create an [`Arm.java` subsystem]() and an associated `ArmConstants.java` file in the robot folder of your project.
 
 ## Creating your arm
 
@@ -138,6 +137,8 @@ All this information also requires lots of organization. In `ArmConstants`, you 
     public static final double kG = 0.12055;
 ```
 
+Note the `Measure<T>` constants; this is part of WPILIB's [Java Units Library](https://docs.wpilib.org/en/stable/docs/software/basic-programming/java-units.html), which helps ensure correct units are used throughout the code. You'll see it used later on as well.
+
 Cool thing we can do: static imports, to save a bit of space. At the top of `SimArm`, we can add
 
 ```java
@@ -161,14 +162,14 @@ Initialize your arm simulator like below...
               1.0 / MOTOR_GEARING),
           DCMotor.getNEO(4),
           1.0 / MOTOR_GEARING,
-          -LENGTH.in(Meters),
-          MIN_ANGLE.in(Radians),
-          MAX_ANGLE.in(Radians),
+          -LENGTH.in(Meters), // the Units library in action
+          MIN_ANGLE.in(Radians), // initialized as degrees, these are converted to radians
+          MAX_ANGLE.in(Radians), // as required by the constructor
           true,
           STARTING_ANGLE.in(Radians));
 ```
 
-and implement the ArmIO methods using the methods provided by the sim. Make sure to update the sim periodically in your input methods with its `update(double dtSeconds)` method.
+...and implement the ArmIO methods using the methods provided by the sim. Make sure to update the sim periodically in your input methods with its `update(double dtSeconds)` method.
 
 To complete this IO subsystem, create the last implementation called `NoArm`. It should describe a non-existent arm, without any hardware but with methods returning 0 / doing nothing.
 
@@ -184,29 +185,61 @@ Now, it's time to work with the actual subsystem. `Arm.java` should include a fe
 
 Think about how exactly we want our arm to act, and what kinds of control would suit that.
 
-For a long and heavy arm (relative to other mechanisms), it's dangerous to use a regular PID controller, causing the arm to straight down at high speeds. Of course, we still want the arm to reach the setpoint quickly.
+For a long and heavy arm (relative to other mechanisms), it's dangerous to use a regular PID controller, which will command the arm to straight down at high speeds. Of course, we still want the arm to reach the setpoint quickly.
 
-A smoother alternative to the regular PID would be the addition of a trapezoid profile. Velocity and acceleration will increase, coast, and then decrease over time to reach a goal smoothly, plotting a graph in the shape of a trapezoid. WPILIB has [its own implementation of this](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/profiled-pidcontroller.html) in `ProfiledPIDController`. **Read the docs**.
+A smoother alternative to the regular PID would be the addition of a trapezoid profile. Velocity will increase, coast, and then decrease over time under a set of velocity and acceleration constraints to reach a goal smoothly, plotting a graph in the shape of a trapezoid. WPILIB has [its own implementation of this](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/profiled-pidcontroller.html) in `ProfiledPIDController`. **Read the docs**.
 
-Considering that the mechanism is an arm, it should be intuitive that gravity will have a much greater effect on it than other mechanisms. To account for this, we can use [WPILIB's `ArmFeedForward`](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/feedforward.html#armfeedforward), which incorporates a G term for output.
+Considering that the mechanism is an arm, it should be intuitive that gravity will have a much greater (non-negligible) effect on it than other mechanisms. To account for this, we can use [WPILIB's `ArmFeedForward`](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/feedforward.html#armfeedforward), which incorporates a G term for output.
 
-Declare all of your components...
+The top of your file should look similar to this:
 
 ```java
+import static org.sciborgs1155.robot.arm.ArmConstants.*;
+
 public class Arm extends SubsystemBase implements Logged {
+    // We declare our objects at the top...
     private final ArmIO hardware;
     private final ProfiledPIDController pid;
     private final ArmFeedforward ff;
 
     public Arm(ArmIO hardware) {
+        // ...and initialize them in the constructor (for stylistic purposes).
         this.hardware = hardware;
-        pid = new ProfiledPIDController(0, 0, 0, null);
-        ff = new ArmFeedforward(0, 0, 0);
+        pid = new ProfiledPIDController(kP, kI, kD, new TrapezoidProfile.Constraints(MAX_VELOCITY, MAX_ACCEL));
+        ff = new ArmFeedforward(kS, kV, kA);
   }
   // ...
+}
 ```
 
-## Repairing the file system
+Now, let's create our command factories to make this arm move given a certain goal to reach. If you haven't already, read the [`ProfiledPIDController` docs](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/profiled-pidcontroller.html) for usage details and clarifications.
+
+First, we'll create a non-factory method to set voltage with our controllers given a goal. This helps us avoid use of a multi-line lambda in the command factory.
+
+```java
+  public void updateGoal(double goal) {
+    double pidOutput = pid.calculate(hardware.position(), goal);
+    // Notice the distinction between goal and setpoint; the feedforward takes the pid's newly generated setpoint as input to help reach that setpoint.
+    double ffOutput = ff.calculate(pid.getSetpoint().position, pid.getSetpoint().velocity);
+    hardware.setVoltage(pidOutput + ffOutput);
+  }
+```
+
+Then, we'll use this method in our command factory. Think about how we want to ideally control it.
+
+Hint: we'd want to repeatedly run the method above until we reach our goal, after which we stop the arm (and the command!). Never forget your end condition.
+
+It'll look something like this:
+
+```java
+    public Command moveTo(double goal) {
+        return run(() -> updateGoal(goal)).until(pid::atGoal).finallyDo(() -> hardware.setVoltage(0));
+    }
+```
+
+You might even want to [overload](https://www.w3schools.com/java/java_methods_overloading.asp) it to take in a goal using the Units library, but that's just for safety and not strictly required.
+
+## Organizing the file system
 
 With the introduction of this IO system, notice the substantial number of files. Multiply that by the two additional subsystems, and that makes for an unreadable file system. So, let's change that.
 
@@ -234,18 +267,20 @@ This file system structure can be referenced at any time here, or in our [style 
 
 ## Making the claw
 
-Congrats! We've learned how to make an IO subsystem, and now's the time you put your skills to the test. Write IO subsystem code for the static claw at the end of the arm.
+Congrats! We've learned how to make an IO subsystem, so now's the time you put your skills to the test. Write IO subsystem code for the static claw at the end of the arm.
 
-Think about the requirements of this claw. Here's a hint: how fast the claw runs is nearly irrelevant for what the claw should do. Its only goal is to intake, hold, and spit out whatever's in its grasp when told to. In the same vein, it won't be substantial to create a simulated version; we don't care about simulating it, unless we want to make a full-fledged game relying on intaking (maybe an idea)?
+Think about the requirements of this claw. Here's a hint: how fast the claw runs is nearly irrelevant for what the claw should do. Its only goal is to intake, hold, and spit out whatever's in its grasp when told to. In the same vein, it won't be substantial to create a simulated version; we don't care about simulating it, unless we want to make a full-fledged game relying on intaking (maybe a cool idea)?
 
-Try to do this one by yourself before looking below!
+Try to do this one by yourself!
+
+^^ Should this one be guided through like before? Maybe just doing the interface would be fine, and leaving impls + subsystem up to them
 
 ## Converting the drivetrain
 
-Here's your final challenge! Turn your basic drivetrain subsystem to a subsystem implementation. For simulation, you can use [WPILIB's `DifferentialDrivetrainSim`](https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/simulation/DifferentialDrivetrainSim.html). Good luck!
+Here's your final challenge! Turn your basic drivetrain subsystem to a subsystem implementation. Good luck!
 
 ## The Simulation GUI
 
 Now that you've completed all of your subsystems and mechanisms, it's time for the fun part. Piecing it all together!
 
-You should begin your exploration [here](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/introduction.html). Continuing, open up the sim gui and explore it. More specific details on it can be found in the [next entry](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/simulation-gui.html).
+For starters, get the gist of what's happening [here](/Simulation.md). You'll be using a Mechanism2d to simulate your arm like in the blocky gif you say earlier.
