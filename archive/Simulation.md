@@ -25,8 +25,10 @@ Before doing anything with simulation, make sure desktop support is turned on. F
 
 WPILIB contains generic simulation classes for different mechanisms (like `ElevatorSim`) based on physical details and constraints about your system. You can see a full list of them and examples on using them [here](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/physics-sim.html).
 
-There's also the specific widget classes `Field2d` and `Mechanism2d`, which allow for pixel representations of the field and parts of mechanisms.
+### Widgets
 
-Physical objects, like game pieces, wheels, the drivetrain, etc., can be added to the Field2d object, allowing for nice representations without a real field. [Here's more](https://docs.wpilib.org/en/stable/docs/software/dashboards/glass/field2d-widget.html) on how you can use it.
+There's also the widget classes `Field2d` and `Mechanism2d`, which respectively allow for pixel representations of the field and parts of mechanisms.
+
+Physical objects, like game pieces, wheels, the drivetrain, etc., can be added to a Field2d object, allowing for digital representations of a real-life field. [Here's more](https://docs.wpilib.org/en/stable/docs/software/dashboards/glass/field2d-widget.html) on how you can use it.
 
 Mechanism2ds allow for block representations of mechanisms. This is most commonly used for simulating arms and elevators. See [the docs](https://docs.wpilib.org/en/stable/docs/software/dashboards/glass/mech2d-widget.html) for usage details and further clarifications.

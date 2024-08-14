@@ -1,6 +1,6 @@
 # Basic Arm Bot Tutorial
 
-![Simulated arm moving side to side](https://i.gyazo.com/8d105b8f9776487789333497fa72cd9e.gif)
+![Simulated arm moving side to side](https://i.gyazo.com/cb6189d0c58c3c28f8558cf88af827ff.gif)
 
 ## Description & Prerequisites
 
@@ -8,12 +8,14 @@ In this tutorial, you will write code for a robot with a single-jointed arm and 
 
 You are expected to have completed some level of the [Differential Drive projects](/DifferentialDriveBasic.md), as this project will build upon that codebase. You should also be familiar with the concepts and usage of interfaces, inheritance, and the command-based paradigm.
 
+All code examples are subject to change as a result of future library updates and improvements.
+
 ## Setting up your environment
 
 Using your knowledge of Git, create a new branch for your arm bot. Name it something like `basic-arm-bot`. *Make sure to also move to that branch!*
 If unfamiliar, please check our [style sheet]() for ideal code and git practices.
 
-Before you move on, create an [`Arm.java` subsystem]() and an associated `ArmConstants.java` file in the robot folder of your project.
+Before you move on, create an `Arm.java` subsystem and an associated `ArmConstants.java` file in the robot folder of your project.
 
 ## Creating your arm
 
@@ -185,7 +187,13 @@ Now, it's time to work with the actual subsystem. `Arm.java` should include a fe
 
 Think about how exactly we want our arm to act, and what kinds of control would suit that.
 
-For a long and heavy arm (relative to other mechanisms), it's dangerous to use a regular PID controller, which will command the arm to straight down at high speeds. Of course, we still want the arm to reach the setpoint quickly.
+For a long and heavy arm (relative to other mechanisms), it's dangerous to use a regular PID controller, which will command the arm straight down at high speeds.
+
+| ![Arm with regular PID](https://i.gyazo.com/37f07bb43986f5102ebde16da9a641f8.gif) |
+|:--:|
+| Regular PID; same constants as gif at top of file  |
+
+Of course, we still want the arm to reach the setpoint quickly.
 
 A smoother alternative to the regular PID would be the addition of a trapezoid profile. Velocity will increase, coast, and then decrease over time under a set of velocity and acceleration constraints to reach a goal smoothly, plotting a graph in the shape of a trapezoid. WPILIB has [its own implementation of this](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/profiled-pidcontroller.html) in `ProfiledPIDController`. **Read the docs**.
 
@@ -239,6 +247,19 @@ It'll look something like this:
 
 You might even want to [overload](https://www.w3schools.com/java/java_methods_overloading.asp) it to take in a goal using the Units library, but that's just for safety and not strictly required.
 
+Finally, make a static `create()` method that will actually instantiate the `Arm` with IO implementations. You can read on why we do this in our [style sheet]().
+
+```java
+    /**
+     * A factory to create a new arm based on if the robot is real or simulated.
+     */
+    public static Arm create() {
+        return Robot.isReal() ? new Arm(new RealArm()) : new Arm(new SimArm());
+    }
+```
+
+We use the ternary operator; if the robot is real, we create the subsystem with real hardware, otherwise we create the subsystem with simulated hardware.
+
 ## Organizing the file system
 
 With the introduction of this IO system, notice the substantial number of files. Multiply that by the two additional subsystems, and that makes for an unreadable file system. So, let's change that.
@@ -269,7 +290,9 @@ This file system structure can be referenced at any time here, or in our [style 
 
 Congrats! We've learned how to make an IO subsystem, so now's the time you put your skills to the test. Write IO subsystem code for the static claw at the end of the arm.
 
-Think about the requirements of this claw. Here's a hint: how fast the claw runs is nearly irrelevant for what the claw should do. Its only goal is to intake, hold, and spit out whatever's in its grasp when told to. In the same vein, it won't be substantial to create a simulated version; we don't care about simulating it, unless we want to make a full-fledged game relying on intaking (maybe a cool idea)?
+Think about the requirements of this claw. Here's a hint: how fast the claw runs is nearly irrelevant for what the claw should do. Its only goal is to intake, hold, and spit out whatever's in its grasp when told to.
+
+In the same vein, it won't be substantial to create a simulated version; we don't care about simulating it, unless we want to make a full-fledged game relying on intaking (maybe a cool idea)?
 
 Try to do this one by yourself!
 
@@ -289,9 +312,11 @@ We'll only be simulating the arm; the claw won't be that useful.
 
 Follow [these docs](https://docs.wpilib.org/en/stable/docs/software/dashboards/glass/mech2d-widget.html) to help create your arm.
 
+### Putting the widget together
+
 There should be one central encapsulating `Mechanism2d` to create the widget, a `Mechanism2dRoot` as the axis of rotation, and one `Mechanism2dLigament` to act as the actual arm. This ligament is the part that directly receives position measurements and moves to fit that, effectively simulating the arm's position.
 
-Be sure to use the provided constants in the constructor.
+Be sure to use the provided constants in the constructor(s).
 
 Create your `Mechanism2d` with a proper window size and an associated root with 3D translations to the axis of rotation on the physical robot...
 
@@ -301,7 +326,7 @@ Create your `Mechanism2d` with a proper window size and an associated root with 
         mech.getRoot("Chassis", 1 + AXLE_FROM_CHASSIS.getX(), AXLE_FROM_CHASSIS.getZ());
 ```
 
-before adding a `Mechanism2dLigament` to the root, and updating its position with proper position coordinates accordingly.
+...before adding a `Mechanism2dLigament` to the root, and updating its position with proper position coordinates accordingly.
 
 ```java
     private final MechanismLigament2d arm =
@@ -312,8 +337,58 @@ before adding a `Mechanism2dLigament` to the root, and updating its position wit
 
     @Override
     public void simulationPeriodic() {
-        arm.setAngle(angle);
+        arm.setAngle(hardware.position());
     }
 ```
 
-Note that `Mechanism2d`'s `setAngle(double)` only takes in measurements as degrees.
+### Conversions
+
+Note that `Mechanism2d`'s `setAngle(double)` only takes in degree measurements, which may require a conversion depending on the units of the returned measurement.
+
+In sim, the `SingleJointedArmSim` method for returning position only returns radian measurements[^1]. Since this shouldn't ever change, use of Java's conversion library is acceptable.
+
+[^1]: This may be subject to change; check the [method comment](https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/simulation/SingleJointedArmSim.html#getAngleRads()) to see if the above is still valid!
+
+```java
+    @Override
+    public void simulationPeriodic() {
+        arm.setAngle(Units.radiansToDegrees(hardware.position()));
+    }
+```
+
+While we're here, let's also set the real robot's encoder conversion factor.
+
+REV encoders' default measurements are rotations, which should be converted to radians or degrees for use on the robot. This can be easily done with Java's Units library.
+
+Use the predetermined `POSITION_FACTOR` constant in `ArmConstants` as the base, and convert that into your unit of choice.
+
+```java
+    public RealArm() {
+        // ...
+
+        encoder.setDistancePerRotation(POSITION_FACTOR.in(Radians));
+        // or
+        encoder.setDistancePerRotation(POSITION_FACTOR.in(Degrees));
+    }
+```
+
+### Button & subsystem bindings
+
+From this point, you can actually see the widget in action in the sim GUI. Follow [these directions](https://docs.wpilib.org/en/stable/docs/software/dashboards/glass/mech2d-widget.html#viewing-the-mechanism2d-in-glass).
+
+However, you'll notice it just... sitting there. Which makes sense... we haven't given it any commands.
+
+Like you've done before, create your subsystem objects with `create()`, and use the `CommandXboxController` in `Robot.java` to run your subsystem commands with it.
+
+They might look something like this:
+
+```java
+    operator.x().onTrue(arm.moveTo(x));
+```
+
+Don't forget to add your [default command]()!
+
+### The payoff
+
+Open up the sim GUI. Display the widget on your screen. Reminders on how to do that here.
+
