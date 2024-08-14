@@ -283,16 +283,37 @@ Here's your final challenge! Turn your basic drivetrain subsystem to a subsystem
 
 Now that you've completed all of your subsystems and mechanisms, it's time for the fun part. Piecing it all together!
 
-For starters, get the gist of what's happening [here](/Simulation.md). You'll be using a `Mechanism2d` to simulate your arm, like in the blocky arm you saw at the beginning of the tutorial.
+For starters, get set up and get the gist of what's happening in [our simulation docs](/Simulation.md). You'll be using a `Mechanism2d` to simulate your arm, like in the blocky arm you saw at the beginning of the tutorial.
 
 We'll only be simulating the arm; the claw won't be that useful.
 
-This section will be heavily based on [these docs](https://docs.wpilib.org/en/stable/docs/software/dashboards/glass/mech2d-widget.html).
+Follow [these docs](https://docs.wpilib.org/en/stable/docs/software/dashboards/glass/mech2d-widget.html) to help create your arm.
 
-In `Arm`, create your initial encapsulating `Mechanism2d`.
+There should be one central encapsulating `Mechanism2d` to create the widget, a `Mechanism2dRoot` as the axis of rotation, and one `Mechanism2dLigament` to act as the actual arm. This ligament is the part that directly receives position measurements and moves to fit that, effectively simulating the arm's position.
+
+Be sure to use the provided constants in the constructor.
+
+Create your `Mechanism2d` with a proper window size and an associated root with 3D translations to the axis of rotation on the physical robot...
 
 ```java
-  private final Mechanism2d mech = new Mechanism2d(2, 2);
+    private final Mechanism2d mech = new Mechanism2d(2, 2);
+    private final MechanismRoot2d chassis =
+        mech.getRoot("Chassis", 1 + AXLE_FROM_CHASSIS.getX(), AXLE_FROM_CHASSIS.getZ());
 ```
 
-Continue following the docs above
+before adding a `Mechanism2dLigament` to the root, and updating its position with proper position coordinates accordingly.
+
+```java
+    private final MechanismLigament2d arm =
+        chassis.append(
+            new MechanismLigament2d("Arm", LENGTH.in(Meters), 0, 4, new Color8Bit(Color.kAliceBlue)));
+
+    // ...
+
+    @Override
+    public void simulationPeriodic() {
+        arm.setAngle(angle);
+    }
+```
+
+Note that `Mechanism2d`'s `setAngle(double)` only takes in measurements as degrees.
