@@ -13,7 +13,9 @@ All code examples are subject to change as a result of future library updates an
 ## Setting up your environment
 
 Using your knowledge of Git, create a new branch for your arm bot. Name it something like `basic-arm-bot`. *Make sure to also move to that branch!*
-If unfamiliar, please check our [style sheet]() for ideal code and git practices.
+If unfamiliar, please check our style sheet for ideal code and git practices.
+
+[comment]: # (add style sheet link when completed)
 
 Before you move on, create an `Arm.java` subsystem and an associated `ArmConstants.java` file in the robot folder of your project.
 
@@ -23,19 +25,25 @@ Before we start, we'll be abstracting the hardware components to streamline our 
 
 Moving hardware like motors and encoders to class implementations of an interface decouples them from subsystem code, enabling modularity that supports simulation and flexibility in using different hardware or none at all! For a deeper dive, you should look at our [hardware abstraction datasheet](/HardwareAbstraction.md).
 
-Begin by creating your first IO interface in its Java file. Remember: this will act as an abstraction for a real and simulated set of hardware, so only include method headers that you think they will share.
+Begin by creating your first IO interface in its Java file. This will act as an abstraction for a real and simulated set of hardware, so only include method headers that you think they will share.
 
 It should look something like this:
 
 ```java
-public interface ArmIO { // introduce logging later when it comes time to visualize
+public interface ArmIO {
     void setVoltage(double voltage); // reminder: interfaces only have method headers;
-    // explain why these methods
+
     double position(); // all method bodies are specified in classes that implement ArmIO!
 } 
 ```
 
-Now, create a real implementation of your `ArmIO` named `RealArm` in its own file. Following Java rules, it must implement the bodies of the three methods above. Try it on your own before looking at the snippets below, and remember your goal!
+Now, create a real implementation of your `ArmIO` named `RealArm` in its own file.
+
+Think about what kind of hardware sensors the robot should use, especially when thinking about the encoder. See our [sensors doc](/Sensors.md) for background.
+
+Since we want to know exactly where our arm is at all times, we will use absolute encoders. WPILIB has support for RIO-connected absolute encoders with `AnalogEncoder` and [`DutyCycleEncoder`](https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/DutyCycleEncoder.html); we'll be using the latter.
+
+Following Java rules, `RealArm` must implement the bodies of the three methods above. Try it on your own before looking at the snippets below, and remember your goal!
 
 We create our hardware components...
 
@@ -64,11 +72,13 @@ public class RealArm implements ArmIO {
     }
 ```
 
-Now, create a [simulated implementation](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/physics-sim.html) of `ArmIO` called `SimArm`. WPILIB has lots of classes to simulate all different types of mechanisms, seen [here](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/physics-sim.html#wpilib-s-simulation-classes). It'll look very similar to the above, only that the motor and encoder will be simulated by WPILIB's `SingleJointedArmSim` class.
+Now, create a [simulated implementation](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/physics-sim.html) of `ArmIO` called `SimArm`.
+
+WPILIB has many classes to simulate numerous different types of mechanisms, seen [here](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/physics-sim.html#wpilib-s-simulation-classes). It'll look very similar to the above, only that the motor and encoder will be simulated by WPILIB's `SingleJointedArmSim` class.
 
 ### Constants
 
-Digging deep into the innards, you'll notice that the constructors are a bit... packed.
+Digging deep into the innards, you'll notice that the constructors are BIG.
 
 ```java
     // One of its many constructors; this is the one that we will be using
@@ -83,11 +93,11 @@ Digging deep into the innards, you'll notice that the constructors are a bit... 
       double startingAngleRads)
 ```
 
-(might just include the ArmConstants file in the template)
+[comment]: # (might just include the ArmConstants file in the template)
 
-They need physical information to be able to accurately simulate your system, and we obviously don't have a real robot.
+They need a plethora of physical information to be able to accurately simulate your system, and we obviously don't have a real robot. All this information will also require a lot of organization.
 
-All this information also requires lots of organization. In `ArmConstants`, you may copy-paste these relevant predetermined constants in:
+For your convenience, you may copy-paste these relevant predetermined constants into `ArmConstants`:
 
 ```java
     import static edu.wpi.first.units.Units.*;
@@ -104,7 +114,6 @@ All this information also requires lots of organization. In `ArmConstants`, you 
 
     /** Unit conversions objects for the encoders. Uses the Java units library. */
     public static final Measure<Angle> POSITION_FACTOR = Rotations.of(THROUGHBORE_GEARING);
-
     public static final Measure<Velocity<Angle>> VELOCITY_FACTOR = POSITION_FACTOR.per(Minute);
 
     /** Offset from the center of the robot to the pivot's axis of rotation */
@@ -120,14 +129,14 @@ All this information also requires lots of organization. In `ArmConstants`, you 
     public static final Measure<Mass> MASS = Kilograms.of(1);
     public static final Measure<Distance> LENGTH = Inches.of(16);
 
-    public static final Measure<Velocity<Angle>> MAX_VELOCITY = RadiansPerSecond.of(9.0);
+    public static final Measure<Velocity<Angle>> MAX_VELOCITY = RadiansPerSecond.of(4);
     public static final Measure<Velocity<Velocity<Angle>>> MAX_ACCEL =
-        RadiansPerSecond.per(Second).of(13.0);
+        RadiansPerSecond.per(Second).of(6);
 
-    public static final Measure<Angle> STARTING_ANGLE = Degrees.of(63.3);
+    public static final Measure<Angle> STARTING_ANGLE = Degrees.of(20);
 
-    public static final Measure<Angle> MIN_ANGLE = Degrees.of(-45.7);
-    public static final Measure<Angle> MAX_ANGLE = STARTING_ANGLE.minus(Degrees.of(1.2));
+    public static final Measure<Angle> MIN_ANGLE = Degrees.of(-45);
+    public static final Measure<Angle> MAX_ANGLE = Degrees.of(225);
 
     public static final double kP = 8.0;
     public static final double kI = 0.0;
@@ -141,19 +150,19 @@ All this information also requires lots of organization. In `ArmConstants`, you 
 
 Note the `Measure<T>` constants; this is part of WPILIB's [Java Units Library](https://docs.wpilib.org/en/stable/docs/software/basic-programming/java-units.html), which helps ensure correct units are used throughout the code. You'll see it used later on as well.
 
-Cool thing we can do: static imports, to save a bit of space. At the top of `SimArm`, we can add
+One last we can add are static imports, which will save a bit of space. At the top of `SimArm`, type
 
 ```java
 import static org.sciborgs1155.robot.arm.ArmConstants.*;
 ```
 
-to import all of the static objects in `ArmConstants` and turn `ArmConstants.MAX_VELOCITY` to just `MAX_VELOCITY`.
+to import all static objects in `ArmConstants` and simplify `ArmConstants.MAX_VELOCITY` to `MAX_VELOCITY`.
 
 Only use static imports for constants and when it makes sense stylistically and syntactically.
 
 ### Finishing up
 
-Initialize your arm simulator like below...
+Initialize your arm simulator with the new constants, like below...
 
 ```java
   private final SingleJointedArmSim sim =
@@ -165,15 +174,20 @@ Initialize your arm simulator like below...
           DCMotor.getNEO(4),
           1.0 / MOTOR_GEARING,
           -LENGTH.in(Meters), // the Units library in action
-          MIN_ANGLE.in(Radians), // initialized as degrees, these are converted to radians
+          MIN_ANGLE.in(Radians), // initialized as degrees, converted to radians
           MAX_ANGLE.in(Radians), // as required by the constructor
           true,
           STARTING_ANGLE.in(Radians));
 ```
 
-...and implement the ArmIO methods using the methods provided by the sim. Make sure to update the sim periodically in your input methods with its `update(double dtSeconds)` method.
+...and implement the ArmIO methods using the methods provided by the sim. Be sure to update the sim periodically in your input methods with its `update(double dtSeconds)` method.
 
-To complete this IO subsystem, create the last implementation called `NoArm`. It should describe a non-existent arm, without any hardware but with methods returning 0 / doing nothing.
+```java
+    sim.setInputVoltage(voltage);
+    sim.update(PERIOD.in(Seconds)); // every 0.02 secs
+```
+
+To complete this IO subsystem, create the last implementation called `NoArm`. It should describe a non-existent arm, without any hardware but with methods returning 0 or doing nothing.
 
 This class is useful for when a mechanism is broken or is not on the robot, allowing us to run the rest of the robot without major errors.
 
@@ -183,19 +197,21 @@ Now, it's time to work with the actual subsystem. `Arm.java` should include a fe
 
 - IO implementations of the hardware (that we just created!)
 - any control run on the RoboRIO (versus a motor or other hardware)
-- all [commands & command factories]()
+- all commands, command factories, and related methods
 
-Think about how exactly we want our arm to act, and what kinds of control would suit that.
+[comment]: # (add commands doc when merged)
+
+Think about how exactly we want our arm to act. It should be quick, but safe.
 
 For a long and heavy arm (relative to other mechanisms), it's dangerous to use a regular PID controller, which will command the arm straight down at high speeds.
 
-| ![Arm with regular PID](https://i.gyazo.com/37f07bb43986f5102ebde16da9a641f8.gif) |
-|:--:|
-| Regular PID; same constants as gif at top of file  |
+| ![Arm with regular PID](https://i.gyazo.com/37f07bb43986f5102ebde16da9a641f8.gif) | ![Simulated arm moving side to side](https://i.gyazo.com/cb6189d0c58c3c28f8558cf88af827ff.gif) |
+|:--:|:--:|
+| Regular PID; with identical constants | ProfiledPID; with constraints |
 
 Of course, we still want the arm to reach the setpoint quickly.
 
-A smoother alternative to the regular PID would be the addition of a trapezoid profile. Velocity will increase, coast, and then decrease over time under a set of velocity and acceleration constraints to reach a goal smoothly, plotting a graph in the shape of a trapezoid. WPILIB has [its own implementation of this](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/profiled-pidcontroller.html) in `ProfiledPIDController`. **Read the docs**.
+A smoother alternative to the regular PID would be the addition of a trapezoid profile. Velocity will increase, coast, and then decrease over time under a set of velocity and acceleration limits to reach a goal smoothly, plotting a graph in the shape of a trapezoid. WPILIB has [its own implementation of this](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/profiled-pidcontroller.html) in `ProfiledPIDController`. *Please read the docs*.
 
 Considering that the mechanism is an arm, it should be intuitive that gravity will have a much greater (non-negligible) effect on it than other mechanisms. To account for this, we can use [WPILIB's `ArmFeedForward`](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/feedforward.html#armfeedforward), which incorporates a G term for output.
 
@@ -215,6 +231,10 @@ public class Arm extends SubsystemBase implements Logged {
         this.hardware = hardware;
         pid = new ProfiledPIDController(kP, kI, kD, new TrapezoidProfile.Constraints(MAX_VELOCITY, MAX_ACCEL));
         ff = new ArmFeedforward(kS, kV, kA);
+
+        // set tolerance since setpoint will never be reached
+        pid.setTolerance(POSITION_TOLERANCE.in(unit-of-choice));
+        // unit should be same as input unit
   }
   // ...
 }
@@ -227,7 +247,9 @@ First, we'll create a non-factory method to set voltage with our controllers giv
 ```java
   public void updateGoal(double goal) {
     double pidOutput = pid.calculate(hardware.position(), goal);
-    // Notice the distinction between goal and setpoint; the feedforward takes the pid's newly generated setpoint as input to help reach that setpoint.
+    // Notice the distinction between goal and setpoint; 
+    // the feedforward uses the pid's newly generated setpoint as input
+    // and thus will help reach that setpoint.
     double ffOutput = ff.calculate(pid.getSetpoint().position, pid.getSetpoint().velocity);
     hardware.setVoltage(pidOutput + ffOutput);
   }
@@ -235,7 +257,7 @@ First, we'll create a non-factory method to set voltage with our controllers giv
 
 Then, we'll use this method in our command factory. Think about how we want to ideally control it.
 
-Hint: we'd want to repeatedly run the method above until we reach our goal, after which we stop the arm (and the command!). Never forget your end condition.
+Hint: we'd want to repeatedly run the method above until we reach our goal, after which we stop the arm (and the command!). Never forget your end condition & behavior.
 
 It'll look something like this:
 
@@ -247,7 +269,9 @@ It'll look something like this:
 
 You might even want to [overload](https://www.w3schools.com/java/java_methods_overloading.asp) it to take in a goal using the Units library, but that's just for safety and not strictly required.
 
-Finally, make a static `create()` method that will actually instantiate the `Arm` with IO implementations. You can read on why we do this in our [style sheet]().
+Finally, make a static `create()` method that will actually instantiate the `Arm` with IO implementations. You can read on why we do this in our style sheet.
+
+[comment]: # (add style sheet link when completed)
 
 ```java
     /**
@@ -266,7 +290,7 @@ With the introduction of this IO system, notice the substantial number of files.
 
 On the SciBorgs, subsystem files and their constants are put in one specific subsystem folder. This folder is located in a subsystems folder on the same level as the key robot files, defining the levels of contact each part of the robot should have with each other. In other words...
 
-```
+```text
 ├── Autos.java
 ├── Constants.java
 ├── Main.java
@@ -284,7 +308,9 @@ On the SciBorgs, subsystem files and their constants are put in one specific sub
     └── ...
 ```
 
-This file system structure can be referenced at any time here, or in our [style sheet]().
+This file system structure can be referenced at any time here, or in our style sheet.
+
+[comment]: # (add style sheet link when completed)
 
 ## Making the claw
 
@@ -296,7 +322,7 @@ In the same vein, it won't be substantial to create a simulated version; we don'
 
 Try to do this one by yourself!
 
-^^ Should this one be guided through like before? Maybe just doing the interface would be fine, and leaving impls + subsystem up to them
+[comment]: # (Should this one be guided through like before? Maybe just doing the interface would be fine, and leaving impls + subsystem up to them)
 
 ## Converting the drivetrain
 
@@ -396,10 +422,12 @@ Like you've done before, create your subsystem objects with `create()`, and use 
 They might look something like this:
 
 ```java
-    operator.x().onTrue(arm.moveTo(your-setpoint-here));
+    operator.x().onTrue(arm.moveTo(your-setpoint-here.in(unit-of-choice)));
 ```
 
-Don't forget to add your [default command]()!
+Don't forget to add your default command!
+
+[comment]: # (add default command doc link when created; no wpilib doc)
 
 ### The payoff
 
@@ -407,7 +435,7 @@ Open up the [sim GUI](https://docs.wpilib.org/en/stable/docs/software/wpilib-too
 
 [Display the widget]((https://docs.wpilib.org/en/stable/docs/software/dashboards/glass/mech2d-widget.html#viewing-the-mechanism2d-in-glass)) on your screen. Make sure your [joystick inputs](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/simulation-gui.html#adding-a-system-joystick-to-joysticks) are correct, keyboard and the actual selection.
 
-Hit one of the button axes (you'll know when the yellow square lights up) and that should run your command.
+Hit one of the button axes (you'll know when the yellow square lights up) and that should run your command. Boom! Your arm should be moving. If you find it isn't, review review review!
 
 Congrats! You've successfully simulated an arm. Play around with it, set it to different angles, have fun with it!
 
@@ -419,9 +447,9 @@ You might have noticed that your arm does not consistently reach its setpoint, e
 
 This is the result of those constants being poorly tuned for that range of motion; it'll be up to you to tune the closed-loop control system.
 
-Current sim behavior[^2]  
+Current sim behavior[^2] dictates that values changed in code will only be seen in simulation after a restart, which is non-ideal and will take a while.
 
-[^2] As of the 24-25 school year.
+[^2]: As of the 24-25 school year.
 
 One way we can make this job much easier is with the use of our `Tuning.java` utility class, which uses WPILIB's `DoubleEntry`.
 
@@ -451,3 +479,11 @@ In AdvantageScope, tuning mode can be turned on [like so](https://github.com/Mec
 Note that the constants themselves will not change in code, only for the simulation. Be sure to note down what values worked and update your constants with those correctly tuned values!
 
 For guidance on tuning your arm control, consult the [WPILIB docs](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/introduction/tuning-vertical-arm.html).
+
+## Continuance
+
+If you're interested in coding a project similar to this one, we recommned our [basic shooting project](https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/DutyCycleEncoder.html)! It introduces the same concepts as this tutorial, and is a great choice if you want to test the skills learned from this guide.
+
+If you're feeling exceptionally confident, you can try creating a more advanced arm or shooting project.
+
+[comment]: # (add links to projects above when created)
