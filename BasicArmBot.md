@@ -360,7 +360,7 @@ While we're here, let's also set the real robot's encoder conversion factor.
 
 REV encoders' default measurements are rotations, which should be converted to radians or degrees for use on the robot. This can be easily done with Java's Units library.
 
-Use the predetermined `POSITION_FACTOR` constant in `ArmConstants` as the base, and convert that into your unit of choice.
+Use the predetermined `POSITION_FACTOR` constant in `ArmConstants` as the base, and convert that into your angular unit of choice.
 
 ```java
     public RealArm() {
@@ -372,23 +372,82 @@ Use the predetermined `POSITION_FACTOR` constant in `ArmConstants` as the base, 
     }
 ```
 
+### Logging
+
+Before we can actually see your widget, we need to send it to [NetworkTables](https://docs.wpilib.org/en/stable/docs/software/networktables/networktables-intro.html). Using [Monologue](https://github.com/shueja/Monologue/wiki), this can easily be done using the `@Log.NT` annotation, like so:
+
+```java
+    @Log.NT private final Mechanism2d mech = new Mechanism2d(2, 2);
+    // like other Java annotations, can be placed next to or above
+```
+
+Using this, you can also log other useful data, including your PID object, and even return values from methods. Be aware though; only primitive types and classes implementing `Sendable` can be sent over NetworkTables.
+
+For more in-depth information, we highly encourage you to read our [telemetry doc](/Telemetry.md).
+
 ### Button & subsystem bindings
 
-From this point, you can actually see the widget in action in the sim GUI. Follow [these directions](https://docs.wpilib.org/en/stable/docs/software/dashboards/glass/mech2d-widget.html#viewing-the-mechanism2d-in-glass).
+From this point, you can actually see the widget in action in the sim GUI.
 
 However, you'll notice it just... sitting there. Which makes sense... we haven't given it any commands.
 
-Like you've done before, create your subsystem objects with `create()`, and use the `CommandXboxController` in `Robot.java` to run your subsystem commands with it.
+Like you've done before, create your subsystem objects with `create()`, and use the operator `CommandXboxController` in `Robot.java` to run your subsystem commands with it.
 
 They might look something like this:
 
 ```java
-    operator.x().onTrue(arm.moveTo(x));
+    operator.x().onTrue(arm.moveTo(your-setpoint-here));
 ```
 
 Don't forget to add your [default command]()!
 
 ### The payoff
 
-Open up the sim GUI. Display the widget on your screen. Reminders on how to do that here.
+Open up the [sim GUI](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/simulation-gui.html).
 
+[Display the widget]((https://docs.wpilib.org/en/stable/docs/software/dashboards/glass/mech2d-widget.html#viewing-the-mechanism2d-in-glass)) on your screen. Make sure your [joystick inputs](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/simulation-gui.html#adding-a-system-joystick-to-joysticks) are correct, keyboard and the actual selection.
+
+Hit one of the button axes (you'll know when the yellow square lights up) and that should run your command.
+
+Congrats! You've successfully simulated an arm. Play around with it, set it to different angles, have fun with it!
+
+Of course, this isn't the end.
+
+### Tuning your simulated arm
+
+You might have noticed that your arm does not consistently reach its setpoint, especially if the arm's setpoint is in a different quadrant.
+
+This is the result of those constants being poorly tuned for that range of motion; it'll be up to you to tune the closed-loop control system.
+
+Current sim behavior[^2]  
+
+[^2] As of the 24-25 school year.
+
+One way we can make this job much easier is with the use of our `Tuning.java` utility class, which uses WPILIB's `DoubleEntry`.
+
+```java
+  private final DoubleEntry p = Tuning.entry("/Robot/arm/P", kP);
+  private final DoubleEntry i = Tuning.entry("/Robot/arm/I", kI);
+  private final DoubleEntry d = Tuning.entry("/Robot/arm/D", kD);
+  // feel free to copy the above into Arm.java
+```
+
+These values can be modified during runtime, allowing for code modification and tuning without needing to redeploy code to test each new value.
+
+In your `periodic()` method, update your PID constants using the values above with the `DoubleEntry.get()` method.
+
+```java
+    @Override
+    public void periodic() {
+        pid.setP(p.get());
+        // include the rest
+    }
+```
+
+In the sim GUI, you can click on the values of the DoubleEntry above to set new values.
+
+In AdvantageScope, tuning mode can be turned on [like so](https://github.com/Mechanical-Advantage/AdvantageScope/blob/main/docs/OPEN-LIVE.md#tuning-mode).
+
+Note that the constants themselves will not change in code, only for the simulation. Be sure to note down what values worked and update your constants with those correctly tuned values!
+
+For guidance on tuning your arm control, consult the [WPILIB docs](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/introduction/tuning-vertical-arm.html).

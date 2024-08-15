@@ -1,6 +1,6 @@
 # Robot Simulation
 
-Simulation in WPILib allows for code and logic to be tested onboard your computer, rather than physical hardware. It's exceptionally useful for when construction has not built the robot, but you have code to run!
+Simulation in WPILib allows for code and logic to be tested onboard your computer, rather than physical hardware. It's exceptionally useful for when construction and electronics have not finished the robot, but you have code to run!
 
 There are a few different facets of simulation to take note of before you can start, including:
 

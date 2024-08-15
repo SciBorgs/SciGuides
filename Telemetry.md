@@ -4,9 +4,9 @@
 
 In testing (real or simulated), it is common to want to directly observe robot measurements and values in order to tune your systems and debug. Rather than spamming hundreds of print statements, WPILIB provides interfaces allowing certain information to be logged while the robot runs.
 
-It sends data to [NetworkTables](https://docs.wpilib.org/en/stable/docs/software/networktables/networktables-intro.html), which can be read [while running](#dashboards) or later on in [log files](#log-viewers).
+Loggers send data to [NetworkTables](https://docs.wpilib.org/en/stable/docs/software/networktables/networktables-intro.html), which can be read [while running](#dashboards) or stored for later viewing in [log files](#log-viewers).
 
-Only classes that implement `Sendable` can be sent over NetworkTables; see [here](https://docs.wpilib.org/en/stable/docs/software/telemetry/3rd-party-libraries.html) for more details.
+Only classes that implement `Sendable` can be sent over NetworkTables; see [here](https://docs.wpilib.org/en/stable/docs/software/telemetry/robot-telemetry-with-sendable.html#what-is-sendable) for more details.
 
 For more in-depth information on the inner workings, visit [the docs](https://docs.wpilib.org/en/stable/docs/software/telemetry/telemetry.html).
 
