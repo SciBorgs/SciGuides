@@ -443,7 +443,7 @@ Calculate what the following calls of `sumBelow` evaluate to:
 `allDivisible([100, 225, 802, 445], 5)` &rarr;
 `allDivisible([28, 8, 16, 2, 4004, 20], 4)` &rarr;
 
-*Important note: when you have a function that takes an array as an input, you are technically capable of changing the values in that array. If you do, that is a [side effect](#side-effects). Be VERY CAREFUL about doing that -- it can cause errors very very easily. So don't change the values in an array passed to a function unless it's absolutely necessary. **It's almost create better to return a new array instead.***
+*Important note: when you have a function that takes an array as an input, you are technically capable of changing the values in that array. If you do, that is a [side effect](#side-effects). Be VERY CAREFUL about doing that -- it can cause errors very very easily. So don't change the values in an array passed to a function unless it's absolutely necessary. **It's almost always better to create a new array instead.***
 ## Example: sumOutputs
 In some sense, a function is a value, just like an array or a boolean or a string. Which is to say, you can have a function whose input or output is another function!
 
