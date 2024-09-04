@@ -39,7 +39,7 @@ public interface ArmIO {
 
 Now, create a real implementation of your `ArmIO` named `RealArm` in its own file.
 
-Think about what kind of hardware sensors the robot should use, especially when thinking about the encoder. See our [sensors doc](/Sensors.md) for background.
+Think about what kind of hardware sensors the robot should use, especially when thinking about the encoder. See our [sensors doc](/reference-sheets/Sensors.md) for background.
 
 Since we want to know exactly where our arm is at all times, we will use absolute encoders. WPILIB has support for RIO-connected absolute encoders with `AnalogEncoder` and [`DutyCycleEncoder`](https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/DutyCycleEncoder.html); we'll be using the latter.
 
@@ -409,7 +409,7 @@ Before we can actually see your widget, we need to send it to [NetworkTables](ht
 
 Using this, you can also log other useful data, including your PID object, and even return values from methods. Be aware though; only primitive types and classes implementing `Sendable` can be sent over NetworkTables.
 
-For more in-depth information, we highly encourage you to read our [telemetry doc](/Telemetry.md).
+For more in-depth information, we highly encourage you to read our [telemetry doc](/reference-sheets/Telemetry.md).
 
 ### Button & subsystem bindings
 
