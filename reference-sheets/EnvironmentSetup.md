@@ -4,12 +4,12 @@ This is a guide to setting up your computer. It includes instructions on organiz
 ## Goals
 
 - [Create code folder](#local-code-organization)
-- Set up git & Github
+- [Set up git & Github](#git)
 	- Make sure git is installed
 	- Make Github account
-	- Add SSH key
-- Set up regular VSCode
-- Set up WPILib VSCode
+	- Add PAT
+- [Set up regular VSCode](#visual-studio-code-not-wpilib)
+- [Set up WPILib VSCode](#wpilib)
 # Local Code Organization
 
 All of the files on your computer are organized into a tree of *directories*, or folders. When you use Finder or File Explorer, you are navigating through those directories. 
@@ -135,13 +135,7 @@ GitHub is a web-based platform that uses Git for version control. It's where you
 
 1. Visit https://github.com/
 2. Click "Sign up" in the top right corner
-3. Follow the prompts to create your account:
-   - Enter your email address
-   - Create a password
-   - Choose a username
-   - Solve the CAPTCHA if prompted
-   - Verify your email address
-
+3. Follow the prompts to create your account
 ## Configuring Git
 
 After installing Git and creating a GitHub account, you need to configure Git with your name and email:
@@ -169,7 +163,7 @@ GitHub now requires a Personal Access Token for authentication instead of a pass
 8. Open Terminal (Mac/Linux) or PowerShell (Windows)
 9. Run the following command (Replace `YOUR-USERNAME` with your GitHub username):
 ```
-git ls-remote https://github.com/YOUR-USERNAME/FAKE-REPO-NAME.git
+git ls-remote https://github.com/YOUR-USERNAME/fake-repo-name.git
 ```
 10. When prompted for your password, enter your PAT instead.
 11. If you get an "Authentication failed" error, double-check your PAT and try again.
@@ -184,13 +178,6 @@ git config --global credential.helper wincred
 ```
 
 Note: There are other authentication methods available, such as SSH keys, but PAT is recommended for its simplicity and security. If you're interested in exploring other options, you can refer to GitHub's documentation on authentication.
-# A Secret
-
-I didn't write that git section. I generated that section by giving [Claude](claude.ai) the three previous sections, asking it to write a section about git, giving it a brief explanation of what I wanted, and then doing a couple rounds of editing with it.
-
-The moral of this story is that chat bots like Claude and ChatGPT are fantastic resources when used well. And getting help with git or command line or installing things are all great uses for AI.
-
-[Go here](link) for more tips on how to use (and how not to use) chat bots and AI for programming!
 # Visual Studio Code (not WPILib)
 
 This is going to be for writing non-robotics code. For instance, you can use regular VSC for [Java101](link) and [Java102](link). If you'd rather not have this on your computer, feel free to skip this step.
@@ -202,9 +189,42 @@ This is going to be for writing non-robotics code. For instance, you can use reg
     - In the search bar, type "Extension Pack for Java"
     - Look for the package by Microsoft and click "Install"
     - This pack includes several useful extensions for Java development, including the Language Support for Java by Red Hat, Debugger for Java, Java Test Runner, and Maven for Java
-4. Install Git Graph (optional, but recommended):
+4. Optional: Install Git Graph:
     - In the Extensions sidebar, search for "Git Graph"
     - Look for the extension by mhutchie and click "Install"
     - This extension provides a graphical view of your Git repository, which can be very helpful when working with version control
 
-#
+# WPILib
+
+1. [Follow this guide to install WPILib](https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-2/wpilib-setup.html) (we use Java, so ignore the additional C++ installation)
+2. Optional: Change the WPILib VSCode icon to distinguish from regular VSCode
+	1. Download [the WPILib logo](link to image)
+	2. Replace the icon:
+        - For Windows:
+            1. Right-click on the WPILib VSCode shortcut
+            2. Select "Properties"
+            3. Click "Change Icon"
+            4. Browse to the downloaded WPILib logo and select it
+            5. Click "OK" to apply the changes
+        - For Mac:
+            1. Locate the WPILib VSCode app in Finder
+            2. Right-click (or Control-click) on the app and select "Get Info"
+            3. Drag the downloaded WPILib logo onto the icon in the top-left corner of the Get Info window
+        - For Linux:
+            1. Locate your .desktop file for WPILib VSCode (usually in ~/.local/share/applications/ or /usr/share/applications/)
+            2. Open the .desktop file with a text editor
+            3. Find the line starting with "Icon="
+            4. Replace the value with the full path to your downloaded WPILib logo
+            5. Save the file and refresh your desktop environment
+3. Install additional extensions:
+    - Open WPILib VSCode
+    - Click on the Extensions icon in the left sidebar (it looks like four squares)
+    - Install "Test Runner for Java" by Microsoft
+    - Optionally: Install "Git Graph" by mhutchie
+# A Secret
+
+I didn't write the [git section](#git). I also didn't write several parts of the [VSCode](#visual-studio-code-not-wpilib) and [WPILib](#wpilib) sections. Instead, I prompted [Claude](claude.ai) to do it for me.
+
+The moral of this story is that chat bots like Claude and ChatGPT are fantastic resources when used well. And getting help with git or command line or installing things are all great uses for AI.
+
+[Go here](link) for more tips on how to use (and how not to use) chat bots and AI for programming!
