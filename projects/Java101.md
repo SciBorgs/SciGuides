@@ -3,7 +3,6 @@
 For this guide, you are expected to be familiar with all of the [goals for Programming101](link).
 ## Goals
 
-
 # Setup
 ...
 ...
@@ -15,6 +14,3 @@ public class Main {
 	}
 }
 ```
-Learning Java, at least at first, is an exercise in ignoring things.
-
-So, here are the things that we're going to be ignoring for now:
