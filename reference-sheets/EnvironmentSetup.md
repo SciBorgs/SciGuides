@@ -180,7 +180,7 @@ git config --global credential.helper wincred
 Note: There are other authentication methods available, such as SSH keys, but PAT is recommended for its simplicity and security. If you're interested in exploring other options, you can refer to GitHub's documentation on authentication.
 # Visual Studio Code (not WPILib)
 
-This is going to be for writing non-robotics code. For instance, you can use regular VSC for [Java101](link) and [Java102](link). If you'd rather not have this on your computer, feel free to skip this step.
+This is going to be for writing non-robotics code. For instance, you can use regular VSC for [Java101](tbd) and [Java102](tbd). If you'd rather not have this on your computer, feel free to skip this step.
 
 1. [Download VSCode here](https://code.visualstudio.com/download).
 2. Once VSCode is installed, open it.
@@ -198,7 +198,7 @@ This is going to be for writing non-robotics code. For instance, you can use reg
 
 1. [Follow this guide to install WPILib](https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-2/wpilib-setup.html) (we use Java, so ignore the additional C++ installation)
 2. Optional: Change the WPILib VSCode icon to distinguish from regular VSCode
-	1. Download [the WPILib logo](link to image)
+	1. Download [the WPILib logo](images/wpilib.png)
 	2. Replace the icon:
         - For Windows:
             1. Right-click on the WPILib VSCode shortcut
@@ -227,4 +227,4 @@ I didn't write the [git section](#git). I also didn't write several parts of the
 
 The moral of this story is that chat bots like Claude and ChatGPT are fantastic resources when used well. And getting help with git or command line or installing things are all great uses for AI.
 
-[Go here](link) for more tips on how to use (and how not to use) chat bots and AI for programming!
+[Go here](tbd) for more tips on how to use (and how not to use) chat bots and AI for programming!
