@@ -264,6 +264,7 @@ It'll look something like this:
 ```java
     public Command moveTo(double goal) {
         return run(() -> updateGoal(goal)).until(pid::atGoal).finallyDo(() -> hardware.setVoltage(0));
+        // repeatedly runs the updateGoal() method with the given goal until the arm has reached that goal, and ensures stopping on completion
     }
 ```
 
@@ -322,8 +323,7 @@ In the same vein, it won't be substantial to create a simulated version; we don'
 
 Try to do this one by yourself!
 
-[comment]: # (Should this one be guided through like before? Maybe just doing the interface would be fine, and leaving impls + subsystem up to them)
-
+For reference, the generic IO interface for the claw only really needs one method to run the rollers and pick up gamepieces.
 ## Converting the drivetrain
 
 Here's your final challenge! Turn your basic drivetrain subsystem to a subsystem implementation. If you've completed the previous Differential Drive projects, you should have everything good to go. Good luck!
@@ -441,9 +441,15 @@ Congrats! You've successfully simulated an arm. Play around with it, set it to d
 
 Of course, this isn't the end.
 
+### Unit Testing
+
+On the SciBorgs, we utilize unit tests
+
+### Systems Checks
+
 ### Tuning your simulated arm
 
-You might have noticed that your arm does not consistently reach its setpoint, especially if the arm's setpoint is in a different quadrant.
+You might have noticed that your arm does not consistently reach its setpoint, especially if the arm's goal is in a different quadrant.
 
 This is the result of those constants being poorly tuned for that range of motion; it'll be up to you to tune the closed-loop control system.
 
