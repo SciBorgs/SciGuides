@@ -443,7 +443,8 @@ Of course, this isn't the end.
 
 ### Unit Testing
 
-On the SciBorgs, we utilize unit tests
+On the SciBorgs, we utilize unit tests as a quick, organized way to see if any untested code have large, potentially dangerous effects on robot operation. Refer [here]() for details.
+
 
 ### Systems Checks
 
