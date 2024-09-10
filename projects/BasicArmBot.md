@@ -41,7 +41,7 @@ Now, create a real implementation of your `ArmIO` named `RealArm` in its own fil
 
 Think about what kind of hardware sensors the robot should use, especially when thinking about the encoder. See our [sensors doc](/reference-sheets/Sensors.md) for background.
 
-Since we want to know exactly where our arm is at all times, we will use absolute encoders. WPILIB has support for RIO-connected absolute encoders with `AnalogEncoder` and [`DutyCycleEncoder`](https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/DutyCycleEncoder.html); we'll be using the latter.
+Since we want to know exactly where our arm is at all times, we will use absolute encoders. WPILib has support for RIO-connected absolute encoders with `AnalogEncoder` and [`DutyCycleEncoder`](https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/DutyCycleEncoder.html); we'll be using the latter.
 
 Following Java rules, `RealArm` must implement the bodies of the three methods above. Try it on your own before looking at the snippets below, and remember your goal!
 
@@ -74,7 +74,7 @@ public class RealArm implements ArmIO {
 
 Now, create a [simulated implementation](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/physics-sim.html) of `ArmIO` called `SimArm`.
 
-WPILIB has many classes to simulate numerous different types of mechanisms, seen [here](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/physics-sim.html#wpilib-s-simulation-classes). It'll look very similar to the above, only that the motor and encoder will be simulated by WPILIB's `SingleJointedArmSim` class.
+WPILib has many classes to simulate numerous different types of mechanisms, seen [here](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/physics-sim.html#wpilib-s-simulation-classes). It'll look very similar to the above, only that the motor and encoder will be simulated by WPILib's `SingleJointedArmSim` class.
 
 ### Constants
 
@@ -148,7 +148,7 @@ For your convenience, you may copy-paste these relevant predetermined constants 
     public static final double kG = 0.12055;
 ```
 
-Note the `Measure<T>` constants; this is part of WPILIB's [Java Units Library](https://docs.wpilib.org/en/stable/docs/software/basic-programming/java-units.html), which helps ensure correct units are used throughout the code. You'll see it used later on as well.
+Note the `Measure<T>` constants; this is part of WPILib's [Java Units Library](https://docs.wpilib.org/en/stable/docs/software/basic-programming/java-units.html), which helps ensure correct units are used throughout the code. You'll see it used later on as well.
 
 One last we can add are static imports, which will save a bit of space. At the top of `SimArm`, type
 
@@ -211,9 +211,9 @@ For a long and heavy arm (relative to other mechanisms), it's dangerous to use a
 
 Of course, we still want the arm to reach the setpoint quickly.
 
-A smoother alternative to the regular PID would be the addition of a trapezoid profile. Velocity will increase, coast, and then decrease over time under a set of velocity and acceleration limits to reach a goal smoothly, plotting a graph in the shape of a trapezoid. WPILIB has [its own implementation of this](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/profiled-pidcontroller.html) in `ProfiledPIDController`. *Please read the docs*.
+A smoother alternative to the regular PID would be the addition of a trapezoid profile. Velocity will increase, coast, and then decrease over time under a set of velocity and acceleration limits to reach a goal smoothly, plotting a graph in the shape of a trapezoid. WPILib has [its own implementation of this](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/profiled-pidcontroller.html) in `ProfiledPIDController`. *Please read the docs*.
 
-Considering that the mechanism is an arm, it should be intuitive that gravity will have a much greater (non-negligible) effect on it than other mechanisms. To account for this, we can use [WPILIB's `ArmFeedForward`](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/feedforward.html#armfeedforward), which incorporates a G term for output.
+Considering that the mechanism is an arm, it should be intuitive that gravity will have a much greater (non-negligible) effect on it than other mechanisms. To account for this, we can use [WPILib's `ArmFeedForward`](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/feedforward.html#armfeedforward), which incorporates a G term for output.
 
 The top of your file should look similar to this:
 
@@ -458,7 +458,7 @@ Current sim behavior[^2] dictates that values changed in code will only be seen 
 
 [^2]: As of the 24-25 school year.
 
-One way we can make this job much easier is with the use of our `Tuning.java` utility class, which uses WPILIB's `DoubleEntry`.
+One way we can make this job much easier is with the use of our `Tuning.java` utility class, which uses WPILib's `DoubleEntry`.
 
 ```java
   private final DoubleEntry p = Tuning.entry("/Robot/arm/P", kP);
@@ -485,7 +485,7 @@ In AdvantageScope, tuning mode can be turned on [like so](https://github.com/Mec
 
 Note that the constants themselves will not change in code, only for the simulation. Be sure to note down what values worked and update your constants with those correctly tuned values!
 
-For guidance on tuning your arm control, consult the [WPILIB docs](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/introduction/tuning-vertical-arm.html).
+For guidance on tuning your arm control, consult the [WPILib docs](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/introduction/tuning-vertical-arm.html).
 
 ## Continuance
 

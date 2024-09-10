@@ -5,7 +5,7 @@ Simulation in WPILib allows for code and logic to be tested onboard your compute
 There are a few different facets of simulation to take note of before you can start, including:
 
 - [The Simulation GUI](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation)
-- [WPILIB's simulation classes](#simulation-classes)
+- [WPILib's simulation classes](#simulation-classes)
   - [Physics simulators](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/physics-sim.html)
   - [Mechanism2d](https://docs.wpilib.org/en/stable/docs/software/dashboards/glass/mech2d-widget.html)
   - [Field2d](https://docs.wpilib.org/en/stable/docs/software/dashboards/glass/field2d-widget.html)
@@ -19,11 +19,11 @@ For more details, visit [our doc](/Telemetry.md).
 
 ## Simulation Classes
 
-This section will heavily reference the WPILIB docs [here](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/introduction.html).
+This section will heavily reference the WPILib docs [here](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/introduction.html).
 
 Before doing anything with simulation, make sure desktop support is turned on. Follow [these instructions](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/introduction.html). Use [the next doc](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation) as reference for the GUI when working with it (same as above).
 
-WPILIB contains generic simulation classes for different mechanisms (like `ElevatorSim`) based on physical details and constraints about your system. You can see a full list of them and examples on using them [here](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/physics-sim.html).
+WPILib contains generic simulation classes for different mechanisms (like `ElevatorSim`) based on physical details and constraints about your system. You can see a full list of them and examples on using them [here](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/physics-sim.html).
 
 ### Widgets
 

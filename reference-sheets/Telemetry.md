@@ -2,7 +2,7 @@
 
 ### The art of logging and log-viewing
 
-In testing (real or simulated), it is common to want to directly observe robot measurements and values in order to tune your systems and debug. Rather than spamming hundreds of print statements, WPILIB provides interfaces allowing certain information to be logged while the robot runs.
+In testing (real or simulated), it is common to want to directly observe robot measurements and values in order to tune your systems and debug. Rather than looping print statements, WPILib provides interfaces allowing certain information to be logged while the robot runs.
 
 Loggers send data to [NetworkTables](https://docs.wpilib.org/en/stable/docs/software/networktables/networktables-intro.html), which can be read [while running](#dashboards) or stored for later viewing in [log files](#log-viewers).
 
@@ -12,12 +12,12 @@ For more in-depth information on the inner workings, visit [the docs](https://do
 
 ## Logging libraries
 
-Logging libraries, third-party or WPILIB-made, are not monolithic. Some are annotation-based (using Java `@Annotations`), while others are framework-based. All are unique; a nice list of them can be found [here](https://docs.wpilib.org/en/stable/docs/software/telemetry/3rd-party-libraries.html).
+Logging libraries, third-party or WPILib-made, are not monolithic. Some are annotation-based (using Java `@Annotations`), while others are framework-based. All are unique; a nice list of them can be found [here](https://docs.wpilib.org/en/stable/docs/software/telemetry/3rd-party-libraries.html).
 
 - [Monologue](https://github.com/shueja/Monologue/wiki) (we use this!)
-- Epilogue (official WPILIB; soon to exist documentation)
+- [Epilogue](https://docs.wpilib.org/pt/latest/docs/software/telemetry/robot-telemetry-with-annotations.html) (official WPILib)
 - [AdvantageKit](https://github.com/Mechanical-Advantage/AdvantageKit/blob/main/docs/WHAT-IS-ADVANTAGEKIT.md)
-- URCL
+- [URCL](https://github.com/Mechanical-Advantage/URCL)
 
 ## Dashboards
 
