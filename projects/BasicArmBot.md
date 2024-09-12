@@ -435,18 +435,44 @@ Open up the [sim GUI](https://docs.wpilib.org/en/stable/docs/software/wpilib-too
 
 [Display the widget]((https://docs.wpilib.org/en/stable/docs/software/dashboards/glass/mech2d-widget.html#viewing-the-mechanism2d-in-glass)) on your screen. Make sure your [joystick inputs](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/simulation-gui.html#adding-a-system-joystick-to-joysticks) are correct, keyboard and the actual selection.
 
-Hit one of the button axes (you'll know when the yellow square lights up) and that should run your command. Boom! Your arm should be moving. If you find it isn't, review review review!
+Hit one of the button axes (you'll know when the yellow square lights up) and that should run your command. Boom! Your arm should be moving. If you find it isn't, review review review (make sure your kP constant is >0)!
 
 Congrats! You've successfully simulated an arm. Play around with it, set it to different angles, have fun with it!
 
 Of course, this isn't the end.
 
-### Unit Testing
+### Unit Testing & Systems Checks
 
-On the SciBorgs, we utilize unit tests as a quick, organized way to see if any untested code have large, potentially dangerous effects on robot operation. Refer [here]() for details.
+On the SciBorgs, we like to emphasize [unit tests](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/unit-testing.html) and systems checks to make sure all code works and performs as intended.
 
+As a reminder:
 
-### Systems Checks
+- Off the robot, we utilize unit tests as a quick way to see if untested code has potentially unsafe effects on robot performance using our underlying simulation. 
+- During competition, systems checks are a way for us to quickly determine if our physical robot is operating as intended.
+
+To these ends, we've created libraries to simplify the process.
+
+In the initial differential drive project, unit tests and systems check commands were made separately. However, our testing libraries allow for a single `Test` routine to be used both as a unit test or systems check.
+
+Please review our [Unit Tests and Systems Checks reference sheets]() to gain an understanding of how these libraries work.
+
+Take our arm, for example. We'll create a `Test` that will be run as either of the tests when required.
+
+Before doing anything, think about what we want to test about the arm. We want it to operate properly, which means the arm moves where we want to. With a trapezoid profile as well, we want to see
+
+- if the arm's position ultimately reaches its goal
+- if the arm's velocity reaches its velocity setpoints
+
+We first define our test factory; call it anything, but ensure it is distinguished as a `Test`:
+
+```java
+    public Test moveToTest() {}
+```
+
+Tests comprise a test command, and related assertions (things that should / should not be true). Otherwise, there would be nothing to test!
+
+For the sake of example, we'll create one EqualityAssertion and one TruthAssertion.
+
 
 ### Tuning your simulated arm
 
@@ -494,3 +520,18 @@ If you're interested in coding a project similar to this one, we recommned our [
 If you're feeling exceptionally confident, you can try creating a more advanced arm or shooting project.
 
 [comment]: # (add links to projects above when created)
+
+  public Command systemsCheck() {
+    return Test.toCommand(
+            shooter.goToTest(RadiansPerSecond.of(100)),
+            Test.fromCommand(
+                intake
+                    .intake()
+                    .asProxy()
+                    .deadlineWith(feeder.forward(), shooter.runShooter(100))
+                    .withTimeout(1)),
+            pivot.goToTest(Radians.of(0)),
+            pivot.goToTest(STARTING_ANGLE),
+            drive.systemsCheck())
+        .withName("Test Mechanisms");
+  }

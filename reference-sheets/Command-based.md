@@ -34,9 +34,9 @@ A nice list of these individual commands can be found under the "Direct Known Su
 
 Commands can also be chained together to create much larger commands for complex routines. You'll likely be using these a lot:
 
-- [Parallel Commands](https://docs.wpilib.org/en/stable/docs/software/commandbased/command-compositions.html#parallel) - allow multiple commands to be run at once with differing end conditions
-  - Deadline and Race Commands
-- [Sequential Commands](https://docs.wpilib.org/en/stable/docs/software/commandbased/command-compositions.html#sequence) - allow commands to be run one after another
+- [Parallel Commands](https://docs.wpilib.org/en/stable/docs/software/commandbased/command-compositions.html#parallel) - run multiple commands / runnables at once
+  - Deadline and Race Commands (different end conditions)
+- [Sequential Commands](https://docs.wpilib.org/en/stable/docs/software/commandbased/command-compositions.html#sequence) - run commands / runnables after the previous one ends
 
 For more examples, see a good list [here](https://docs.wpilib.org/en/stable/docs/software/commandbased/command-compositions.html#composition-types).
 
@@ -56,6 +56,10 @@ When properly composed, complex commands can often be read through like plain en
         .whileTrue(
             shooting.shootWithPivot(PivotConstants.FEED_ANGLE, ShooterConstants.DEFAULT_VELOCITY));
 ```
+
+Individual commands and command groups each have their own singular / group of decorators. The majority can be found [here]().
+
+Commands can also be accessed through WPILib's `Commands` class.
 
 ## Complications & Common Problems
 
