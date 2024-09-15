@@ -324,6 +324,7 @@ In the same vein, it won't be substantial to create a simulated version; we don'
 Try to do this one by yourself!
 
 For reference, the generic IO interface for the claw only really needs one method to run the rollers and pick up gamepieces.
+
 ## Converting the drivetrain
 
 Here's your final challenge! Turn your basic drivetrain subsystem to a subsystem implementation. If you've completed the previous Differential Drive projects, you should have everything good to go. Good luck!
@@ -443,14 +444,7 @@ Of course, this isn't the end.
 
 ### Unit Testing & Systems Checks
 
-On the SciBorgs, we like to emphasize [unit tests](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/unit-testing.html) and systems checks to make sure all code works and performs as intended.
-
-As a reminder:
-
-- Off the robot, we utilize unit tests as a quick way to see if untested code has potentially unsafe effects on robot performance using our underlying simulation. 
-- During competition, systems checks are a way for us to quickly determine if our physical robot is operating as intended.
-
-To these ends, we've created libraries to simplify the process.
+On the SciBorgs, we like to emphasize [unit tests](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/unit-testing.html) and systems checks to make sure all code works and performs as intended. To these ends, we've created libraries to simplify the process.
 
 In the initial differential drive project, unit tests and systems check commands were made separately. However, our testing libraries allow for a single `Test` routine to be used both as a unit test or systems check.
 
@@ -471,8 +465,36 @@ We first define our test factory; call it anything, but ensure it is distinguish
 
 Tests comprise a test command, and related assertions (things that should / should not be true). Otherwise, there would be nothing to test!
 
-For the sake of example, we'll create one EqualityAssertion and one TruthAssertion.
+Let's first create the test command, which should just move to a certain position (since we want to test how the arm moves):
 
+```java
+    Measure<Angle> angle = Degrees.of(45);
+    Command testCommand = moveTo(angle);
+```
+
+Then, let's create the checks for those tests. For the sake of example, we'll create one `EqualityAssertion` testing position and one `TruthAssertion` testing velocity setpoint.
+
+We like to use the `tAssert()` and `eAssert()` factories in `Assertions.java` to actually instantiate these tests. They accept a string name, as well as functions for the expected and real values (with a tolerance for the equality assertion):
+
+```java
+    EqualityAssertion velocityCheck =
+        Assertion.eAssert(
+            "Arm Position Check: expected 0 rad/s, actually " + hardware.velocity() + " rad/s",
+            () -> 0,
+            hardware::position,
+            0.5);
+    TruthAssertion atPositionCheck =
+        Assertion.tAssert(
+            pid::atGoal,
+            "Arm At Goal Check",
+            "expected " + angle.in(Radians) + " rad, actually " + hardware.position() + " rad");
+```
+
+And finally, let's return the created test:
+
+```java
+    return new Test(testCommand, Set.of(velocityCheck, atPositionCheck));
+```
 
 ### Tuning your simulated arm
 
