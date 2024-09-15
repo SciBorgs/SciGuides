@@ -1,9 +1,11 @@
 # Introduction
 ## Is this for me?
+
 This tutorial has no prerequisites! It's written with the expectation that most of you have taken algebra 1, but if you haven't that shouldn't be a problem.
 
 As for whether you should skip this tutorial, look at the topics listed in [Goals](#goals). If you are comfortable with all of them (language doesn't matter) you can probably skip this. If you're comfortable with some but not all of the concepts, feel free to skip whatever you already know. If there's anything that you've learned already but you're not 100% sure you remember or have a good grasp on, you're highly encouraged to review it here.
 ## Goals
+
 Familiarity with the following topics:
 - arithmetic, logical, and comparison operations:
 	- / + - * 
@@ -24,28 +26,29 @@ Familiarity with the following topics:
 - functions
 - if statements
 ## Materials
+
 All you need for this is **a pen and paper**.
 
 I know many of you will read this, and then precede to use your computers for everything anyway. But, for this tutorial, a computer will not help you. You will not be running any code. If you really want, you could write in a code block in google docks, but if possible, it is straightforwardly better for this to be writing with your hand on paper or a tablet. You can write your code, any calculations you want to do, your thoughts, charts to work through loops, etc.
 ## Best practices
-With this tutorial, there are a few best practices that you should follow:
-1. Go through every example thoroughly until you understand it. If it's not clicking, try reading through every line or trying an example, and if that doesn't work, ask for help.
-2. Do all of the practice problems (unless you're confident that you know exactly how to do it and you think it's a waste of your time). Check your work. If you're ever not 100% sure that you did a problem right, ask someone to check for you.
-3. If there's ever a concept that you don't understand, ask for help!
-4. Do the work **on your own**. You can talk to your friends about concepts, but for the most part, go at your own pace, and try to do all the problems and understand the concepts on your own before asking for help.
-5. When you ask for help, you have a few options:
-	1. Maybe there's someone you're working with who you can ask, and if they know the answer, that's great. 
-	2. Ideally, you also have someone who's a more experienced programmer who can help you when you need it. 
-	3. If you find yourself without anyone who can help you, ask Claude (or ChatGPT if you prefer). Be careful not to use a prompt that will cause it to give too much away --- if it tells you all the answers, it will be harder to learn. And I can't guarantee that it will always give you great answers. But it's a good resource to have when you don't have anything else.
+
+As always, follow the general [best practices](/projects/README#best-practices).
+
+One additional best practice for this tutorial:
+
+Do all of the practice problems (unless you're confident that you know exactly how to do it and you think it's a waste of your time). Check your work. If you're ever not 100% sure that you did a problem right, ask someone to check for you.
 ## Pseudocode
+
 This tutorial uses pseudocode. In other words, instead of using a real language that you can run on a computer, we're going to be using a made up language.
 
 The made up language is going to be very generic and simple. Much of the syntax will resemble Java, since that is the language that we use for robotics. (There will also be a strong resemblance to Python)
 
 The nice thing about pseudocode, as opposed to code that you run on computers, is that you don't use quite the right syntax or formatting, that's fine, as long as what you're trying to do is clear.
 # What is code?
+
 To over-simplify, code is an input or set of instructions that a computer evaluates. For our purposes, that input is in the form of text.
 # Comments
+
 Comments allow us to include commentary in our code, and let the computer know that we're writing text for people to read, not code for it to run. Generally, we use comments to add explanations about our code.
 
 In this pseudocode language (and also in Java), you can comment lines out using `//`, so any line that starts with two slashes is a comment.
@@ -53,8 +56,10 @@ In this pseudocode language (and also in Java), you can comment lines out using 
 // this is a comment
 ```
 # Operations
+
 One of the very simplest things that you can do with code is basic mathematical operations.
 ## Arithmetic operators
+
 Arithmetic operations are probably the ones that you are most familiar with. They are used to manipulate numbers.
 These are the basic arithmetic operators:
 
@@ -68,6 +73,7 @@ These are the basic arithmetic operators:
 
 Most of these should be self explanatory. The exception to that is the modulo operator.
 ### Modulus
+
 Modulus essentially means remainder. So $a \space \% \space b$ evaluates to the remainder when you divide $a$ by $b$.
 
 Generally, modulus is done with non-negative integers only.
@@ -95,6 +101,7 @@ A couple of things to note about this:
 
 Take a second to think about those properties until they really make sense.
 ## Comparative operations
+
 Comparative operations are operators that compare values and return [booleans](#glossary). You should be familiar with all of these operations.
 ### Basic Operators:
 
@@ -111,6 +118,7 @@ Comparative operations are operators that compare values and return [booleans](#
 | less than or equals    |  `<=`  | `8 <= 5` &rarr; `false` |
 | not equals             |  `!=`  | `5 != 5` &rarr; `false` |
 ## Logical operations
+
 Logical operations transform booleans into other booleans (help). You should be very familiar with all of these words in english, but may not be used to using them in this context.
 
 | operator |      symbol       | examples                                                                                          |
@@ -119,12 +127,14 @@ Logical operations transform booleans into other booleans (help). You should be 
 | or       | <code>\|\|</code> | `true && true` &rarr; `true`<br>`true && false` &rarr; `true`<br>`false && false` &rarr; `false`  |
 | not      |        `!`        | `!true` &rarr; `false`<br>`!false` &rarr; `true`                                                  |
 ## Practice problems
+
 Calculate what each of the following code expressions evaluates to (calculators allowed):
 1. `((10 + 4) - 8) % 2`
 2. `(11 < 11) || (23 % 2 == 1)`
 3. `(14 - 11) * 5 % 6`
 4. `(11 % 4 / 2 <= 1) && (17 % 2 != 0)`
 # Variables
+
 Variables in programming are a pretty similar concept to variables in math.
 
 Essentially, a variable is a name attached to a value. 
@@ -139,6 +149,7 @@ Variables can have values that aren't numbers as well. For instance:
 `y = true`
 `!y` &rarr; `false`
 ## Scope
+
 The *scope* of a variable is the part of the code for which that variable exists. Generally, the scope of a variable is within some pair of curly braces.
 
 ```java
@@ -166,6 +177,7 @@ In this example, `x` is defined before the opening curly brace, so it is in scop
 This concept is not especially relevant with what you've learned so far, because you haven't seen any use cases for curly braces, but when we get to [loops](#loops), [functions](functions), and [if statements](#if-statements), scope will become very relevant, so don't forget about it!
 
 ## Mutability
+
 An important way that these variables differ from mathematical variables, is that in most programming languages, variables are *mutable*, which is to say, they can be changed.
 
 ```java
@@ -180,6 +192,7 @@ x = x + 2
 
 **Be careful with mutability. Changing values can cause all sorts of bugs, so every time you find yourself mutating a value, think about whether it's necessary, and whether you're messing anything up.**
 # Data Types
+
 There are many different types of values, or formats for storing data.
 ## Summary
 
@@ -191,6 +204,7 @@ There are many different types of values, or formats for storing data.
 | string  | a collection of characters in quotation marks        | `"hello world"`<br>`"123*&@"` |
 | array   | a collection of values that can be accessed by index | `[5, 4, 3, 2, 1]`             |
 ## Arrays
+
 Simply put, arrays are ordered collections of values that can be accessed efficiently by index. 
 
 *Note: in many languages (i.e. python) the data types called lists are arrays. Some languages, however, (i.e. scheme) have lists that are not arrays.
@@ -208,6 +222,7 @@ We can also have arrays with other types of values in them.
 `stringArr = ["once", "upon", "a", "time"]`
 `stringArr[2]` &rarr; `"upon"`
 ### Array Mutability
+
 Like variables, values in arrays can be changed.
 
 ```java
@@ -222,6 +237,7 @@ l[2] = l[1] * l[2]
 
 Also like with variables, **be careful when you mutate arrays**.
 ## Practice Problems
+
 Here are some variables that will be used in the problems:
 ```java
 boolArr = [true, false, false, true, false, true]
@@ -234,10 +250,12 @@ Calculate what each of the following code expressions evaluates to:
 3. `(intArr[4] * intArr[1]) % intArr[2]`
 4. `!(doubleArr[2] - doubleArr[3] < doubleArr[0])`
 # Loops
+
 Loops allow us to run the same code over and over again. We're going to learn about two different kinds of loops.
 
 *Note: this is the part when you have to start thinking about scope!*
 ## While Loops
+
 With while loops, we can take a chunk of code and say that it should be run repeatedly, as long as some condition is true. 
 
 Here's the basic structure:
@@ -248,6 +266,7 @@ while (condition) {
 ```
 For each run of the loop, the computer will first check if the condition is true, and then if it is, it will run the code. Otherwise, the loop will end and the computer will move onto the code after the loop.
 ### Example 1
+
 Here's a simple example:
 ```java
 x = 0
@@ -301,6 +320,7 @@ This example is very similar to the previous one, but the value that we are addi
 So, the final value of `sum` is $14$. If you go through step by step, what's happening is we're going through and adding each value of `arr` to `sum`, so that at the end of the day, `sum` is the sum of the values in `arr`.
 
 ## For Each Loops
+
 For each loops (analogous to for loops in python) allow us to easily loop through the values of an array. Essentially, they are shorthand for what we do in [the second while loop example](#example-2).
 
 Here's the format of a for each loop:
@@ -310,6 +330,7 @@ for (element : array) {
 }
 ```
 ### Example 3
+
 Let's try to recreate the second while loop example, where we sum up the elements in an array, with a for each loop:
 ```java
 arr = [3, 6, 4, 1]
@@ -319,8 +340,8 @@ for (val : arr) {
 }
 ```
 So this loop will run once for each value in `arr`, and every time in runs, the variable `val` will refer to a different value in `arr`. Then, for every run of the loop, `val` is added to `sum`. So, just like with our while loop, in the end `sum` ends up being the sum of the values in `arr`.
-
 ### Example 4
+
 Let's try an example using some non-number data types:
 ```java
 arr = [2, 6, 4, 1, 0]
@@ -346,6 +367,7 @@ Let's use a chart to analyze this. I'll do the first row, and you can fill in th
 |           | $1$ |         |                                     |
 |           | $0$ |         |                                     |
 ## Practice Problems
+
 1. Fill in the chart in [the second for each loop example](#example-4)
 2. Use a while loop to sum up the first 15 multiples of 3. You should start with a variable `sum` (and whatever other variables you think you need), and in the end, `sum` should hold your answer.
 3. Use a for each loop to determine if any of the values in an array `arr` are divisible by 7. For this problem, `arr` is already defined for you, but you don't know what it is (its value is redacted). Before your loop, you should have a boolean variable `containsMult`, and once the loop is run,  the value of `containsMult` should be the answer to whether `arr` contains a multiple of 7.
@@ -353,6 +375,7 @@ Let's use a chart to analyze this. I'll do the first row, and you can fill in th
 arr = REDACTED
 ```
 # Functions
+
 In math, functions are often defined as a mapping between inputs and outputs, where every input has a single output. To some extent, that definition works for functions in programming as well. 
 
 Here's the general structure of a function definition:
@@ -364,6 +387,7 @@ def functionName(input) {
 ```
 
 ## Example: f
+
 Let's take a simple function that you might see in math, and write it in this format.
 The function we're going to use is: $f(x) = 2x$
 
@@ -379,6 +403,7 @@ Now that we have this function defined, we can *call* it on different values of 
 `f(5.3)` &rarr; `10.6`
 
 ## Example: isEven
+
 In the previous example, both the input and output to our function were doubles. For this example, the input is going to be an integer and the output will be a boolean. More specifically, we're going to write a function that takes in an integer and returns whether or not that integer is even.
 ```java
 def isEven(n) {
@@ -392,6 +417,7 @@ Now, let's call our function on a few values and see what the output is:
 `isEven(0)` &rarr; `true`
 
 ## Example: sumBelow
+
 Now, let's do something a little more complicated. In [the first while loop example](#example-4), we found the sum of positive integers from $0$ to $4$. Now, we're going to make a function that finds the sum of the positive integers from $0$ to `n`.
 
 ```java
@@ -423,6 +449,7 @@ Evaluate what the following calls of `sumBelow` evaluate to:
 `sumBelow(3)` &rarr;
 `sumBelow(-1)` &rarr;
 ## Example: allDivisible
+
 Functions can also have multiple inputs (this is true in math as well, although it may not be something you've run into yet).
 
 In [one of the for each loop examples](#example-4), a loop is used to check whether every value in an array is divisible by 2. We're going to write a function, modeled on that example, that takes for inputs an array `arr` and an integer `fact`, and returns whether every value in `arr` is divisible by `fact`.
@@ -445,6 +472,7 @@ Calculate what the following calls of `sumBelow` evaluate to:
 
 *Important note: when you have a function that takes an array as an input, you are technically capable of changing the values in that array. If you do, that is a [side effect](#side-effects). Be VERY CAREFUL about doing that -- it can cause errors very very easily. So don't change the values in an array passed to a function unless it's absolutely necessary. **It's almost always better to create a new array instead.***
 ## Example: sumOutputs
+
 In some sense, a function is a value, just like an array or a boolean or a string. Which is to say, you can have a function whose input or output is another function!
 
 Here is a function that takes an array `arr` and a function `fun`, and returns the sum of the outputs when each value in `arr` is plugged into `fun`.
@@ -473,6 +501,7 @@ Evaluate the following calls to `sumOutputs` (calculators allowed):
 `sumOutputs([2.0, 1.2, 4.3, 10.2], f)`
 `sumOutputs([2.0, 1.2, 4.3, 10.2], g)`
 ## Side Effects
+
 Thus far, we've been thinking of functions as having an input (or multiple inputs) and an output. It turns out, however, that we can also make functions without inputs or outputs. This is useful in situations when we are dealing with *side effects*. Any time that our code interacts with/effects something outside of itself, that's a side effect.
 
 So, for instance, if we had a motor that our code was controlling, that would be a side effect.

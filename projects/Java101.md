@@ -9,9 +9,15 @@
 	- [Git & Github set up](link)
 ## Goals
 
-come back
-
+Familiarity with the following topics:
+- Java file structure and syntax
+- Printing
+- Types
+- Operations, if statements, variables, loops, functions, and arrays in Java
+	- Multi-dimensional arrays
 ## Best Practices
+
+As always, follow the general [best practices](/projects/README#best-practices).
 
 For this guide, you should be following along on your own computer. When there are pieces of example code, first think about out how the code works, and then try running it yourself. After each section, try to play around with the concepts you've learned! Make your own examples similar to the ones given.
 
@@ -22,7 +28,6 @@ And if you need help, ask!
 
 ## Create GitHub Repo
 
-(maybe move this section to a separate ref sheet)
 A GitHub repository, often referred to as a "repo," is a central location where you can store, manage, track, and control changes to your project files. It's like a folder for your project that is hosted on GitHub's servers. It also allows you to easily share your code, or collaborate with others.
 You're going to create a repo for the code that you write in this tutorial.
 1. Open [GitHub](github.com) and log in.
@@ -120,7 +125,7 @@ git push
 Okay, you're all set up!
 # File Structure
 
-At least at first, there are a lot of little things that you're going to be ignoring. I promise, we'll get to them later.
+At least at first, there are a lot of little things that you're going to be ignoring. I promise, we'll get to them later (mostly in [Java102](/projects/Java102)).
 
 Here's the list of things you don't need to understand as of right now:
 - what `public` means
@@ -129,21 +134,20 @@ Here's the list of things you don't need to understand as of right now:
 - what `String[] args` means
 - what the `public class Main { }` block is doing
 
-Here's what you do need to know to get started:
+Here's what you *do* need to know to get started:
 - DO NOT DELETE ANYTHING that is currently there.
 	- Do not delete any curly brackets. Do not delete `public class Main`. Leave it all.
 - All code that you write will be inside of the outer pair of curly braces (in the `public class Main { }` block).
-- The line `public static void main(String[] args] {}` is defining a function. I'm not going to explain the syntax yet, you don't need to know is this:
+- The line `public static void main(String[] args] {}` is defining a function. I'm not going to explain the syntax yet, all you need to know is this:
 	- When you press `Run`, the code written inside of that `main` function, between the open and closed curly braces will run. No other code will run unless called in the `main` function (or in a variable definition).
 - Outside of the main function, you can create other functions and you can define variables (those are the only things you can do that are currently relevant).
 - What you need to know about the order of definitions in your Java file:
 	- Function definitions:
-		- You can define functions in any order within the file
-		- A function can be called from anywhere in the file, even if it's defined below
-	- Variable definitions (for variables defined outside of functions)
-		- Can be used in any function, regardless of where the function is defined in the file
-		- When defining a variable `x`, you can only reference other variables if they are defined *above* `x`
-
+		- You can define functions in any order within the file.
+		- A function can be called from anywhere in the file, even if it's defined below.
+	- Variable definitions (for variables defined outside of functions):
+		- Variables can be used in any function, regardless of where the variable and function are defined in the file.
+		- When defining a variable `x`, you can only reference other variables inside the definition if they are defined *above* `x`.
 # Java Syntax
 
 A few key things to remember about Java syntax and style:
@@ -151,7 +155,6 @@ A few key things to remember about Java syntax and style:
 - Java uses curly braces (`{}`) to denote code blocks (unlike python which uses colons).
 - In Java, variable and function names are written in [camelCase](https://en.wikipedia.org/wiki/Camel_case) with the first letter lowercase.
 	- File names are written with the first letter capitalized.
-what else????
 # Printing
 
 In Java, if you want to be able to see the result of a piece of code that you write, you need to print it. Whatever it is that you print will appear on the console as text.
@@ -223,7 +226,7 @@ public class Main {
 }
 ```
 
-For now, if you create a variable outside of a function, you need to put the word `static` before the type. I'm not going to explain what that means or why you need it yet, but we'll get there. Here's an example:
+For now, if you create a variable outside of a function, you need to put the word `static` before the type. I'm not going to explain what that means or why you need it yet, but we'll get there in [Java102](/projects/Java102). Here's an example:
 
 ```java
 public class Main {
@@ -270,7 +273,7 @@ You can do this with the following syntax:
 new elementType[length]
 ```
 
-The `new` keyword is what we use when we're telling the computer to create a new value of a certain type (there's more to this, but we'll get to that later).
+The `new` keyword is what we use when we're telling the computer to create a new value of a certain type (there's more to this, but we'll get to that in [Java102](/projects/Java102)).
 
 Here's an example of using this method to initialize a 100 element boolean array:
 
@@ -445,7 +448,7 @@ In general, we use for loops when we want to iterate through a range of values i
 
 Sometimes, we just have a piece of code that we want to run the exact same way some number of times, and we can use for loops for that as well. For instance, let's say we want to have a 9 by 9 grid of dashes that we can print. 
 
-For this example, we're going to be working with [strings](/projects/Programming101#data-types), which we haven't done much of thus far. The key word for the string type is `String` (note the capital first letter). We'll get to why this type is capitalized when others are not, but not right now.
+For this example, we're going to be working with [strings](/projects/Programming101#data-types), which we haven't done much of thus far. The key word for the string type is `String` (note the capital first letter). We'll get to why this type is capitalized when others in [Java102](/projects/Java102).
 
 Before we get to the implementation, we need to introduce a few new things:
 - String addition
@@ -479,7 +482,7 @@ public class Main {
 
 Before we start learning Java functions, we have some vocabulary to go over.
 
-In Java, what we've thus far been calling a function is actually called a method (for reasons that will be explained later). For now, we will use the terms interchangeably. At some point, we will flesh out the differences between functions and methods, but not right now.
+In Java, what we've thus far been calling a function is actually called a method. For now, we will use the terms interchangeably. In [Java102](/projects/Java102), we will flesh out the differences between functions and methods.
 
 Okay, let's get started! Here's a simplified version of the basic syntax for functions/methods in Java (later on we'll learn about situations where this doesn't apply):
 ```java
@@ -490,7 +493,7 @@ static returnType name(argumentType argumentName) {
 ```
 
 Some things to note:
-1. For now, you must have the word `static` in front of your functions (I'm not going to explain why yet).
+1. For now, you must have the word `static` in front of your functions (we'll get to why in [Java102](/projects/Java102)).
 2. You must specify the return type (the data type of the return value) of your function.
 3. You must specify the type of each argument that your function takes
 
@@ -583,6 +586,13 @@ public class Main {
 		System.out.println(PracticeProblems.countOccurances(arr, 3));
 	}
 }
+```
+
+**Important**: Whenever you get to a stopping point (solve a problem, close your computer to take a break) save your changes by committing and pushing!
+```
+git add .
+git commit -m "description of what you did"
+git push
 ```
 ## Problems
 1. Write a function called `countOccurrences` that takes an integer array `arr` and an integer `n`, and returns the number of times that `n` appears in `arr`.
