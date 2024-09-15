@@ -11,7 +11,7 @@
 
 come back
 
-## Best practices
+## Best Practices
 
 For this guide, you should be following along on your own computer. When there are pieces of example code, first think about out how the code works, and then try running it yourself. After each section, try to play around with the concepts you've learned! Make your own examples similar to the ones given.
 
@@ -74,7 +74,6 @@ Open your README.md file, and write a few words about what this project is. Some
 ```
 [text](link)
 ```
-
 ## Create Main File
 
 It's time to make your first Java file!
@@ -103,6 +102,21 @@ public class Main {
 
 Above the words `public static void` you should see a little `Run | Debug`. You should be able to press on either word.
 
+## Make Initial Commit
+
+Now it's time to update your git repository with the changes you just made!
+
+First off, open terminal in VSCode using Control + ~.
+
+Then, type the following into terminal:
+```
+git add .
+git commit -m "added readme and main file"
+git push
+```
+
+(link to git doc)
+
 Okay, you're all set up!
 # File Structure
 
@@ -130,7 +144,7 @@ Here's what you do need to know to get started:
 		- Can be used in any function, regardless of where the function is defined in the file
 		- When defining a variable `x`, you can only reference other variables if they are defined *above* `x`
 
-# Java syntax
+# Java Syntax
 
 A few key things to remember about Java syntax and style:
 - There must be a semicolon at the end of each complete statement (i.e. returning a value, mutating a variable, calling a function, etc.) or declaration (i.e. defining a variable or function).
@@ -166,7 +180,7 @@ Note, if you want to print raw text (like "Hello World"), *you must put quotatio
 # Operations
 
 Exactly the same as in [Programming101](/projects/Programming101#operations)!
-# If statements
+# If Statements
 
 Exactly the same as in [Programming101](/projects/Programming101#if-statements)!
 # Types
@@ -352,7 +366,7 @@ public class Main {
 	}
 }
 ```
-## For loops
+## For Loops
 
 Java actually has a third kind of loop. It's called a for loop, but is more closely related to a while loop than a for each loop.
 
@@ -498,8 +512,7 @@ public static void main(String[] args) {
 
 But if you have to specify the return type, what do you do if you want to write a function that doesn't return anything? Well, instead of a return type you use a key word that means no return type: `void`
 
-Here's an example:
-We're going to write a function that prints an integer array in a readable format.
+As an example, let's write a function that prints an integer array in a readable format:
 
 ```java
 static void printIntArray(int[] arr) {
@@ -515,7 +528,7 @@ static void printIntArray(int[] arr) {
 }
 ```
 
-Test it out on a few arrays!
+Go through this line by line until you understand what's happening. Once you've done that, test it out on a few arrays!
 
 Now, like many functions that use side effects, this isn't necessarily the best way to accomplish our goal. Instead of having a function that returns nothing and prints the array, we could have a function that returns the string form of the array, and we could print that ourselves, like this:
 
@@ -553,4 +566,26 @@ static String boardToString(int[][] board) {
 	return str;
 }
 ```
+## Practice Problems
 
+Before you start, let's do some setup. Make a new file called something like `PracticeProblems.java`. The file should look something like this:
+```java
+public class PracticeProblems {
+	
+}
+```
+
+Write all your functions inside `PracticeProblems`. To test them, go back to your `Main.java` file and run your tests from the `main` function. You can call a function `f` in `PracticeProblems` using `PracticeProblems.f()`. Here's an example:
+```java
+public class Main {
+	public static void main(String[] args) {
+		int[] arr = {4, 3, 2, 8, 3};
+		System.out.println(PracticeProblems.countOccurances(arr, 3));
+	}
+}
+```
+## Problems
+1. Write a function called `countOccurrences` that takes an integer array `arr` and an integer `n`, and returns the number of times that `n` appears in `arr`.
+2. Write a function called `reverseArray` that takes an integer array `arr` and returns a new array with the elements of `arr` but in reverse order.
+3. Write a function called `sumGrid` that takes a 2d double array `grid` and returns the sum of all the elements. *Hint: you can do this with nested for loops (look it up).*
+4. Write a function called `fib` that takes an integer `n` and returns the `nth` number in the fibonacci sequence (starting with $0$ $1$).
