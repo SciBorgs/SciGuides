@@ -295,7 +295,7 @@ public class Main {
 
 Just as we can have an array if booleans or integers or doubles or Strings, we can also have an array of arrays. We call such an array a 2d array.
 
-So, let's say we want to represent a tic tac toe board. And let's say we've decided to represent blank, X ,and O with $0$, $1$,and $2$. We could then represent each row as an integer array of length three. And to represent the entire board, we would use an array of three rows. So in the end, that's an array of length three, where each element is an integer array of length three.
+So, let's say we want to represent a tic tac toe board. And let's say we've decided to represent blank, X ,and O with $0$, $1$, and $-1$ respectively. We could then represent each row as an integer array of length three. And to represent the entire board, we would use an array of three rows. So in the end, that's an array of length three, where each element is an integer array of length three.
 
 In other words, we can represent a tic tac toe board as a 2 dimensional integer array.
 

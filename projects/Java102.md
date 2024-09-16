@@ -32,4 +32,3 @@ See [Java101](/projects/Java101#best-practices).
 If you did [Java101](/projects/Java101), use the same repository that you used there. Otherwise, follow the [instructions in Java101 to set up a repository](/projects/Java101#setup).
 # Classes and Objects
 
-Java is what is called an *object oriented language*. 
