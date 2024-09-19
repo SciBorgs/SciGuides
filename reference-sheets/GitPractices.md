@@ -20,6 +20,10 @@ Saving versions of anything you make as you go along is very useful for big proj
 
 A commit, put simply, is just this, a version of the codebase. Commits keep track of the changes that have been made to the code, bundles them up and slaps a message on them. When going back to previous versions, if the commit was labeled with a commit message, it makes it much easier to figure out where you went wrong, or where to return to.
 
+Rather than bundling all the code, which is non storage-efficient for larger repositories, and would take very long both to download and to upload, git simply keeps track of the changes you've made. However, when committing, git doesn't know the changes you want to commit. So, you first have to stage those changes, in the terminal (we will go over this later) and then committing. 
+
+Make sure to commit with a message! If committing either without a message or with a irrelevant one (e.g. "g", "iglsjgf;l", "made some changes") then it takes out half of the reason you're committing in the first place, and makes it difficult for you and people reviewing your changes to determine what you did in each commit! So, always make a very brief description of the changes you've made. It's not just good practice, it's also helpful to everyone.
+
 ### Pushing and Pulling
 
 ### Merging
