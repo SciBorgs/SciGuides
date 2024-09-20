@@ -197,9 +197,7 @@ Now, it's time to work with the actual subsystem. `Arm.java` should include a fe
 
 - IO implementations of the hardware (that we just created!)
 - any control run on the RoboRIO (versus a motor or other hardware)
-- all commands, command factories, and related methods
-
-[comment]: # (add commands doc when merged)
+- all [commands](/reference-sheets/Command-based.md#commands), command factories, and related methods
 
 Think about how exactly we want our arm to act. It should be quick, but safe.
 
@@ -412,7 +410,7 @@ Using this, you can also log other useful data, including your PID object, and e
 
 For more in-depth information, we highly encourage you to read our [telemetry doc](/reference-sheets/Telemetry.md).
 
-### Button & subsystem bindings
+### Button & Subsystem Bindings
 
 From this point, you can actually see the widget in action in the sim GUI.
 
@@ -426,9 +424,7 @@ They might look something like this:
     operator.x().onTrue(arm.moveTo(your-setpoint-here.in(unit-of-choice)));
 ```
 
-Don't forget to add your default command!
-
-[comment]: # (add default command doc link when created; no wpilib doc)
+Don't forget to add your [default command](https://docs.wpilib.org/en/stable/docs/software/commandbased/subsystems.html#default-commands)!
 
 ### The payoff
 
@@ -444,11 +440,11 @@ Of course, this isn't the end.
 
 ### Unit Testing & Systems Checks
 
-On the SciBorgs, we like to emphasize [unit tests](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/unit-testing.html) and systems checks to make sure all code works and performs as intended. To these ends, we've created libraries to simplify the process.
+On the SciBorgs, we like to emphasize [unit tests](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/unit-testing.html) and systems checks to make sure all code works and performs as intended. To these ends, we've created libraries to simplify the process. Please review our [Unit Tests and Systems Checks reference sheets]() to understand how they work.
+
+[comment]: # (add sheet link when completed)
 
 In the initial differential drive project, unit tests and systems check commands were made separately. However, our testing libraries allow for a single `Test` routine to be used both as a unit test or systems check.
-
-Please review our [Unit Tests and Systems Checks reference sheets]() to gain an understanding of how these libraries work.
 
 Take our arm, for example. We'll create a `Test` that will be run as either of the tests when required.
 
@@ -463,9 +459,9 @@ We first define our test factory; call it anything, but ensure it is distinguish
     public Test moveToTest() {}
 ```
 
-Tests comprise a test command, and related assertions (things that should / should not be true). Otherwise, there would be nothing to test!
+Tests comprise a test command and related assertions (things that should / should not be true). Otherwise, there would be nothing to test!
 
-Let's first create the test command, which should just move to a certain position (since we want to test how the arm moves):
+Since we want to test movement, let's make the test command move to a certain position:
 
 ```java
     Measure<Angle> angle = Degrees.of(45);
