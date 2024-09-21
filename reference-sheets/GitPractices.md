@@ -1,10 +1,17 @@
 # Introduction
 
-Git is a great tool for teams to collectively work on a project together!
-
+Git is a great tool for teams to collectively work on a project together. Conceptualizing the way git is structured is somewhat difficult for people who are very new to the subject, but this guide should make it super easy and digestible! After the explanation of concepts and definitions of terms, there is a Usage section where you will learn the commands to use git in the command line. After firmly grasping the concepts, remembering the commands become simple tasks, and once you practice enough with them, they become somewhat second nature to a programmer.
 # Conceptualization
 
 ### Repositories
+
+If more than one person is working on a codebase, the codebase needs a place to be stored. The way nearly everyone does this is by using something called a **Github Repository**. A Repository is a place on the cloud for folders and files to be stored, which is **accessible by git**. Each repository is its own **git project**, or a unit of storage on git. 
+
+Those were some fancy magic words, but to put it simply, it's a place on the internet where your team's code will go. 
+
+If your team's repository has something called **branch protections**, which it most likely does, then you won't be able to edit the code directly. There are other ways that you can contribute, of which will be discussed later in this guide. 
+
+When your team makes a project on Github and adds some files and folders to it, in order to get those files onto your computer for editing, you'll need to **clone** it. Cloning is the way you get git to **download** a git project, or repository, into files on your computer. This is because the most efficient ways to edit code is on an **Integrated Development Environment** (a code-editing app), such as **Visual Studio Code** (with plugins), which run by editing files on your computer.
 
 ### Branches
 
@@ -18,7 +25,7 @@ The repository usually consists of many branches, with the main branch at the ce
 
 Saving **versions** of anything you make as you go along is very useful for big projects. It can help organize the changes that have been made, and also help you go back to a **previous version** in case something goes wrong. Consider this: you have just been working for a couple hours, making many changes in the process. Your code was working fine, and had no problems thirty minutes ago, but for some reason, it just isn't working now, and you have absolutely no idea why, even after looking at the error report. It would be nice to go back to a previous version, compare them, and see what the issue is.
 
-A **commit**, put simply, is just this, a **version of the codebase.** Commits keep track of the **changes** that have been made to the code, bundles them up and slaps a **message** on them. When going back to previous versions, if the commit was labeled with a commit message, it makes it much easier to figure out where you went wrong, or where to return to.
+A **commit**, put simply, is just this, a **version of the codebase.** Commits keep track of the **changes** that have been made to the code, bundles them up and slaps a **message** on them. When going back to previous versions, if the commit was labeled with a commit message, it makes it much easier to figure out where you went wrong, or where to return to. Changes that are made locally on the device that have not been committed yet are named **working changes**, which is pretty simple to remember since they are what you are working on at the current moment. 
 
 Rather than bundling all the code, which is non storage-efficient for larger repositories, and would take very long both to download and to upload, git simply keeps track of the **changes you've made**. However, when committing, git doesn't know the changes you want to commit. So, you first have to **stage** those changes in the terminal (we will go over this later) and then you can commit. 
 
@@ -26,13 +33,24 @@ Make sure to commit with a **message**! If committing either without a message o
 
 ### Pushing and Pulling
 
-Commits are **local changes**, which means that they **aren't** put onto the cloud, or Github. This is mostly so you can go to a previous commit, before adding your changes to your branch. When we add our previous commits to the branch, we call this **"pushing our changes,"** because you are taking all of your changes, all of your previous commits, and applying them to the branch. You are **pushing** your changes to the branch. Pretty intuitive.
+Commits are **local changes**, which means that they **aren't** put onto the cloud, or Github. This is mostly so you can go to a previous commit, before adding your changes to your branch. When we add our previous commits to the branch, we call this **"pushing our changes,"** because you are taking all of your changes, all of your previous commits, and applying them to the **remote branch**. Put simply, you are taking your **local changes** and making them **remote**, or uploading them to the cloud (Github).
 
 When pushing changes, it places it in the Github repository, and those changes are made **public** to all others working on the repository. When you push changes for the first time on a branch, it establishes the branch on the repository and people will be able to switch to it on the website. So, make sure to push somewhat regularly so that others can keep track of what you're doing.
 
 Now, say you're working on a branch at a school computer. You push your changes, and then go home to work on your home computer. Your home computer has no idea that these changes occurred on the branch, so it will still have the code it last saw. In order to get your pushed changes from the cloud to your home computer, you need to **pull** them.
 
 **Pulling changes** is especially useful when working with **multiple people** on the **same branch**. If one person pushes their changes, then another, they will have **conflicts**. So, it's important that, when doing this, changes are always pulled before they are pushed, so each new push is up-to-date. Make sure, in this situation, to pull extremely regularly because conflicts between the two users' code will stack up extremely quickly, and eventually it will be faster just to abandon and rewrite the entire branch than to sort out each and every one of those changes. I'm speaking from experience. Pull regularly.
+
+### Stashing
+
+Sometimes you'll be working on a branch, then realize that you need those changes that your friend pushed five minutes ago in order to finish your code. If you decide to commit now and pull after, then you will have to sort out a bunch of annoying merge conflicts, and have an unfinished commit in the tree, but if you decide to pull, then all of **your** working changes will need to be **undone** first. To avoid this, there must be a way to **store** your changes locally **without** committing, so that you can pull your **friend's** changes and then apply **your** changes, so **both** changes will be applied in the next commit. 
+
+Thankfully, the git overlords have gifted us the ability to **stash** our changes. When you stash your changes, it bundles all your working changes into the git stash and removes all those changes from your files; it reverts you to the most recent commit. You can do what you'd like, but when you want those changes back, you can simply reapply them to your code, even if you're a commit forward. 
+
+Removing your changes from the stash and placing them back in your working changes is called **popping** the changes. Popping your stashed working changes throws them back into your code, like popping a bubble full of working changes, and once it's popped the working changes fall back onto the code.
+
+Two people on a branch is not the only situation when you'd use stash. Sometimes, you want to write something a different way, but want to keep your changes just in case you change your mind. In this scenario, you can just stash your working changes, then rewrite it all, and if you don't like the rewrite, all you have to do is pop! Stashed changes restored. 
+
 ### Merging
 
 When you're finally done with your changes on a branch, and you are sure that it is absolutely perfect, you create something called a **Pull Request** on Github, to merge it to the main branch and be added to the main codebase. Someone with merge permissions (an admin of the repository) will look over your code, indirectly humble your coding skills, and then tell you what to change before your code can be added to main. After the person reviewing your code thinks that it is perfect, they will approve it and you can then **merge your code into main**, bringing your changes officially into the codebase!
@@ -41,9 +59,7 @@ Essentially, merging is how you transfer code from **branch to branch**. This, o
 
 There is another way to merge main into your code called **Rebasing**, but it's complicated to explain in writing and you'll never use it with a team as small as a high school robotics team. The idea behind it is that you rewrite your commit history during a rebase, and that **instead** of branching off of the main branch that was four commits ago, you are **now** technically branched off of the newest main commit. It's useful for organizing commits to turn the visualization from a web to a tree, but when you're doing such small changes to a tiny codebase like used in robotics, it doesn't even matter. 
 
-### Stashing
-
-# Using Git
+# Usage
 
 ### Cloning
 
