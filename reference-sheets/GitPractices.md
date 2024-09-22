@@ -1,7 +1,9 @@
 # Introduction
 
-Git is a great tool for teams to collectively work on a project together. Conceptualizing the way git is structured is somewhat difficult for people who are very new to the subject, but this guide should make it super easy and digestible! After the explanation of concepts and definitions of terms, there is a Usage section where you will learn the commands to use git in the command line. After firmly grasping the concepts, remembering the commands become simple tasks, and once you practice enough with them, they become somewhat second nature to a programmer.
+Git is a great tool for teams to collectively work on a project together. Conceptualizing the way git is structured is somewhat difficult for people who are very new to the subject, but this guide should make it super easy and digestible! After the explanation of concepts and definitions of terms, there is a Usage section where you will learn the commands to use git in the command line. After firmly grasping the concepts, remembering the commands become simple tasks, and once you practice enough with them, they become second nature to a programmer.
 # Conceptualization
+
+Before conceptualizing the ideas behind the various command line inputs, remembering the actual command line inputs is a little bit confusing. Although it is possible to learn **how** to use git and program with that, it is much better to learn **how git works** and then build off of that. Therefore, before going over the individual command line inputs, we will go over the main concepts, what they mean, and how they contribute to programming for your team.
 
 ### Repositories
 
@@ -61,16 +63,119 @@ There is another way to merge main into your code called **Rebasing**, but it's 
 
 # Usage
 
+Looks like you got through all the conceptualization. Nice job! However, that means absolutely nothing if you don't know how to put it into practice. So, in this section, we will go over the actual git command line inputs.
+
+Opening the command line isn't a difficult task. Visual Studio Code has one built in (accessible by pressing ctrl+\`), which makes using git much easier. 
+If you're not using VSCode, 
+Windows: Press *Win + \X* to open the Command Prompt.
+Mac: Press *Cmd + Space* to open spotlight search, then type "Terminal" to open the Terminal.
+Linux: Spin around five times and then sing Mary Had A Little Lamb.
+
 ### Cloning
 
-### Committing
+There are a few ways to clone a Github repository onto your computer, but the best way and the way that we'll be going over is by using the command line. 
+
+Go onto the GitHub website, then find the repository. There should be a green button that says "Code." Click that, and then copy the link that shows up under it. This will be used in the command. It tells git what exactly to clone off of the internet.
+
+Next, navigate using the command line to the target folder where you want your cloned repository to be on your computer. You can alternatively move the cloned folder after your clone it, but moving around using the command line makes me feel like a hacker so i do that instead.
+
+Type this text into the command line:
+
+`git clone <copied link>`
+
+It should look something like this:
+
+`git clone https://github.com/SciBorgs/SciGuides.git`
+
+This would clone this repository, the SciBorgs' SciGuides onto your computer in your working directory.
 
 ### Branching
 
+To make a branch, type into the command line:
+
+`git branch <branch name>`
+
+Make sure that your chosen branch name follows the naming standards! Your name should be:
+1. Relevant: something indicative of what the branch is for
+2. All lowercase
+3. Spaces replaced with dashes
+
+So, these would be fine:
+- drivetrain
+- auto-align
+- feeder-fix
+But these wouldn't:
+- Drivetrain
+- auto_align
+- i-hate-git 
+
+However, after you decide to create the branch, you still need to switch to that branch!
+To do that, type into the command line:
+
+`git checkout <branch name>`
+
+You can also switch to a branch that isn't yours using `checkout`. If your friend was coding something and told you to go to their branch, you could just use checkout and it would work.
+
+### Committing
+
+Remember when we talked about staging our changes before committing? Well, to do that, type into the command line:
+
+`git add .`
+
+This will stage all of your working changes and make them ready for committing. The "." in this situation means all of your working changes.
+
+Of course, there is a way for you to stage only certain files but there's really no situation where it would be used.
+
+Once your changes are staged, we will want to commit those staged changes. Type into the command line:
+
+`git commit -m "Put your message here"`
+
+This will commit all of your changes, and the commit message on this commit will be '*Put your message here*. Make sure that your message is always useful and indicative of what you did in that commit! 
+
 ### Pushing
+
+This one is very simple. Once you've committed and are ready to push your commits to the branch, just type into the command line:
+
+`git push`
+
+Super easy right?
+
+Well, this is git we're talking about. If it so happens that the branch you're pushing to is local and not remote, meaning that you're pushing for the first time on a new branch, then git will raise an eyebrow and confirm that you are really trying to push this new branch, since technically you are pushing to a branch that doesn't particularly exist yet. In this case, it yells at you and tells you to type a certain command in, which should look somewhat like this:
+
+`git push --set-upstream origin <branch>`
+
+Instead of "<branch\>" put your branch name and you should have no problem pushing from that point on with that branch.
 
 ### Pulling
 
+`git pull`
+
+Yep. That's it. Just make sure that you have no working changes, or it won't work.
+
 ### Merging
 
+To merge the main branch into your code, type into the command line:
+
+`git merge main`
+
+And it'll do the rest. Make sure to commit and push afterwards, or the merge won't apply the changes to your branch.
+
 ### Pull Requests
+
+There's no command line input for making a pull request. For this we'll have to go to the Github website.
+
+At the top of the website, the third option from the left should say Pull Requests. click that one.
+
+There should be a green button that says "New Pull Request."
+
+It'll bring up a menu of branches. Click your branch.
+
+After that, it'll bring up all your changes. Click the green "New Pull Request" button.
+
+After that, pour your soul out in a wonderful paragraph description of what you did. It should be relatively brief; don't go over every last thing. Just say the main function of what you added.
+
+After that, click the "Create pull request" button and you're done! Now other people will review your changes, and once that's done, they can be merged.
+
+# Conclusion
+
+Well. That's it! You now know all of the essentials for using git in projects. Now, the only thing you can do is get experience with it! Get one or two friends and start a collaborative project on Github, then get to it. Happy Coding!
