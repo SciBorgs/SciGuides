@@ -154,11 +154,19 @@ Yep. That's it. Just make sure that you have no working changes, or it won't wor
 
 ### Merging
 
-To merge the main branch into your code, type into the command line:
+This one seems simple at first, too, but unfortunately we are using git. 
 
+Before we can merge the more recent changes to main with our branch, it is necessary for us to get the changes from main first. So, we're going to do just that. Type into the command line:
+
+`git checkout main
+`git pull`
+
+Now that we have fetched the changes from the cloud, we can go back to our branch to merge.
+
+`git checkout <branch>`
 `git merge main`
 
-And it'll do the rest. Make sure to commit and push afterwards, or the merge won't apply the changes to your branch.
+That second command will move those fetched changes from main to our branch. This will make a merge commit, meaning that it will commit for you. It still hasn't pushed these changes, though, so make sure you do that once you are ready to push.
 
 ### Pull Requests
 
