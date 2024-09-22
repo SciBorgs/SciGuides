@@ -158,7 +158,7 @@ This one seems simple at first, too, but unfortunately we are using git.
 
 Before we can merge the more recent changes to main with our branch, it is necessary for us to get the changes from main first. So, we're going to do just that. Type into the command line:
 
-`git checkout main
+`git checkout main`
 `git pull`
 
 Now that we have fetched the changes from the cloud, we can go back to our branch to merge.
