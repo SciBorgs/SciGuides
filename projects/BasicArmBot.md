@@ -528,17 +528,27 @@ You may notice that we're not giving it any values. That's because JUnit has `Pa
   }
 ```
 
-This will run the `armSystemCheck` once, separately, for each of the given values, destroying when completed as it goes down the line. This is useful to test for inconsistency in movement, especially with wide range of motion.
+This will run `armSystemCheck` once, separately, for each of the given values, destroying when completed as it goes down the line. This is useful to test for inconsistency in movement, especially with wide range of motion.
+
+To run your unit tests, you can use the WPILib command palette and run the "Test Robot Code" command. 
 
 #### As a systems check
 
-This is achieved in much the same way as in the Differential Drive project: binding a command that runs the test to the `test()` trigger in `Robot.java`. Functionally, this means that when Test Mode is activated on DriverStation, it will run the binded command once.
+This is achieved in much the same way as in the Differential Drive project: binding a command that runs the systems checks to the `test()` trigger in `Robot.java`. Use `onTrue(Command command)`; functionally, this means that when Test Mode is activated on DriverStation, it will run the binded command once.
 
 Bind your systems check to the `test()` trigger with any reasonable value:
 
 ```java
+  test().onTrue(systemsCheck);
 
+  public Command systemsCheck() {
+    return Test.toCommand(drive.systemsCheck(), arm.moveToTest(Degrees.of(100))).withName("Test Mechanisms");
+  }
 ```
+
+We create a central `systemsCheck` command to check all of our mechanisms one after the other with the `Test.toCommand(Commands...)` method, which centralizes all of the logic to be more accessible.
+
+And boom! When you simulate test mode, your arm should be commanded to a position of 100 degrees and receive a report on whether that goal was reached or not. Speaking of...
 
 ### Tuning your simulated arm
 

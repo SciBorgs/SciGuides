@@ -54,6 +54,19 @@ Individual commands and command groups each have their own singular / group of d
 
 Commands can also be accessed through [WPILib's `Commands`](https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/Commands.html) class.
 
+## Triggers
+
+A big part of the command-based ecosystem are triggers. Users can bind commands and `Runnable` actions to triggers, which are run in specified ways when the trigger is activated. Common operations with trigger commands include...
+
+- `onTrue()`, run once on trigger activation
+- `whileTrue()`, run periodically while trigger is active
+
+...and more.
+
+For instance, the `teleop()` trigger in `Robot.java` (and its sisters) run binded commands when teleop mode is activated on the robot (by DriverStation or FMS).
+
+See [here for more specifics on usage in WPILib](https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers.html).
+
 ## Specifics & Common Issues
 
 ### Singular Command Instances
