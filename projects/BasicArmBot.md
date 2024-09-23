@@ -453,18 +453,17 @@ Before doing anything, think about what we want to test about the arm. We want i
 - if the arm's position ultimately reaches its goal
 - if the arm's velocity reaches its velocity setpoints
 
-We first define our test factory; call it anything, but ensure it is distinguished as a `Test`:
+We first define our test factory; call it anything, but ensure it is distinguished as a `Test`, and takes in certain angles to move to (you'll see why when we run it as a unit test):
 
 ```java
-    public Test moveToTest() {}
+    public Test moveToTest(Measure<Angle> angle) {}
 ```
 
 Tests comprise a test command and related assertions (things that should / should not be true). Otherwise, there would be nothing to test!
 
-Since we want to test movement, let's make the test command move to a certain position:
+Since we want to test movement, let's make the test command move to the given position:
 
 ```java
-    Measure<Angle> angle = Degrees.of(45);
     Command testCommand = moveTo(angle);
 ```
 
@@ -492,11 +491,60 @@ And finally, let's return the created test:
     return new Test(testCommand, Set.of(velocityCheck, atPositionCheck));
 ```
 
+#### As a unit test
+
+As you know, all unit tests are made in their own separate control files. Create a file `ArmTest.java` in the nested robot folder of the test directory. For reminder, read the [Unit Test]() section of the docs.
+
+Like in the differential drive project, create the simulated version of the arm that we will use to access the hardware simulation and `moveToTest()` command. Be sure to include the annotated setup() and destroy() methods that run before and after each test run.
+
+```java
+  @BeforeEach
+  public void setup() {
+    setupTests();
+    arm = Arm.create();
+  }
+
+  @AfterEach
+  public void destroy() throws Exception {
+    reset(arm);
+  }
+  ```
+
+Now, we can run our test with `runUnitTest(Test test)` in `TestingUtils.java`, like below:
+
+```java
+  public void armSystemCheck(double theta) {
+    runUnitTest(arm.moveToTest(Degrees.of(theta)));
+  }
+```
+
+You may notice that we're not giving it any values. That's because JUnit has `ParameterizedTests`, which take in a source of one or more values that get passed into the test, and run separately. See below:
+
+```java
+  @ParameterizedTest
+  @ValueSource(doubles = {-40, -30, 0, 30, 40, 60})
+  public void armSystemCheck(double theta) {
+    runUnitTest(arm.moveToTest(Degrees.of(theta)));
+  }
+```
+
+This will run the `armSystemCheck` once, separately, for each of the given values, destroying when completed as it goes down the line. This is useful to test for inconsistency in movement, especially with wide range of motion.
+
+#### As a systems check
+
+This is achieved in much the same way as in the Differential Drive project: binding a command that runs the test to the `test()` trigger in `Robot.java`. Functionally, this means that when Test Mode is activated on DriverStation, it will run the binded command once.
+
+Bind your systems check to the `test()` trigger with any reasonable value:
+
+```java
+
+```
+
 ### Tuning your simulated arm
 
-You might have noticed that your arm does not consistently reach its setpoint, especially if the arm's goal is in a different quadrant.
+You might have noticed that your arm does not consistently reach its setpoint, especially if the arm's goal is in a different quadrant. This will also cause your unit tests and systems checks to fail, as the assertions do not match the simukation.
 
-This is the result of those constants being poorly tuned for that range of motion; it'll be up to you to tune the closed-loop control system.
+This is the result of those constants being poorly tuned for your system; it'll be up to you to tune the closed-loop control system.
 
 Current sim behavior[^2] dictates that values changed in code will only be seen in simulation after a restart, which is non-ideal and will take a while.
 
@@ -538,18 +586,3 @@ If you're interested in coding a project similar to this one, we recommned our [
 If you're feeling exceptionally confident, you can try creating a more advanced arm or shooting project.
 
 [comment]: # (add links to projects above when created)
-
-  public Command systemsCheck() {
-    return Test.toCommand(
-            shooter.goToTest(RadiansPerSecond.of(100)),
-            Test.fromCommand(
-                intake
-                    .intake()
-                    .asProxy()
-                    .deadlineWith(feeder.forward(), shooter.runShooter(100))
-                    .withTimeout(1)),
-            pivot.goToTest(Radians.of(0)),
-            pivot.goToTest(STARTING_ANGLE),
-            drive.systemsCheck())
-        .withName("Test Mechanisms");
-  }
