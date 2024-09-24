@@ -75,7 +75,7 @@ Linux: Spin around five times and then sing Mary Had A Little Lamb.
 
 There are a few ways to clone a Github repository onto your computer, but the best way and the way that we'll be going over is by using the command line. 
 
-Go onto the GitHub website, then find the repository. There should be a green button that says "Code." Click that, and then copy the link that shows up under it. This will be used in the command. It tells git what exactly to clone off of the internet.
+Go onto the GitHub website, then find the repository. There should be a green button that says "Code". Click that, and then copy the link that shows up under it. This will be used in the command. It tells git what exactly to clone off of the internet.
 
 Next, navigate using the command line to the target folder where you want your cloned repository to be on your computer. You can alternatively move the cloned folder after your clone it, but moving around using the command line makes me feel like a hacker so i do that instead.
 
@@ -131,7 +131,7 @@ Once your changes are staged, we will want to commit those staged changes. Type 
 
 `git commit -m "Put your message here"`
 
-This will commit all of your changes, and the commit message on this commit will be '*Put your message here*. Make sure that your message is always useful and indicative of what you did in that commit! 
+This will commit all of your changes, and the commit message on this commit will be '*Put your message here*'. Make sure that your message is always useful and indicative of what you did in that commit! 
 
 ### Pushing
 
