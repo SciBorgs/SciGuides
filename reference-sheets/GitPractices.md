@@ -67,7 +67,7 @@ Looks like you got through all the conceptualization. Nice job! However, that me
 
 Opening the command line isn't a difficult task. Visual Studio Code has one built in (accessible by pressing ctrl+\`), which makes using git much easier. 
 If you're not using VSCode, 
-Windows: Press *Win + \X* to open the Command Prompt.
+Windows: Press *Win + X* to open the Command Prompt.
 Mac: Press *Cmd + Space* to open spotlight search, then type "Terminal" to open the Terminal.
 Linux: Spin around five times and then sing Mary Had A Little Lamb.
 
