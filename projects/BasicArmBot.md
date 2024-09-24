@@ -49,7 +49,7 @@ We create our hardware components...
 
 ```java
 public class RealArm implements ArmIO {
-    private final PWMSparkFlex motor = new PWMSparkFlex(0);
+    private final CANSparkMAX motor = new CANSparkMAX(0, MotorType.kBrushless);
     private final DutyCycleEncoder encoder = new DutyCycleEncoder(1);
 
     public RealArm() {
@@ -92,8 +92,6 @@ Digging deep into the innards, you'll notice that the constructors are BIG.
       boolean simulateGravity,
       double startingAngleRads)
 ```
-
-[comment]: # (might just include the ArmConstants file in the template)
 
 They need a plethora of physical information to be able to accurately simulate your system, and we obviously don't have a real robot. All this information will also require a lot of organization.
 
