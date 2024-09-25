@@ -1,7 +1,7 @@
 # Introduction
 ## Prerequisites
 
-- Comfortable with all of the [goals for Programming101](/projects/Programming101#goals).
+- Comfortable with all of the [goals for Programming101](Programming101.md#goals).
 - Comfortable with [command-line navigation](link)
 - Environment set up
 	- [Code directory created](link)
@@ -74,26 +74,41 @@ A README file is a text file that introduces and explains a project.
 
 Open your README.md file, and write a few words about what this project is. Some suggestions:
 - Say that you're learning Java
-- **Link to this page**
-	- This README (like this guide) is written in Markdown, a simple langauge for formatting text. Here's how you embed a link in Markdown:
+- **Link to the [intro to programming readme](/projects/intro-to-programming/readme)**
+	- This README (like this guide) is written in Markdown, a simple language for formatting text. Here's how you embed a link in Markdown:
 ```
 [text](link)
 ```
-## Create Main File
 
-It's time to make your first Java file!
+## Create java101 Directory
 
-1. Right click in the file explorer on the left
-2. Select "New File"
-3. Name your file "Main.java"
+You will be using this repository for the remainder of the intro to programming series, so it will be helpful to have separate directories for each part. Make a new directory called `java101`. We will be working in that directory.
 
-Your file should look something like this:
+Inside of `java101`, make a new `README.md` file. In this README file, link [this guide](/projects/intro-to-programming/java101).
+
+Also in `java101`, make a file called `Main.java`.
+
+You have two options for how to make these files:
+1. Use the `touch` command
+	1. Open Terminal or PowerShell (or open the VSCode version using Control + ~)
+	2. Navigate to `java101` (if you're using VSCode CommandLine, you should start whatever folder you have open in VSCode)
+	3. Make a new file called `Main.java`
+2. Use the VSCode file explorer
+	1. Right click in the file explorer on the left
+	2. Select "New File"
+	3. Name your file "Main.java"
+## Set Up Main File
+
+It's time to set up your first Java file!
+
+Open `Main.java` in VSCode using the file explorer. Your file should either be empty or look something like this:
 ```java
 public class Main {
 
 }
 ```
-(If it doesn't have that code in it yet, copy it in from here.)
+
+If it's empty, copy the code in from here.
 
 Put your curser on the line in between the two curly braces. Write "main" and then hit tab. Your file should end up looking like this:
 
@@ -106,14 +121,13 @@ public class Main {
 ```
 
 Above the words `public static void` you should see a little `Run | Debug`. You should be able to press on either word.
-
 ## Make Initial Commit
 
 Now it's time to update your git repository with the changes you just made!
 
-First off, open terminal in VSCode using Control + ~.
+First off, open Terminal or PowerShell (in VSCode if you'd prefer).
 
-Then, type the following into terminal:
+Then, type the following in:
 ```
 git add .
 git commit -m "added readme and main file"
@@ -125,7 +139,7 @@ git push
 Okay, you're all set up!
 # File Structure
 
-At least at first, there are a lot of little things that you're going to be ignoring. I promise, we'll get to them later (mostly in [Java102](/projects/Java102)).
+At least at first, there are a lot of little things that you're going to be ignoring. I promise, we'll get to them later (mostly in [Java102](Java102.md)).
 
 Here's the list of things you don't need to understand as of right now:
 - what `public` means
@@ -182,16 +196,16 @@ This will appear on the console:
 Note, if you want to print raw text (like "Hello World"), *you must put quotation marks around the text*. When you do that, you mark the text as a String (the data type for raw text). If you do not put quotation marks, the computer will think that you are trying to refer to a symbol like a function or variable.
 # Operations
 
-Exactly the same as in [Programming101](/projects/Programming101#operations)!
+Exactly the same as in [Programming101](Programming101.md#operations)!
 # If Statements
 
-Exactly the same as in [Programming101](/projects/Programming101#if-statements)!
+Exactly the same as in [Programming101](Programming101.md#if-statements)!
 # Types
 
 Java is what is called a *statically typed* language (often just called *typed*). This is one of the biggest differences between Java and languages like Python and Javascript, which are dynamically typed (often called *untyped*).
 
 This will impact your experience as a developer in two primary ways:
-1. You will need to explicitly state the [data types](/projects/programming101#data-types) of many values
+1. You will need to explicitly state the [data types](Programming101.md#data-types) of many values
 2. Your computer will catch more bugs and you will get more informative error messages!
 
 For right now, we're going to focus on the following data types:
@@ -226,8 +240,7 @@ public class Main {
 }
 ```
 
-For now, if you create a variable outside of a function, you need to put the word `static` before the type. I'm not going to explain what that means or why you need it yet, but we'll get there in [Java102](/projects/Java102). Here's an example:
-
+For now, if you create a variable outside of a function, you need to put the word `static` before the type. I'm not going to explain what that means or why you need it yet, but we'll get there in [Java102](Java102.md). Here's an example:
 ```java
 public class Main {
 	static int x = 6;
@@ -254,7 +267,6 @@ The first is to explicitly initialize all the elements in the array. We do that 
 ```
 
 Here's an example of using this method to create a 4 element double array:
-
 ```java
 public class Main {
 	static double[] arr = {4.5, 6, 9.0, 8};
@@ -266,14 +278,14 @@ public class Main {
 }
 ```
 
-The other option is to tell the computer to create an array with a specified number of elements. All elements will initially be the default value for that type. For ints and doubles, the default value is zero. For booleans the default is false. Then, if you want you can change the values.
+The other option is to tell the computer to create an array with a specified number of elements. All elements will initially be the default value for that type. For ints and doubles, the default value is zero. For booleans the default is false. Then, if you want to change the values you can.
 
 You can do this with the following syntax:
 ```java
 new elementType[length]
 ```
 
-The `new` keyword is what we use when we're telling the computer to create a new value of a certain type (there's more to this, but we'll get to that in [Java102](/projects/Java102)).
+The `new` keyword is what we use when we're telling the computer to create a new value of a certain type (there's more to this, but we'll get to that in [Java102](Java102.md)).
 
 Here's an example of using this method to initialize a 100 element boolean array:
 
@@ -295,7 +307,7 @@ public class Main {
 
 Just as we can have an array if booleans or integers or doubles or Strings, we can also have an array of arrays. We call such an array a 2d array.
 
-So, let's say we want to represent a tic tac toe board. And let's say we've decided to represent blank, X ,and O with $0$, $1$, and $-1$ respectively. We could then represent each row as an integer array of length three. And to represent the entire board, we would use an array of three rows. So in the end, that's an array of length three, where each element is an integer array of length three.
+So, let's say we want to represent a tic tac toe board. And let's say we've decided to represent blank, x ,and o with $0$, $1$, and $-1$ respectively. We could then represent each row as an integer array of length three. And to represent the entire board, we would use an array of three rows. So in the end, that's an array of length three, where each element is an integer array of length three.
 
 In other words, we can represent a tic tac toe board as a 2 dimensional integer array.
 
@@ -338,24 +350,25 @@ In general, we can index this board using `board[row][column]` where row and col
 *Note: You can also have higher dimensional arrays (3D, 4D, 5D, etc).*
 # Loops
 
-The syntax for while loops is the same as in [Programming101](/projects/Programming101#while-loops):
+The syntax for while loops is the same as in [Programming101](Programming101.md#while-loops):
 ```java
 while (condition) {
 	// code to run
 }
 ```
 
-The syntax for for-each loops is very similar to [Programming101](/projects/Programming101#for-each-loops):
+The syntax for for-each loops is very similar to [Programming101](Programming101.md#for-each-loops):
 ```java
 for (type element : collection) {
 	// code to run for each element
 }
 ```
-There are two differences.
+
+There are two differences:
 1. The type of `element` is declared. `element` is a variable that we are creating, so we must state its type.
 2. I used the word `collection` instead of `array`. This is because there are other types of collections that you can iterate through in Java. In this guide we'll really only use arrays, but if you're ever using an `ArrayList`, `Set`, `Map`,  or other similar object, you can iterate through those using for each loops as well.
 
-Here's a simple example of a Java for each loop:
+Here's a simple example of a for each loop in Java:
 ```java
 public class Main {
 	public static void main(String[] args) {
@@ -448,7 +461,7 @@ In general, we use for loops when we want to iterate through a range of values i
 
 Sometimes, we just have a piece of code that we want to run the exact same way some number of times, and we can use for loops for that as well. For instance, let's say we want to have a 9 by 9 grid of dashes that we can print. 
 
-For this example, we're going to be working with [strings](/projects/Programming101#data-types), which we haven't done much of thus far. The key word for the string type is `String` (note the capital first letter). We'll get to why this type is capitalized when others in [Java102](/projects/Java102).
+For this example, we're going to be working with [strings](Programming101.md#data-types), which we haven't done much of thus far. The key word for the string type is `String` (note the capital first letter). We'll get to why this type is capitalized when others in [Java102](Java102.md).
 
 Before we get to the implementation, we need to introduce a few new things:
 - String addition
@@ -482,7 +495,7 @@ public class Main {
 
 Before we start learning Java functions, we have some vocabulary to go over.
 
-In Java, what we've thus far been calling a function is actually called a method. For now, we will use the terms interchangeably. In [Java102](/projects/Java102), we will flesh out the differences between functions and methods.
+In Java, what we've thus far been calling a function is actually called a method. For now, we will use the terms interchangeably. In [Java102](Java102.md), we will flesh out the differences between functions and methods.
 
 Okay, let's get started! Here's a simplified version of the basic syntax for functions/methods in Java (later on we'll learn about situations where this doesn't apply):
 ```java
@@ -493,7 +506,7 @@ static returnType name(argumentType argumentName) {
 ```
 
 Some things to note:
-1. For now, you must have the word `static` in front of your functions (we'll get to why in [Java102](/projects/Java102)).
+1. For now, you must have the word `static` in front of your functions (we'll get to why in [Java102](Java102.md)).
 2. You must specify the return type (the data type of the return value) of your function.
 3. You must specify the type of each argument that your function takes
 
