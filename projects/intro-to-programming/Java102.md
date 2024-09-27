@@ -871,23 +871,161 @@ public static Circle fromPoints(Point p1, Point p2, Point p3);
 Create a `RightTriangle` class that implements `Shape`. The sides of the triangle are necessarily parallel to the x and y axes, but the right angle can be in any corner (top right, bottom left, etc). You can store a corner and two side lengths (or any other combination of fields that describe a right triangle).
 
 In addition to all the methods in `Shape`, `RightTriangle` should have a static method called `similar` that takes two `RightTriangle` objects and returns whether or not they are similar.
-## Inheritance (briefly)
+## Inheritance
 
 Inheritance is a form of polymorphism in Java that allows a class to inherit properties and methods from another class. We're not going to spend much time on this because inheritance is rarely the best solution to a problem and generally introduces more issues than it solves. In most cases, interfaces or generics provide simpler and more elegant solutions. Understanding inheritance will be most useful for understanding and interacting with the infrastructure that has already been written by other people.
+
+Inheritance is a way of having classes that *inherit* the traits (methods and fields) of other classes. If class `B` extends (or inherits from) class `A`, then a `B` object will also be an example of an `A` object and can b treated as such. This is similar to our interfaces, where `Circle` and `Square` were examples of `Shape` objects, with two main differences:
+1.  `A` is just an ordinary class. You can't just make a new `Shape` -- that doesn't mean anything. you have to make a `Square` or `Circle`. But you *can* just make a new `A`.
+2. The `A` class has methods with real implementations (including a constructor) and fields with values. It isn't just a template for its child classes (classes that inherit from it) to follow. `B` will be able to call methods from `A`. When you create a new `B`, the constructor for `B` will call the constructor for `A`. If you have an `B` object called `b`, you can call the methods that are defined in `A` on that object.
+
+Let's add some code to go along with this example.
+
+```java
+public class A {
+	protected final double field1;
+	protected final double field2;
+
+	public A(double field1, double field2) {
+		System.out.println("the constructor of A has been called");
+		this.field1 = field1;
+		this.field2 = field2;
+	}
+
+	public void method1() {
+		System.out.println("method 1 of A has been called");
+	}
+	
+	public void method2() {
+		System.out.println("method 2 of A has been called");
+	}
+}
+```
+
+So A is just a very simple class with two fields and two methods. The only thing here that you haven't seen at all is the word `protected`. The key word `protected` describes something which is visible only to a class, classes that inherit from it (its subclasses or child classes), and the other classes in its package. So in this case, all of the `protected` fields will be accessible by `B`, (as well as any files in the same folder as `A`), and nothing else.
+
+```java
+public class B extends A {
+	public final String bField;
+	
+	public B(double field1and2, String bField) {
+		super(field1and2, field1and2);
+		this.bField = bField;
+		System.out.println("the constructor of B has been called");
+	}
+
+	@Override 
+	public void method2() {
+		System.out.println("method 2 of B has been called");
+	}
+
+	public double field() {
+		return super.field1;
+	}
+}
+```
+
+Let's go through this line by line:
+
+```java
+public class B extends A {
+```
+
+Adding `extends A` to the class declaration indicates that `B` inherits from/is a child class of `A`.
+
+```java
+super(field1and2, field1and2);
+```
+
+`super` is a keyword for a class to refer to its parent class (similar to `this`, a keyword for a class to refer to itself). So this line is calling the constructor of this class's parent class, `A`. The constructor of a child class *must* call the constructor of its parent class. In fact, it has to be the very first thing that the constructor does.
+
+If the parent class has a constructor that takes no arguments at all, the child class doesn't have to explicitly call the parent constructor --- it will happen automatically. But if, as in this case, the parent's constructor needs to be given inputs, the child class has to do that explicitly.
+
+In this particular case, `A` takes two double fields as inputs. `B` takes a double and a String. The double is passed to the constructor of `B` twice. So if you pass 4 to `B` as `field1and2`, it will construct an `A` with 4 and 4. Remember, `B` inherits the traits of `A`, including its protected fields `field1` and `field2`, so when `B` references `super.field1` or `super.field2`, those values Bu both be 4.
+
+```java
+@Override
+public void method2() {
+```
+
+The interesting part of this code is the `@Override` decorator. `B` inherits the `method1` and `method2` of the `A` class already, so it doesn't need to create its own. With `method1`, it doesn't make its own. If you have a `B` object called `b` and you call `b.method1()`, the code that will run is the function definition for `method1` in the `A` class.
+
+But sometimes child classes want to have their own separate implementations for methods, so they override the methods of their parents. That's what `B` is doing here. It's making it's own definition for `method2`, so if you were to call `b.method2()`, instead of the code in `A` running, the code for `method2` in `B` will run.
+
+Adding the `@Override` decorator when you're overriding the method implementation of a parent class isn't technically necessary, but it's very good practice.
+
+So, what will happen if we in our main class do the following?
+
+```java
+A a = new A(12.3, 430);
+```
+
+We expect that code to call the `A` constructor, at which point it prints `"the constructor of A has been called"`. So we expect to see that on the console. Try it!
+
+What if we do this:
+
+```java
+B b = new B(-12.31, "hello");
+```
+
+Well, this will call the constructor of `B`. But the constructor of `B` also calls the constructor of `A`! So what will it print? Think it through and then run it to check your logic.
+
+How about this?
+
+```java
+a.method1();
+b.method1();
+b.method2();
+```
+
+Again, think through what would print, and then check yourself by running it.
+
+Now what if we do this:
+
+```java
+A bInDisguise = new B(1002.013, "world");
+bInDisguise.method2();
+```
+
+This will work because `B` inherits form `A`, and therefore `B` is a type of `A`. So if we have a variable of type `A`, the value could actually be a `B` object and that's okay. So what would that print?
+
+Now how about this:
+
+```java
+System.out.println(b.bField + " " + bInDisguise.bField);
+```
+
+What should that print? Does it work?
+
+What will actually happen in this case is that you'll get a compile-time error. Why? Well, even though we know that the value of `bInDisguise` is a `B` object, the type of the variable is `A`, so the computer will always treat it only as an `A` object. And `A` doesn't have a `bField`, so you can't access the `bField` of `bInDisguise`, because it's being treated as an `A`.
+### Object class
+
+You have actually seen `@Override` in one other context in these guides: `toString` methods.
+
+When we write a `toString` method for a class, we use the `@Override` to show that we are overriding the default method implementation. But what are overriding exactly? With `B`, we were overriding the method defined in `A`. But our `Circle` class didn't inherit anything, did it? 
+
+Well, actually it did. In fact, every single class in Java extends a class called `Object`.  In the case of `Circle`, it did not extend any other classes, so its direct parent class was by default `Object` --- just like if we had written:
+
+```java
+public class Circle extends Object implements Shape {
+```
+
+If, like `B`, a class does have an explicit parent class other than `Object`, it no longer is directly a child of `Object` (no class can have multiple parent classes), but it still indirectly inherits from `Object`. Let's think about this with the `A` `B` example. `B` inherits from `A`, so it does not directly inherit from `Object`. But `A` doesn't inherit from anything explicitly, so it is a direct child of `Object`. And that means not only that it inherits traits from `Object`, but also that it passes those traits to `B`. So, through `A`, `B` does indirectly inherit from `Object`.
+
+And what exactly do all these classes inherit from `Object`? Well, they inherit lots of methods that are useful for everything to have. I'm not going to go over all of them, but they include `toString`, `hashCode` (look it up if you're interested!), and `equals` (takes another object as an argument and returns whether they are the same).
+
 ### Library
 
 Let's say we're building a system to keep track of item checkouts at a library. We're going to make this incredibly simple (unrealistically so): Each item will store whether or not it has been checked out, and have a method to check the item out and to return it. Each item will also have a method to check if it is available.
 
-First, we'll do this with inheritance.
+We're going to have two main types of items: books and DVDs. And there will be a class for each of these types of items.
 
-Inheritance blah blah blah.
-
-So in this version, we'll have a `LibraryItem` that will be the parent class to `Book` and `DVD`.
+We'll have a `LibraryItem` that will be the parent class to `Book` and `DVD`.
 
 ```java
 public class LibraryItem {
-    protected final String title;
-    protected final String itemId;
+    public final String title;
+    public final String itemId;
     
     protected boolean isCheckedOut = false;
 
@@ -910,8 +1048,6 @@ public class LibraryItem {
 }
 ```
 
-The key word `protected` describes something which is visible only to a class and classes that inherit from it. So in this case, all of the `protected` fields will be accessible by `Book` and `DVD`.
-
 ```java
 public class Book extends LibraryItem {
     public final String author;
@@ -931,7 +1067,6 @@ public class Book extends LibraryItem {
 }
 ```
 
-
 ```java
 public class DVD extends LibraryItem {
     public final double runtime;
@@ -948,88 +1083,23 @@ public class DVD extends LibraryItem {
 }
 ```
 
-Explain things or whatever...
+Read through this example carefully until you understand what's happening, and then complete the practice problems.
+### Practice: returnAll
 
-Alternatively, we can do the following, which does not use inheritance:
-
-We can make a distinction between listings and items, where listings will refer to what book/dvd/etc it is, but not the individual copy. A listing will hold information like the title and author of a book. Listings can be books or dvds.
-
-An item, on the other hand, contains a listing and an itemID, and keeps track of whether it is checked out.
-
-`Listing` will be a sealed interface (like a normal interface, but all classes that implement it must be defined within the interface). It won't have any methods. The two classes that implement `Listing` will be `Book` and `DVD`:
+Make a static method in `Main` that takes an array of `LibraryItem` objects and returns them all to the library.
 
 ```java
-public sealed interface Listing {
-    public class Book implements Listing {
-        public final String title;
-        public final String author;
-        public final int pageCount;
-
-        public Book(String title, String author, int pageCount) {
-            this.title = title;
-            this.author = author;
-            this.pageCount = pageCount;
-        }
-
-		@Override
-		public String toString() {
-			return "Book: " + title + " by " + author + ", " + 
-			        pageCount + " pages";
-		}
-    }
-
-    public class DVD implements Listing {
-        public final String title;
-        public final double runTime;
-
-        public DVD(String title, double runTime) {
-            this.title = title;
-            this.runTime = runTime;
-        }
-
-	    @Override
-	    public String toString() {
-	        return "DVD: " + title + ", Runtime: " + runtime + " minutes";
-	    }
-    }
-}
+public static void returnAll(LibraryItem[] items) {
 ```
 
-`LibraryItem` will be a class. It will use a generic type `T`, but unlike the generics we've used previously, `T` will have a constraint. Generally, when we declare generic types, we can state that they must be implement/inherit from a class/interface, by using the notation `<T extends parent>`. Here, we will use that to say that `T` must be a `Listing`.
+Test your method when you're done!
+### Practice: availableItems
 
-So the two types of `LibraryItem` objects will be `LibraryItem<Book>` objects and `LibraryItem<DVD>` objects (and if we want to add more options, we can make more classes that implement `Listing`).
-
-Each `LibraryItem` will have a `Listing` of type `T`, and an itemID. It will also have a variable to store whether it has been checked out, and will have an `available` method, a `checkOut` method, and a `return` method.
+Make a static method in `Main` that takes an array of `LibraryItem` objects and outputs an `ArrayList` of `LibraryItem` objects with all of the available items from the input array.
 
 ```java
-public class LibraryItem<T extends Listing> {
-    public final T listing;
-    public final String itemID;
-
-    private boolean isCheckedOut = false;
-
-    public LibraryItem(T listing, String itemID) {
-        this.listing = listing;
-        this.itemID = itemID;
-    }
-
-    public boolean available() {
-        return !isCheckedOut;
-    }
-
-    public void checkOut() {
-        isCheckedOut = false;
-    }
-
-    public void returnItem() {
-        isCheckedOut = true;
-    }
-}
+public static ArrayList<LibraryItem> availableItems(LibraryItem[] items) {
 ```
-
-
-
-
 # Glossary
 
 | **word/phrase** | **meaning**                                 |
