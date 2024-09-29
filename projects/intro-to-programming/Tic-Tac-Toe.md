@@ -20,7 +20,7 @@ If you did [Java101](Java101.md) and 102, use the same repository that you used 
 
 Make a new directory called `tic-tac-toe`. We'll be working in that directory. Make a file in `tic-tac-toe` called `Main.java`, as well as a `README.md` file.
 
-In the README, link [this guide](/projects/intro-to-programming/tic-tac-toe).
+In the README, link this guide (link).
 ## Board
 
 First off, we're going to make the tic tac toe board. We did something similar in Java101 (LINK), where we made a three by three 2D array, and called it a board. Now, we're going to make a `Board` class, from which we will be able to create `Board` objects. Our board class will contain a few things:
@@ -39,6 +39,7 @@ public class Board {
 ```
 
 Okay, next let's add our `toString` method. Let's try to make something that looks like this:
+
 ```
 x - -
 - o x
@@ -81,11 +82,14 @@ public String toString() {
 
 As always, go through this method and make sure you really understand all of it.
 
+
+
+
 Next up, let's write our `move` method. This method needs to take what player is playing and which row and column they want to move in. Here's the header:
 
 ```java
 public void move(int player, int row, int column);
 ```
 
-Try to fill in the function. To start, write something that just fills in the board.
+Try to fill in the function. To start, write something that just fills in the board. 
 
