@@ -3,6 +3,7 @@
 
 - Comfortable with all of the [goals for Programming101](Programming101.md#goals).
 - Comfortable with [command-line navigation](link)
+- Comfortable with [git](link)
 - Environment set up
 	- [Code directory created](link)
 	- [VSCode installed](link)
@@ -29,6 +30,7 @@ And if you need help, ask!
 ## Create GitHub Repo
 
 A GitHub repository, often referred to as a "repo," is a central location where you can store, manage, track, and control changes to your project files. It's like a folder for your project that is hosted on GitHub's servers. It also allows you to easily share your code, or collaborate with others.
+
 You're going to create a repo for the code that you write in this tutorial.
 1. Open [GitHub](github.com) and log in.
 2. Create a new repository
@@ -133,8 +135,6 @@ git add .
 git commit -m "added readme and main file"
 git push
 ```
-
-(link to git doc)
 
 Okay, you're all set up!
 # File Structure
