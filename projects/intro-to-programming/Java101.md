@@ -48,14 +48,14 @@ You're going to create a repo for the code that you write in this tutorial.
 	- On your new repository's page, click the green "Code" button.
 	- Copy the HTTPS URL provided.
 	- Open Terminal for Mac/Linux, or PowerShell for Windows
-	- Navigate to the directory where you want to store your project, and clone the repositry:
+	- Navigate to the directory where you want to store your project, and clone the repository:
 ```
 cd path/to/your/code/folder
 git clone HTTPS-LINK
 ```
 Replace `path/to/your/code/folder` with the path to the directory you created for your code, and replace `HTTPS-LINK` with the URL you copied.
 5. Verify the clone
-	- Look at the contents of your code directory and check that the new repository is there"
+	- Look at the contents of your code directory in Command Line and check that the new repository is there:
 ```
 ls
 ```
@@ -427,7 +427,7 @@ Let's examine these code examples. In both implementations, there are three part
 ```java
 int index = 0;
 ```
-2. ```
+2. 
 ```java
 index < 100
 ```
