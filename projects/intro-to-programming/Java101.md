@@ -76,7 +76,7 @@ A README file is a text file that introduces and explains a project.
 
 Open your README.md file, and write a few words about what this project is. Some suggestions:
 - Say that you're learning Java
-- **Link to the [intro to programming readme](/projects/intro-to-programming/readme.md)**
+- **Link to the [intro to programming readme](/projects/intro-to-programming/README.md)**
 	- This README (like this guide) is written in Markdown, a simple language for formatting text. Here's how you embed a link in Markdown:
 ```
 [text](link)
@@ -86,7 +86,7 @@ Open your README.md file, and write a few words about what this project is. Some
 
 You will be using this repository for the remainder of the intro to programming series, so it will be helpful to have separate directories for each part. Make a new directory called `java101`. We will be working in that directory.
 
-Inside of `java101`, make a new `README.md` file. In this README file, link [this guide](/projects/intro-to-programming/java101).
+Inside of `java101`, make a new `README.md` file. In this README file, link [this guide](/projects/intro-to-programming/Java101.md).
 
 Also in `java101`, make a file called `Main.java`.
 
