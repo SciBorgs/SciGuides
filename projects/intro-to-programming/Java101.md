@@ -18,7 +18,7 @@ Familiarity with the following topics:
 	- Multi-dimensional arrays
 ## Best Practices
 
-As always, follow the general [best practices](/projects/README#best-practices).
+As always, follow the general [best practices](/projects/README.md#best-practices).
 
 For this guide, you should be following along on your own computer. When there are pieces of example code, first think about out how the code works, and then try running it yourself. After each section, try to play around with the concepts you've learned! Make your own examples similar to the ones given.
 
@@ -76,7 +76,7 @@ A README file is a text file that introduces and explains a project.
 
 Open your README.md file, and write a few words about what this project is. Some suggestions:
 - Say that you're learning Java
-- **Link to the [intro to programming readme](/projects/intro-to-programming/readme)**
+- **Link to the [intro to programming readme](/projects/intro-to-programming/readme.md)**
 	- This README (like this guide) is written in Markdown, a simple language for formatting text. Here's how you embed a link in Markdown:
 ```
 [text](link)

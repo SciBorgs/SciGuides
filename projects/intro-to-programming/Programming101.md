@@ -32,7 +32,7 @@ All you need for this is **a pen and paper**.
 I know many of you will read this, and then precede to use your computers for everything anyway. But, for this tutorial, a computer will not help you. You will not be running any code. If you really want, you could write in a code block in google docs, but if possible, it is straightforwardly better in this case to be writing with your hand on paper or a tablet. You can write your code, any calculations you want to do, your thoughts, charts to work through loops, etc.
 ## Best practices
 
-As always, follow the general [best practices](/projects/README#best-practices).
+As always, follow the general [best practices](/projects/README.md#best-practices).
 
 One additional best practice for this tutorial:
 
@@ -410,7 +410,7 @@ def sumBelow(var n) {
 
 So this is almost exactly the same as the example while loop, except instead of looping until `x` is greater than or equal to $4$, the loop continues until `x` is greater than or equal to `n`, where `n` is the input to the function. And then at the end, the function returns `sum`, so the output of the function is `sum`.
 
-If we call `sumBelow` on $4$, the output will be exactly the same as in [Example 1](#example1).
+If we call `sumBelow` on $4$, the output will be exactly the same as in [Example 1](#example-1).
 `sumBelow(4)` &rarr; `6`
 If, however, we call the function on $5$, we will instead get the sum of all the positive integers below 5.
 `sumBelow(5)` &rarr; `10`
