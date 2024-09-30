@@ -171,6 +171,18 @@ Now that we have fetched the changes from the cloud, we can go back to our branc
 
 That second command will move those fetched changes from main to our branch. This will make a merge commit, meaning that it will commit for you. It still hasn't pushed these changes, though, so make sure you do that once you are ready to push.
 
+### Stashing
+
+Stashing is easy. Type into the command line:
+
+`git stash`
+
+And it's stashed. If you want those changes back, then type into the command line:
+
+`git stash pop`
+
+And your changes are popped.
+
 ### Pull Requests
 
 There's no command line input for making a pull request. For this we'll have to go to the Github website.
