@@ -22,7 +22,7 @@ Oftentimes, people will make one directory that contains all of their code. With
 
 Another option is to just make one directory for robotics, and if you ever want to write non-robotics code, you can make a different directory for that.
 
-You can do whichever of those you feel more comfortable with. Or if there's another way you want to organize your code, that's fine -- as long as it's all in its own directory and not on one drive!
+You can do whichever of those you feel more comfortable with. Or if there's another way you want to organize your code, that's fine -- as long as it's all in its own directory and not on OneDrive or ICloud!
 
 Next, you need to decide where you want to put your code/robotics directory. You really only have two reasonable options for this:
 1. Directly in your home directory
@@ -168,6 +168,7 @@ git ls-remote https://github.com/YOUR-USERNAME/fake-repo-name.git
 10. When prompted for your password, enter your PAT instead.
 11. If you get an "Authentication failed" error, double-check your PAT and try again.
 12. On most modern systems, Git will automatically store your credentials after you've entered them once. If, however, you find that you're being asked for your PAT repeatedly, you may need to set up a credential helper:
+
 For Mac/Linux:
 ```
 git config --global credential.helper store
