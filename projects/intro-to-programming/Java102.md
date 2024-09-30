@@ -44,7 +44,7 @@ For example, if you're planning the trajectory of a robot through a 2d plane, yo
 
 In Java, a class is like a blueprint or template for creating objects. It defines what data and methods the objects will have. An object is an instance of a class - a specific realization of that blueprint. Classes can also hold what are called *static* methods or fields that are related to objects of that class, but that don't actually belong to individual objects. For example, a `Point` class might have a method that finds the distance between two `Point` objects.
 
-A class can also be thought of as the [type](LINK TO JAVA101) of an object. So if you were to make a point variable, the type of that variable would be `Point`. In fact, some of the types that we've been using are object types (specifically Strings and arrays -- although arrays are a special case). Generally, whenever there is a type that is capitalized, that is an object type.
+A class can also be thought of as the [type](Java101.md) of an object. So if you were to make a point variable, the type of that variable would be `Point`. In fact, some of the types that we've been using are object types (specifically Strings and arrays -- although arrays are a special case). Generally, whenever there is a type that is capitalized, that is an object type.
 ## Point
 
 Let's write out the class that is a blueprint for the `Point` object that we described:
