@@ -74,13 +74,13 @@ These are the basic arithmetic operators:
 Most of these should be self explanatory. The exception to that is the modulo operator.
 ### Modulus
 
-Modulus essentially means remainder. So $a \space \% \space b$ evaluates to the remainder when you divide $a$ by $b$.
+Modulus essentially means remainder. So `a % b` evaluates to the remainder when you divide $a$ by $b$.
 
 Generally, modulus is done with non-negative integers only.
 
 Let's look at what we get when we take every integer $n$ from $0$ to $10$, and calculate $n \space \% \space 2$:
 
-| $\mathbf{n}$ | $\mathbf{n \space \% \space 2}$ |
+| n | n % 2 |
 | ------------ | ------------------------------- |
 | $0$          | $0$                             |
 | $1$          | $1$                             |
@@ -94,10 +94,10 @@ Let's look at what we get when we take every integer $n$ from $0$ to $10$, and c
 | $9$          | $1$                             |
 
 A couple of things to note about this:
-1. The only two possible values for $n \space \% \space 2$ are $0$ and $1$.
-	1. General conclusion: For all non-negative integers $n$ and $a$, $n \space \% \space a$ will always evaluate to a non-negative integer [between](#glossary) $0$ and $a$.
-2. For all even values of $n$, $n \space \% \space 2$ evaluates to $0$. For all odd values of $n$, $n \space \% \space 2$ evaluates to $1$.
-	1. General conclusion: [Iff](#glossary) $n \space \% \space a \space$ evaluates to $0$, then $n$ is divisible by $a$.
+1. The only two possible values for `n % 2` are $0$ and $1$.
+	1. General conclusion: For all non-negative integers $n$ and $a$, `n % a` will always evaluate to a non-negative integer [between](#glossary) $0$ and $a$.
+2. For all even values of $n$, `n % 2` evaluates to $0$. For all odd values of $n$, `n % 2` evaluates to $1$.
+	1. General conclusion: [Iff](#glossary) `n % a` evaluates to $0$, then $n$ is divisible by $a$.
 
 Take a second to think about those properties until they really make sense.
 ## Comparison Operators
