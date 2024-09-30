@@ -22,7 +22,7 @@ Oftentimes, people will make one directory that contains all of their code. With
 
 Another option is to just make one directory for robotics, and if you ever want to write non-robotics code, you can make a different directory for that.
 
-You can do whichever of those you feel more comfortable with. Or if there's another way you want to organize your code, that's fine -- as long as it's all in its own directory and not on OneDrive or ICloud!
+You can do whichever of those you feel more comfortable with. Or if there's another way you want to organize your code, that's fine -- as long as it's all in its own directory and not on OneDrive or iCloud!
 
 Next, you need to decide where you want to put your code/robotics directory. You really only have two reasonable options for this:
 1. Directly in your home directory
