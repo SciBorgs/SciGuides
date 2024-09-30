@@ -316,6 +316,8 @@ To remove a directory and its contents:
 rm -r [path-to-dir]
 ```
 
+*Be very careful with rm -r. This will delete everything in a directory, and there is no undo!*
+
 ### Examples
 
 Remove cml-pracice/bar/hello.txt:
