@@ -11,7 +11,7 @@ Familiarity with the following ideas and commands:
 	- ls
 	- cd
 	- mkdir
-	- touch
+	- touch/type nul >
 	- cat
 	- cp
 	- mv
