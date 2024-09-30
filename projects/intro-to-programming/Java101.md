@@ -127,7 +127,7 @@ Above the words `public static void` you should see a little `Run | Debug`. You 
 
 Now it's time to update your git repository with the changes you just made!
 
-First off, open Terminal or PowerShell (in VSCode if you'd prefer).
+First off, open Terminal or PowerShell (in VSCode if you'd prefer). Navigate to your project directory (if you're in `java101`, do `cd ..`).
 
 Then, type the following in:
 ```
