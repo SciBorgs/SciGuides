@@ -345,7 +345,7 @@ public class Main {
 }
 ```
 
-In general, we can index this board using `board[row][column]` where row and column are integers between $0$ and $3$ representing the row and column of the value we want to extract.
+In general, we can index this board using `board[row][column]` where row and column are integers [between](Programming101.md#glossary) $0$ and $3$ representing the row and column of the value we want to extract.
 
 *Note: You can also have higher dimensional arrays (3D, 4D, 5D, etc).*
 # Loops
