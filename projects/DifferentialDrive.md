@@ -1,6 +1,6 @@
 # Differential Drive Project
 
-![driveSim](https://cdn.discordapp.com/attachments/1008564537328414730/1285003832782356531/ezgif.com-video-to-gif-converter.gif?ex=66e8b093&is=66e75f13&hm=ebee0cc4ed98182fd0b570a606cddd2b9e6810812489e4aca268f5bf798b6995&)
+![driveSim](https://github.com/user-attachments/assets/e6aba468-f3eb-4114-acfa-703089c8e9b5)
 
 This project is going to cover how to make both a basic and an advanced differential drive. 
 
@@ -62,7 +62,7 @@ In `DriveConstants.java`, we will define all the constants needed for our drivet
 
 Your files should look something like this:
 
-![file order](https://cdn.discordapp.com/attachments/1008564537328414730/1285009894944276530/image.png?ex=66e8b639&is=66e764b9&hm=2ee8be3b293f941755284c54b334e8cdca86d99c400580b4a95d88c2b7075630&)
+![file order](https://github.com/user-attachments/assets/d37980f3-c1d6-4a9a-9e5f-66c0163496d7)
 
 #### Drive.java
 This is where the main drivetrain logic will reside. We're going to start by making all of our 4 motors using [`CANSparkMax`](https://codedocs.revrobotics.com/java/com/revrobotics/cansparkmax) and assigning a port value which is stored in the `ports.java` file. For now, you can assign any value to these ports. However, if you want to test your drive in real life, you'd need to make sure each motor is assigned to its actual port value. Make sure to make the motor type brushless as the neos we are using are brushless. 
@@ -349,7 +349,7 @@ Once everything is set up, you can make tests with the `@Test` annotation. Here'
 #### Running the tests
 Again, make sure to check out the wpilib [guide](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/unit-testing.html) on this as it also talks about writing and running tests. To actually see if the tests are valid, open the WPILib command palette (top right corner logo) and search `Test Robot Code` and press enter. After it runs, it will show you the results of all your tests in the terminal.  
 
-![test pass](https://cdn.discordapp.com/attachments/1008564537328414730/1285003833725943839/image-3.png?ex=66e8b094&is=66e75f14&hm=dc7fac40b87284913ef974690abd28598133d6437acd832a9195f00ded35d9d5&)
+![test pass](https://github.com/user-attachments/assets/6763b98f-7ab7-4174-a64a-588ea35d183b)
 
 Unit tests should be made for all key subsystems and are a great way to see if the logic behind the code actually makes sense and works. You should also try to test all parts of the subsystems to cover everything.  
 
@@ -421,12 +421,12 @@ addPeriodic(FaultLogger::update, 2);
 Now launch the sim window (ctrl + shift + p) -> ```simulate robot code```.
 Once it's loaded, click the `Test` mode and then open NetworkTables info.
 
-![NT faults](https://cdn.discordapp.com/attachments/1008564537328414730/1285003833231020113/image-1.png?ex=66e8b094&is=66e75f14&hm=221304b3997be3f1370ff3bb5872a26988cd5be1b9bf9f77f9cb0742a47ad45f&)
+![NT faults](https://github.com/user-attachments/assets/1426c12d-7af7-4c33-8a99-53427df4cf31)
 
 In Faults and Total Faults, we can see that we have indeed ran our checks and since there are no warnings, it is safe to assume that in this case the checks have passed. 
 - To see this in Elastic, click `Test` and then head to Elastic. Right click, click add widgets, click `Faults` and drag and drop `Total Faults` and `Active Faults` onto the layout. You should see the following if the tests have passed. 
 
-![elastic faults](https://cdn.discordapp.com/attachments/1008564537328414730/1285003833512165427/image-2.png?ex=66e8b094&is=66e75f14&hm=96158dc445f4fbde17a7bcbc68c195a2a90e77cabc9849a2a21ef0f33e5e4016&)
+![elastic faults](https://github.com/user-attachments/assets/0442431c-b250-43bb-a9de-e89285fc71dc)
 
 Same with Unit Tests, it's good to have system checks for all runnable parts of the robot to ensure the robot is fully ready for the game. As a notice, please make sure to run system checks while the robot is ON the robot cart. 
 ### Simulation and Logging
@@ -540,11 +540,11 @@ field2d.setRobotPose(getPose());
 #### Seeing the result
 Start by launching sim and opening up NetworkTables. use this [sim gui guide](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/simulation-gui.html) to help you navigate around. To see our field2d widget, go to NetworkTables, then SmartDashboard, and click the "field". Next, to see our logged data, click NetworkTables and the first option. You should see something similar to the image below. 
 
-![drive NT](https://cdn.discordapp.com/attachments/1008564537328414730/1285003833935790120/image-4.png?ex=66e8b094&is=66e75f14&hm=4aae908061d3982b780cc21be8c7a97916fa18b6db51de3315fcca3966d40928&)
+![drive NT](https://github.com/user-attachments/assets/2be285f4-a3ea-40f5-bdf7-e9bb661f44ba)
 
 Since our driver port is 1, make sure your joystick is also on the same port value in sim or else it will not get any inputs. Lastly, to control the differential drive properly, the joystick will require to have 6 total `axis` as shown below. You can add more and change the bindings by going to `DS` then cliking on the settings of which ever keyboard you are using. 
 
-![drive joystick](https://cdn.discordapp.com/attachments/1008564537328414730/1285003834170540174/image-5.png?ex=66e8b094&is=66e75f14&hm=95637e84b02619178619d0b9269b94940273868a555d428d53b4690e9ab206a0&)
+![drive joystick](https://github.com/user-attachments/assets/a6624ad8-f944-4e62-bc4d-a29eda974891)
 
 Move the robot around in sim and have fun. If you don't like the two handed control of a differential drive, take a shot at an arcade drive. Use the `DifferentialDrive` class from wpilib and make use of its `arcadeDrive` methods. An arcade drive functions such that you can move forward/backward and sideways while only using 1 joystick.
 
