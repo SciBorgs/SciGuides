@@ -1,5 +1,5 @@
 # Introduction
-Control theory is a widely-used concept in engineering that helps influence the behavior of a system to achieve a desired outcome. By applying methods like feedback and feedforward, we can correct errors and make systems more accurate and reliable. This guide covers the basics of these methods but primarily provides resources with more in-depth explanations of each topic. Many of the projects you will work on will implement these concepts, so it's important to understand how they function.
+Control theory focuses on guiding systems from their current state to a desired state by manipulating inputs to achieve specific outputs. This is done by using feedback and feedforward to correct errors and make mechanisms more accurate. This guide will introduce these basic ideas and point you to more detailed resources. Many of the projects you’ll work on will use these concepts, so it's important to understand how they work.
 
 To get started, read [this](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/introduction/control-system-basics.html) document on control systems. It shows how control systems are used in everyday life and why they’re important. It also breaks down basic concepts and uses diagrams to explain how most systems work.
 
