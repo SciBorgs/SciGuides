@@ -24,9 +24,9 @@ For a deeper dive into command-based programming, check out [this guide](https:/
 
 ### Setting up the environment
 
-Refer to the [environment setup](https://github.com/SciBorgs/SciGuides/blob/env-setup/reference-sheets/EnvironmentSetup.md) reference sheet to check that all neccessary components are setup before starting this project. Feel free to ignore the normal vscode section as that won't be needed for this project.
+Refer to the [environment setup](https://github.com/SciBorgs/SciGuides/blob/main/reference-sheets/EnvironmentSetup.md) reference sheet to check that all neccessary components are setup before starting this project. Feel free to ignore the normal vscode section as that won't be needed for this project.
 
-Make sure to practice good git habits when working on this and any other project. See this [reference sheet]() to learn how.
+Make sure to practice good git habits when working on this and any other project. See this [reference sheet](github.com/SciBorgs/SciGuides/blob/main/reference-sheets/GitPractices.md) to learn how.
 
 ## Basic Drivetrain
 
@@ -125,7 +125,7 @@ private void configureBindings() {
 
 ### Wheel Odometry Integration
 
-Brush up on the [sensors guide]() if you're uncertain what encoders and gyros are.
+Brush up on the [sensors guide](github.com/SciBorgs/SciGuides/blob/main/reference-sheets/Sensors.md) if you're uncertain what encoders and gyros are.
 
 #### Adding Encoders
 
@@ -259,7 +259,7 @@ public Pose2d pose() {
 
 ### Control Theory
 
-Before we get started, please make sure you have read the [Control Theory reference sheet](https://github.com/SciBorgs/SciGuides/blob/main/Controls.md) as we are going to assume you are aware of what PID and Feedforward generally do.
+Before we get started, please make sure you have read the [Control Theory reference sheet](github.com/SciBorgs/SciGuides/blob/main/reference-sheets/Control-theory.md) as we are going to assume you are aware of what PID and Feedforward generally do.
 
 #### Why Control Theory Matters for Driving
 
@@ -511,7 +511,7 @@ Same with Unit Tests, it's good to have system checks for all runnable parts of 
 
 ### Simulation and Logging
 
-To finish our project up, we are going to simlute the drive we've made. Please read the [Simulation reference sheet](https://github.com/SciBorgs/SciGuides/blob/main/Simulation.md) before continuing on with this.
+To finish our project up, we are going to simlute the drive we've made. Please read the [Simulation guide](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/introduction.html) before continuing on with this.
 
 #### Setting Up the Simulation
 
@@ -606,7 +606,7 @@ This initializes Monologue with our robot, setting up the logging system to capt
 
 #### Using Monologue for NetworkTables Logging
 
-We use NetworkTables (NT) to make logging specific variables or objects easier. Read the [Telemetry doc]() for specifics on logging with NT. We’re going to use the `@Log.NT` annotation as it allows us to log key metrics in real-time while the robot is running, which we can then view on dashboards like Shuffleboard or SmartDashboard.
+We use NetworkTables (NT) to make logging specific variables or objects easier. Read the [Telemetry doc](github.com/SciBorgs/SciGuides/blob/main/reference-sheets/Telemetry.md) for specifics on logging with NT. We’re going to use the `@Log.NT` annotation as it allows us to log key metrics in real-time while the robot is running, which we can then view on dashboards like Shuffleboard or SmartDashboard.
 
 Let's get started by making a field:
 
@@ -658,7 +658,7 @@ Move the robot around in sim and have fun. If you don't like the two handed cont
 
 ### Continuing on
 
-Once you feel ready for the next step, get started on an ArmBot project. It's going to have a different code structure than we discussed, but many of the ideas still remain. You can get started [here]().
+Once you feel ready for the next step, get started on an ArmBot project. It's going to have a different code structure than we discussed, but many of the ideas still remain. You can get started [here](github.com/SciBorgs/SciGuides/blob/main/projects/BasicArmBot.md).
 
 Sneak peek:
 
