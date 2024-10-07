@@ -119,7 +119,7 @@ Logical operations transform booleans into other booleans (help). You should be 
 | operator |      symbol       | examples                                                                                          |
 | -------- | :---------------: | ------------------------------------------------------------------------------------------------- |
 | and      |       `&&`        | `true && true` &rarr; `true`<br>`true && false` &rarr; `false`<br>`false && false` &rarr; `false` |
-| or       | <code>\|\|</code> | `true && true` &rarr; `true`<br>`true && false` &rarr; `true`<br>`false && false` &rarr; `false`  |
+| or       | <code>\|\|</code> | `true \|\| true` &rarr; `true`<br>`true \|\| false` &rarr; `true`<br>`false \|\| false` &rarr; `false`  |
 | not      |        `!`        | `!true` &rarr; `false`<br>`!false` &rarr; `true`                                                  |
 ## Practice problems
 
