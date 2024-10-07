@@ -1,19 +1,26 @@
 # Introduction
 
-Git is a great tool for teams to collectively work on a project together. Conceptualizing the way git is structured is somewhat difficult for people who are very new to the subject, but this guide should make it super easy and digestible! After the explanation of concepts and definitions of terms, there is a Usage section where you will learn the commands to use git in the command line. After firmly grasping the concepts, remembering the commands become simple tasks, and once you practice enough with them, they become second nature to a programmer.
+Git is a version control system that helps you track changes to files, especially in code projects. It allows multiple people to work simultaneously without overwriting each other's work.
+
+Conceptualizing the way git is structured can be difficult for people who are new to the subject, but this guide should make it easy and digestible! After we introduce key concepts and definitions, the [usage](#usage) section will teach readers how to use git in the command line. With enough practice, they become second nature to a programmer.
+
+This aims to be a brief, central introduction to git. For a very in-depth look, see the [official Git documentation](https://git-scm.com/book/en/v2).
+
 # Conceptualization
 
-Before conceptualizing the ideas behind the various command line inputs, remembering the actual command line inputs is a little bit confusing. Although it is possible to learn **how** to use git and program with that, it is much better to learn **how git works** and then build off of that. Therefore, before going over the individual command line inputs, we will go over the main concepts, what they mean, and how they contribute to programming for your team.
+Conceptualizing the ideas behind the various command line inputs is key to remembering them. Although it is possible to learn **how** to use git and program with that, it is much better to learn **how git works** and then build onto that.
+
+Therefore, before going over the individual command line inputs, we will go over the main concepts, what they mean, and how they contribute to programming for your team.
 
 ### Repositories
 
-If more than one person is working on a codebase, the codebase needs a place to be stored. The way nearly everyone does this is by using something called a **Github Repository**. A Repository is a place on the cloud for folders and files to be stored, which is **accessible by git**. Each repository is its own **git project**, or a unit of storage on git. 
+If more than one person is working on a codebase, the codebase needs a place to be stored. We call this a **repository**, where folders and files are stored which is **accessible by git**. Each repository is its own **git project**, or a unit of storage on git.
 
-Those were some fancy magic words, but to put it simply, it's a place on the internet where your team's code will go. 
+Those were some fancy magic words, but to put it simply, it's a place on the internet where your team's code will go.
 
-If your team's repository has something called **branch protections**, which it most likely does, then you won't be able to edit the code directly. There are other ways that you can contribute, of which will be discussed later in this guide. 
+If your team's repository has something called **branch protections** (for us, it likely will), then you won't be able to edit the code directly. We will cover how to contribute later.
 
-When your team makes a project on Github and adds some files and folders to it, in order to get those files onto your computer for editing, you'll need to **clone** it. Cloning is the way you get git to **download** a git project, or repository, into files on your computer. This is because the most efficient ways to edit code is on an **Integrated Development Environment** (a code-editing app), such as **Visual Studio Code** (with plugins), which run by editing files on your computer.
+When your team makes a project on Github, you'll need to **clone** it to interact with the files and directories. Cloning **downloads** a git project, or repository, onto your computer for easy editing using an **Integrated Development Environment** (IDE) such as **Visual Studio Code**.
 
 ### Branches
 
@@ -27,9 +34,9 @@ The repository usually consists of many branches, with the main branch at the ce
 
 Saving **versions** of anything you make as you go along is very useful for big projects. It can help organize the changes that have been made, and also help you go back to a **previous version** in case something goes wrong. Consider this: you have just been working for a couple hours, making many changes in the process. Your code was working fine, and had no problems thirty minutes ago, but for some reason, it just isn't working now, and you have absolutely no idea why, even after looking at the error report. It would be nice to go back to a previous version, compare them, and see what the issue is.
 
-A **commit**, put simply, is just this, a **version of the codebase.** Commits keep track of the **changes** that have been made to the code, bundles them up and slaps a **message** on them. When going back to previous versions, if the commit was labeled with a commit message, it makes it much easier to figure out where you went wrong, or where to return to. Changes that are made locally on the device that have not been committed yet are named **working changes**, which is pretty simple to remember since they are what you are working on at the current moment. 
+A **commit**, put simply, is just this, a **version of the codebase.** Commits keep track of the **changes** that have been made to the code, bundles them up and slaps a **message** on them. When going back to previous versions, if the commit was labeled with a commit message, it makes it much easier to figure out where you went wrong, or where to return to. Changes that are made locally on the device that have not been committed yet are named **working changes**, which is pretty simple to remember since they are what you are working on at the current moment.
 
-Rather than bundling all the code, which is non storage-efficient for larger repositories, and would take very long both to download and to upload, git simply keeps track of the **changes you've made**. However, when committing, git doesn't know the changes you want to commit. So, you first have to **stage** those changes in the terminal (we will go over this later) and then you can commit. 
+Rather than bundling all the code, which is non storage-efficient for larger repositories, and would take very long both to download and to upload, git simply keeps track of the **changes you've made**. However, when committing, git doesn't know the changes you want to commit. So, you first have to **stage** those changes in the terminal (we will go over this later) and then you can commit.
 
 Make sure to commit with a **message**! If committing either without a message or with a irrelevant one (e.g. "g", "iglsjgf;l", "made some changes") then it takes out half of the reason you're committing in the first place, and makes it difficult for you and **people reviewing your changes** to determine what you did in each commit! So, always make a **very brief description** of the changes you've made. It's not just good practice, it's also helpful to everyone.
 
@@ -45,13 +52,13 @@ Now, say you're working on a branch at a school computer. You push your changes,
 
 ### Stashing
 
-Sometimes you'll be working on a branch, then realize that you need those changes that your friend pushed five minutes ago in order to finish your code. If you decide to commit now and pull after, then you will have to sort out a bunch of annoying merge conflicts, and have an unfinished commit in the tree, but if you decide to pull, then all of **your** working changes will need to be **undone** first. To avoid this, there must be a way to **store** your changes locally **without** committing, so that you can pull your **friend's** changes and then apply **your** changes, so **both** changes will be applied in the next commit. 
+Sometimes you'll be working on a branch, then realize that you need those changes that your friend pushed five minutes ago in order to finish your code. If you decide to commit now and pull after, then you will have to sort out a bunch of annoying merge conflicts, and have an unfinished commit in the tree, but if you decide to pull, then all of **your** working changes will need to be **undone** first. To avoid this, there must be a way to **store** your changes locally **without** committing, so that you can pull your **friend's** changes and then apply **your** changes, so **both** changes will be applied in the next commit.
 
-Thankfully, the git overlords have gifted us the ability to **stash** our changes. When you stash your changes, it bundles all your working changes into the git stash and removes all those changes from your files; it reverts you to the most recent commit. You can do what you'd like, but when you want those changes back, you can simply reapply them to your code, even if you're a commit forward. 
+Thankfully, the git overlords have gifted us the ability to **stash** our changes. When you stash your changes, it bundles all your working changes into the git stash and removes all those changes from your files; it reverts you to the most recent commit. You can do what you'd like, but when you want those changes back, you can simply reapply them to your code, even if you're a commit forward.
 
 Removing your changes from the stash and placing them back in your working changes is called **popping** the changes. Popping your stashed working changes throws them back into your code, like popping a bubble full of working changes, and once it's popped the working changes fall back onto the code.
 
-Two people on a branch is not the only situation when you'd use stash. Sometimes, you want to write something a different way, but want to keep your changes just in case you change your mind. In this scenario, you can just stash your working changes, then rewrite it all, and if you don't like the rewrite, all you have to do is pop! Stashed changes restored. 
+Two people on a branch is not the only situation when you'd use stash. Sometimes, you want to write something a different way, but want to keep your changes just in case you change your mind. In this scenario, you can just stash your working changes, then rewrite it all, and if you don't like the rewrite, all you have to do is pop! Stashed changes restored.
 
 ### Merging
 
@@ -59,21 +66,21 @@ When you're finally done with your changes on a branch, and you are sure that it
 
 Essentially, merging is how you transfer code from **branch to branch**. This, of course, will include transferring code **from** main **to** your branch, to stay updated with recent changes to main. If other people make a pull request and it gets approved, then the main branch will have some new code that is **not** currently in your working branch. This means that you are **not** up to date with main. Therefore, you need to **merge main into your branch** every now and again, and especially before you make a pull request, to make sure that everything is up to date. When you merge main into your branch, sometimes there will be conflicts, especially if the file being edited by both you and the other contributor are the same. These are called **Merge Conflicts**, and can happen both with merging **and** with pulling changes from a branch. You just have to sort these out manually, deciding which changes to keep and which changes to toss. It's a little annoying to do, but if you do it often enough and efficiently enough then it doesn't become that big of a problem.
 
-There is another way to merge main into your code called **Rebasing**, but it's complicated to explain in writing and you'll never use it with a team as small as a high school robotics team. The idea behind it is that you rewrite your commit history during a rebase, and that **instead** of branching off of the main branch that was four commits ago, you are **now** technically branched off of the newest main commit. It's useful for organizing commits to turn the visualization from a web to a tree, but when you're doing such small changes to a tiny codebase like used in robotics, it doesn't even matter. 
+There is another way to merge main into your code called **Rebasing**, but it's complicated to explain in writing and you'll never use it with a team as small as a high school robotics team. The idea behind it is that you rewrite your commit history during a rebase, and that **instead** of branching off of the main branch that was four commits ago, you are **now** technically branched off of the newest main commit. It's useful for organizing commits to turn the visualization from a web to a tree, but when you're doing such small changes to a tiny codebase like used in robotics, it doesn't even matter.
 
 # Usage
 
 Looks like you got through all the conceptualization. Nice job! However, that means absolutely nothing if you don't know how to put it into practice. So, in this section, we will go over the actual git command line inputs.
 
-Opening the command line isn't a difficult task. Visual Studio Code has one built in (accessible by pressing ctrl+\`), which makes using git much easier. 
-If you're not using VSCode, 
+Opening the command line isn't a difficult task. Visual Studio Code has one built in (accessible by pressing ctrl+\`), which makes using git much easier.
+If you're not using VSCode,
 Windows: Press *Win + X* to open the Command Prompt.
 Mac: Press *Cmd + Space* to open spotlight search, then type "Terminal" to open the Terminal.
 Linux: Spin around five times and then sing Mary Had A Little Lamb.
 
 ### Cloning
 
-There are a few ways to clone a Github repository onto your computer, but the best way and the way that we'll be going over is by using the command line. 
+There are a few ways to clone a Github repository onto your computer, but the best way and the way that we'll be going over is by using the command line.
 
 Go onto the GitHub website, then find the repository. There should be a green button that says "Code". Click that, and then copy the link that shows up under it. This will be used in the command. It tells git what exactly to clone off of the internet.
 
@@ -87,7 +94,7 @@ It should look something like this:
 
 `git clone https://github.com/SciBorgs/SciGuides.git`
 
-This would clone this repository, the SciBorgs' SciGuides onto your computer in your working directory.
+This would clone this repository, SciGuides, onto your computer in your working directory.
 
 ### Branching
 
@@ -96,19 +103,22 @@ To make a branch, type into the command line:
 `git branch <branch name>`
 
 Make sure that your chosen branch name follows the naming standards! Your name should be:
+
 1. Relevant: something indicative of what the branch is for
 2. All lowercase
 3. Spaces replaced with dashes
 
 So, these would be fine:
+
 - drivetrain
 - auto-align
 - feeder-fix
 
 But these wouldn't:
+
 - Drivetrain
 - auto_align
-- i-hate-git 
+- i-hate-git
 
 However, after you decide to create the branch, you still need to switch to that branch!
 To do that, type into the command line:
@@ -131,7 +141,7 @@ Once your changes are staged, we will want to commit those staged changes. Type 
 
 `git commit -m "Put your message here"`
 
-This will commit all of your changes, and the commit message on this commit will be '*Put your message here*'. Make sure that your message is always useful and indicative of what you did in that commit! 
+This will commit all of your changes, and the commit message on this commit will be '*Put your message here*'. Make sure that your message is always useful and indicative of what you did in that commit!
 
 ### Pushing
 
@@ -155,7 +165,7 @@ Yep. That's it. Just make sure that you have no working changes, or it won't wor
 
 ### Merging
 
-This one seems simple at first, too, but unfortunately we are using git. 
+This one seems simple at first, too, but unfortunately we are using git.
 
 Before we can merge the more recent changes to main with our branch, it is necessary for us to get the changes from main first. So, we're going to do just that. Type into the command line:
 
