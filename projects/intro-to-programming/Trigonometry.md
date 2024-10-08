@@ -15,7 +15,7 @@ A radian is the angle created when the radius of a circle is wrapped around the 
 
 ![Diagram of radian (https://www.mathsisfun.com/geometry/radians.html)](https://www.mathsisfun.com/geometry/images/radian-circle.svg)
 
-If you know the formula for the circumference of a circle ($C = 2πr$), then you can see that a full circle is 2π radians (when you divide the circumference by its radius). So 360° = 2π rad. Radians is abbreviated to rad. The radius of the circle does not matter. 
+If you know the formula for the circumference of a circle ($C = 2 \pi r$), then you can see that a full circle is 2π radians (when you divide the circumference by its radius). So 360° = 2π rad. Radians is abbreviated to rad. The radius of the circle does not matter. 
 
 ## Converting Degrees to Radians
 With the equation 360° = 2π rad, you can convert between degrees and radians:
@@ -36,11 +36,20 @@ So as long as you know an angle of the right triangle, and a side length, you ca
 
 The trigonometric functions take the angle as the input, and output specific ratios ($θ$ represents an angle):
 
-- $sin(θ) = \frac{leg\hspace{0.1cm}opposite \hspace{0.1cm}of \hspace{0.1cm}angle}{hypotenuse}$ - written as sine
-- $cos(θ) = \frac{leg \hspace{0.1cm}adjacent (next) \hspace{0.1cm}to \hspace{0.1cm}angle}{hypotenuse}$ - written as cosine
-- $tan(θ) = \frac{leg \hspace{0.1cm}opposite \hspace{0.1cm}of \hspace{0.1cm}angle}{leg \hspace{0.1cm}adjacent\hspace{0.1cm} to \hspace{0.1cm}angle}$ also equal to $\frac{sin(θ)}{cos(θ)}$ - written as tangent
+![Diagram of trig funcs (https://www.mathsisfun.com/algebra/trigonometry.html)](https://www.mathsisfun.com/algebra/images/adjacent-opposite-hypotenuse.svg)
 
-If you multiply $sin(θ)$ and the $cos(θ)$ by the hypotenuse, you'd get the length of the leg opposite of $\theta$ and the length of the leg adjacent to $\theta$ respectively.
+
+- $sin(\theta) = \frac{leg \hspace{0.1cm} opposite \hspace{0.1cm} of \hspace{0.1cm} angle}{hypotenuse}$ - written as sine
+- $cos(\theta) = \frac{leg \hspace{0.1cm} adjacent (next) \hspace{0.1cm} to \hspace {0.1cm} angle}{hypotenuse}$ - written as cosine
+- $tan(\theta) = \frac{leg \hspace{0.1cm} opposite \hspace {0.1cm} of \hspace {0.1cm} angle}{leg \hspace{0.1cm} adjacent \hspace{0.1cm} to \hspace{0.1cm} angle}$ also equal to $\frac{sin(\theta)}{cos(\theta)}$ - written as tangent
+
+A popular mnemonic to memorize these functions is SOH-CAH-TOA, where:
+- **S**ine = **O**pposite/**H**ypotenuse
+- **C**osine = **A**djacent/**H**ypotenuse
+- **T**angent = **O**pposite/**A**djacent
+
+
+If you multiply $sin(\theta)$ and the $cos(\theta)$ by the hypotenuse, you'd get the length of the leg opposite of $\theta$ and the length of the leg adjacent to $\theta$ respectively.
 
 ## Code Representation
 In Java, the `Math` library has methods for these trig functions:
@@ -54,13 +63,13 @@ Keep in mind that these functions take in **radians**.
 # Inverse Trig Functions
 There are also the inverse trig functions, where if you input the ratio of the leg opposite of an unknown angle $θ$ over the hypotenuse of the triangle, the output is the angle:
 
-- $sin^{-1}(\frac{leg \hspace{0.1cm}opposite \hspace{0.1cm}θ}{hypotenuse}) = θ$ - written out as arcsine
-- $cos^{-1}(\frac{leg \hspace{0.1cm}adjacent\hspace{0.1cm} θ}{hypotenuse}) = θ$ - written out as arccosine
-- $tan^{-1}(\frac{leg \hspace{0.1cm}opposite\hspace{0.1cm} θ}{leg \hspace{0.1cm}adjacent \hspace{0.1cm}θ}) = θ$ - written out as arctangent
+- $sin^{-1}(\frac{leg \hspace{0.1cm} opposite \hspace{0.1cm} \theta}{hypotenuse}) = \theta$ - written out as arcsine
+- $cos^{-1}(\frac{leg \hspace{0.1cm} adjacent \hspace{0.1cm} \theta}{hypotenuse}) = \theta$ - written out as arccosine
+- $tan^{-1}(\frac{leg \hspace{0.1cm} opposite \hspace{0.1cm} \theta}{leg \hspace{0.1cm}adjacent \hspace{0.1cm} \theta}) = \theta$ - written out as arctangent
 
 The output of the inverse of a function applied to an output of the original function results in the input value of the original function. In a more comprehensible form:
 
-- $sin^{-1}(sin(θ)) = θ$
+- $sin^{-1}(sin(\theta)) = \theta$
 
 In Java, the inverse functions are written like this:
 ```java
