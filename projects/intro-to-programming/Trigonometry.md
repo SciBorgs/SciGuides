@@ -30,7 +30,7 @@ Math.toRadians(angle); // angle is in degrees, and the output is radians
 # Angles in Right Triangles
 We know that a right triangle is defined by a triangle containing a right angle (90° or (π/2) rad). If you know one of the other angles of the triangle, then you know all 3 angles (ex. if you know that a right triangle contains a 50° angle, you know the missing angle is 40°, since the interior angles of all triangles sum to 180°).
 
-A property that's more obvious in right triangles is that you can find the ratio of a leg of a triangle over its hypotenuse as long as you know an angle (that's not the right angle) of the triangle. [This](https://services.math.duke.edu/~rann/labs106.2018pdfs/Lab1.A.Crash.Course.in.Trig.pdf) helps explain why this is the case.
+Another property of right triangles is the ability to find the ratio of a leg over the hypotenuse as long as you know one of the angles (that's not the right angle). [This](https://services.math.duke.edu/~rann/labs106.2018pdfs/Lab1.A.Crash.Course.in.Trig.pdf) helps explain why this is the case.
 
 So as long as you know an angle of the right triangle, and a side length, you can find the lengths of each side, and the angles of each vertex.
 
