@@ -40,7 +40,7 @@ The trigonometric functions take the angle as the input, and output specific rat
 - $cos(θ) = \frac{leg \hspace{0.1cm}adjacent (next) \hspace{0.1cm}to \hspace{0.1cm}angle}{hypotenuse}$ - written as cosine
 - $tan(θ) = \frac{leg \hspace{0.1cm}opposite \hspace{0.1cm}of \hspace{0.1cm}angle}{leg \hspace{0.1cm}adjacent\hspace{0.1cm} to \hspace{0.1cm}angle}$ also equal to $\frac{sin(θ)}{cos(θ)}$ - written as tangent
 
-if you multiply $sin(θ)$ and the $cos(θ)$ by the hypotenuse, you'd get the length of the leg opposite of $θ$ and the length of the leg adjacent to θ respectively.
+If you multiply $sin(θ)$ and the $cos(θ)$ by the hypotenuse, you'd get the length of the leg opposite of $\theta$ and the length of the leg adjacent to $\theta$ respectively.
 
 ## Code Representation
 In Java, the `Math` library has methods for these trig functions:
