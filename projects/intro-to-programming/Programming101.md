@@ -245,8 +245,8 @@ Let's go through an example ([f](#example-f) is a function that takes a number a
 `applyThrice` will call `f` on `2`, getting `4`, and the  call `f` on `4`, getting `8`, and then call `f` on `8`, getting `16`. So `applyThrice(f, 2)` &rarr; `16`.
 ## Practice Problems
 
-1. Write a function that takes as an input an integer `n` and returns that integer modulo 4
-2. Write a function called `neither` that takes as inputs a value `v` and two functions `f` and `g`, both of which return booleans. Return whether both `f` and `g` return false when given `v` as an input
+1. Write a function that takes as an input an integer `n` and returns that integer modulo 4.
+2. Write a function called `neither` that takes as inputs a value `v` and two functions `f` and `g`, both of which return booleans. Return whether both `f` and `g` return false when given `v` as an input.
 # Scope
 
 The *scope* of a variable is the part of the code for which that variable can be referenced. Generally, the scope of a variable `v` is from when it is defined, to the end of the code block within which it is defined. 
