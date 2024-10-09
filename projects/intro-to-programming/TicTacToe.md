@@ -95,7 +95,6 @@ public String toString() {
 As always, go through this method and make sure you really understand all of it.
 
 Now, before we write anything else in this class, let's test what we've done so far.
-
 ### Testing
 
 So far in the intro to programming series, we've tested our code by printing values and checking if they are what we expected. For this guide, our code is getting a little more complicated, and we're going to start using Unit Tests!
@@ -147,7 +146,6 @@ public int get(int row, int column) {
 }
 ```
 
-
 Next up is our `move` method. This method needs to take what player is playing and which row and column they want to move in. Here's the header:
 
 ```java
@@ -184,12 +182,161 @@ public void testMove() {
 }
 ```
 
-## winner
+### Update toString test
 
-The next step is to write a method that finds the winner of a board. This method will return `1` if `x` has won the board, `-1` if y has won, and `0` if no one has won. I'm going to write some of the code for you. Fill the rest in.
+Now that we can change a board, let's make sure that the `toString` method works with a not-empty board.
 
 ```java
+@Test
+public void boardToString() {
+	assertEquals("- - - \n- - - \n- - - \n", new Board().toString());
+	Board b = new Board();
+	b.move(1, 1, 1);
+	assertEquals("- - - \n- x - \n- - - \n", new Board().toString());
+}
+```
+
+Add one more test case! It should have at least one space with an o (-1) in it.
+## winner
+
+The next step is to write a method that finds the winner of a board. This method will return `1` if `x` has won the board, `-1` if y has won, and `0` if no one has won. I'm going to write most of the code for you. Fill the rest in.
+
+```java
+/** @return whether a set of three spaces are won by one player */
+private static boolean setWon(int a, int b, int c) {
+	return a != 0 && a == b && b == c;
+}
+
+/** @return Whether the ith row or column has been won */
+private boolean rowOrColWon(int i) {
+	return setWon(board[i][0], board[i][1], board[i][2]) ||
+		   setWon(board[0][i], board[1][i], board[2][i]);
+}
+
+/** @return Whether either of the diagonals has been won */
+private boolean diagonalWon() {
+	// write this!
+}
+
 public int winner() {
+	for (int i = 0; i < ) {
+		if (rowOrColWon(i)) {
+			return board[i][i];
+		}
+	}
+	if (diagonalWon()) {
+		return board[1][1];
+	}
+	return 0;
+}
+```
+
+Go through all the code (use a pen and paper to visualize if you're having trouble). Then fill in the `diagonalWon` method. At the end, the following test should pass:
+
+```java
+@Test
+public void testWinner() {
+	Board b1 = new Board();
+	b1.move(1, 0, 1);
+	b1.move(-1, 1, 1);
+	b1.move(1, 2, 1);
+	assertEquals(0, b1.winner());
+	
+	b1.move(1, 0, 0);
+	b1.move(1, 0, 2);
+	assertEquals(1, b1.winner());
+	
+	Board b2 = new Board();
+	b2.move(-1, 0, 0);
+	b2.move(-1, 1, 1);
+	b2.move(-1, 2, 2);
+	assertEquals(-1, b2.winner());
+
+	Board b3 = new Board();
+	b3.move(1, 1, 1);
+	b3.move(1, 0, 2);
+	b3.move(1, 1, 2);
+	b3.move(1, 2, 2);
+	assertEquals(1, b3.winner());
+}
+```
+## over
+
+The next method is `over`, which returns whether a game is over. The two possibilities for a game to be over are:
+1. a player has won
+2. the board is full
+You can check whether the board has been won by analyzing the output of `winner()`. To check if the board is full, you will need to iterate over the whole board (you can use nested for loops).
+
+Here's the header:
+```java
+public boolean over();
+```
+
+Fill in the function! It should pass the following test:
+
+```java
+@Test
+public void testOver() {
+	Board bWon = new Board;
+	bWon.move(1, 0, 2);
+	bWon.move(1, 1, 1);
+	assertFalse(bWon.over());
+	bWon.move(1, 2, 0);
+	assertTrue(bWon.over());
+
+	Board bFull = new Board();
+	for (int r = 0; r < 3; r++) {
+		int firstSpace = (r % 2) * 2 - 1;
+		for (int c = 0; c < 3; c++) {
+			int mult = c / 2 * 2 - 1;
+			bFull.move(firstSpace * mult, r, c);
+		}
+	}
+	assertTrue(bFull.over());
+}
+```
+
+The for loop in this test is a little confusing. It fills `bFull` with the following pattern:
+
+```
+x x o
+o o x
+x x o
+```
+
+The point of this is that the board is full, but there isn't a winner, which is an important case to test our over function on.
+
+If you want to understand exactly how this pattern is being made, I encourage you to go through it step by step with pen and paper.
+### Updating move
+
+Now that we can tell whether a game is over, let's update our `move` method. Because if a game is over and someone has one, we don't want to continue allowing players to take moves. So update the `move` method so that it passes this test:
+
+```java
+@Test
+public void testMove() {
+	Board b = new Board;
+	b.move(1, 2, 0);
+	assertEquals(1, b.get(2, 0));
+	b.move(-1, 1, 1);
+	assertEquals(-1, b.get(1, 1));
+	// check that you can't play in a space that's full already
+	assertThrows(RuntimeException.class, () -> b.move(-1, 2, 0));
+	// check that you can't give an int other than 1 or -1 as player
+	assertThrows(RuntimeException.class, () -> b.move(0, 2, 2));
+	b.move(1, 0, 0);
+	b.move(1, 1, 0);
+	// check that you can't move after a board is already won
+	assertThrows(RuntimeException.class, () -> b.move(1, 2, 2));
+}
+```
+# Game
+
+Now that the `Board` class is finished, we can make an actually playable game!
+
+Create a `Game.java` file for a `Game` class. `Game` will store the board and which player's turn it is. It will have a `main` method, and when `main` is run the game will begin. Each turn, the computer will print the board and ask the player what row and column they want to go in.
+
+```java
+public class Game {
 	
 }
 ```
