@@ -73,11 +73,9 @@ Lastly, I highly recommend you go to whatever file navigator you use (Finder, Fi
 # Git
 
 Git is a distributed version control system that helps you track changes in your code over time. It allows multiple people to work on the same project simultaneously and merge their changes seamlessly. Git is essential for collaborative coding and is widely used in software development, including robotics projects.
-
 ## Checking if Git is installed
 
 Before installing Git, let's check if it's already installed on your system.
-
 ### For Mac and Linux:
 
 1. Open Terminal
@@ -87,7 +85,6 @@ Before installing Git, let's check if it's already installed on your system.
    ```
 3. If Git is installed, you'll see a version number (e.g., "git version 2.30.1")
 4. If you see "command not found", you'll need to install Git
-
 ### For Windows:
 
 1. Open PowerShell
@@ -97,11 +94,9 @@ Before installing Git, let's check if it's already installed on your system.
    ```
 3. If Git is installed, you'll see a version number
 4. If you see an error message, you'll need to install Git
-
 ## Installing Git
 
 If Git is not installed on your system, follow these steps:
-
 ### For Mac:
 
 1. Install Homebrew if you haven't already (visit https://brew.sh/ for instructions)
@@ -110,13 +105,11 @@ If Git is not installed on your system, follow these steps:
    ```
    brew install git
    ```
-
 ### For Windows:
 
 1. Visit https://git-scm.com/download/win
 2. Download the latest version for your system (64-bit or 32-bit)
 3. Run the installer and follow the prompts (you can use the default settings)
-
 ### For Linux:
 
 For Ubuntu or Debian-based distributions:
@@ -128,7 +121,6 @@ For Ubuntu or Debian-based distributions:
    ```
 
 For other distributions, consult your package manager's documentation.
-
 ## Creating a GitHub Account
 
 GitHub is a web-based platform that uses Git for version control. It's where you'll store your code repositories online.
@@ -183,18 +175,19 @@ Note: There are other authentication methods available, such as SSH keys, but PA
 
 This is going to be for writing non-robotics code. For instance, you can use regular VSC for [Java101](tbd) and [Java102](tbd). If you'd rather not have this on your computer, feel free to skip this step.
 
-1. [Download VSCode here](https://code.visualstudio.com/download).
-2. Once VSCode is installed, open it.
-3. Install the Java Extension Pack:
+1. Download the latest version of the [Java Development Kit](https://www.oracle.com/java/technologies/downloads/) (JDK). This is what will allow you to actually develop and run code in Java.
+	1. Once you've downloaded an installer, click on it and follow the instructions.
+2. [Download VSCode here](https://code.visualstudio.com/download).
+3. Once VSCode is installed, open it.
+4. Install the Java Extension Pack:
     - Click on the Extensions icon in the left sidebar (it looks like four squares)
     - In the search bar, type "Extension Pack for Java"
     - Look for the package by Microsoft and click "Install"
     - This pack includes several useful extensions for Java development, including the Language Support for Java by Red Hat, Debugger for Java, Java Test Runner, and Maven for Java
-4. Optional: Install Git Graph:
+5. Optional: Install Git Graph:
     - In the Extensions sidebar, search for "Git Graph"
     - Look for the extension by mhutchie and click "Install"
     - This extension provides a graphical view of your Git repository, which can be very helpful when working with version control
-
 # WPILib
 
 1. [Follow this guide to install WPILib](https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-2/wpilib-setup.html) (we use Java, so ignore the additional C++ installation)
