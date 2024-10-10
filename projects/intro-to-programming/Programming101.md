@@ -29,7 +29,7 @@ Familiarity with the following topics:
 
 All you need for this is **a pen and paper**.
 
-I know many of you will read this, and then precede to use your computers for everything anyway. But, for this tutorial, a computer will not help you. You will not be running any code. If you really want, you could write in a code block in google docs, but if possible, it is straightforwardly better in this case to be writing with your hand on paper or a tablet. You can write your code, any calculations you want to do, your thoughts, charts to work through loops, etc.
+I know many of you will read this, and then proceed to use your computers for everything anyway. But, for this tutorial, a computer will not help you. You will not be running any code. If you really want, you could write in a code block in google docs, but if possible, it is straightforwardly better in this case to be writing with your hand on paper or a tablet. You can write your code, any calculations you want to do, your thoughts, charts to work through loops, etc.
 ## Best practices
 
 As always, follow the general [best practices](/projects/README.md#best-practices).
@@ -242,7 +242,7 @@ Let's go through an example ([f](#example-f) is a function that takes a number a
 
 `applyThrice(f, 2)`
 
-`applyThrice` will call `f` on `2`, getting `4`, and the  call `f` on `4`, getting `8`, and then call `f` on `8`, getting `16`. So `applyThrice(f, 2)` &rarr; `16`.
+`applyThrice` will call `f` on `2`, getting `4`, and then call `f` on `4`, getting `8`, and then call `f` on `8`, getting `16`. So `applyThrice(f, 2)` &rarr; `16`.
 ## Practice Problems
 
 1. Write a function that takes as an input an integer `n` and returns that integer modulo 4.
