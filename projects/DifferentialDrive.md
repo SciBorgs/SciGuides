@@ -26,9 +26,13 @@ For a deeper dive into command-based programming, check out [this guide](https:/
 
 Refer to the [environment setup](https://github.com/SciBorgs/SciGuides/blob/main/reference-sheets/EnvironmentSetup.md) reference sheet to check that all neccessary components are setup before starting this project. Feel free to ignore the normal vscode section as that won't be needed for this project.
 
+
+Please use [this](https://github.com/SciBorgs/SciGuidesRobotBase) base tempelate for this and many other projects.
+
 Make sure to practice [good git habits](github.com/SciBorgs/SciGuides/blob/main/reference-sheets/GitPractices.md) when working on this and any other project.
 
 ## Basic Drivetrain
+![drive gif](https://github.com/user-attachments/assets/80fd7fac-beb5-4985-a0a5-8318654f5040)
 
 A differential drive is a type of robot drivetrain where two separately-driven groups of wheels are used to move the robot. By varying the speed of each wheel, the robot can move forward, backward, or turn. This setup is widely used due to its simplicity and high degree of control over the robot’s movement.
 
@@ -77,6 +81,8 @@ public class Drive extends SubsystemBase {
 
 Notice how we named the motors leaders and followers relative to their side. This is because instead of constantly calling all four of the motors, we can have one motor follow another on both sides. Meaning we now only have to call 2 motors, one from each side. This is done by using the `follow` method as seen below.
 
+The `follow` method comes from the `CANSparkMAX` class, as the motors we're controlling are instances of that class.
+
 ```java
   public Drive() {
     rightfollower.follow(rightLeader);
@@ -89,7 +95,7 @@ Notice how we named the motors leaders and followers relative to their side. Thi
   }
 ```
 
-`setInverted` allows motors on opposite sides of the drivetrain to spin in opposite directions to move the robot forward or backward. By default, if both motors are given the same positive value, they will spin in the same direction. This is because, by design, the two sides are attached in opposite directions. Requiring an inversion in the first place. 
+`setInverted` allows motors on opposite sides of the drivetrain to spin in opposite directions to move the robot forward or backward. By default, if both motors are given the same positive value, they will spin in the same direction. This is because, by design, the two sides are attached in opposite directions, requiring an inversion in the first place. 
 
 `restoreFactoryDefaults` resets motors to a default state, clear of any previous settings. This allows for consistent performance and preventing conflicts or errors with old configurations.
 
@@ -279,7 +285,7 @@ Next, we incorporate feedforward control. While PID handles errors after they oc
   private final SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(FF.S, FF.V);
 ```
 
-- The PID and FF values are stored in `DriveConstants.java` and are imported. Keep in mind these are just basic values to get you started with the project.
+- The PID and FF values are stored in `DriveConstants.java` and are imported. Keep in mind these are just basic values to get you started with the project. The process to determine these values will be elaborated on later.
 
 ```java
   public static final class PID {
@@ -341,155 +347,6 @@ Finally, we combine the outputs and send them to the motors:
 
 Here, the final motor voltage is calculated by adding the PID and feedforward outputs together. These voltages are then sent to the motors, controlling the movement of the robot.
 
-### Unit Testing & System Checks
-
-#### Unit Tests
-
-Think of unit tests as a way to check that each small piece of your code—like a motor or sensor—is functioning properly on its own before you start putting them all together. It's much easier to fix problems when they’re isolated to a single component than when they’re all tangled up in the full system.
-
-**Make sure to check out this [guide](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/unit-testing.html) from WPILib on how to setup unit tests.**
-
-Let’s talk about the tests for our drivetrain. We'll start it by creating a `DriveTest.java` file in the robot folder of the tests folder.
-
-First, we need to set things up before we run any tests. This is done in the `setup()` method:
-
-```java
-  Drive drive;
-  CANSparkMax spark;
-
-  @BeforeEach
-  public void setup() {
-    setupTests();
-    drive = new Drive();
-  }
-```
-
-Next, we will need to reset our drive between every tests so we are able to experiment different things at once.
-
-```java
-  @AfterEach
-  void destroy() throws Exception {
-    reset(drive);
-  }
-```
-
-Once everything is set up, you can make tests with the `@Test` annotation. Here's a quick example of testing if our pose is changing as we drive. 
-
-The `fastForward` allows time to pass to give our drive time to move. 
-
-Then we call our `getPose()` method and compare it to a new Pose2d, which returns a value of 0. So this test ensures that whenever our drive method is called, the robot doesn't stay at the Pose2d but actually moves.
-
-```java
-  @Test
-  public void testPose() {
-    drive.drive(0.8, 0.8);
-    fastForward();
-
-    assertNotEquals(new Pose2d(), drive.getPose());
-  }
-```
-
-#### Running the tests
-
-Again, make sure to check out the WPILib [guide](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/unit-testing.html) on this as it also talks about writing and running tests. To actually see if the tests are valid, open the WPILib command palette (top right corner logo) and search `Test Robot Code` and press enter. After it runs, it will show you the results of all your tests in the terminal.  
-
-![test pass](https://github.com/user-attachments/assets/28b6ac83-788a-4ec7-a0f1-7a82375a6428)
-
-Unit tests should be made for all key subsystems and are a great way to see if the logic behind the code actually makes sense and works. You should also try to test all parts of the subsystems to cover everything.  
-
-Here's another simple test but for LEDs.
-
-```java
-  @Test
-  public void testRainbowTheme() {
-    var rainbow1 = LedStrip.getBufferDataString(led.rainbowAddressableLEDBuffer());
-    fastForward(2);
-    var rainbow2 = LedStrip.getBufferDataString(led.rainbowAddressableLEDBuffer());
-    assertNotEquals(rainbow1, rainbow2);
-  }
-```
-
-If you just scan through the code, it's easy to tell what the process is and what we're testing. We are setting up the LEDs to display a rainbow pattern, fast forwarding in time so that it's a different color than before, and testing to make sure that the two colors are indeed different from each other.  
-
-The last type of assert most commonly used in tests is the `assertEqual`. This simply tests if two values are the same. Both in assertEqual and assertNotEqual, you can pass in a tolerance value that will pass the test if the two different values are within the tolarence. This is usually done by having a `DELTA` value set to your prefered tolarence.
-  
-#### System Checks
-
-In addition to unit tests, it’s equally important to perform system checks to ensure the entire robot is operating as expected in real-world conditions. Think of system checks as a quick health check before it hits the field. You want to make sure that everything is working as it should—motors, sensors, and all. This is usually done in real life and it's a good habit to run full robot system checks before your matches.
-
-Here is a simple example of what a drive systems check might look like. The logic is similar to unit tests as we will run a part of the drive before checking to see if it meets expectations. Remember to import the SciBorgs' testing libraries and not the built-in WPILib class. Note that this is created in the subsystem because of easy access to internal methods to check conditions.
-
-Step 1: Define the command to run the system check
-
-```java
-  public Test systemsCheck() {
-    Command testCommand = run(() -> drive(-0.8, -0.8)).withTimeout(0.5);
-  }
-```
-
-Step 2: Define the assertions
-
-```java
-    Assertion leftMotorCheck = Assertion.tAssert(
-        () -> leftLeader.getAppliedOutput() > 1,
-        "Drive System Check Left Motor Output",
-        "Expected left motor output to be greater than 1");
-
-    Assertion rightMotorCheck = Assertion.tAssert(
-        () -> rightLeader.getAppliedOutput() > 1,
-        "Drive System Check Right Motor Output",
-        "Expected right motor output to be greater than 1");
-```
-
-- `tAssert` is a truth assert that asks for a condition, a fault name, and a little description of what we're actually checking.
-
-Step 3: Combine the command and assertions into a `Test`
-
-```java
-    Set<Assertion> assertions = Set.of(leftMotorCheck, rightMotorCheck);
-    return new Test(testCommand, assertions);
-```
-
-#### Running systems check
-
-To run the systems check, we use the `Test` mode of the robot. To get started, we need to make a command that's going to run whenever we enable `Test` mode using the built-in `test()` trigger. All of this is done in `Robot.java`. Keep in mind that this method would be responsible for the systems checks of all your subsystems, not just drive.
-
-```java
-  public Command systemsCheck() {
-    return Test.toCommand(drive.systemsCheck());
-  }
-```
-
-To actually run this in test, we tell it to run the previous command whenever test mode is enable. (This is done in `configureBindings`):
-
-```java
-    test().whileTrue(systemsCheck());
-```
-
-#### Viewing results
-
-This is probably the most important part of systems check, checking if our tests passed. Using `FaultLogger`, we are able to pass the results of our checks into NetworkTables and see them in both sim and `Elastic`.  
-
-- Elastic is a dashboard that's great use for drive team as it lets you see a bunch of robot data on a nice layout. You don't necessarily need this app for the project and can view this in sim.
-
-Make sure you are periodically updating FaultLogger in `Robot.java`.
-
-```java
-    addPeriodic(FaultLogger::update, 2); 
-```
-
-Now launch the sim window (ctrl + shift + p) -> `simulate robot code`.
-Once it's loaded, click the `Test` mode and then open NetworkTables info.
-
-![NT faults](https://github.com/user-attachments/assets/1426c12d-7af7-4c33-8a99-53427df4cf31)
-
-In Faults and Total Faults, we can see that we have indeed ran our checks and since there are no warnings, it is safe to assume that in this case the checks have passed.
-
-- To see this in Elastic, click `Test` and then head to Elastic. Right click, click add widgets, click `Faults` and drag and drop `Total Faults` and `Active Faults` onto the layout. You should see the following if the tests have passed.
-
-![elastic faults](https://github.com/user-attachments/assets/0442431c-b250-43bb-a9de-e89285fc71dc)
-
-Same with Unit Tests, it's good to have system checks for all runnable parts of the robot to ensure the robot is fully ready for the game. As a notice, please make sure to run system checks while the robot is ON the robot cart.
 
 ### Simulation and Logging
 
@@ -499,11 +356,13 @@ To finish our project up, we are going to simlute the drive we've made. Please r
 
 To [simulate the drivetrain](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/drivesim-tutorial/index.html), we’re going to use the `DifferentialDrivetrainSim` class. This simulation will model the physical characteristics of our robot—like the motors, mass, and wheel dimensions—so we can see how the code will affect the robot in a virtual environment.
 
-Here’s how we set it up in our constructor:
+Here’s how we set it up in our `drive.java` constructor:
 
 ```java
   private final DifferentialDrivetrainSim driveSim;
   // ...
+  public Drive() {
+    // ...
     driveSim =
         new DifferentialDrivetrainSim(
             DCMotor.getMiniCIM(2),
@@ -513,6 +372,8 @@ Here’s how we set it up in our constructor:
             WHEEL_RADIUS,
             TRACK_WIDTH,
             STD_DEVS);
+    //...
+  }
 ```
 
 - Remember that all of these values would be stored in `DriveConstants.java`:
@@ -548,7 +409,7 @@ Then simply change our `updateOdometry` method in `periodic()` to account for ou
   }
 ```
 
-- What do the `?` and `:` do? That whole statement is refered to as a [ternary operator](https://www.baeldung.com/java-ternary-operator).
+- What do the `?` and `:` do? That whole statement is referred to as a [ternary operator](https://www.baeldung.com/java-ternary-operator).
 - We will update our `simRotation` value in `simulationPeriodic` as seen below.
 
 #### Simulation in Action
@@ -642,8 +503,175 @@ Lastly, to control the differential drive properly, the joystick will require to
 
 ![drive joystick](https://github.com/user-attachments/assets/a6624ad8-f944-4e62-bc4d-a29eda974891)
 
-Move the robot around in sim and have fun. 
 
+### Unit Testing & System Checks
+
+#### Unit Tests
+
+Think of unit tests as a way to check that each small piece of your code—like a motor or sensor—is functioning properly on its own before you start putting them all together. It's much easier to fix problems when they’re isolated to a single component than when they’re all tangled up in the full system.
+
+**Make sure to check out the [unit test guide](github.com/SciBorgs/SciGuides/blob/main/reference-sheets/UnitTest.md) for how to setup unit tests.**
+
+Let’s talk about the tests for our drivetrain. We'll start it by creating a `DriveTest.java` file in the robot folder of the tests folder.
+
+First, we need to set things up before we run any tests. This is done in the `setup()` method:
+
+```java
+  Drive drive;
+
+  @BeforeEach
+  public void setup() {
+    setupTests();
+    drive = new Drive();
+  }
+```
+
+Next, we will need to reset our drive between every test in order to experiment with different things at once.
+
+```java
+  @AfterEach
+  void destroy() throws Exception {
+    reset(drive);
+  }
+```
+
+Once everything is set up, you can make tests with the `@Test` annotation. Here's a quick example of testing if our pose is changing as we drive. 
+
+The `fastForward` allows time to pass to give our drive time to move. 
+
+Then we call our `getPose()` method and compare it to a new Pose2d, which returns a value of 0. So this test ensures that whenever our drive method is called, the robot doesn't stay at the Pose2d but actually moves.
+
+```java
+  @Test
+  public void testPose() {
+    drive.drive(0.8, 0.8);
+    fastForward();
+
+    assertNotEquals(new Pose2d(), drive.getPose());
+  }
+```
+
+#### Running the tests
+
+Again, make sure to check out the [unit test guide](github.com/SciBorgs/SciGuides/blob/main/reference-sheets/UnitTest.md) on this as it also talks about writing and running tests. To actually see if the tests are valid, open the WPILib command palette (top right corner logo) and search `Test Robot Code` and press enter. After it runs, it will show you the results of all your tests in the terminal.  
+
+An alternative to this is using the *Test Runner* extension from vscode:
+
+![Test runner](https://github.com/user-attachments/assets/6431c054-a699-4c45-806d-f7cbd41881ce)
+
+![test pass](https://github.com/user-attachments/assets/28b6ac83-788a-4ec7-a0f1-7a82375a6428)
+
+A step up from our previous test would be to see if the robot is actually moving in the right direction or try to predict the general x value of your pose. Here is a version of how you can do that:
+
+```java
+ @Test 
+  public void testDirection(){
+    double deltaT = 2;
+    
+    drive.drive(0.5, 0.5);
+
+    fastForward(Seconds.of(deltaT));
+
+    assert(drive.getPose().getX() > 1);
+  }
+```
+Try to do the same but for the opposite direction and testing it out. 
+
+Next, we need to create a `RobotTest` to ensure our `Robot` class functions correctly. This test checks that we can instantiate the `Robot` and call its `close()` method without any exceptions, which is essential for managing resources properly—like ensuring that motors, sensors, and memory are correctly initialized and released when no longer needed.
+
+```java
+public class RobotTest {
+  @Test
+  void initialize() throws Exception {
+    new Robot().close();
+    UnitTestingUtil.reset();
+  }
+}
+```
+
+Unit tests should be made for all key subsystems and are a great way to see if the logic behind the code actually makes sense and works. You should also try to test all parts of the subsystems to cover everything.  
+
+The final type of assert most commonly used in tests is the `assertEqual`. This simply tests if two values are the same. Both in assertEqual and assertNotEqual, you can pass in a tolerance value that will pass the test if the two different values are within the tolarence. This is usually done by having a `DELTA` value set to your prefered tolarence.
+  
+#### System Checks
+
+In addition to unit tests, it’s equally important to perform [system checks](github.com/SciBorgs/SciGuides/blob/main/reference-sheets/SystemChecks.md) to ensure the entire robot is operating as expected in real-world conditions. Think of system checks as a quick health check before it hits the field. You want to make sure that everything is working as it should—motors, sensors, and all. This is usually done in real life and it's a good habit to run full robot system checks before your matches.
+
+Here is a simple example of what a drive systems check might look like. The logic is similar to unit tests as we will run a part of the drive before checking to see if it meets expectations. Remember to import the SciBorgs' testing libraries and not the built-in WPILib class. Note that this is created in the subsystem because of easy access to internal methods to check conditions.
+
+Step 1: Define the command to run the system check
+
+```java
+  public Test systemsCheck() {
+    Command testCommand = run(() -> drive(-0.8, -0.8)).withTimeout(0.5);
+  }
+```
+
+Step 2: Define the assertions
+
+```java
+    Assertion leftMotorCheck = Assertion.tAssert(
+        () -> leftLeader.getAppliedOutput() > 1,
+        "Drive System Check Left Motor Output",
+        "Expected left motor output to be greater than 1");
+
+    Assertion rightMotorCheck = Assertion.tAssert(
+        () -> rightLeader.getAppliedOutput() > 1,
+        "Drive System Check Right Motor Output",
+        "Expected right motor output to be greater than 1");
+```
+
+- `tAssert` is a truth assert that asks for a condition, a fault name, and a little description of what we're actually checking.
+
+Step 3: Combine the command and assertions into a `Test`
+
+```java
+    Set<Assertion> assertions = Set.of(leftMotorCheck, rightMotorCheck);
+    return new Test(testCommand, assertions);
+```
+
+#### Running systems check
+
+To run the systems check, we use the `Test` mode of the robot. To get started, we need to make a command that's going to run whenever we enable `Test` mode using the built-in `test()` trigger. All of this is done in `Robot.java`. Keep in mind that this method would be responsible for the systems checks of all your subsystems, not just drive.
+
+```java
+  public Command systemsCheck() {
+    return Test.toCommand(drive.systemsCheck());
+  }
+```
+
+To actually run this in test, we tell it to run the previous command whenever test mode is enable. (This is done in `configureBindings`):
+
+```java
+    test().whileTrue(systemsCheck());
+```
+#### Viewing results
+
+This is probably the most important part of systems check, checking if our tests passed. Using `FaultLogger`, we are able to pass the results of our checks into NetworkTables and see them in both sim and `Elastic`.  
+
+- Elastic is a dashboard that's great use for drive team as it lets you see a bunch of robot data on a nice layout. You don't necessarily need this app for the project and can view this in sim.
+
+Make sure you are periodically updating FaultLogger in `Robot.java`.
+
+```java
+    addPeriodic(FaultLogger::update, 2); 
+```
+
+Now launch the sim window (ctrl + shift + p) -> `simulate robot code`.
+Once it's loaded, click the `Test` mode and then open NetworkTables info.
+
+![NT faults](https://github.com/user-attachments/assets/1426c12d-7af7-4c33-8a99-53427df4cf31)
+
+In Faults and Total Faults, we can see that we have indeed ran our checks and since there are no warnings, it is safe to assume that in this case the checks have passed.
+
+- To see this in Elastic, click `Test` and then head to Elastic. Right click, click add widgets, click `Faults` and drag and drop `Total Faults` and `Active Faults` onto the layout. You should see the following if the tests have passed.
+
+![elastic faults](https://github.com/user-attachments/assets/0442431c-b250-43bb-a9de-e89285fc71dc)
+
+Same with Unit Tests, it's good to have system checks for all runnable parts of the robot to ensure the robot is fully ready for the game. As a notice, please make sure to run system checks while the robot is **ON** the robot cart.
+
+
+### Bonus
 If you don't like the two-handed control of a differential drive, take a shot at an arcade drive. Use the `DifferentialDrive` class from WPILib and make use of its `arcadeDrive` methods. An arcade drive functions like your generic video game character. The y axis of your left joystick can be used for forward/backward movement and the x axis for right/left movement. However, for our case the right and left would mean turning. 
 
 ### Continuing on

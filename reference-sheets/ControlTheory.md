@@ -27,7 +27,7 @@ A PID controller is an optimized `feedback` system that continuously adjusts out
 
 ### Implementation
 
-Actually adding these complicated ideas into code may seem hard, but thankfully its moslty done for us. Use the following links to add [PID](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/pidcontroller.html), [feedforward](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/feedforward.html), and how to [combine both the ideas](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/combining-feedforward-feedback.html) for a near perfect system setpoint following. Do keep in mind that the specific way in which these are implemented may vary depending on the mechanism being used on.  
+Actually adding these complicated ideas into code may seem hard, but thankfully it's moslty done for us. Use the following links to add [PID](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/pidcontroller.html), [feedforward](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/feedforward.html), and how to [combine both the ideas](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/combining-feedforward-feedback.html) for a near perfect system setpoint following. Do keep in mind that the specific way in which these are implemented may vary depending on the mechanism being used on.  
 
 ## Summary
 
