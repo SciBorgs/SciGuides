@@ -63,7 +63,7 @@ ls
 ## Open Repo in VSCode
 
 1. Open VSCode
-	- If you installed regular, non-WPILib VSCode, open that
+	- If you installed regular, non-WPILib VSCode, open that.
 2. Open the repository folder
 	- In VSCode, go to File > Open Folder (or use the keyboard shortcut: Ctrl+K Ctrl+O on Windows/Linux, Cmd+O on Mac).
     - Navigate to the directory where you cloned your repository.
@@ -81,7 +81,6 @@ Open your README.md file, and write a few words about what this project is. Some
 ```
 [text](link)
 ```
-
 ## Create java101 Directory
 
 You will be using this repository for the remainder of the intro to programming series, so it will be helpful to have separate directories for each part. Make a new directory called `java101`. We will be working in that directory.
@@ -302,7 +301,6 @@ public class Main {
 	}
 }
 ```
-
 ## 2D Arrays
 
 Just as we can have an array if booleans or integers or doubles or Strings, we can also have an array of arrays. We call such an array a 2d array.

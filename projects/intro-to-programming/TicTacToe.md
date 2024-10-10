@@ -337,6 +337,13 @@ Create a `Game.java` file for a `Game` class. `Game` will store the board and wh
 
 ```java
 public class Game {
-	
+	public static final Board board = new Board();
+	public static int currentPlayer = 1;
+
+	public static void main(String[] args) {
+		
+	}
 }
 ```
+
+Let's start by making a function that 
