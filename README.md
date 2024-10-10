@@ -18,11 +18,12 @@ There are a few values we emphasize when writing SciGuides:
   - Maintaining more than necessary, or redundant information, would be a waste of time, so we heavily reference existing documentation from vendors, libraries, and WPILib.
   - Minimize what must be changed from year-to-year! There is no need to restate information with existing documentation past a simple sentence or past the purposes of introduction.
 
-- Be concise.
-  - It's harder and daunting to read gigantic walls of text.
-
 - Experiencing is the heart of learning.
   - It is our firm belief that people learn best when actually **writing** and **seeing** code (not just text) on the screen. Code examples, code examples, code examples (and the occasional image and gif, too!)
+  - In the same vein, aim to be as concise and to-the-point as possible. Gigantic text walls are daunting and difficult to follow.
+
+- Keep to typical standards of documentation.
+  - Please look over your grammar, punctuation, and spelling before submitting your PR for review. At worst, errors should not obstruct understanding.
 
 - These guidelines are not immutable.
   - Use your own discretion (or that of your fellow team members) to determine what is best for this repository to achieve its goals.
