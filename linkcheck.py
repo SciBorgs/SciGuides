@@ -50,10 +50,10 @@ while j <= len(checkFileList) - 1:
         try:
             response = requests.get(checkLink)
             if response.status_code != 200:
-                print("\033[1m" + f"Bad link found in {checkFileList[j]}, search source for {checkLink}" + "\033[0m")
+                print("\033[1m" + f"Bad link found in {checkFileList[j]}" + "\033[0m: " + f"{checkLink}" + "\033[1mEnd Alert Message\033[0m")
                 counter += 1
         except:
-            print("\033[1m" + f"Bad link found in {checkFileList[j]}, search source for \n\n{checkLink}" + "\033[0m")
+            print("\033[1m" + f"Bad link found in {checkFileList[j]}" + "\033[0m: " + f"{checkLink}" + "\033[1mEnd Alert Message\033[0m")
             counter += 1
         k += 1
     j+=1
