@@ -51,6 +51,19 @@ A popular mnemonic to memorize these functions is SOH-CAH-TOA, where:
 
 If you multiply $sin(\theta)$ and the $cos(\theta)$ by the hypotenuse, you'd get the length of the leg opposite of $\theta$ and the length of the leg adjacent to $\theta$ respectively.
 
+## Angles in Unit Circle
+A unit circle is a circle with a radius of 1, centered at the origin. 
+
+A triangle can be inscribed inside the unit circle, and the x and y coordinates on the point of the circle represents the value of $cos(\theta)$ and $sin(\theta)$ at that particular angle:
+
+![Diagram of sin and cos on unit circle](https://s3-us-west-2.amazonaws.com/courses-images/wp-content/uploads/sites/3675/2018/09/27003528/CNX_Precalc_Figure_05_02_0022.jpg)
+
+Because the hypotenuse is equal to 1, the length of the leg along the x-axis is equal to $cos(\theta)$, and the leg along the y-axis is equal to $sin(\theta)$.
+
+This circle also shows that these trig functions can return values even for obtuse angles. 
+
+![Diagram of x, y points on unit circle using trig](https://trigidentities.info/wp-content/uploads/2020/07/Unit-Circle-Chart.jpg)
+
 ## Code Representation
 In Java, the `Math` library has methods for these trig functions:
 
@@ -67,9 +80,11 @@ There are also the inverse trig functions, where if you input the ratio of the l
 - $cos^{-1}(\frac{leg \hspace{0.1cm} adjacent \hspace{0.1cm} \theta}{hypotenuse}) = \theta$ - written out as arccosine
 - $tan^{-1}(\frac{leg \hspace{0.1cm} opposite \hspace{0.1cm} \theta}{leg \hspace{0.1cm}adjacent \hspace{0.1cm} \theta}) = \theta$ - written out as arctangent
 
+
 The output of the inverse of a function applied to an output of the original function results in the input value of the original function. In a more comprehensible form:
 
 - $sin^{-1}(sin(\theta)) = \theta$
+- $sin(sin^{-1}(\theta)) = \theta$
 
 In Java, the inverse functions are written like this:
 ```java
@@ -77,4 +92,10 @@ Math.asin(ratio);
 Math.acos(ratio);
 Math.atan(ratio);
 ```
-Also, keep in mind that these methods output **radians**.
+Also, keep in mind that these methods output **radians**, and that the range of values that can be returned are as follows:
+
+- $sin^{-1}(\theta)$ returns values from $-\frac{\pi}{2}$ to $\frac{\pi}{2}$
+- $cos^{-1}(\theta)$ returns values from $0$ to $\pi$
+- $tan^{-1}(\theta)$ returns values from $-\frac{\pi}{2}$ to $\frac{\pi}{2}$
+
+These functions only return a range of these values because they return the reference angle, or the angle relative to the x-axis.
