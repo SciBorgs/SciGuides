@@ -249,7 +249,7 @@ Let's go through an example ([f](#example-f) is a function that takes a number a
 2. Write a function called `neither` that takes as inputs a value `v` and two functions `f` and `g`, both of which return booleans. Return whether both `f` and `g` return false when given `v` as an input.
 # Scope
 
-The *scope* of a variable is the part of the code for which that variable can be referenced. Generally, the scope of a variable `v` is from when it is defined, to the end of the code block within which it is defined. 
+The *scope* of a variable is the part of the code where that variable can be referenced. Generally, the scope of a variable `v` is from when it is defined, to the end of the code block within which it is defined. 
 
 Code blocks are usually denoted with curly braces. So, for instance, when you define a function, you have a pair of curly braces where the code for the function is written. That is a code block. (Other examples include [loops](#loops) and [if statements](#if-statements)).
 
@@ -345,7 +345,7 @@ Actually, let's assign this array to a variable:
 ```java
 var l = [1, 2, 3, 4, 5]
 ```
-Now, if we wanted to extract a value from `l`, we could do so by using that value's [index](#glosarry). And remember, we index starting from 0.
+Now, if we wanted to extract a value from `l`, we could do so by using that value's [index](#glossary). And remember, we index starting from 0.
 
 `l[0]` &rarr; `1
 `
