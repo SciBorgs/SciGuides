@@ -56,7 +56,7 @@ Can you guess which commit messages are good and which ones are bad?
 
 `"its not working why isnt it working it was working like five minutes ago"`
 
-`"found the sysid values"
+`"found the sysid values"`
 
 `"deleted all of Kishan's code because I felt like it"`
 
