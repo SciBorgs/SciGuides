@@ -20,7 +20,7 @@ Those were some fancy magic words, but to put it simply, it's a place on the int
 
 If your team's repository has something called **branch protections** (for us, it likely will), then you won't be able to edit the code directly. We will cover how to contribute later.
 
-When your team makes a project on Github, you'll need to **clone** it to interact with the files and directories. Cloning **downloads** a git project, or repository, onto your computer for easy editing using an **Integrated Development Environment** (IDE) such as **Visual Studio Code**.
+When your team makes a project on GitHub, you'll need to **clone** it to interact with the files and directories. Cloning **downloads** a git project, or repository, onto your computer for easy editing using an **Integrated Development Environment** (IDE) such as **Visual Studio Code**.
 
 ### Branches
 
@@ -36,15 +36,49 @@ Saving **versions** of anything you make as you go along is very useful for big 
 
 A **commit**, put simply, is a **version of the codebase.** Commits keep track of the **changes** that have been made to the code, bundles them up and slaps a **message** on them. When going back to previous versions, if the commit was labeled with a commit message, it makes it much easier to figure out where you went wrong, or where to return to. Changes that are made locally on the device that have not been committed yet are named **working changes**.
 
-Rather than bundling all the code, which is non storage-efficient, and would take very long both to download and to upload, git simply keeps track of the **changes you've made**. However, when committing, git doesn't know the changes you want to commit. So, you first have to **stage** those changes in the terminal (we will go over this later) and then you can commit.
+Rather than bundling all the code, git simply keeps track of the **changes you've made**. However, when committing, git doesn't know the changes you want to commit. So, you first have to **stage** those changes in the terminal (we will go over this later) and then you can commit.
 
-Make sure to commit with a **message**! If committing either without a message or with a irrelevant one (e.g. "g", "iglsjgf;l", "made some changes") then it takes out half of the reason you're committing in the first place, and makes it difficult for you and **people reviewing your changes** to determine what you did in each commit! So, always make a **very brief description** of the changes you've made. 
+Make sure to commit with a **message**! If committing either without a message or with a irrelevant one then it takes out half of the reason you're committing in the first place, and makes it difficult for you and **people reviewing your changes** to determine what you did in each commit! 
+
+Can you guess which commit messages are good and which ones are bad?
+
+`"Made some changes"`
+
+`"Added a function getVelocity() that returns the velocity of the motor"`
+
+`"g"`
+
+`"I made three functions. The first one is called spotTrigger() which takes in a time value for an event marker and returns a trigger that will activate for twenty milliseconds when its event marker is reached. The second one is called spanTrigger(), which takes in two times and will activate while in between the time of event marker 1 and the time of event marker 2. This means that the event will occur completely between those two time periods during the designated auto period and can be used for things like intaking, while spotTrigger() can be used for things like shooting.`
+
+`"spotless"`
+
+`"a;sldkfj"`
+
+`"its not working why isnt it working it was working like five minutes ago"`
+
+`"found the sysid values"
+
+`"deleted all of Kishan's code because I felt like it"`
+
+`"idk if its even worth it anymore. like idk if i have the capacity to keep going"`
+
+Answers:
+Bad: not descriptive
+Good: descriptive and explains the changes made
+Bad: g
+Bad: Commit messages are meant to be brief. This one is... not brief.
+Good: Spotless is a commonly used formatter. The message says Spotless was used.
+Bad: gibberish
+Bad: It happens to the best of us. It's alright every once and a while but keep it to a minimum.
+Good: explains the changes made
+Good: explains the changes made, and even explains why
+Bad: I hope you feel better soon, but unfortunately this commit message is not very helpful.
 
 ### Pushing and Pulling
 
-Commits are **local changes**, which means that they **aren't** put onto the cloud, or Github. This is mostly so you can go to a previous commit, before adding your changes to your branch. When we add our previous commits to the branch, we call this **"pushing our changes,"** because you are taking all of your changes and applying them to the **remote branch**. Put simply, you are taking your **local changes** and making them **remote**, or uploading them to the cloud (Github).
+Commits are **local changes**, which means that they **aren't** put onto the cloud, or Github. This is mostly so you can go to a previous commit, before adding your changes to your branch. When we add our previous commits to the branch, we call this **"pushing our changes,"** because you are taking all of your changes and applying them to the **remote branch**. Put simply, you are taking your **local changes** and making them **remote**, or uploading them to the cloud (GitHub).
 
-When pushing changes, it places it in the Github repository, and those changes are made **public** to all others working on the repository. When you push changes for the first time on a branch, it establishes the branch on the repository and people will be able to switch to it on the website. So, make sure to push somewhat regularly so that others can keep track of what you're doing.
+When pushing changes, it places it in the GitHub repository, and those changes are made **public** to all others working on the repository. When you push changes for the first time on a branch, it establishes the branch on the repository and people will be able to switch to it on the website. So, make sure to push somewhat regularly so that others can keep track of what you're doing.
 
 When you push changes on one device, other device won't know that those changes have been pushed. To get those changes, you need to **pull** them.
 
@@ -62,7 +96,7 @@ Two people on a branch is not the only situation when you'd use stash. Sometimes
 
 ### Merging
 
-When you're finally done with your changes on a branch, and you are sure that it is absolutely perfect, you create something called a **Pull Request** on Github, to merge it to the main branch and be added to the main codebase. Someone with merge permissions (an admin of the repository) will look over your code, indirectly humble your coding skills, and then tell you what to change before your code can be added to main. After the person reviewing your code thinks that it is perfect, they will approve it and you can then **merge your code into main**, bringing your changes officially into the codebase!
+When you're finally done with your changes on a branch, and you are sure that it is absolutely perfect, you create something called a **Pull Request** on GitHub, to merge it to the main branch and be added to the main codebase. Someone with merge permissions (an admin of the repository) will look over your code, indirectly humble your coding skills, and then tell you what to change before your code can be added to main. After the person reviewing your code thinks that it is perfect, they will approve it and you can then **merge your code into main**, bringing your changes officially into the codebase!
 
 Merging is how you transfer code from **branch to branch**. This, of course, will include transferring code **from** main **to** your branch, to stay updated with recent changes to main. If other people make a pull request and it gets approved, then the main branch will have some new code that is **not** currently in your working branch. This means that you are **not** up to date with main. Therefore, you need to **merge main into your branch** every now and again to make sure that everything is up to date. When you merge main into your branch, there may be conflicts, especially if the file being edited by both you and the other contributor are the same. These are called **Merge Conflicts**, and can happen both with merging **and** with pulling changes from a branch. You just have to sort these out manually, deciding which changes to keep and which changes to toss. It's a little annoying to do, but if you do it often enough and efficiently enough then it doesn't become that big of a problem.
 
@@ -83,7 +117,7 @@ Linux: Spin around five times and then sing Mary Had A Little Lamb.
 
 ### Cloning
 
-There are a few ways to clone a Github repository onto your computer, but the best way and the way that we'll be going over is by using the command line.
+There are a few ways to clone a GitHub repository onto your computer, but the best way and the way that we'll be going over is by using the command line.
 
 Go onto the GitHub website, then find the repository. There should be a green button that says "Code". Click that, and then copy the link that shows up under it. This will be used in the command. It tells git what exactly to clone off of the internet.
 
@@ -196,7 +230,7 @@ And your changes are popped.
 
 ### Pull Requests
 
-There's no command line input for making a pull request. For this we'll have to go to the Github website.
+There's no command line input for making a pull request. For this we'll have to go to the GitHub website.
 
 At the top of the website, the third option from the left should say Pull Requests. click that one.
 
@@ -212,4 +246,4 @@ After that, click the "Create pull request" button and you're done! Now other pe
 
 # Conclusion
 
-Well. That's it! You now know all of the essentials for using git in projects. Now, the only thing you can do is get experience with it! Get one or two friends and start a collaborative project on Github, then get to it. Happy Coding!
+Well. That's it! You now know all of the essentials for using git in projects. Now, the only thing you can do is get experience with it! Get one or two friends and start a collaborative project on GitHub, then get to it. Happy Coding!
