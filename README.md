@@ -1,16 +1,20 @@
 # SciGuides
 
-Welcome to SciGuides, a repository made by FRC Team 1155 and 2265 to gather all of our experience and knowledge for public and internal use.
+Welcome to SciGuides, a repository made by FRC Team 1155 to gather all of our experience and knowledge for public and internal use. We thank 2265, our sister team, for their contributions.
 
 ## Usage
 
-SciGuides is project-based, containing guides and reference sheets aimed at guiding readers towards a high level of competency around FRC code.
+SciGuides is project-based, containing [tutorial projects](/projects/README.md) and [reference sheets](/reference-sheets/README.md) aimed at guiding readers towards a high level of competency around FRC code.
 
-It can be used as teaching material, robot code practice, or for referencing information and generational knowledge.
+It can be used to teach material, practice writing robot code, reference information, or pass down generational knowledge[^1].
 
-This repository additionally functions as the curriculum of our school's central robotics program.
+[^1]: As we do not have programming mentors, this repository serves as the only way to pass down and retrieve generational knowledge. In the event of another lockdown, this repository will be vital in restoring team skills.
+
+This repository functions as the curriculum of our school's JV robotics program.  
 
 ## Contributing & Updating
+
+SciGuides is a ***living document***. It should be updated yearly to reflect the latest changes in WPILib, vendor APIs, team practices, and more.
 
 There are a few values we emphasize when writing SciGuides:
 
