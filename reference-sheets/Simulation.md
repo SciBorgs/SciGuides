@@ -15,7 +15,7 @@ There are a few different facets of simulation to take note of before you can st
 
 In testing, it is common to want to directly observe robot measurements and values in order to tune your systems or debug. This is also incredibly important when working with simulation, as you otherwise have no reference to what is going on without a physical robot.
 
-For more details, visit [our doc](/Telemetry.md).
+For more details, visit [our doc](/reference-sheets/Telemetry.md).
 
 ## Simulation Classes
 

@@ -6,7 +6,9 @@
 
 In this tutorial, you will write code for a robot with a single-jointed arm and simulate its movement. The desired robot will have a single arm joint with an elevated axis of rotation, equipped with a static (non-pivoting) intake mechanism at the end of the arm.
 
-You are expected to have completed some level of the [Differential Drive projects](/DifferentialDriveBasic.md), as this project will build upon that codebase. You should also be familiar with the concepts and usage of interfaces, inheritance, and the command-based paradigm.
+You are expected to have completed some level of the Differential Drive projects, as this project will build upon that codebase. You should also be familiar with the concepts and usage of interfaces, inheritance, and the command-based paradigm.
+
+[comment]: # (add diff drive link when completed)
 
 All code examples are subject to change as a result of future library updates and improvements.
 
@@ -23,7 +25,7 @@ Before you move on, create an `Arm.java` subsystem and an associated `ArmConstan
 
 Before we start, we'll be abstracting the hardware components to streamline our code.
 
-Moving hardware like motors and encoders to class implementations of an interface decouples them from subsystem code, enabling modularity that supports simulation and flexibility in using different hardware or none at all! For a deeper dive, you should look at our [hardware abstraction datasheet](/HardwareAbstraction.md).
+Moving hardware like motors and encoders to class implementations of an interface decouples them from subsystem code, enabling modularity that supports simulation and flexibility in using different hardware or none at all! For a deeper dive, you should look at our [hardware abstraction datasheet](/archive/HardwareAbstraction.md).
 
 Begin by creating your first IO interface in its Java file. This will act as an abstraction for a real and simulated set of hardware, so only include method headers that you think they will share.
 
@@ -329,7 +331,7 @@ Here's your final challenge! Turn your basic drivetrain subsystem to a subsystem
 
 Now that you've completed all of your subsystems and mechanisms, it's time for the fun part. Piecing it all together!
 
-For starters, get set up and get the gist of what's happening in [our simulation docs](/Simulation.md). You'll be using a `Mechanism2d` to simulate your arm, like in the blocky arm you saw at the beginning of the tutorial.
+For starters, get set up and get the gist of what's happening in [our simulation docs](/reference-sheets/Simulation.md). You'll be using a `Mechanism2d` to simulate your arm, like in the blocky arm you saw at the beginning of the tutorial.
 
 We'll only be simulating the arm; the claw won't be that useful.
 
@@ -550,7 +552,7 @@ And boom! When you simulate test mode, your arm should be commanded to a positio
 
 ### Tuning your simulated arm
 
-You might have noticed that your arm does not consistently reach its setpoint, especially if the arm's goal is in a different quadrant. This will also cause your unit tests and systems checks to fail, as the assertions do not match the simukation.
+You might have noticed that your arm does not consistently reach its setpoint, especially if the arm's goal is in a different quadrant. This will also cause your unit tests and systems checks to fail, as the assertions do not match the simulation.
 
 This is the result of those constants being poorly tuned for your system; it'll be up to you to tune the closed-loop control system.
 

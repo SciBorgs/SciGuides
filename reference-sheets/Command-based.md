@@ -6,23 +6,23 @@ Subsystems represent independent parts of the robot and their hardware, which wo
 
 Commands safely direct those subsystems to perform actions in a wide suite of ways. They can be chained together in parallel or made sequential to one another, among other handy functions.
 
-While these are generally their definitions, there's a fair bit of nuance to both.
+These are general definitions; there's actually a fair bit of nuance to both.
 
 ## [Subsystems](https://docs.wpilib.org/en/stable/docs/software/commandbased/subsystems.html)
 
-For our purposes, all subsystems extend WPILib's `SubsystemBase`, providing command safety functionality, its [inherited periodic methods](https://docs.wpilib.org/en/stable/docs/software/commandbased/subsystems.html#periodic), and [default commands](https://docs.wpilib.org/en/stable/docs/software/commandbased/subsystems.html#default-commands). See in greater detail on [the official WPILib docs](https://docs.wpilib.org/en/stable/docs/software/commandbased/subsystems.html).
+For our purposes, all subsystems extend WPILib's `SubsystemBase`. It provides command safety functionality, its [inherited periodic methods](https://docs.wpilib.org/en/stable/docs/software/commandbased/subsystems.html#periodic), and [default commands](https://docs.wpilib.org/en/stable/docs/software/commandbased/subsystems.html#default-commands). See in greater detail on [the official WPILib docs](https://docs.wpilib.org/en/stable/docs/software/commandbased/subsystems.html).
 
-Advanced readers may want to know [more about what a subsystem is](#a-word-on-what-makes-a-subsystem-a-subsystem).
+Advanced readers may want to know [more about specifics that define subsystems](#a-word-on-what-makes-a-subsystem-a-subsystem).
 
 ## [Commands](https://docs.wpilib.org/en/stable/docs/software/commandbased/commands.html)
 
-Commands represent robot actions with the hardware. They should be used for actions that may interfere with how the robot is run (i.e actual robot actions or changing PID constants) or cause dangerous movement.
+Commands represent robot actions with the hardware. They should be used for actions that may interfere with how the robot is run (i.e actual robot movement or changing PID constants.)
 
 Every individual command has a defined structure, with methods that are called when it begins, throughout its runtime, and when it ends (as a result of a set end condition OR by interruption). Check the [official docs](https://docs.wpilib.org/en/stable/docs/software/commandbased/commands.html) for specfics.
 
 A nice list of these individual commands can be found under the subclasses of WPILib's [Command class](https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/Command.html).
 
-We avoid using specific control commands like the `PIDCommand` or `SwerveControllerCommand` as they limit our precision and capabilities compared to using their components individually.
+_Note: we avoid using specific control commands like `PIDCommand` or `SwerveControllerCommand` as they limit our precision and capabilities compared to using their components individually._
 
 ### Command Compositions
 
@@ -56,22 +56,22 @@ Commands can also be accessed through [WPILib's `Commands`](https://github.wpili
 
 ## Triggers
 
-A big part of the command-based ecosystem are triggers. Users can bind commands and `Runnable` actions to triggers, which are run in specified ways when the trigger is activated. Common operations with trigger commands include...
+A big part of the command-based ecosystem are triggers. Users can bind commands and `Runnable` actions to triggers, which are run in specified ways when the trigger is activated. 
+
+Common operations with trigger commands include, but are not limited to:
 
 - `onTrue()`, run once on trigger activation
 - `whileTrue()`, run periodically while trigger is active
 
-...and more.
-
 For instance, the `teleop()` trigger in `Robot.java` (and its sisters) run binded commands when teleop mode is activated on the robot (by DriverStation or FMS).
 
-See [here for more specifics on usage in WPILib](https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers.html).
+See [here for examples and specific usage in WPILib](https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers.html).
 
 ## Specifics & Common Issues
 
 ### Singular Command Instances
 
-Each instance of a command can only be scheduled once at a time, otherwise risking unpredictable behavior. To remedy this, we create command factories that return new instances of a command each time it is called, like below:
+Each instance of a command can only be scheduled once, otherwise risking unpredictable behavior. To remedy this, we create command factories that return new instances of a command each time it is called, like below:
 
 ```java
     public Command updateSetpoint(double velocity) {
