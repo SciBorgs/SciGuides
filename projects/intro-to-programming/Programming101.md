@@ -636,7 +636,7 @@ With the black box analogy, you can think of side effects as there being a remot
 
 So, for instance, if we had a motor that our code was controlling, that would be a side effect.
 
-Let's go a little farther with that example. Let's say we have a motor s `motor`. The motor has a sensor that finds its speed, and if we want to ping that sensor and get the speed, we call `speed(motor)`. If we want to set the speed of the motor, we call `set(motor, desiredSpeed)`. Both of those actions have side effects.
+Let's go a little farther with that example. Let's say we have a motor `motor`. The motor has a sensor that finds its speed, and if we want to ping that sensor and get the speed, we call `speed(motor)`. If we want to set the speed of the motor, we call `set(motor, desiredSpeed)`. Both of those actions have side effects.
 
 Now, let's say we have four motors, stored in an array like this:
 
