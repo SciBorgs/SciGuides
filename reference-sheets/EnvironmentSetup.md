@@ -183,7 +183,7 @@ Note: There are other authentication methods available, such as SSH keys, but PA
 
 This is going to be for writing non-robotics code. For instance, you can use regular VSC for [Java101](tbd) and [Java102](tbd). If you'd rather not have this on your computer, feel free to skip this step.
 
-1. [Download VSCode here](https://code.visualstudio.com/download).
+1. [Download VSCode here](https://code.visualstudio.com/downloade).
 2. Once VSCode is installed, open it.
 3. Install the Java Extension Pack:
     - Click on the Extensions icon in the left sidebar (it looks like four squares)
