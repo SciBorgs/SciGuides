@@ -4,7 +4,7 @@
 ## JUnit
 
 JUnit is a common unit testing framework for Java. We use JUnit 5.
-### Setup
+## Setup
 
 First off, make sure that you've installed the VSCode extension "Test Runner for Java".
 
@@ -41,3 +41,12 @@ dependencies {
 ```
 2. For unit testing: copy [this file](https://github.com/SciBorgs/Hydrogen/blob/main/src/main/java/org/sciborgs1155/lib/UnitTestingUtil.java) into your project (probably into a lib folder).
 3. For systems checks: copy [these](https://github.com/SciBorgs/Hydrogen/blob/main/src/main/java/org/sciborgs1155/lib/Test.java) [three](https://github.com/SciBorgs/Hydrogen/blob/main/src/main/java/org/sciborgs1155/lib/FaultLogger.java) [files](https://github.com/SciBorgs/Hydrogen/blob/main/src/main/java/org/sciborgs1155/lib/Assertion.java) into your project (probably into a lib folder).
+#
+Things that should be included:
+- what is a testing class
+- assertions
+- what is the general concept?
+
+```java
+
+```
