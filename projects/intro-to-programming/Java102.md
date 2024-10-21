@@ -3,11 +3,11 @@
 ## Prerequisites
 
 - Comfortable with all of the [goals for Java101](Java101.md#goals).
-- Comfortable with [command-line navigation](link)
+- Comfortable with [command-line navigation](/reference-sheets/CommandLineNavigation.md)
 - Environment set up
-	- [Code directory created](link)
-	- [VSCode installed](link)
-	- [Git & Github set up](link)
+	- [Code directory created](/reference-sheets/EnvironmentSetup.md#local-code-organization)
+	- [VSCode installed](/reference-sheets/EnvironmentSetup.md#visual-studio-code-not-wpilib)
+	- [Git & Github set up](/reference-sheets/EnvironmentSetup.md#git)
 ## Goals
 
 Familiarity with the following concepts:
@@ -102,7 +102,7 @@ public class Point {
 }
 ```
 
-The one thing in the constructor that we haven't explained yet is the keyword `this`. The `this` keyword is used to refer to the top level scope of a particular object (the object scope). All non-static fields and methods are part of that scope. So when the constructor says `this.x`, it is referring to its `x` field. When the constructor just says `x`, however, without the `this`, it is referring to the argument `x` that was passed into the constructor. That `x` was declared more recently, so, as we discussed in Programming101 (link), it will by default shadow the top level field `x`.
+The one thing in the constructor that we haven't explained yet is the keyword `this`. The `this` keyword is used to refer to the top level scope of a particular object (the object scope). All non-static fields and methods are part of that scope. So when the constructor says `this.x`, it is referring to its `x` field. When the constructor just says `x`, however, without the `this`, it is referring to the argument `x` that was passed into the constructor. That `x` was declared more recently, so, as we discussed in [Programming101](Programming101.md#scope), it will by default shadow the top level field `x`.
 
 This means that when the constructor has `this.x = x`, the first `x` refers to the field, and the second `x` refers to the argument. So it is setting the value of the field `x` to be whatever value for `x` was passed into the constructor as an argument (and the same with `y`).
 
@@ -487,7 +487,7 @@ The other thing you may have noticed is that I used the keyword `private` here f
 
 The keywords `private` and `public` describe who is able to see and interact with different members of a class. Anything `public` can be accessed directly by anyone. Anything `private` can only accessed directly by other members of the class.
 
-In `Point`, (LINK) our coordinates were `public`, so anyone could access them (i.e. in `Main.java` we were not inside of the `Point` class, but we were still able to access `point.x` and `point.y`). They were also `final`, which is important. An integer that is `public` and `final` can be seen by anyone, but it cannot be changed by anyone. If the coordinates were just `public` and not `final`, anyone would be able to see *and change* them. We would be able to, in `Main.java`, write `point.x = 1` and that would change the `x` value of `point` to be 1.
+In [Point](Java102.md#point), our coordinates were `public`, so anyone could access them (i.e. in `Main.java` we were not inside of the `Point` class, but we were still able to access `point.x` and `point.y`). They were also `final`, which is important. An integer that is `public` and `final` can be seen by anyone, but it cannot be changed by anyone. If the coordinates were just `public` and not `final`, anyone would be able to see *and change* them. We would be able to, in `Main.java`, write `point.x = 1` and that would change the `x` value of `point` to be 1.
 
 All of our methods have also been public, which is what allows us to call them in `Main.java`.
 
