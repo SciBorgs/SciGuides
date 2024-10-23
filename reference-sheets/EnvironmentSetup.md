@@ -69,7 +69,7 @@ mkdir <name>
 ```
 Replace \<name> with whatever you want your directory to be called. So if you wanted the name to be "code", you'd write `mkdir code`. Whatever you do, make sure your name has no spaces!
 
-Lastly, I highly recommend you go to whatever file navigator you use (Finder, File Explorer, etc) and pin the folder you made so that it's easily accessible. If you're not sure how to do that, read the [Finder/File Explorer section](#finder-mac-or-file-explorer-windows).
+Lastly, I highly recommend you go to whatever file navigator you use (Finder, File Explorer, etc) and pin the folder you made so that it's easily accessible. If you're not sure how to do that, read the [Finder/File Explorer section](#finder-macs-or-file-explorer-windows).
 # Git
 
 Git is a distributed version control system that helps you track changes in your code over time. It allows multiple people to work on the same project simultaneously and merge their changes seamlessly. Git is essential for collaborative coding and is widely used in software development, including robotics projects.
