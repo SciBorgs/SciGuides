@@ -258,7 +258,7 @@ Let's go through an example ([f](#example-f) is a function that takes a number a
 ## Practice Problems
 
 1. Write a function that takes as an input an integer `n` and returns that integer modulo 4.
-2. Write a function called `neither` that takes as inputs a value `v` and two functions `f` and `g`, both of which return booleans. Return whether both `f` and `g` return false when given `v` as an input.
+2. Write a function called `neither` that takes in three inputs: a value `v`, and two functions `f` and `g` (both of which return booleans). The `neither` function should return whether both `f` and `g` return `false` when called with `v` as an input.
 # Scope
 
 The *scope* of a variable is the part of the code where that variable can be referenced. Generally, the scope of a variable `v` is from when it is defined, to the end of the code block within which it is defined. 

@@ -396,7 +396,7 @@ public class Main {
 	public static void main(String[] args) {
 		int[] arr = new int[100];
 		int index = 0;
-		while (n < 100) {
+		while (index < 100) {
 			if (index % 2 == 0) {
 				arr[index] = 2;
 			} else {
@@ -416,8 +416,8 @@ public class Main {
 		int index = 0;
 		while (index < 100) {
 			arr[index] = 2 - index % 2;
+			index = index + 1;
 		}
-		index = index + 1;
 	}
 }
 ```
