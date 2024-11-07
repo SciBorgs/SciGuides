@@ -1,3 +1,5 @@
+This is a primitive version of SciGuides created from 22-24. JV did not exist at this time; its purpose can be seen below.
+
 # SciGuides
 
 Welcome to SciGuides, a repository made by FRC team 1155 to gather all of our experience and knowledge for public and internal use.

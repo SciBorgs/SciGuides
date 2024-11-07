@@ -10,7 +10,7 @@ It can be used to teach material, practice writing robot code, reference informa
 
 [^1]: As we do not have programming mentors, this repository serves as the only way to pass down and retrieve generational knowledge. In the event of another lockdown, this repository will be vital in restoring team skills.
 
-This repository functions as the curriculum of our school's JV robotics program.  
+This repository also functions as the curriculum of our school's JV robotics program.  
 
 ## Contributing & Updating
 
