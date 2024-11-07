@@ -24,21 +24,32 @@ When your team makes a project on GitHub, you'll need to **clone** it to interac
 
 ### Branches
 
-When many different people work on a single repository, it often happens that different people can attempt to make conflicting changes. Making changes directly to the main codebase creates some pretty serious issues, and can break the code entirely. Also, if multiple people are working on the same file and have a **conflict** in their code, editing the main codebase directly can cause the code to break. So, contributors to a repository should be given their own little sandbox to work out their changes before they're added to the **main codebase**.
+When many different people work on a single repository, it often happens that different people make conflicting changes.
 
-**Branches** are a great reflection of this. When someone makes a **new branch**, they get a copy of the **entire** codebase at that time, and any changes made to that branch will **not** affect the main codebase. Changes will be made on a branch, and when they are worthy of being on the main codebase, they will be accepted to the main codebase.
+Making changes directly to the main codebase creates some pretty serious issues, and can break the code entirely.
+Also, if multiple people are working on the same file and have a **conflict** in their code, editing the main codebase directly can cause the code to break.
 
-The repository usually consists of many branches, with the main branch at the center. The main branch is the main codebase, and all changes made to that branch must first go through a rigorous process of **review**. Changes are proposed, then reviewed, and repeat the previous two steps until the changes are perfect. This keeps the main branch perfect, with any possible code-breaking glitches being sussed out far before the changes are added to the main branch.
+So, contributors to a repository should be given their own little sandbox to work out their changes before they're added to the **main codebase**.
+
+**Branches** are a great solution. When someone makes a **new branch**, they get a copy of the **entire** codebase at that time, and any changes made to that branch will **not** affect the main codebase. Changes made on a branch can be accepted onto the main codebase when they are deemed worthy.
+
+Repositories usually consist of many branches, with the main branch at the center. The main branch is the main codebase, and all changes made to that branch must first go through a rigorous process of **review**.
+
+Changes are proposed, then reviewed, then proposed, then reviewed...  
+
+...with this cycle repeating until the changes are perfect. This keeps the main branch perfect, with any possible code-breaking glitches being sussed out far before the changes are added to the main branch.
 
 ### Commits
 
-Saving **versions** of anything you make as you go along is very useful for big projects. It can help organize the changes that have been made, and also help you go back to a **previous version** in case something goes wrong. If something stops working, it's useful to be able to go back to a previous version to see why it stopped working.
+Saving **versions** of anything you make as you go along is very useful for big projects.
+
+It can help organize the changes that have been made, and also help you go back to a **previous version** in case something goes wrong. If something stops working, it's useful to be able to go back to a previous version to see why it stopped working.
 
 A **commit**, put simply, is a **version of the codebase.** Commits keep track of the **changes** that have been made to the code, bundles them up and slaps a **message** on them. When going back to previous versions, if the commit was labeled with a commit message, it makes it much easier to figure out where you went wrong, or where to return to. Changes that are made locally on the device that have not been committed yet are named **working changes**.
 
 Rather than bundling all the code, git simply keeps track of the **changes you've made**. However, when committing, git doesn't know the changes you want to commit. So, you first have to **stage** those changes in the terminal (we will go over this later) and then you can commit.
 
-Make sure to commit with a **message**! If committing either without a message or with a irrelevant one then it takes out half of the reason you're committing in the first place, and makes it difficult for you and **people reviewing your changes** to determine what you did in each commit! 
+Make sure to commit with a **message**! If committing either without a message or with a irrelevant one then it takes out half of the reason you're committing in the first place, and makes it difficult for you and **people reviewing your changes** to determine what you did in each commit!
 
 Can you guess which commit messages are good and which ones are bad?
 
@@ -90,30 +101,37 @@ Sometimes you'll be working on a branch, then realize that you need those change
 
 Thankfully, the git overlords have gifted us the ability to **stash** our changes. Stashing bundles all your working changes into the git stash and removes all those changes from your files; it reverts you to the most recent commit. When you want those changes back, you can simply reapply them to your code, even if you're a commit forward.
 
-Removing your changes from the stash and placing them back in your working changes is called **popping** the changes. 
+Removing your changes from the stash and placing them back in your working changes is called **popping** the changes.
 
 Two people on a branch is not the only situation when you'd use stash. Sometimes, you want to write something a different way, but want to keep your changes just in case you change your mind. Here, you can stash your working changes, then rewrite it all, and if you don't like the rewrite, all you have to do is pop.
 
 ### Merging
 
-When you're finally done with your changes on a branch, and you are sure that it is absolutely perfect, you create something called a **Pull Request** on GitHub, to merge it to the main branch and be added to the main codebase. Someone with merge permissions (an admin of the repository) will look over your code, indirectly humble your coding skills, and then tell you what to change before your code can be added to main. After the person reviewing your code thinks that it is perfect, they will approve it and you can then **merge your code into main**, bringing your changes officially into the codebase!
+When you're finally done with your changes on a branch, and you are sure that it is absolutely perfect, you create a **Pull Request** on GitHub to merge it to the main branch and add it to the main codebase.
 
-Merging is how you transfer code from **branch to branch**. This, of course, will include transferring code **from** main **to** your branch, to stay updated with recent changes to main. If other people make a pull request and it gets approved, then the main branch will have some new code that is **not** currently in your working branch. This means that you are **not** up to date with main. Therefore, you need to **merge main into your branch** every now and again to make sure that everything is up to date. When you merge main into your branch, there may be conflicts, especially if the file being edited by both you and the other contributor are the same. These are called **Merge Conflicts**, and can happen both with merging **and** with pulling changes from a branch. You just have to sort these out manually, deciding which changes to keep and which changes to toss. It's a little annoying to do, but if you do it often enough and efficiently enough then it doesn't become that big of a problem.
+A repository admin will look over your code, indirectly humble your coding skills, and then tell you what to change before your code can be added to main. After the person reviewing your code approves it, you can then **merge your code into main**, bringing your changes officially into the codebase!
 
-There is another way to merge main into your code called **Rebasing**, but it's complicated to explain in writing and you'll never use it with a team as small as a high school robotics team. 
+Merging is how you transfer code from **branch to branch**.
+
+This, of course, will include transferring code **from** main **to** your branch, to stay updated with recent changes to main.
+
+If other people make a pull request and it gets approved, then the main branch will have some new code that is **not** currently in your working branch. This means that you are **not** up to date with main. Therefore, you need to **merge main into your branch** every now and again to make sure that everything is up to date.
+
+When you merge main into your branch, there may be conflicts, especially if the file being edited by both you and the other contributor are the same. These are called **Merge Conflicts**, and can happen when merging **or** pulling changes from a branch. You must sort these out manually, deciding which changes to keep and which changes to toss. It's a little annoying to do, but if you do it often enough and efficiently enough then it doesn't become that big of a problem.
+
+There is another way to merge main into your code called **Rebasing**, but it's complicated to explain in writing and you'll never use it with a team as small as a high school robotics team.
+
 You rewrite your commit history during a rebase, and **instead** of branching off of the main branch that was four commits ago, you are **now** technically branched off of the newest main commit. It's useful for organizing commits to turn the visualization from a web to a tree, but when you're doing such small changes to a tiny codebase like used in robotics, it doesn't even matter.
-
-**.gitignore** is a file in projects that tells git to ignore certain files. More in-depth information about this can be found in the [git documentation](https://git-scm.com/docs/gitignore).
 
 # Usage
 
 Looks like you got through all the conceptualization. Nice job! However, that means absolutely nothing if you don't know how to put it into practice. So, in this section, we will go over the actual git command line inputs.
 
 Opening the command line isn't a difficult task. Visual Studio Code has one built in (accessible by pressing ctrl+\`), which makes using git much easier.
-If you're not using VSCode,
-Windows: Press *Win + X* to open the Command Prompt.
-Mac: Press *Cmd + Space* to open spotlight search, then type "Terminal" to open the Terminal.
-Linux: Spin around five times and then sing Mary Had A Little Lamb.
+If you're not using VSCode:
+- Windows: Press *Win + X* to open the Command Prompt.
+- Mac: Press *Cmd + Space* to open spotlight search, then type "Terminal" to open the Terminal.
+- Linux: Spin around five times and then sing Mary Had A Little Lamb.
 
 ### Cloning
 
