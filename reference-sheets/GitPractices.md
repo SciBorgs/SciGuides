@@ -87,13 +87,17 @@ Bad: I hope you feel better soon, but unfortunately this commit message is not v
 
 ### Pushing and Pulling
 
-Commits are **local changes**, which means that they **aren't** put onto the cloud, or Github. This is mostly so you can go to a previous commit, before adding your changes to your branch. When we add our previous commits to the branch, we call this **"pushing our changes,"** because you are taking all of your changes and applying them to the **remote branch**. Put simply, you are taking your **local changes** and making them **remote**, or uploading them to the cloud (GitHub).
+Commits are **local changes**, which means that they **aren't** put onto the cloud, or Github. This is mostly so you can go to a previous commit, before adding your changes to your branch.
 
-When pushing changes, it places it in the GitHub repository, and those changes are made **public** to all others working on the repository. When you push changes for the first time on a branch, it establishes the branch on the repository and people will be able to switch to it on the website. So, make sure to push somewhat regularly so that others can keep track of what you're doing.
+When we add our previous commits to the branch, we call this **"pushing our changes,"** because you are taking all of your changes and applying them to the **remote branch**. Put simply, you are taking your **local changes** and making them **remote**, or uploading them to the cloud (GitHub).
+
+Pushing changes place them in the GitHub repository, and are **public** to others working on the repository. When you push changes for the first time on a branch, it establishes the branch on the repository that allows others to view and edit it. So, make sure to push regularly so that others can keep track of what you're doing.
 
 When you push changes on one device, other device won't know that those changes have been pushed. To get those changes, you need to **pull** them.
 
-**Pulling changes** is especially useful when working with **multiple people** on the **same branch**. If one person pushes their changes, then another, they will have **conflicts**. So, it's important to pull before pushing changes, such that each new push is up-to-date. Make sure, in this situation, to pull extremely regularly because conflicts between the two users' code will stack up extremely quickly, and eventually it will be faster just to abandon and rewrite the entire branch than to sort out each and every one of those changes. I'm speaking from experience. Pull regularly.
+**Pulling changes** is especially useful when working with **multiple people** on the **same branch**. If one person pushes their changes, then another, they will have **conflicts**. So, it's important to pull before pushing changes, such that each new push is up-to-date.
+
+Pull extremely regularly. Conflicts between two users' code will stack up extremely quickly, and eventually it will be faster just to abandon and rewrite the entire branch than to sort out each and every one of those changes. I'm speaking from experience. Pull regularly.
 
 ### Stashing
 
@@ -133,6 +137,8 @@ If you're not using VSCode:
 - Mac: Press *Cmd + Space* to open spotlight search, then type "Terminal" to open the Terminal.
 - Linux: Spin around five times and then sing Mary Had A Little Lamb.
 
+---
+
 ### Cloning
 
 There are a few ways to clone a GitHub repository onto your computer, but the best way and the way that we'll be going over is by using the command line.
@@ -150,6 +156,8 @@ It should look something like this:
 `git clone https://github.com/SciBorgs/SciGuides.git`
 
 This would clone this repository, SciGuides, onto your computer in your working directory.
+
+---
 
 ### Branching
 
@@ -182,6 +190,8 @@ To do that, type into the command line:
 
 You can also switch to a branch that isn't yours using `checkout`. If your friend was coding something and told you to go to their branch, you could just use checkout and it would work.
 
+---
+
 ### Committing
 
 Remember when we talked about staging our changes before committing? Well, to do that, type into the command line:
@@ -195,6 +205,8 @@ Once your changes are staged, we will want to commit those staged changes. Type 
 `git commit -m "Put your message here"`
 
 This will commit all of your changes, and the commit message on this commit will be '*Put your message here*'. Make sure that your message is always useful and indicative of what you did in that commit!
+
+---
 
 ### Pushing
 
@@ -210,11 +222,15 @@ Well, this is git we're talking about. If it so happens that the branch you're p
 
 Instead of "<branch\>" put your branch name and you should have no problem pushing from that point on with that branch.
 
+---
+
 ### Pulling
 
 `git pull`
 
 Yep. That's it. Just make sure that you have no working changes, or it won't work.
+
+---
 
 ### Merging
 
@@ -234,6 +250,8 @@ Now that we have fetched the changes from the cloud, we can go back to our branc
 
 That second command will move those fetched changes from main to our branch. This will make a merge commit, meaning that it will commit for you. It still hasn't pushed these changes, though, so make sure you do that once you are ready to push.
 
+---
+
 ### Stashing
 
 Stashing is easy. Type into the command line:
@@ -245,6 +263,8 @@ And it's stashed. If you want those changes back, then type into the command lin
 `git stash pop`
 
 And your changes are popped.
+
+---
 
 ### Pull Requests
 
