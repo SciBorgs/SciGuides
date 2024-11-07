@@ -5,7 +5,6 @@ In this guide, we're going to be making a tic tac toe game, and learning importa
 
 - Java101
 - Java102
-- Java103
 - Unit Testing with JUnit (make guide
 	- Extension installed
 - etc
