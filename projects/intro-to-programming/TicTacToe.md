@@ -12,9 +12,9 @@ In this guide, we're going to be making a tic tac toe game, and learning importa
 ## Goals
 
 Familiarity with the following:
+- JUnit testing
 - Enums
 - Records
-- JUnit testing
 
 Also, a working tic tac toe game!
 ## Best Practices
@@ -28,7 +28,7 @@ Make a new directory called `tictactoe` (or if you're making a whole new reposit
 
 In the README, link [this guide](/projects/intro-to-programming/TicTacToe.md).
 
-(Press on the testing tab -- test tube -- on the left side of the VSCode window.) Click "Enable Java Tests". At the top of the screen, press "JUnit Jupiter".
+Press on the testing tab -- test tube -- on the left side of the VSCode window. Click "Enable Java Tests". At the top of the screen, press "JUnit Jupiter".
 # Board
 
 First off, we're going to make the tic tac toe board. We did something similar in [Java101](/projects/intro-to-programming/Java101.md#2d-arrays), where we made a three by three 2D array, and called it a board. Now, we're going to make a `Board` class, from which we will be able to create `Board` objects. Our board class will contain a few things:
@@ -97,7 +97,7 @@ As always, go through this method and make sure you really understand all of it.
 Now, before we write anything else in this class, let's test what we've done so far.
 ### Testing
 
-So far in the intro to programming series, we've tested our code by printing values and checking if they are what we expected. For this guide, our code is getting a little more complicated, and we're going to start using Unit Tests!
+So far in the intro to programming series, we've tested our code by printing values and checking if they are what we expected. For this guide, our code is getting a little more complicated, and we're going to start using [Unit Tests](link)!
 
 Make a new directory inside of `tictactoe` called `test`. Inside of `test`, make a file called `BoardTest.java`.  Import JUnit assertions. Here's what your file should look like:
 ```java
@@ -105,6 +105,8 @@ package tictactoe.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.Test;
+
+import tictactoe.Board;
 
 public class BoardTest {
 }
@@ -115,10 +117,10 @@ Let's add a test to make sure that our `playerToString` works! We'll have four t
 ```java
 @Test
 public void playerToString() {
-        assertEquals("x", Board.playerToString(1));
-        assertEquals("o", Board.playerToString(-1));
-        assertEquals("-", Board.playerToString(0));
-        assertThrows(RuntimeException.class, () -> Board.playerToString(2));
+    assertEquals("x", Board.playerToString(1));
+    assertEquals("o", Board.playerToString(-1));
+    assertEquals("-", Board.playerToString(0));
+    assertThrows(RuntimeException.class, () -> Board.playerToString(2));
 }
 ```
 
@@ -157,7 +159,7 @@ Try to fill in the function. To start, write something that just inserts `player
 ```java
 @Test
 public void testMove() {
-	Board b = new Board;
+	Board b = new Board();
 	b.move(1, 2, 0);
 	assertEquals(1, b.get(2, 0));
 	b.move(-1, 1, 1);
@@ -170,7 +172,7 @@ Once you have that test working, update your `move` function so that it doesn't 
 ```java
 @Test
 public void testMove() {
-	Board b = new Board;
+	Board b = new Board();
 	b.move(1, 2, 0);
 	assertEquals(1, b.get(2, 0));
 	b.move(-1, 1, 1);
@@ -192,7 +194,7 @@ public void boardToString() {
 	assertEquals("- - - \n- - - \n- - - \n", new Board().toString());
 	Board b = new Board();
 	b.move(1, 1, 1);
-	assertEquals("- - - \n- x - \n- - - \n", new Board().toString());
+	assertEquals("- - - \n- x - \n- - - \n", new b.toString());
 }
 ```
 
@@ -219,7 +221,7 @@ private boolean diagonalWon() {
 }
 
 public int winner() {
-	for (int i = 0; i < ) {
+	for (int i = 0; i < 3; i++) {
 		if (rowOrColWon(i)) {
 			return board[i][i];
 		}
@@ -265,7 +267,7 @@ public void testWinner() {
 The next method is `over`, which returns whether a game is over. The two possibilities for a game to be over are:
 1. a player has won
 2. the board is full
-You can check whether the board has been won by analyzing the output of `winner()`. To check if the board is full, you will need to iterate over the whole board (you can use nested for loops).
+You can check whether the board has been won by analyzing the output of `winner()`. To check if the board is full, you will need to iterate over the whole board (you can use *nested for loops*).
 
 Here's the header:
 ```java
@@ -277,7 +279,7 @@ Fill in the function! It should pass the following test:
 ```java
 @Test
 public void testOver() {
-	Board bWon = new Board;
+	Board bWon = new Board();
 	bWon.move(1, 0, 2);
 	bWon.move(1, 1, 1);
 	assertFalse(bWon.over());
@@ -306,7 +308,7 @@ x x o
 
 The point of this is that the board is full, but there isn't a winner, which is an important case to test our over function on.
 
-If you want to understand exactly how this pattern is being made, I encourage you to go through it step by step with pen and paper.
+If you want to understand exactly how this pattern is being made, I encourage you to go through the loop step by step with pen and paper.
 ### Updating move
 
 Now that we can tell whether a game is over, let's update our `move` method. Because if a game is over and someone has one, we don't want to continue allowing players to take moves. So update the `move` method so that it passes this test:
@@ -314,7 +316,7 @@ Now that we can tell whether a game is over, let's update our `move` method. Bec
 ```java
 @Test
 public void testMove() {
-	Board b = new Board;
+	Board b = new Board();
 	b.move(1, 2, 0);
 	assertEquals(1, b.get(2, 0));
 	b.move(-1, 1, 1);
@@ -331,11 +333,15 @@ public void testMove() {
 ```
 # Game
 
+*Note: now would be a great time to push your code if you haven't already!*
+
 Now that the `Board` class is finished, we can make an actually playable game!
 
 Create a `Game.java` file for a `Game` class. `Game` will store the board and which player's turn it is. It will have a `main` method, and when `main` is run the game will begin. Each turn, the computer will print the board and ask the player what row and column they want to go in.
 
 ```java
+package tictactoe;
+
 public class Game {
 	public static final Board board = new Board();
 	public static int currentPlayer = 1;
@@ -346,4 +352,65 @@ public class Game {
 }
 ```
 
-Let's start by making a function that 
+First things first, we're going to be using `Scanner` for this in order to get user input. Take a couple minutes to [learn what it is!](https://www.geeksforgeeks.org/scanner-class-in-java/)
+
+We're going to need to make a `Scanner` object, but first, we need to import the `Scanner` class, so add the following line below `package tictactoe;`:
+
+```java
+import java.util.Scanner;
+```
+
+Next, we'll make a `Scanner` object inside of `Game`:
+
+```java
+public static Scanner sc = new Scanner(System.in);
+```
+
+So whenever we want to get user input (i.e. for the next move), we can use our scanner, `sc`.
+
+## Version 1
+
+Let's start by writing the simplest possible version of this game. We'll have a while loop that runs until the board is over. Each run of the while loop will be a new turn. Here's what we'll do in the while loop:
+1. print out the board
+2. print out who's turn it is
+3. ask the player for a row and column (use scanner)
+4. update the board with the player's move
+5. update `currentPlayer` (multiply by -1)
+
+Then, after the while loop ends, print out the board and what the result is.
+
+Mostly I'm going to let you do this on your own. But I will give you a couple of hints/tricks to make this easier and your code nicer.
+## Ternary Operators
+
+When you're printing out the message about what the result of the game is, you can use a *ternary operator*. This is basically an inline if expression.
+
+Here's how a ternary operator works:
+```java
+condition ? expr1 : expr2
+```
+
+`condition` is a boolean, and `expr1` and `expr2` are expressions that evaluate to the same type. The entire expression (`condition ? expr1 : expr2`) evaluates to `expr1` if `condition` is true, and `expr2` if condition is false.
+
+ For an example, let's look at how you might use this to write a simple `max` function:
+```java
+public static double max(double a, double b) {
+	return a > b ? a : b;
+}
+```
+
+Now, for the tictactoe game, it might look more like this:
+```java
+System.out.println("Game over! " + 
+				  (winner == 0 ? "It's a tie" :
+								 "The winner is " +
+								 Board.playerToString(winner) + "!!"));
+```
+## Collecting indices
+
+When you're collecting the rows and columns from the user, you should use `sc.nextInt()`. But make sure that if you're asking the user to input a number from 1-3 for the indices, that you subtract one because arrays in Java are indexed starting from 0!
+
+In the end, getting a row might look like this:
+```java
+System.out.println("what row (1-3) will you move in?");
+int row = sc.nextInt() - 1;
+```
