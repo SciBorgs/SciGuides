@@ -193,14 +193,14 @@ public void boardToString() {
 	assertEquals("- - - \n- - - \n- - - \n", new Board().toString());
 	Board b = new Board();
 	b.move(1, 1, 1);
-	assertEquals("- - - \n- x - \n- - - \n", new b.toString());
+	assertEquals("- - - \n- x - \n- - - \n", b.toString());
 }
 ```
 
 Add one more test case! It should have at least one space with an o (-1) in it.
 ## winner
 
-The next step is to write a method that finds the winner of a board. This method will return `1` if `x` has won the board, `-1` if y has won, and `0` if no one has won. I'm going to write most of the code for you. Fill the rest in.
+The next step is to write a method that finds the winner of a board. This method will return `1` if `x` has won the board, `-1` if `o` has won, and `0` if no one has won. I'm going to write most of the code for you. Fill the rest in.
 
 ```java
 /** @return whether a set of three spaces are won by one player */
