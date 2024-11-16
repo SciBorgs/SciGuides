@@ -157,12 +157,12 @@ GitHub now requires a Personal Access Token for authentication instead of a pass
 6. Click "Generate token" at the bottom of the page
 7. Copy the generated token immediately (you won't be able to see it again)
 8. Open Terminal (Mac/Linux) or PowerShell (Windows)
-9. Run the following command (Replace `YOUR-USERNAME` with your GitHub username):
+9. Run the following command:
 ```
-git ls-remote https://github.com/YOUR-USERNAME/fake-repo-name.git
+git ls-remote https://github.com/fake-username/fake-repo-name.git
 ```
 10. When prompted for your password, enter your PAT instead.
-11. If you get an "Authentication failed" error, double-check your PAT and try again.
+11. If you got a "Repository not found" error, everything went right! If you get If you get an "Authentication failed" error, double-check your PAT and try again.
 12. On most modern systems, Git will automatically store your credentials after you've entered them once. If, however, you find that you're being asked for your PAT repeatedly, you may need to set up a credential helper:
 
 For Mac/Linux:
