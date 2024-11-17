@@ -2,10 +2,14 @@
 
 - Enums
 - Records
-- Lambdas & Functional Interfaces
+- [Lambdas & Functional Interfaces](#lambdas-functional-interfaces)
 - Switch Expressions
 # Enums
+
+coming soon!
 # Records
+
+coming soon!
 # Lambdas & Functional Interfaces
 
 ## Functional Interfaces 
@@ -156,3 +160,5 @@ i -> {
 
 Note that when you have curly braces, if your lambda has an output you need to write `return`!
 # Switch Expressions
+
+coming soon!
