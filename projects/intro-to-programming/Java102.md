@@ -32,7 +32,7 @@ If you did [Java101](Java101.md), use the same repository that you used there. O
 
 Make another directory called `java102`. We'll be working in that directory. Make a file in java102 called `Main.java`, as well as a `README.md` file.
 
-*Note: you will likely need to add package `java102;` to the top of each Java file you make in the java102 directory.*
+*Note: you will likely need to add `package java102;` to the top of each Java file you make in the `java102` directory.*
 
 In the README, link [this guide](/projects/intro-to-programming/java102).
 # Classes and Objects
