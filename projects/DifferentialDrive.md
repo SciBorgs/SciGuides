@@ -3,12 +3,10 @@
 ![driveSim](https://github.com/user-attachments/assets/e6aba468-f3eb-4114-acfa-703089c8e9b5)
 
 This project is going to cover how to make both a basic and an advanced differential drive.
-
 ## Prerequisites
 
 - Comfortable with all the [goals](/projects/intro-to-programming/Java102.md#goals) and [prerequisites](/projects/intro-to-programming/Java102.md#prerequisites) of Java102.
 - [WPILib installed](/reference-sheets/EnvironmentSetup.md#wpilib)
-
 ## Goals
 
 Some understanding of and familiarity with:
@@ -19,7 +17,6 @@ Some understanding of and familiarity with:
 - Command-based programming
 
 Also, a working, simulated, tested differential drive!
-
 ## What is a differential drive?
 
 ![drive gif](https://github.com/user-attachments/assets/80fd7fac-beb5-4985-a0a5-8318654f5040)
@@ -46,9 +43,51 @@ Robot code is structured using *subsystems* and *commands* within FRC's *command
 
 - [*Commands*](https://docs.wpilib.org/en/stable/docs/software/commandbased/commands.html): Actions that the robot can perform, such as driving forward or rotating. These actions are taken through controlling subsystems. If a command uses a subsystem, we say that it *requires* that subsystem. Each subsystem can only have one command running on it at a time.
 
-All of your Subsystem classes must extend `SubsystemBase`. (Commands extend `CommandBase`, but you won't really be writing full Command classes).
+All of your Subsystem classes must extend `SubsystemBase`. (Commands extend `Command`, but you won't really be writing full Command classes).
 
 Running commands and enforcing the one-command-per-subsystem rule is managed by the `CommandScheduler`. Essentially, if you want to run a command, you tell the `CommandScheduler`, and then each time the code runs the `CommandScheduler` goes through all the `Commands` that it has been told to run, and runs them.
+
+### Command types of commands
+
+Generally when we create commands, we do so using preexisting types of commands, and a set of helpful static methods in a class called `Commands` that return Commands. (Theoretically, you could also make a whole class for each command, but that's almost never a good idea).
+
+Before we talk about types of commands, let's quickly go over what the technical definition of a Command is. The class `Command` is what all Command classes inherit from, and it has four primary methods that different Command classes override in order to define their behavior:
+- `public void initialize()`
+	- Called when the command is started
+- `public void execute()`
+	- Called every tic (every 0.02 seconds) while the command is running
+- `public void end(boolean interrupted)`
+	- Called when the command is ended
+	- Commands can end either because their end condition is met or because they are interrupted by another command on the same subsystem. `end` takes whether or not the command has been interrupted as an input, so that you can change the end behavior of a command based on whether it reached its end condition.
+- `public boolean isFinished()`
+	- This is the end condition for a command. It is called each tic after a command has been executed, and if it is `isFinished` returns `true`, the command is un-scheduled and `end(false)` is called (`false` because the command has not been interrupted).
+
+I used the passive voice for these explanations, but just to be clear, all of these methods are being called by the `CommandScheduler`, which is in turn called periodically by `Robot`.
+
+So, just to summarize the progression:
+1. A command `c` is scheduled
+2. `c.initialize()` is called
+3. Each tic until the command is over:
+	1. `c.execute()` is called
+	2. `c.isFinished()` is called, and if it returns `true` the command is over
+4. `c.end(interrupted)` is called
+
+Commands also have a set of subsystems that they require.
+
+Now, let's go over a two of the most common types of Commands, how they work, and how to make them:
+- Run command (`RunCommand`)
+	- `isFinished()` always returns `false`, so it keeps on running forever until it is interrupted.
+	- Constructor: `RunCommand(Runnable toRun, Subsystem... requirements)`
+		- toRun will be run in `execute()`
+		- `requirements` is all of the subsystems that the command requires. The `...` means that you can just add as many as you want.
+	- How to create using `Commands`: `Commands.run(Runnable action, Subsystem... requirements)`
+	- Example: `Command toToOrigin = Commands.run(() -> drive.goTo(0, 0), drive)`
+- Run once command (`InstantCommand`)
+	- `isFinished` always returns `true`, so it stops immediately after just one execution
+	- How to create using `Commands`: `Commands.runOnce(Runnable action, Subsystem... requirements)`
+	- Example: `Command stop = Commands.runOnce(drive::stop, drive)`
+
+We then build on commands like these using various methods that allow us to combine or modify different commands.
 
 For a deeper dive into command-based programming, check out [this guide](https://docs.wpilib.org/en/stable/docs/software/commandbased/what-is-command-based.html).
 ## File Structure
@@ -78,7 +117,7 @@ So we're just going to focus on the contents of the `robot` directories. Let's s
 - `Main.java`: the `main` function in this file is what is actually run when the code starts up. You basically don't have to think about it at all.
 - `Ports.java`: this is the file where we store the ports of our electrical components. More on this soon!
 	- Since you won't be connecting to a physical robot for this project, you'll be making up random port numbers.
-- `Robot.java`: this is the file which the entire robot code really centers upon. This file will contain instances of all of the subsystems. It contains the XBox controllers. It runs the CommandScheduler. In short, `Robot.java` is where everything comes together. In fact, all that the `Main.java` file really does is start up `Robot.java`.
+- `Robot.java`: this is the file which the entire robot code really centers upon. This file will contain instances of all of the subsystems. It contains the Xbox controllers. It runs the CommandScheduler. In short, `Robot.java` is where everything comes together. In fact, all that the `Main.java` file really does is start up `Robot.java`.
 
 As you go through this project, you will create more directories and files within `main/java/robot` for your robot code.
 
@@ -133,7 +172,7 @@ public final class Ports {
 }
 ```
 
-We structure our ports by creating a new static class within the `Ports` class for each subsystem (or in the case of `OI`, that's for the XBox controllers). So create a new class for `Drive` ports!
+We structure our ports by creating a new static class within the `Ports` class for each subsystem (or in the case of `OI`, that's for the Xbox controllers). So create a new class for `Drive` ports!
 
 ```java
 package robot;
@@ -265,31 +304,60 @@ Now that our motors are configured, we can actually make a drive method that wil
 We will be using the `set` method of the `CANSparkMax` class, which takes a number between -1 and 1, where 1 is full speed forwards, 0 is no speed, and -1 is full speed backwards. So we're actually giving percentages of our max speed, not the speed itself.
 
 ```java
-  public void drive(double leftSpeed, double rightSpeed) {
+  private void drive(double leftSpeed, double rightSpeed) {
     leftLeader.set(leftSpeed);
     rightLeader.set(rightSpeed);
   }
 ```
-### Controlling the drivetrain
 
-Start off by making a CommandXboxController for driving. This will require a port value which we also store in ports.
+### Drive Command Factory
+
+You might notice that the `drive` method above is private. But that means that we can't actually tell our robot to drive from `Robot.java`! So, why isn't it public? Well, when we tell subsystems to move, we generally always want that to be done through a Command, that way we can enforce the one-command-per-subsystem rule. So we actually don't want anybody outside of `Drive` to be directly calling this `drive` method.
+
+Instead, we're going to write a *command factory*, which is just a fancy way of saying a method that returns a command. What specifically do we want our command to do? Well, our primary method of driving will be using inputs from a controller. We have an Xbox controller in `Robot.java` called `driver`, and the `leftSpeed` and `rightSpeed` values are actually going to be the y values of the left and right joysticks on that controller.
+
+So our `drive` method should return a Command that drives the robot based on inputs from a controller. Since the controller is in `Robot.java`, not `Drive` (it is not part of the Drive subsystem), our method will need to take as inputs some way of retrieving the values from the controller.
+
+Specifically, we're going to take two `DoubleSuppliers`, one for the left velocity and one for the right velocity. In `Robot.java`, we'll call our method and give it methods to get the left and right y values on the Xbox controller. So, here's our method header:
 
 ```java
-  private final CommandXboxController driver = new CommandXboxController(OI.DRIVER);
+public Command drive(DoubleSupplier vLeft, DoubleSupplier vRight)
 ```
 
-- It is standard convention to have operator as port 0 and driver as 1.
+*Note: the two `drive` methods have the same name, but are not the same method. As long as the types of the parameters are different, you can have multiple methods with the same name.*
 
-Then, to make sure we can drive throughout the entire game, we add a default command to the drive subsystem. A default command is a command that is scheduled when no other command requires the subsystem.
+Next up, let's decide what type of Command we want to use. This isn't just something we want to do once - we need to get new inputs from the controller each tic - so we'll use a run command. We've talked about `Commands.run`, but in a Subsystem there's actually another method just called `run`, which calls `Commands.run` but uses that subsystem as the requirement. So `drive.run(action)` is the same as `Commands.run(action, drive)`. That's the method we're going to use for this, since we want to create a `RunCommand` that requires a drive subsystem.
+
+And the action is just going to be calling the other `drive` method using `vLeft` and `vRight`!
+
+```java
+  private Command drive(double vLeft, double vRight) {
+    return run(() -> drive(vLeft.getAsDouble(), vRight.getAsDouble()));
+  }
+```
+## Driving with the controller
+
+Now we're going to go to `Robot.java` and write the code to actually drive the robot using the driver controller!
+
+There should already be two `CommandXboxController` objects called `operator` and `driver` defined at the top of the class. You can delete the `operator` controller, and we'll use the `driver` one for driving.
+
+Next up, we need to actually create our instance of the drive subsystem! You can do this right under the comment that says `// SUBSYSTEMS`:
+
+```java
+  Drive drive = new Drive();
+```
+
+Now that we have our drivetrain initialized, we can set up driving with controllers. We're going to do that by setting a *default command* for drive. A default command is a command that runs on a subsystem whenever no other commands that require that subsystem are running. For drive, if we're not telling it to do something else, we always want it to be listening to the controller and driving.
+
+We set a subsystem's default command using `subsystem.setDefaultCommand(command)`. And we do those configurations in the `configureBindings` method inside of `Robot`. This method (along with `configureGameBehavior`) is called by `Robot`'s constructor, and are used to configure settings that need to be configured right when the robot is started up.
 
 ```java
   private void configureBindings() {
-    drive.setDefaultCommand(drive.run(() -> drive.drive(driver.getLeftY(), driver.getRightY())));
+	drive.setDefaultCommand(drive.drive(driver::getLeftY, driver::getRightY));
 }
 ```
 
-`run()` is a simple subsystem command that runs the given action until interrupted.
-
+Now, if you had a real robot to test on, it would drive!! But knowing that would probably be more exciting if you could see and drive around some sort of simulation. Unfortunately, we can't do that yet because to simulate the movement of the robot, we would need an estimate for where the robot is on the field, which we don't have yet. So let's work on getting that.
 ### Wheel Odometry Integration
 
 Brush up on the [sensors guide](github.com/SciBorgs/SciGuides/blob/main/reference-sheets/Sensors.md) if you're uncertain what encoders and gyros are.
