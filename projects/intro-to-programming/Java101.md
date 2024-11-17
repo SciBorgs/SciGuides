@@ -86,7 +86,7 @@ Open your README.md file, and write a few words about what this project is. Some
 
 You will be using this repository for the remainder of the intro to programming series, so it will be helpful to have separate directories for each part. Make a new directory called `java101`. We will be working in that directory.
 
-*Note: depending on how your Java project is configured, you may need to add `package java101;` to the top of each Java file you make in the `java101` directory*
+*Note: depending on how your Java project is configured, you may need to add `package java101;` to the top of each Java file you make in the `java101` directory.*
 
 Inside of `java101`, make a new `README.md` file. In this README file, link [this guide](/projects/intro-to-programming/Java101.md).
 
