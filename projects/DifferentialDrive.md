@@ -86,9 +86,7 @@ Next up, we'll go over `test/java/robot`. This directory only has one file curre
 - `RobotTest.java`: If you look at the contents of this file, it is a test class with a single test called `initialize`. All that this test does is create a new instance of `Robot.java`. So this test will only fail if initializing the robot throws an error. This tiny little test is actually very important, because it will catch if there is a `NullPointerException` in our code (if we try to use something that isn't initialized).
 
 You will over this project add files `test/java/robot` to test the new classes that you create in `main/java/robot`. And you'll be testing more specific behavior than `RobotTest.java` does!
-# Implementing a Basic Drivetrain
-
-## Understanding the hardware
+# Understanding the hardware
 
 In order to program a robot, you first need to understand the physical hardware that you are working with, and particularly the electrical components.
 
@@ -101,13 +99,13 @@ Let's look at what a differential drivetrain might look like:
 
 <img src="https://docs.wpilib.org/en/stable/_images/layout.jpg">
 
-The black cylinders between the two center wheels are motors. As you can see, there there are 2 motors attached to each side of the drivetrain.
+The black cylinders between the two center wheels are motors. As you can see, there there are two motors attached to each side of the drivetrain.
 
 These motors are also connected via wires to motor controllers, which are connected ultimately to a roboRIO (gray square thing on the top). The roboRIO is a piece of hardware which connects and interfaces with all of the sensors and actuators on the robot (sensors collect data, actuators move). We can control those sensors and actuators by running code on the RIO.
 - Remember `Ports.java`? Well, in order to control our electronics and for the RIO to send them signals, we need to know what physical ports our components are connected to. That's what we mean when we say that this file stores the ports for our components.*
 
 The roboRIO is connected to a radio (the white rectangle to the right of the RIO), which is how we generally connect our computers to the RIO.
-## Creating the Drive Subsystem
+# Drive Subsystem
 
 Our first step will be to create a drive folder for everything related to the Drive subsystem. It will include:
 - a Drive.java subsystem that extends `SubsystemBase` and contains the logic to control the motors and the drivetrain.
@@ -116,12 +114,7 @@ Our first step will be to create a drive folder for everything related to the Dr
 Once you do that, your files should look something like this:
 
 ![file order](https://github.com/user-attachments/assets/d37980f3-c1d6-4a9a-9e5f-66c0163496d7)
-
-### Drive.java
-
-This file will contain all of our hardware, and the logic to control it. 
-
-#### Ports
+## Ports
 
 In our drive class, we will make all of our 4 motors using `CANSparkMax` objects. When you create a `CANSparkMax` object, you give it a port and a motor type (don't worry about what the motor type means for now). With that port, it is able to interface with the motor connected to the port through the RIO.
 
@@ -161,10 +154,12 @@ public final class Ports {
 ```
 
 As we said earlier, there will be four motors total, two on the right and two on the left. We're going to call one on each side the leader, and one the follower. In the example code I added ports for the motors on the right. Make sure you add for the ones on the left as well! You can assign any values that you want, as long as they are all different (and if you ever want to test this on a real drive train, you'll need to make sure the ports are accurate).
+## Drive
 
-#### Motor instantiation
+Now let's go back to `Drive.java` and write our subsystem!
+### Motor instantiation
 
-Now, let's go back to `Drive.java` and make our motor objects! We'll use the ports form `Ports.java`, and the motor type for all of our motors will be `MotorType.kBrushless`.
+First off, we have to actually make our motor objects. We'll use the ports form `Ports.java`, and the motor type for all of our motors will be `MotorType.kBrushless`.
 
 To do this, you will first need to import `MotorType`, `Ports`, and `CanSparkMAX`. You will also have to import `SubsystemBase` so that you can make `Drive` into a Subsystem:
 
@@ -195,7 +190,7 @@ public class Drive extends SubsystemBase {
 ```
 
 Below the instantiation of `leftLeader`, make variables for all the other motors! (`leftFollower`, `rightLeader`, and `rightFollower`).
-#### Motor configuration
+### Motor configuration
 
 For our motors to work the way we want them to, we'll need to configure some specific settings. This will happen inside of our constructor, and we will be using various methods of the `CANSparkMax` class.
 
@@ -217,7 +212,7 @@ For a drivetrain, we don't want our robot to just keep drifting when we stop dri
 
 ```java
   public Drive() {
-    for (CANSparkMax spark : List.of(leftLeader, leftFollower, rightLeader, rightFollower) {
+    for (CANSparkMax spark : List.of(leftLeader, leftFollower, rightLeader, rightFollower)) {
 	    spark.restoreFactoryDefaults();
 	    spark.setIdleMode(IdleMode.kBrake);
     }
@@ -230,7 +225,7 @@ So that means that we always want the two motors on the right and the two motors
 
 ```java
   public Drive() {
-      for (CANSparkMax spark : List.of(leftLeader, leftFollower, rightLeader, rightFollower) {
+      for (CANSparkMax spark : List.of(leftLeader, leftFollower, rightLeader, rightFollower)) {
 	    spark.restoreFactoryDefaults();
 	    spark.setIdleMode(IdleMode.kBrake);
     }
@@ -250,7 +245,7 @@ That's pretty confusing. Ideally, we'd like positive to mean forward for both si
 
 ```java
   public Drive() {
-      for (CANSparkMax spark : List.of(leftLeader, leftFollower, rightLeader, rightFollower) {
+      for (CANSparkMax spark : List.of(leftLeader, leftFollower, rightLeader, rightFollower)) {
 	    spark.restoreFactoryDefaults();
 	    spark.setIdleMode(IdleMode.kBrake);
     }
@@ -261,8 +256,7 @@ That's pretty confusing. Ideally, we'd like positive to mean forward for both si
 	leftLeader.setInverted(true);
   }
 ```
-
-#### Drive method
+### Drive method
 
 Now that our motors are configured, we can actually make a drive method that will allow the motors to run! This method will take in a `leftSpeed` and a `rightSpeed` which we will pass to our motors.
 
@@ -276,7 +270,7 @@ We will be using the `set` method of the `CANSparkMax` class, which takes a numb
     rightLeader.set(rightSpeed);
   }
 ```
-#### Controlling the drivetrain
+### Controlling the drivetrain
 
 Start off by making a CommandXboxController for driving. This will require a port value which we also store in ports.
 
@@ -514,8 +508,6 @@ Finally, we combine the outputs and send them to the motors:
 ```
 
 Here, the final motor voltage is calculated by adding the PID and feedforward outputs together. These voltages are then sent to the motors, controlling the movement of the robot.
-
-
 ### Simulation and Logging
 
 To finish our project up, we are going to simlute the drive we've made. Please read the [Simulation guide](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/introduction.html) before continuing on with this.
