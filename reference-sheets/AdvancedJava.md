@@ -79,7 +79,8 @@ But then, if we want to call `filter` with `isEven`, do we need to make a whole 
 
 But that's actually the special thing about functional interfaces - we don't have to do that at all. If we just pass in our function, `isEven`, using a particular notation, Java will basically make that class for us.
 
-The way this notation for referring to methods as functional interfaces works is:
+The notation for referring to methods as functional interfaces is:
+
 ```java
 // for static methods
 Class::method
