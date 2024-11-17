@@ -2,12 +2,12 @@
 ## Prerequisites
 
 - Comfortable with all of the [goals for Programming101](Programming101.md#goals).
-- Comfortable with [command-line navigation](link)
-- Comfortable with [git](link)
+- Comfortable with [command-line navigation](/reference-sheets/CommandLineNavigation.md)
+- Comfortable with git (ignore this one for now!)
 - Environment set up
-	- [Code directory created](link)
-	- [VSCode installed](link)
-	- [Git & Github set up](link)
+	- [Code directory created](/reference-sheets/EnvironmentSetup.md#local-code-organization)
+	- [VSCode installed](/reference-sheets/EnvironmentSetup.md#visual-studio-code-not-wpilib)
+	- [Git & Github set up](/reference-sheets/EnvironmentSetup.md#git)
 ## Goals
 
 Familiarity with the following topics:
@@ -394,7 +394,7 @@ public class Main {
 	public static void main(String[] args) {
 		int[] arr = new int[100];
 		int index = 0;
-		while (n < 100) {
+		while (index < 100) {
 			if (index % 2 == 0) {
 				arr[index] = 2;
 			} else {
@@ -414,8 +414,8 @@ public class Main {
 		int index = 0;
 		while (index < 100) {
 			arr[index] = 2 - index % 2;
+			index = index + 1;
 		}
-		index = index + 1;
 	}
 }
 ```

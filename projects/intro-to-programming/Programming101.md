@@ -29,7 +29,7 @@ Familiarity with the following topics:
 
 All you need for this is **a pen and paper**.
 
-I know many of you will read this, and then precede to use your computers for everything anyway. But, for this tutorial, a computer will not help you. You will not be running any code. If you really want, you could write in a code block in google docs, but if possible, it is straightforwardly better in this case to be writing with your hand on paper or a tablet. You can write your code, any calculations you want to do, your thoughts, charts to work through loops, etc.
+I know many of you will read this, and then proceed to use your computers for everything anyway. But, for this tutorial, a computer will not help you. You will not be running any code. If you really want, you could write in a code block in google docs, but if possible, it is straightforwardly better in this case to be writing with your hand on paper or a tablet. You can write your code, any calculations you want to do, your thoughts, charts to work through loops, etc.
 ## Best practices
 
 As always, follow the general [best practices](/projects/README.md#best-practices).
@@ -119,7 +119,7 @@ Logical operations transform booleans into other booleans (help). You should be 
 | operator |      symbol       | examples                                                                                          |
 | -------- | :---------------: | ------------------------------------------------------------------------------------------------- |
 | and      |       `&&`        | `true && true` &rarr; `true`<br>`true && false` &rarr; `false`<br>`false && false` &rarr; `false` |
-| or       | <code>\|\|</code> | `true && true` &rarr; `true`<br>`true && false` &rarr; `true`<br>`false && false` &rarr; `false`  |
+| or       | <code>\|\|</code> | `true \|\| true` &rarr; `true`<br>`true \|\| false` &rarr; `true`<br>`false \|\| false` &rarr; `false`  |
 | not      |        `!`        | `!true` &rarr; `false`<br>`!false` &rarr; `true`                                                  |
 ## Practice problems
 
@@ -154,7 +154,11 @@ var y = true
 `!y` &rarr; `false`
 # Functions
 
-In math, functions are often defined as a mapping between inputs and outputs, where every input has a single output. To some extent, that definition works for functions in programming as well. 
+In math, functions are often defined as a mapping between inputs and outputs, where every input has a single output. To some extent, that definition works for functions in programming as well.
+
+You can also think of a function like a black box. You feed it some input through a slot, and it spits something out of a slot on the other side. There's some mechanism inside of the box that converts from input to output.
+
+![](/projects/images/black-box-1.jpg)
 
 Here's the general structure of a function definition:
 ```java
@@ -180,7 +184,11 @@ Now that we have this function defined, we can *call* it on different values of 
 `f(5.3)` &rarr; `10.6`
 ## Example: isEven
 
-In the previous example, both the input and output to our function were numbers. For this example, the input is going to be an integer and the output will be a boolean. More specifically, we're going to write a function that takes in an integer and returns whether or not that integer is even (or divisible by $2$).
+In the previous example, both the input and output to our function were numbers. For this example, the input is going to be an integer and the output will be a boolean!
+
+![](/projects/images/black-box-2.jpg)
+
+More specifically, we're going to write a function that takes in an integer and returns whether or not that integer is even (or divisible by $2$).
 ```java
 def isEven(var n) {
 	return n % 2 == 0
@@ -188,30 +196,72 @@ def isEven(var n) {
 ```
 
 Now, let's call our function on a few values and see what the output is:
+
 `isEven(4)` &rarr; `true`
+
 `isEven(11)` &rarr; `false`
+
 `isEven(0)` &rarr; `true`
+## Example: xor
+
+Generally, when we talk about `or` in math and programming, we mean and/or. In other words, `or` is true if at least one of the arguments passed to it is true. But there's also either/or (generally called `xor`), which is true if *exactly one* of the inputs is true. We're going to write an `xor` function, that will take two booleans as inputs and return whether exactly one is true.
+
+This is the first time we're going to see that functions can have multiple inputs (this is true in math as well, although it may not be something you've run into yet). The black box analogy still works, the box just has multiple slots for inputs.
+
+![](/projects/images/black-box-3.jpg)
+
+Here's `xor`:
+
+```java
+def xor(var a, var b) {
+	return (a && (!b)) || (b && (!a))
+}
+```
+
+Read through and try to understand the return statement. Essentially, `xor` returns true in two situations: `a` and `!b` are both true (`a` is true and `b` is false), or `b` and `!a` are both true (`b` is true and `a` is false). Let's look at a few examples:
+
+`xor(true, false)` &rarr; `true`
+
+`xor(false, true)` &rarr; `true`
+
+`xor(true, true)` &rarr; `false`
+
+`xor(false, false)` &rarr; `false`
 ## Example: applyThrice
 
 In some sense, a function is a value, just like a boolean or an integer. Which is to say, you can have a function whose input or output is another function!
 
-Here is a function that takes a function `fun` and applies that function three times on the value `v`.
+If you want to go with the black box analogy, a function that takes another function as an input is like a black box with a slot where you feed in a different black box. And the mechanism inside the main black box might feed an input into the little black box, and then do something with the output.
+
+![](/projects/images/black-box-4.jpg)
+
+A function that outputs another function, on the other hand, is like a big black box with a mechanism that builds another black box, and a slot to output that black box that it generates. 
+
+![](/projects/images/black-box-5.jpg)
+
+Here is a function that takes a function `fun`, and applies that function on the value `v` three times.
 ```java
 def applyThrice(var fun, var v) {
 	return fun(fun(fun(v)))
 }
 ```
 
+If `applyThrice` is a black box here's what it would look like: it would have one input slot for another little black box (`fun`), and one for a slip of paper (`v`). On the inside, it has a little mechanical arm that takes the inputted piece of paper and feeds it into the little inputted black box. When the little black box (`fun`) produces an output, the mechanical arm grabs it and feeds the output back into the input slot of `fun`. And then it does that again! Finally, the third time the little black box produces an output, the arm takes it and sends it through the output slot of the main black box (`applyThrice`). 
+
+And remember, all of this is happening inside a black box. So from the perspective of someone using the function, all that happens is someone slides in a little black box and a slip of paper through the input slots of `applyThrice`, and then a different slip of paper comes out through the output slot.
+
 Let's go through an example ([f](#example-f) is a function that takes a number and multiplies it by $2$):
+
 `applyThrice(f, 2)`
-`applyThrice` will call `f` on `2`, getting `4`, and the  call `f` on `4`, getting `8`, and then call `f` on `8`, getting `16`. So `applyThrice(f, 2)` &rarr; `16`.
+
+`applyThrice` will call `f` on `2`, getting `4`, and then call `f` on `4`, getting `8`, and then call `f` on `8`, getting `16`. So `applyThrice(f, 2)` &rarr; `16`.
 ## Practice Problems
 
-1. Write a function that takes as an input an integer `n` and returns that integer modulo 4
-2. Write a function called `neither` that takes as inputs two functions `f` and `g`, both of which return booleans, and a value `v`. Return whether both `f` and `g` return false when given `v` as an input
+1. Write a function that takes as an input an integer `n` and returns that integer modulo 4.
+2. Write a function called `neither` that takes in three inputs: a value `v`, and two functions `f` and `g` (both of which return booleans). The `neither` function should return whether both `f` and `g` return `false` when called with `v` as an input.
 # Scope
 
-The *scope* of a variable is the part of the code for which that variable can be referenced. Generally, the scope of a variable `v` is from when it is defined, to the end of the code block within which it is defined. 
+The *scope* of a variable is the part of the code where that variable can be referenced. Generally, the scope of a variable `v` is from when it is defined, to the end of the code block within which it is defined. 
 
 Code blocks are usually denoted with curly braces. So, for instance, when you define a function, you have a pair of curly braces where the code for the function is written. That is a code block. (Other examples include [loops](#loops) and [if statements](#if-statements)).
 
@@ -307,16 +357,21 @@ Actually, let's assign this array to a variable:
 ```java
 var l = [1, 2, 3, 4, 5]
 ```
-Now, if we wanted to extract a value from `l`, we could do so by using that value's [index](#glosarry). And remember, we index starting from 0.
-`l[0]` &rarr; `1`
-`l[4]` &rarr; `5`
+Now, if we wanted to extract a value from `l`, we could do so by using that value's [index](#glossary). And remember, we index starting from 0.
+
+`l[0]` &rarr; `1
+`
+`l[4]` &rarr; `5
+`
 `l[5]` does not exist!
 
-We can also have arrays with other types of values in them.
+We can also have arrays with other types of values in them:
+
 ```java
 var stringArr = ["once", "upon", "a", "time"]
 ```
-`stringArr[2]` &rarr; `"upon"`
+
+`stringArr[1]` &rarr; `"upon"`
 ### Array Mutability
 
 Like variables, values in arrays can be changed.
@@ -411,13 +466,19 @@ def sumBelow(var n) {
 So this is almost exactly the same as the example while loop, except instead of looping until `x` is greater than or equal to $4$, the loop continues until `x` is greater than or equal to `n`, where `n` is the input to the function. And then at the end, the function returns `sum`, so the output of the function is `sum`.
 
 If we call `sumBelow` on $4$, the output will be exactly the same as in [Example 1](#example-1).
+
 `sumBelow(4)` &rarr; `6`
+
 If, however, we call the function on $5$, we will instead get the sum of all the positive integers below 5.
+
 `sumBelow(5)` &rarr; `10`
 
 Evaluate what the following calls of `sumBelow` evaluate to:
+
 `sumBelow(6)` &rarr;
+
 `sumBelow(3)` &rarr;
+
 `sumBelow(-1)` &rarr;
 ### Example 2
 
@@ -471,7 +532,9 @@ def sumArray(var arr) {
 So this loop will run once for each value in `arr`, and every time in runs, the variable `val` will refer to a different value in `arr`. Then, for every run of the loop, `val` is added to `sum`. So, just like with our while loop, in the end `sum` ends up being the sum of the values in `arr`.
 
 Evaluate what the following calls of `sumArray` evaluate to:
+
 `sumArray([3, 5, 4, 9])` &rarr;
+
 `sumArray([-7, 6, 0, 2])` &rarr;
 ### Example 4
 
@@ -503,8 +566,6 @@ Let's use a chart to analyze this. I'll do the first row, and you can fill in th
 
 In the last example, we used a loop to check that every value in an array is even (or divisible by 2). Let's generalize that to write a function that takes for inputs an array `arr` and an integer `fact`, and returns whether every value in `arr` is divisible by `fact`.
 
-As you'll see in a moment, functions can have multiple inputs (this is true in math as well, although it may not be something you've run into yet).
-
 ```java
 def allDivisible(var arr, var fact) {
 	var divisible = true
@@ -517,15 +578,18 @@ def allDivisible(var arr, var fact) {
 ```
 
 Calculate what the following calls of `allDivisible` evaluate to:
+
 `allDivisible([3, 6, 0, 9], 3)` &rarr;
+
 `allDivisible([100, 225, 802, 445], 5)` &rarr;
+
 `allDivisible([28, 8, 16, 2, 4004, 20], 4)` &rarr;
 
 *Important note: when you have a function that takes an array as an input, you are technically capable of changing the values in that array. If you do, that is a [side effect](#side-effects). Be VERY CAREFUL about doing that -- it can cause errors very very easily. So don't change the values in an array passed to a function unless it's absolutely necessary. **It's almost always better to create a new array instead.***
-
 ### Example 5
 
 Let's look at an example of a function that takes an array `arr` and a function `fun`, and uses a for each loop to return the sum of the outputs when each value in `arr` is plugged into `fun`.
+
 ```java
 def sumOutputs(var arr, var fun) {
 	var sum = 0.0
@@ -537,6 +601,7 @@ def sumOutputs(var arr, var fun) {
 ```
 
 Now let's say we have the following functions `g` and `h`:
+
 ```java
 def g(var x) {
 	return x * x
@@ -548,7 +613,9 @@ def h(var x) {
 ```
 
 Evaluate the following calls to `sumOutputs` (calculators allowed):
+
 `sumOutputs([2.0, 1.2, 4.3, 10.2], g)`
+
 `sumOutputs([2.0, 1.2, 4.3, 10.2], h)`
 ## Practice Problems
 
@@ -561,11 +628,15 @@ Evaluate the following calls to `sumOutputs` (calculators allowed):
 6. Write a function that takes an array `arr` and uses a for each loop to determine if any of the values in an array `arr` are divisible by 7.
 # Side Effects
 
-Thus far, we've been thinking of functions as having an input (or multiple inputs) and an output. It turns out, however, that we can also make functions without inputs or outputs. This is useful in situations when we are dealing with *side effects*. Any time that our code interacts with/effects something outside of itself, that's a side effect.
+Thus far, we've been thinking of functions as having an input (or multiple inputs) and an output. It turns out, however, that we can also make functions without inputs or outputs. This is useful mostly in situations when we are dealing with *side effects*. Any time that our code interacts with/effects something outside of itself, that's a side effect.
+
+With the black box analogy, you can think of side effects as there being a remote control inside of a black box that it can use to control other things.
+
+![](/projects/images/black-box-6.jpg)
 
 So, for instance, if we had a motor that our code was controlling, that would be a side effect.
 
-Let's go a little farther with that example. Let's say we have a motor called `motor`. The motor has a sensor that finds its speed, and if we want to ping that sensor and get the speed, we call `speed(motor)`. If we want to set the speed of the motor, we call `set(motor, desiredSpeed)`. Both of those actions have side effects.
+Let's go a little farther with that example. Let's say we have a motor `motor`. The motor has a sensor that finds its speed, and if we want to ping that sensor and get the speed, we call `speed(motor)`. If we want to set the speed of the motor, we call `set(motor, desiredSpeed)`. Both of those actions have side effects.
 
 Now, let's say we have four motors, stored in an array like this:
 
@@ -573,7 +644,11 @@ Now, let's say we have four motors, stored in an array like this:
 var motors = [motor1, motor2, motor3, motor4]
 ```
 
- We want to write a function that someone can call to find the average of the speeds of those motors. In that case, we don't actually want any input. We just want to give an output. The function would look something like this (see [sumOutputs](#example-5)):
+ We want to write a function that someone can call to find the average of the speeds of those motors. In that case, we don't actually want any input. We just want to give an output. Instead of a slot for inputs, the black box will just have a button that we can press to start it. 
+ 
+![](/projects/images/black-box-7.jpg)
+
+ The function would look something like this (see [sumOutputs](#example-5)):
  
 ```java
 def avgSpeed() {
@@ -581,7 +656,11 @@ def avgSpeed() {
 }
 ```
 
-We also want to write a function that sets the speed of all of the motors to the same value. That function isn't going to have an output, because we don't need to get any information from it. Instead, we want it to *do something*. So we won't return anything.
+We also want to write a function that sets the speed of all of the motors to the same value. That function isn't going to have an output, because we don't need to get any information from it. Instead, we want it to *do something*. We want a black box without an output slot, that just swallows our inputs and presses some buttons on a remote control. 
+
+![](/projects/images/black-box-8.jpg)
+
+So we won't return anything.
 
 ```java
 def setAllMotors(var desiredSpeed) {
@@ -591,7 +670,9 @@ def setAllMotors(var desiredSpeed) {
 }
 ```
 
-Now let's say we want to write a function that stops all of the motors. That doesn't need an input *or* an output. We just want to be able to run the same code again and again by calling a function.
+Now let's say we want to write a function that stops all of the motors. That doesn't need an input *or* an output. We just want to be able to run the same code again and again by calling a function. It's a black box with no openings at all, just a button.
+
+![](/projects/images/black-box-9.jpg)
 
 ```java
 def stopMotors() {
@@ -634,9 +715,10 @@ def sumEven(var arr) {
 ```
 
 Evaluate the following call to `sumEven` (calculators allowed):
+
 `sumEven([3, 620, 4, 135, 1102])` &rarr;
 
-Now, with this example, you actually could write a version of this function that doesn't use an if statement at all, (although the version here gets complicated if arr has negative elements):
+Now, with this example, you actually could write a version of this function that doesn't use an if statement at all, (although the version here gets complicated if `arr` has negative elements):
 ```java
 def sumEvenNoIf(var arr) {
 	var sum = 0
