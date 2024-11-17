@@ -1,105 +1,274 @@
-# Differential Drive Project
+# Introduction
 
 ![driveSim](https://github.com/user-attachments/assets/e6aba468-f3eb-4114-acfa-703089c8e9b5)
 
 This project is going to cover how to make both a basic and an advanced differential drive.
 
-Prereqs: A good understanding of java, command-based programming, and how to use git in vscode.
+## Prerequisites
 
-Goals: Get an understanding of how to create a differential drive with advance controls.
+- Comfortable with all the [goals](/projects/intro-to-programming/Java102.md#goals) and [prerequisites](/projects/intro-to-programming/Java102.md#prerequisites) of Java102.
+- [WPILib installed](/reference-sheets/EnvironmentSetup.md#wpilib)
 
----
+## Goals
 
-## Initial Setup
+Some understanding of and familiarity with:
+- Robot code
+- Simulation
+- Testing robot code
+- Control theory
+- Command-based programming
 
-#### Robot Code Structure
+Also, a working, simulated, tested differential drive!
 
-Robot code is structured using *subsystems* and *commands* within FRC's *command-based framework*. This architecture simplifies robot programming by breaking down complex tasks into smaller, manageable pieces:
+## What is a differential drive?
 
-- [*Subsystems*](https://docs.wpilib.org/en/stable/docs/software/commandbased/subsystems.html): Represent individual components or systems on the robot, like the drivetrain or arm mechanism. The main thing to keep in mind is that all of your subsystem classes should extend `SubsystemBase`.
-
-- [*Commands*](https://docs.wpilib.org/en/stable/docs/software/commandbased/commands.html): Actions that the robot can perform, such as driving forward or rotating. These actions often involve multiple subsystems working together.
-
-For a deeper dive into command-based programming, check out [this guide](https://docs.wpilib.org/en/stable/docs/software/commandbased/what-is-command-based.html).
-
-#### Setting up the environment
-
-Refer to the [environment setup](https://github.com/SciBorgs/SciGuides/blob/main/reference-sheets/EnvironmentSetup.md) reference sheet to check that all neccessary components are setup before starting this project. Feel free to ignore the normal vscode section as that won't be needed for this project.
-
-
-Please use [this](https://github.com/SciBorgs/SciGuidesRobotBase) base tempelate for this and many other projects.
-
-Make sure to practice [good git habits](github.com/SciBorgs/SciGuides/blob/main/reference-sheets/GitPractices.md) when working on this and any other project.
-
-## Basic Drivetrain
 ![drive gif](https://github.com/user-attachments/assets/80fd7fac-beb5-4985-a0a5-8318654f5040)
 
 A differential drive is a type of robot drivetrain where two separately-driven groups of wheels are used to move the robot. By varying the speed of each wheel, the robot can move forward, backward, or turn. This setup is widely used due to its simplicity and high degree of control over the robot’s movement.
 
 To move the robot forward/backward, both wheels must move at the same speed in the same direction. To turn, the wheels must move at different speeds or in opposite directions.
+## Creating your project repo
 
-### Implementation
+The first step will be to create a repository for this project. We'll be using [this](https://github.com/SciBorgs/SciGuidesRobotBase) base template for this project (and all other robot code projects in SciGuides). Follow the instructions in the README to create a new repository based on the template. Give your repository a descriptive name such as "Differential Drive Bot".
 
-#### 1. Setting Up the Drivetrain
+In the README of your new repository, link [this guide](link).
 
-For this guide, we’ll be using CANSparkMax motor controllers paired with NEO motors.
+Make sure to clone the project on your computer inside of your code folder!
+
+---
+# Robot Code Structure
+
+## Command Based programming
+
+Robot code is structured using *subsystems* and *commands* within FRC's *command-based framework*. This architecture simplifies robot programming by breaking down complex tasks into smaller, manageable pieces:
+
+- [*Subsystems*](https://docs.wpilib.org/en/stable/docs/software/commandbased/subsystems.html): Represent individual components or systems on the robot, like the drivetrain or arm mechanism.
+
+- [*Commands*](https://docs.wpilib.org/en/stable/docs/software/commandbased/commands.html): Actions that the robot can perform, such as driving forward or rotating. These actions are taken through controlling subsystems. If a command uses a subsystem, we say that it *requires* that subsystem. Each subsystem can only have one command running on it at a time.
+
+All of your Subsystem classes must extend `SubsystemBase`. (Commands extend `CommandBase`, but you won't really be writing full Command classes).
+
+Running commands and enforcing the one-command-per-subsystem rule is managed by the `CommandScheduler`. Essentially, if you want to run a command, you tell the `CommandScheduler`, and then each time the code runs the `CommandScheduler` goes through all the `Commands` that it has been told to run, and runs them.
+
+For a deeper dive into command-based programming, check out [this guide](https://docs.wpilib.org/en/stable/docs/software/commandbased/what-is-command-based.html).
+## File Structure
+
+All of the source code for the project is in the [src](https://github.com/SciBorgs/SciGuidesRobotBase/tree/main/src) folder. Within that folder, there is the following directory structure:
+
+![](/images/sciguides-robot-base-file-tree-dirs.png)
+
+There are two top level directories under `src`: `main`, for code that runs on the robot, and `test`, for unit tests.
+
+We're going to ignore the `deploy` directory, since it isn't very relevant to us right now. That leaves us with the contents of `main/java` and `test/java` (both of which contain Java files). The robot code in `main/java` is split into a `lib` folder, which contains library code that is not specific to one particular robot, and a `robot` folder, which contains the code to control a particular robot. Classes in the robot folder generally use lib classes.
+
+You may notice that the `test/java` directory actually has the same structure. This is because our `test` folder aims to test code in `main`, and so inside of `test` we mirror the structure of `main`. If we are a file `Foo.java` at the address `main/java/lib/Foo.java`, our test for that file would be at the address `test/java/lib/FooTest.java`.
+
+Now, let's look at a tree that includes the actual files as well as directories:
+
+![](/images/sciguides-robot-base-file-tree.png)
+
+There's a lot here, but we'll go through it piece by piece.
+
+One thing you might notice is that the `lib` folders are very populated. That's because one of the main points of using this template is that it has library code from the SciBorgs, which you can use in your project. You will not be writing code in the `lib` folders, but you will be using the utilities from those folders. But you don't have to worry about that right now, we'll introduce specific library code when it is relevant.
+
+So we're just going to focus on the contents of the `robot` directories. Let's start with `main/java/robot`:
+- `Constants.java`: this is a file containing constant values that we use in our code. It can have things like field measurements, robot dimensions, etc.
+	- Constant names are written in all caps with underscores between words (i.e. MAX_SPEED)
+	- Currently, there is one constant in this file, called PERIOD (the value is 0.2 seconds). The PERIOD or tick rate represents how often the code is run. In this case, the roboRIO runs our code every 0.2 seconds.
+- `Main.java`: the `main` function in this file is what is actually run when the code starts up. You basically don't have to think about it at all.
+- `Ports.java`: this is the file where we store the ports of our electrical components. More on this soon!
+	- Since you won't be connecting to a physical robot for this project, you'll be making up random port numbers.
+- `Robot.java`: this is the file which the entire robot code really centers upon. This file will contain instances of all of the subsystems. It contains the XBox controllers. It runs the CommandScheduler. In short, `Robot.java` is where everything comes together. In fact, all that the `Main.java` file really does is start up `Robot.java`.
+
+As you go through this project, you will create more directories and files within `main/java/robot` for your robot code.
+
+Next up, we'll go over `test/java/robot`. This directory only has one file currently:
+- `RobotTest.java`: If you look at the contents of this file, it is a test class with a single test called `initialize`. All that this test does is create a new instance of `Robot.java`. So this test will only fail if initializing the robot throws an error. This tiny little test is actually very important, because it will catch if there is a `NullPointerException` in our code (if we try to use something that isn't initialized).
+
+You will over this project add files `test/java/robot` to test the new classes that you create in `main/java/robot`. And you'll be testing more specific behavior than `RobotTest.java` does!
+# Implementing a Basic Drivetrain
+
+## Understanding the hardware
+
+In order to program a robot, you first need to understand the physical hardware that you are working with, and particularly the electrical components.
+
+For this guide, we’ll be using *CANSparkMax motor controllers* paired with *NEO motors*.
 
 - **CANSparkMax:** A motor controller developed by REV Robotics designed specifically for controlling brushless motors like the NEO.
 - **NEO Motor:** A brushless motor designed by REV Robotics.
 
-#### Drivetrain Motor Setup
+Let's look at what a differential drivetrain might look like:
 
 <img src="https://docs.wpilib.org/en/stable/_images/layout.jpg">
 
-- Here, we can see that there are 2 motors plugged into each side of the drivetrain.
+The black cylinders between the two center wheels are motors. As you can see, there there are 2 motors attached to each side of the drivetrain.
 
-#### 2. Creating the Drive Subsystem
+These motors are also connected via wires to motor controllers, which are connected ultimately to a roboRIO (gray square thing on the top). The roboRIO is a piece of hardware which connects and interfaces with all of the sensors and actuators on the robot (sensors collect data, actuators move). We can control those sensors and actuators by running code on the RIO.
+- Remember `Ports.java`? Well, in order to control our electronics and for the RIO to send them signals, we need to know what physical ports our components are connected to. That's what we mean when we say that this file stores the ports for our components.*
 
-We’ll create a drive folder with a Drive subsystem that extends `SubsystemBase` and contains the logic to control the motors and the drivetrain.
+The roboRIO is connected to a radio (the white rectangle to the right of the RIO), which is how we generally connect our computers to the RIO.
+## Creating the Drive Subsystem
 
-#### DriveConstants.java
+Our first step will be to create a drive folder for everything related to the Drive subsystem. It will include:
+- a Drive.java subsystem that extends `SubsystemBase` and contains the logic to control the motors and the drivetrain.
+- DriveConstants.java file containing the whatever constants we will need for our subsystem (i.e. the dimensions of the drivetrain).
 
-In `DriveConstants.java`, we will define all the constants needed for our drivetrain, such as physical values of the drive.
-
-Your files should look something like this:
+Once you do that, your files should look something like this:
 
 ![file order](https://github.com/user-attachments/assets/d37980f3-c1d6-4a9a-9e5f-66c0163496d7)
 
-#### Drive.java
+### Drive.java
 
-This is where the main drivetrain logic will reside. We're going to start by making all of our 4 motors using [`CANSparkMax`](https://codedocs.revrobotics.com/java/com/revrobotics/cansparkmax) and assigning a port value which is stored in the `Ports.java` file. For now, you can assign any value to these ports. However, if you want to test your drive in real life, you'd need to make sure each motor is assigned to its actual port value. Make sure to make the motor type brushless as all sparks are brushless.
+This file will contain all of our hardware, and the logic to control it. 
 
+#### Ports
+
+In our drive class, we will make all of our 4 motors using `CANSparkMax` objects. When you create a `CANSparkMax` object, you give it a port and a motor type (don't worry about what the motor type means for now). With that port, it is able to interface with the motor connected to the port through the RIO.
+
+Before we create our motor objects, let's add our ports to `Ports.java`.
+
+Currently, the file should look like this:
 ```java
-public class Drive extends SubsystemBase {  
-  
-  private final CANSparkMax leftLeader = new CANSparkMax(Drivetrain.FRONT_LEFT, MotorType.kBrushless);
-  private final CANSparkMax leftFollower = new CANSparkMax(Drivetrain.BACK_LEFT, MotorType.kBrushless);
-  private final CANSparkMax rightLeader = new CANSparkMax(Drivetrain.FRONT_RIGHT, MotorType.kBrushless);
-  private final CANSparkMax rightFollower = new CANSparkMax(Drivetrain.BACK_RIGHT, MotorType.kBrushless);
+package robot;
+
+public final class Ports {
+  // TODO: Add and change all ports as needed.
+  public static final class OI {
+    public static final int OPERATOR = 0;
+    public static final int DRIVER = 1;
+  }
 }
 ```
 
-Notice how we named the motors leaders and followers relative to their side. This is because instead of constantly calling all four of the motors, we can have one motor follow another on both sides. Meaning we now only have to call 2 motors, one from each side. This is done by using the `follow` method as seen below.
+We structure our ports by creating a new static class within the `Ports` class for each subsystem (or in the case of `OI`, that's for the XBox controllers). So create a new class for `Drive` ports!
 
-The `follow` method comes from the `CANSparkMAX` class, as the motors we're controlling are instances of that class.
+```java
+package robot;
+
+public final class Ports {
+  // TODO: Add and change all ports as needed.
+  public static final class OI {
+    public static final int OPERATOR = 0;
+    public static final int DRIVER = 1;
+  }
+
+  public static final class Drive {
+    public static final int RIGHT_LEADER = 2;
+    public static final int RIGHT_FOLLOWER = 3;
+    // etc
+  }
+}
+```
+
+As we said earlier, there will be four motors total, two on the right and two on the left. We're going to call one on each side the leader, and one the follower. In the example code I added ports for the motors on the right. Make sure you add for the ones on the left as well! You can assign any values that you want, as long as they are all different (and if you ever want to test this on a real drive train, you'll need to make sure the ports are accurate).
+
+#### Motor instantiation
+
+Now, let's go back to `Drive.java` and make our motor objects! We'll use the ports form `Ports.java`, and the motor type for all of our motors will be `MotorType.kBrushless`.
+
+To do this, you will first need to import `MotorType`, `Ports`, and `CanSparkMAX`. You will also have to import `SubsystemBase` so that you can make `Drive` into a Subsystem:
+
+```java
+package robot.drive;
+
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import robot.Ports;
+
+public class Drive extends SubsystemBase {
+
+}
+```
+
+We gave you all the imports for this, but in the future, a trick you can use is to start writing the thing you need to import and then press tab. So, in this case, if you were to start writing `Drive extends SubsystemBase`, but didn't finish the last word, `SubsystemBase` would come up as a suggestion:
+![](/images/subsystembase.png)
+If you then press tab, it will finish the word for you and *actually import SubsystemBase*!
+
+Okay, now we're ready to make our motors:
+
+```java
+public class Drive extends SubsystemBase {  
+  private final CANSparkMax leftLeader = new CANSparkMax(Ports.Drive.LEFT_LEADER, MotorType.kBrushless);
+}
+```
+
+Below the instantiation of `leftLeader`, make variables for all the other motors! (`leftFollower`, `rightLeader`, and `rightFollower`).
+#### Motor configuration
+
+For our motors to work the way we want them to, we'll need to configure some specific settings. This will happen inside of our constructor, and we will be using various methods of the `CANSparkMax` class.
+
+The first thing that we'll do is reset all our sparks to a default state, clearing any old configurations that they may have had:
 
 ```java
   public Drive() {
-    rightfollower.follow(rightLeader);
-    leftfollower.follow(leftLeader);
-
-    leftLeader.setInverted(true);
-
-    rightLeader.restoreFactoryDefaults();
-    leftLeader.restoreFactoryDefaults();
+    for (CANSparkMax spark : List.of(leftLeader, leftFollower, rightLeader, rightFollower) {
+	    spark.restoreFactoryDefaults();
+    }
   }
 ```
 
-`setInverted` allows motors on opposite sides of the drivetrain to spin in opposite directions to move the robot forward or backward. By default, if both motors are given the same positive value, they will spin in the same direction. This is because, by design, the two sides are attached in opposite directions, requiring an inversion in the first place. 
+Next, we're going to set something called the idle mode of our motors, which essentially determines the behavior of the motor when it's not being told to do anything. The options are:
+- `kBrake`: stop as fast as possible
+- `kCoast`: don't provide any voltage and just let it spin freely
 
-`restoreFactoryDefaults` resets motors to a default state, clear of any previous settings. This allows for consistent performance and preventing conflicts or errors with old configurations.
+For a drivetrain, we don't want our robot to just keep drifting when we stop driving, so we want all our motors on brake mode (make sure you import `CANSparkBase.IdleMode`):
 
-Now to actually make a drive method that will allow the motors to run, we will pass in our speeds to the motors. The `leftSpeed` and `rightSpeed` are specific values that tell the motors how fast to go. These will be provided through the driver's controller.
+```java
+  public Drive() {
+    for (CANSparkMax spark : List.of(leftLeader, leftFollower, rightLeader, rightFollower) {
+	    spark.restoreFactoryDefaults();
+	    spark.setIdleMode(IdleMode.kBrake);
+    }
+  }
+```
+
+For the next part, we're going to need to understand why we're calling our motors leaders and followers. If you think about it, for a differential drive to work all of the wheels on one side need to be moving at the same speed. The point of having two motors isn't actually to control two wheels *separately*. Instead, it's to have enough power to control two wheels *together*.
+
+So that means that we always want the two motors on the right and the two motors on the left to be moving the same way. We accomplish this by telling one motor on each side (the *follower* to follow the other one (the *leader*). That way we only have to control the two leaders, and the followers will just copy them. We can do this using the `follow` method that of the `CANSparkMax` class.
+
+```java
+  public Drive() {
+      for (CANSparkMax spark : List.of(leftLeader, leftFollower, rightLeader, rightFollower) {
+	    spark.restoreFactoryDefaults();
+	    spark.setIdleMode(IdleMode.kBrake);
+    }
+    
+    rightFollower.follow(rightLeader);
+    leftFollower.follow(leftLeader);
+  }
+```
+
+Now, for our last setting, take a look back at the image of the drivetrain where you can see all of the electronics. Notice how the motors on the left are facing left, and the motors on the right are facing right.
+
+By default, applying a positive voltage to the motors will make them go counterclockwise. So let's say that we want the robot to move straight, and so we apply the same positive voltage to both sides, and all of the motors move counterclockwise. Try to visualize what would happen.
+
+Because the wheels are facing opposite directions, clockwise doesn't mean the same thing for the two sides. The left wheels will end up going backwards, and the right ones will go forwards, and instead of going straight, the whole drivetrain will rotate counterclockwise.
+
+That's pretty confusing. Ideally, we'd like positive to mean forward for both sides. So in the code, we invert the left side. This means that it will negate every value we give it, so if we give it a positive voltage it will actually rotate counterclockwise. We do this using the `setInverted` method.
+
+```java
+  public Drive() {
+      for (CANSparkMax spark : List.of(leftLeader, leftFollower, rightLeader, rightFollower) {
+	    spark.restoreFactoryDefaults();
+	    spark.setIdleMode(IdleMode.kBrake);
+    }
+    
+    rightFollower.follow(rightLeader);
+    leftFollower.follow(leftLeader);
+
+	leftLeader.setInverted(true);
+  }
+```
+
+#### Drive method
+
+Now that our motors are configured, we can actually make a drive method that will allow the motors to run! This method will take in a `leftSpeed` and a `rightSpeed` which we will pass to our motors.
+
+*Side note: calling these values speed is actually a misnomer, since they specify both speed and direction, but using the terms interchangeably is pretty standard practice in this context*
+
+We will be using the `set` method of the `CANSparkMax` class, which takes a number between -1 and 1, where 1 is full speed forwards, 0 is no speed, and -1 is full speed backwards. So we're actually giving percentages of our max speed, not the speed itself.
 
 ```java
   public void drive(double leftSpeed, double rightSpeed) {
@@ -107,7 +276,6 @@ Now to actually make a drive method that will allow the motors to run, we will p
     rightLeader.set(rightSpeed);
   }
 ```
-Do keep in mind that the values returned by the controller are going to be between -1 and 1. Any negative value allows us to go in the opposite direction. 
 #### Controlling the drivetrain
 
 Start off by making a CommandXboxController for driving. This will require a port value which we also store in ports.
