@@ -6,6 +6,8 @@ This project is going to cover how to make both a basic and an advanced differen
 ## Prerequisites
 
 - Comfortable with all the [goals](/projects/intro-to-programming/Java102.md#goals) and [prerequisites](/projects/intro-to-programming/Java102.md#prerequisites) of Java102.
+- Comfortable with [functional interfaces & lambdas](/reference-sheets/AdvancedJava.md#functional-interfaces-lambdas)
+- Familiarity with types of [sensors](/reference-sheets/Sensors.md)
 - [WPILib installed](/reference-sheets/EnvironmentSetup.md#wpilib)
 ## Goals
 
@@ -360,7 +362,7 @@ We set a subsystem's default command using `subsystem.setDefaultCommand(command)
 Now, if you had a real robot to test on, it would drive!! But knowing that would probably be more exciting if you could see and drive around some sort of simulation. Unfortunately, we can't do that yet because to simulate the movement of the robot, we would need an estimate for where the robot is on the field, which we don't have yet. So let's work on getting that.
 ### Wheel Odometry Integration
 
-Brush up on the [sensors guide](github.com/SciBorgs/SciGuides/blob/main/reference-sheets/Sensors.md) if you're uncertain what encoders and gyros are.
+Brush up on the [sensors guide](/reference-sheets/Sensors.md) if you're uncertain what encoders and gyros are.
 
 #### Adding Encoders
 
