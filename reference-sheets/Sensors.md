@@ -20,7 +20,7 @@ Has a set zero point. Will always know where it is, even between code deploys.
 
 It measures the rate of rotation of whatever plane it is on (and sometimes its relative axes). Usually found on the base of the drivetrain.
 
-## [Beambreaks]()
+## Beambreaks
 
 Detect if something has passed through them. Two key components: a part that shoots a ray of light, and a receiver. When the receiver no longer detects light, a signal is returned.
 

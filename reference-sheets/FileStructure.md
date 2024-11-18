@@ -33,4 +33,4 @@ As you go through a project, you will create more directories and files within `
 Next up, we'll go over `test/java/robot`. This directory only has one file currently:
 - `RobotTest.java`: If you look at the contents of this file, it is a test class with a single test called `initialize`. All that this test does is create a new instance of `Robot.java`. So this test will only fail if initializing the robot throws an error. This tiny little test is actually very important, because it will catch if there is a `NullPointerException` in our code (if we try to use something that isn't initialized).
 
-Throughout a project, You will add files to `test/java/robot` to test the new classes that you create in `main/java/robot`. And you'll be testing more specific behavior than `RobotTest.java` does!
+In a project, you will add files to `test/java/robot` to test the new classes that you create in `main/java/robot`. And you'll be testing more specific behavior than `RobotTest.java` does!

@@ -25,7 +25,7 @@ Simple list of all the most commonly used commands.
 #### Cloning
 `git clone <repository-link | repository-name> [repository-folder]`
 
-Copies the repo (repository) from github and puts it in a folder on your computer. It will put it in a folder with the name of the repository unless you specify a folder afterwards.
+Copies the repo (repository) from github and puts it in a folder on your computer. It will put it in a folder with the name of the repository unless you specify a folder afterwards. Note that the default place of creation (no folder location arg) is the terminal's working directory.
 
 
 #### Committing
@@ -79,3 +79,32 @@ Creates that branch and moves you to it. This is equivalent to:
 `git merge <branch-to-pull-changes-from>`
 
 Merges a branch into your branch. That is, changes from the specified branch will be added to your branch, and not the other way around.
+
+#### Avoiding merge conflicts
+“pull before you push”
+
+This should be apparent to everybody on the team at this point. If you’ve pulled, and are about to push changes after another team member has pushed to the repo while you were still editing, you’d definitely want to keep your version up to date before pushing any more changes.
+
+#### MERGE CONFLICT?
+Let’s say that you’re editing a repo in your local remote, but origin gets updated while you’re still writing. Better yet, it just so happens that the updated files include the file that you’re working on right now! Try to pull, and then you’re thrown a merge conflict.
+
+To deal with the merge conflict, open up bash and navigate to the repository’s directory. Then, run
+
+`git status`
+
+
+to bring up a list of files affected by merge conflicts. Open those files, and in each scroll until you reach a construction like:
+
+```
+<<<<<<< HEAD
+...
+	(Version in origin)
+...
+=======
+...
+	(Your local version)
+...
+>>>>>>> (Your version/branch name)
+```
+
+Keep what you want to keep and delete what you want to delete within those two blocks of code, and then delete the markers <<<<<<< …, =======, and >>>>>>> …. Finally, stage your changes, commit, and then push.

@@ -40,7 +40,7 @@ I used the passive voice for these explanations, but just to be clear, all of th
 So, just to summarize the progression:
 1. A command `c` is scheduled
 2. `c.initialize()` is called
-3. Each tic until the command is over:
+3. Each tick until the command is over:
 	1. `c.execute()` is called
 	2. `c.isFinished()` is called, and if it returns `true` the command is over
 4. `c.end(interrupted)` is called
