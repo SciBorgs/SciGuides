@@ -39,94 +39,16 @@ Make sure to clone the project on your computer inside of your code folder!
 
 ## Command Based programming
 
-Robot code is structured using *subsystems* and *commands* within FRC's *command-based framework*. This architecture simplifies robot programming by breaking down complex tasks into smaller, manageable pieces:
-
-- [*Subsystems*](https://docs.wpilib.org/en/stable/docs/software/commandbased/subsystems.html): Represent individual components or systems on the robot, like the drivetrain or arm mechanism.
-
-- [*Commands*](https://docs.wpilib.org/en/stable/docs/software/commandbased/commands.html): Actions that the robot can perform, such as driving forward or rotating. These actions are taken through controlling subsystems. If a command uses a subsystem, we say that it *requires* that subsystem. Each subsystem can only have one command running on it at a time.
+Robot code is structured using *subsystems* and *commands* within FRC's *command-based framework*. This architecture simplifies robot programming by breaking down complex tasks into smaller, manageable pieces. 
 
 All of your Subsystem classes must extend `SubsystemBase`. (Commands extend `Command`, but you won't really be writing full Command classes).
 
 Running commands and enforcing the one-command-per-subsystem rule is managed by the `CommandScheduler`. Essentially, if you want to run a command, you tell the `CommandScheduler`, and then each time the code runs the `CommandScheduler` goes through all the `Commands` that it has been told to run, and runs them.
 
-### Command types of commands
+Please read the following sheets before moving forward:
+- [Subsystems and Commands]()
+- [File Structure]()
 
-Generally when we create commands, we do so using preexisting types of commands, and a set of helpful static methods in a class called `Commands` that return Commands. (Theoretically, you could also make a whole class for each command, but that's almost never a good idea).
-
-Before we talk about types of commands, let's quickly go over what the technical definition of a Command is. The class `Command` is what all Command classes inherit from, and it has four primary methods that different Command classes override in order to define their behavior:
-- `public void initialize()`
-	- Called when the command is started
-- `public void execute()`
-	- Called every tick (every 0.02 seconds) while the command is running
-- `public void end(boolean interrupted)`
-	- Called when the command is ended
-	- Commands can end either because their end condition is met or because they are interrupted by another command on the same subsystem. `end` takes whether or not the command has been interrupted as an input, so that you can change the end behavior of a command based on whether it reached its end condition.
-- `public boolean isFinished()`
-	- This is the end condition for a command. It is called each tick after a command has been executed, and if it is `isFinished` returns `true`, the command is un-scheduled and `end(false)` is called (`false` because the command has not been interrupted).
-
-I used the passive voice for these explanations, but just to be clear, all of these methods are being called by the `CommandScheduler`, which is in turn called periodically by `Robot`.
-
-So, just to summarize the progression:
-1. A command `c` is scheduled
-2. `c.initialize()` is called
-3. Each tick until the command is over:
-	1. `c.execute()` is called
-	2. `c.isFinished()` is called, and if it returns `true` the command is over
-4. `c.end(interrupted)` is called
-
-Commands also have a set of subsystems that they require.
-
-Now, let's go over a two of the most common types of Commands, how they work, and how to make them:
-- Run command (`RunCommand`)
-	- `isFinished()` always returns `false`, so it keeps on running forever until it is interrupted.
-	- Constructor: `RunCommand(Runnable toRun, Subsystem... requirements)`
-		- toRun will be run in `execute()`
-		- `requirements` is all of the subsystems that the command requires. The `...` means that you can just add as many as you want.
-	- How to create using `Commands`: `Commands.run(Runnable action, Subsystem... requirements)`
-	- Example: `Command toToOrigin = Commands.run(() -> drive.goTo(0, 0), drive)`
-- Run once command (`InstantCommand`)
-	- `isFinished` always returns `true`, so it stops immediately after just one execution
-	- How to create using `Commands`: `Commands.runOnce(Runnable action, Subsystem... requirements)`
-	- Example: `Command stop = Commands.runOnce(drive::stop, drive)`
-
-We then build on commands like these using various methods that allow us to combine or modify different commands.
-
-For a deeper dive into command-based programming, check out [this guide](https://docs.wpilib.org/en/stable/docs/software/commandbased/what-is-command-based.html).
-## File Structure
-
-All of the source code for the project is in the [src](https://github.com/SciBorgs/SciGuidesRobotBase/tree/main/src) folder. Within that folder, there is the following directory structure:
-
-![](/images/sciguides-robot-base-file-tree-dirs.png)
-
-There are two top level directories under `src`: `main`, for code that runs on the robot, and `test`, for unit tests.
-
-We're going to ignore the `deploy` directory, since it isn't very relevant to us right now. That leaves us with the contents of `main/java` and `test/java` (both of which contain Java files). The robot code in `main/java` is split into a `lib` folder, which contains library code that is not specific to one particular robot, and a `robot` folder, which contains the code to control a particular robot. Classes in the robot folder generally use lib classes.
-
-You may notice that the `test/java` directory actually has the same structure. This is because our `test` folder aims to test code in `main`, and so inside of `test` we mirror the structure of `main`. If we are a file `Foo.java` at the address `main/java/lib/Foo.java`, our test for that file would be at the address `test/java/lib/FooTest.java`.
-
-Now, let's look at a tree that includes the actual files as well as directories:
-
-![](/images/sciguides-robot-base-file-tree.png)
-
-There's a lot here, but we'll go through it piece by piece.
-
-One thing you might notice is that the `lib` folders are very populated. That's because one of the main points of using this template is that it has library code from the SciBorgs, which you can use in your project. You will not be writing code in the `lib` folders, but you will be using the utilities from those folders. But you don't have to worry about that right now, we'll introduce specific library code when it is relevant.
-
-So we're just going to focus on the contents of the `robot` directories. Let's start with `main/java/robot`:
-- `Constants.java`: this is a file containing constant values that we use in our code. It can have things like field measurements, robot dimensions, etc.
-	- Constant names are written in all caps with underscores between words (i.e. MAX_SPEED)
-	- Currently, there is one constant in this file, called PERIOD (the value is 0.2 seconds). The PERIOD or tick rate represents how often the code is run. In this case, the roboRIO runs our code every 0.2 seconds.
-- `Main.java`: the `main` function in this file is what is actually run when the code starts up. You basically don't have to think about it at all.
-- `Ports.java`: this is the file where we store the ports of our electrical components. More on this soon!
-	- Since you won't be connecting to a physical robot for this project, you'll be making up random port numbers.
-- `Robot.java`: this is the file which the entire robot code really centers upon. This file will contain instances of all of the subsystems. It contains the Xbox controllers. It runs the CommandScheduler. In short, `Robot.java` is where everything comes together. In fact, all that the `Main.java` file really does is start up `Robot.java`.
-
-As you go through this project, you will create more directories and files within `main/java/robot` for your robot code.
-
-Next up, we'll go over `test/java/robot`. This directory only has one file currently:
-- `RobotTest.java`: If you look at the contents of this file, it is a test class with a single test called `initialize`. All that this test does is create a new instance of `Robot.java`. So this test will only fail if initializing the robot throws an error. This tiny little test is actually very important, because it will catch if there is a `NullPointerException` in our code (if we try to use something that isn't initialized).
-
-You will over this project add files `test/java/robot` to test the new classes that you create in `main/java/robot`. And you'll be testing more specific behavior than `RobotTest.java` does!
 # Understanding the hardware
 
 In order to program a robot, you first need to understand the physical hardware that you are working with, and particularly the electrical components.
@@ -262,7 +184,7 @@ For a drivetrain, we don't want our robot to just keep drifting when we stop dri
 
 For the next part, we're going to need to understand why we're calling our motors leaders and followers. If you think about it, for a differential drive to work all of the wheels on one side need to be moving at the same speed. The point of having two motors isn't actually to control two wheels *separately*. Instead, it's to have enough power to control two wheels *together*.
 
-So that means that we always want the two motors on the right and the two motors on the left to be moving the same way. We accomplish this by telling one motor on each side (the *follower* to follow the other one (the *leader*). That way we only have to control the two leaders, and the followers will just copy them. We can do this using the `follow` method that of the `CANSparkMax` class.
+So that means that we always want the two motors on the right and the two motors on the left to be moving the same way. We accomplish this by telling one motor on each side (the *follower*) to follow the other one (the *leader*). That way we only have to control the two leaders, and the followers will just copy them. We can do this using the `follow` method that of the `CANSparkMax` class.
 
 ```java
   public Drive() {
@@ -611,7 +533,7 @@ Let's get started by making a field:
   @Log.NT private final Field2d field2d = new Field2d();
 ```
 
-Read up on the [sim reference sheet]() to see when and what we should be logging through NT.
+Read up on the [sim reference sheet](/reference-sheets/Simulation.md) to see when and what we should be logging through NT.
 
 One other thing we're going to log is going to be our position on the field. Simply use the annotation on the `getPose` method:
 
@@ -659,12 +581,10 @@ Lastly, to control the differential drive properly, the joystick will require to
 
 # Control Theory
 
-Before we get started, please make sure you have read the [Control Theory reference sheet](github.com/SciBorgs/SciGuides/blob/main/reference-sheets/Control-theory.md) as we are going to assume you are aware of what PID and Feedforward generally do.
-
+Before we get started, please make sure you have read the [Control Theory reference sheet](/reference-sheets/Control-theory.md) as we are going to assume you are aware of what PID and Feedforward generally do.
 #### Why Control Theory Matters for Driving
 
 Before we dive into the code, let’s touch on why control theory is essential. For a robot to move precisely and respond accurately to commands, simply sending raw motor commands isn’t enough. We need to ensure that the robot can handle changes in conditions, like different terrains or obstacles, while still following the desired path. Control theory helps us achieve this by using techniques like PID and feedforward control to manage motor responses.
-
 #### Setting Up PID Controllers
 
 Let’s start by setting up the PID controllers. These controllers will help keep the motor speeds on track by constantly adjusting based on the difference between the desired and actual speeds. 
@@ -675,7 +595,6 @@ Let’s start by setting up the PID controllers. These controllers will help kee
   private final PIDController rightPIDController =
       new PIDController(PID.P, PID.I, PID.D);
 ```
-
 #### Adding Feedforward Control
 
 Next, we incorporate feedforward control. While PID handles errors after they occur, feedforward focuses on already known phyiscal disturbances like friction of a system to manipulate its inputs.
@@ -698,7 +617,6 @@ Next, we incorporate feedforward control. While PID handles errors after they oc
     public static final double V = 3;
   }
 ```
-
 #### Integrating PID and Feedforward
 
 Now, let’s see how these two control mechanisms work together. We’ll look at the drive method, which is responsible for controlling the motor voltages.
@@ -745,14 +663,11 @@ Finally, we combine the outputs and send them to the motors:
 ```
 
 Here, the final motor voltage is calculated by adding the PID and feedforward outputs together. These voltages are then sent to the motors, controlling the movement of the robot.
-
 ## Unit Testing & System Checks
 
 #### Unit Tests
 
 Think of unit tests as a way to check that each small piece of your code—like a motor or sensor—is functioning properly on its own before you start putting them all together. It's much easier to fix problems when they’re isolated to a single component than when they’re all tangled up in the full system.
-
-**Make sure to check out the [unit test guide](github.com/SciBorgs/SciGuides/blob/main/reference-sheets/UnitTest.md) for how to setup unit tests.**
 
 Let’s talk about the tests for our drivetrain. We'll start it by creating a `DriveTest.java` file in the robot folder of the tests folder.
 
@@ -792,10 +707,9 @@ Then we call our `getPose()` method and compare it to a new Pose2d, which return
     assertNotEquals(new Pose2d(), drive.getPose());
   }
 ```
-
 #### Running the tests
 
-Again, make sure to check out the [unit test guide](github.com/SciBorgs/SciGuides/blob/main/reference-sheets/UnitTest.md) on this as it also talks about writing and running tests. To actually see if the tests are valid, open the WPILib command palette (top right corner logo) and search `Test Robot Code` and press enter. After it runs, it will show you the results of all your tests in the terminal.  
+To actually see if the tests are valid, open the WPILib command palette (top right corner logo) and search `Test Robot Code` and press enter. After it runs, it will show you the results of all your tests in the terminal.  
 
 An alternative to this is using the *Test Runner* extension from vscode:
 
@@ -834,10 +748,9 @@ public class RobotTest {
 Unit tests should be made for all key subsystems and are a great way to see if the logic behind the code actually makes sense and works. You should also try to test all parts of the subsystems to cover everything.  
 
 The final type of assert most commonly used in tests is the `assertEqual`. This simply tests if two values are the same. Both in assertEqual and assertNotEqual, you can pass in a tolerance value that will pass the test if the two different values are within the tolarence. This is usually done by having a `DELTA` value set to your prefered tolarence.
-  
 #### System Checks
 
-In addition to unit tests, it’s equally important to perform [system checks](github.com/SciBorgs/SciGuides/blob/main/reference-sheets/SystemChecks.md) to ensure the entire robot is operating as expected in real-world conditions. Think of system checks as a quick health check before it hits the field. You want to make sure that everything is working as it should—motors, sensors, and all. This is usually done in real life and it's a good habit to run full robot system checks before your matches.
+In addition to unit tests, it’s equally important to perform system checks to ensure the entire robot is operating as expected in real-world conditions. Think of system checks as a quick health check before it hits the field. You want to make sure that everything is working as it should—motors, sensors, and all. This is usually done in real life and it's a good habit to run full robot system checks before your matches.
 
 Here is a simple example of what a drive systems check might look like. The logic is similar to unit tests as we will run a part of the drive before checking to see if it meets expectations. Remember to import the SciBorgs' testing libraries and not the built-in WPILib class. Note that this is created in the subsystem because of easy access to internal methods to check conditions.
 
@@ -871,7 +784,6 @@ Step 3: Combine the command and assertions into a `Test`
     Set<Assertion> assertions = Set.of(leftMotorCheck, rightMotorCheck);
     return new Test(testCommand, assertions);
 ```
-
 #### Running systems check
 
 To run the systems check, we use the `Test` mode of the robot. To get started, we need to make a command that's going to run whenever we enable `Test` mode using the built-in `test()` trigger. All of this is done in `Robot.java`. Keep in mind that this method would be responsible for the systems checks of all your subsystems, not just drive.
@@ -911,14 +823,12 @@ In Faults and Total Faults, we can see that we have indeed ran our checks and si
 ![elastic faults](https://github.com/user-attachments/assets/0442431c-b250-43bb-a9de-e89285fc71dc)
 
 Same with Unit Tests, it's good to have system checks for all runnable parts of the robot to ensure the robot is fully ready for the game. As a notice, please make sure to run system checks while the robot is **ON** the robot cart.
-
-
 ## Bonus
-If you don't like the two-handed control of a differential drive, take a shot at an arcade drive. Use the `DifferentialDrive` class from WPILib and make use of its `arcadeDrive` methods. An arcade drive functions like your generic video game character. The y axis of your left joystick can be used for forward/backward movement and the x axis for right/left movement. However, for our case the right and left would mean turning. 
 
+If you don't like the two-handed control of a differential drive, take a shot at an arcade drive. Use the `DifferentialDrive` class from WPILib and make use of its `arcadeDrive` methods. An arcade drive functions like your generic video game character. The y axis of your left joystick can be used for forward/backward movement and the x axis for right/left movement. However, for our case the right and left would mean turning. 
 ## Continuing on
 
-Once you feel ready for the next step, get started on the ArmBot project. It's going to have a different code structure than we discussed, but many of the ideas still remain. You can get started [here](github.com/SciBorgs/SciGuides/blob/main/projects/BasicArmBot.md).
+Once you feel ready for the next step, get started on the ArmBot project. It's going to have a different code structure than we discussed, but many of the ideas still remain. You can get started [here](/projects/BasicArmBot.md).
 
 Sneak peek:
 
