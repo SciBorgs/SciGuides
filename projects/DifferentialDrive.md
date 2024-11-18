@@ -65,21 +65,21 @@ Let's look at what a differential drivetrain might look like:
 The black cylinders between the two center wheels are motors. As you can see, there there are two motors attached to each side of the drivetrain.
 
 These motors are also connected via wires to motor controllers, which are connected ultimately to a roboRIO (gray square thing on the top). The roboRIO is a piece of hardware which connects and interfaces with all of the sensors and actuators on the robot (sensors collect data, actuators move). We can control those sensors and actuators by running code on the RIO.
-- Remember `Ports.java`? Well, in order to control our electronics and for the RIO to send them signals, we need to know what physical ports our components are connected to. That's what we mean when we say that this file stores the ports for our components.*
+- Remember `Ports.java`? Well, in order to control our electronics and for the RIO to send them signals, we need to know what physical ports our components are connected to. That's what we mean when we say that this file stores the ports for our components.
 
-The roboRIO is connected to a radio (the white rectangle to the right of the RIO), which is how we generally connect our computers to the RIO.
+The RoboRIO is connected to a radio (the white rectangle to the right of the RIO), which is how we generally connect our computers to the RIO.
 # Drive Folder
 
 Our first step will be to create a drive folder for everything related to the Drive subsystem. It will include:
-- a Drive.java subsystem that extends `SubsystemBase` and contains the logic to control the motors and the drivetrain.
-- DriveConstants.java file containing the whatever constants we will need for our subsystem (i.e. the dimensions of the drivetrain).
+- a `Drive.java` subsystem that extends `SubsystemBase` and contains the logic to control the motors and the drivetrain.
+- `DriveConstants.java`, containing whatever constants we will need for our subsystem (i.e. the dimensions of the drivetrain).
 
 Once you do that, your files should look something like this:
 
 ![file order](https://github.com/user-attachments/assets/d37980f3-c1d6-4a9a-9e5f-66c0163496d7)
 # Ports
 
-In our drive class, we will make all of our 4 motors using `CANSparkMax` objects. When you create a `CANSparkMax` object, you give it a port and a motor type (don't worry about what the motor type means for now). With that port, it is able to interface with the motor connected to the port through the RIO.
+In our `Drive.jav` class, we will make all of our 4 motors using `CANSparkMax` objects. When you create a `CANSparkMax` object, you give it a port and a motor type (don't worry about what the motor type means for now). With that port, it is able to interface with the motor connected to the port through the RIO.
 
 Before we create our motor objects, let's add our ports to `Ports.java`.
 
@@ -116,7 +116,9 @@ public final class Ports {
 }
 ```
 
-As we said earlier, there will be four motors total, two on the right and two on the left. We're going to call one on each side the leader, and one the follower. In the example code I added ports for the motors on the right. Make sure you add for the ones on the left as well! You can assign any values that you want, as long as they are all different (and if you ever want to test this on a real drive train, you'll need to make sure the ports are accurate).
+As we said earlier, there will be four motors total, two on the right and two on the left. We're going to call one on each side the leader, and one the follower. 
+
+In the example code I added ports for the motors on the right. Make sure you add for the ones on the left as well! You can assign any values that you want, as long as they are all different (and if you ever want to test this on a real drive train, you'll need to make sure the ports are accurate).
 # Drive Subsystem
 
 Now let's go back to `Drive.java` and write our subsystem!
@@ -124,7 +126,7 @@ Now let's go back to `Drive.java` and write our subsystem!
 
 First off, we have to actually make our motor objects. We'll use the ports form `Ports.java`, and the motor type for all of our motors will be `MotorType.kBrushless`.
 
-To do this, you will first need to import `MotorType`, `Ports`, and `CanSparkMAX`. You will also have to import `SubsystemBase` so that you can make `Drive` into a Subsystem:
+To do this, you will first need to import `MotorType`, `Ports`, and `CanSparkMax`. You will also have to import `SubsystemBase` so that you can make `Drive` into a Subsystem:
 
 ```java
 package robot.drive;
@@ -223,7 +225,7 @@ That's pretty confusing. Ideally, we'd like positive to mean forward for both si
 
 Now that our motors are configured, we can actually make a drive method that will allow the motors to run! This method will take in a `leftSpeed` and a `rightSpeed` which we will pass to our motors.
 
-*Side note: calling these values speed is actually a misnomer, since they specify both speed and direction, but using the terms interchangeably is pretty standard practice in this context*
+*Side note: calling these values speed is actually a misnomer, since they specify both speed and direction, but using the terms interchangeably is pretty standard practice in this context.*
 
 We will be using the `set` method of the `CANSparkMax` class, which takes a number between -1 and 1, where 1 is full speed forwards, 0 is no speed, and -1 is full speed backwards. So we're actually giving percentages of our max speed, not the speed itself.
 
@@ -236,11 +238,11 @@ We will be using the `set` method of the `CANSparkMax` class, which takes a numb
 
 ## Drive Command Factory
 
-You might notice that the `drive` method above is private. But that means that we can't actually tell our robot to drive from `Robot.java`! So, why isn't it public? Well, when we tell subsystems to move, we generally always want that to be done through a Command, that way we can enforce the one-command-per-subsystem rule. So we actually don't want anybody outside of `Drive` to be directly calling this `drive` method.
+You might notice that the `drive` method above is private. But that means that we can't actually tell our robot to drive from `Robot.java`! So, why isn't it public? Well, when we tell subsystems to move, we generally always want that to be done through a `Command`, that way we can enforce the one-command-per-subsystem rule. So we actually don't want anybody outside of `Drive` to be directly calling this `drive` method.
 
 Instead, we're going to write a *command factory*, which is just a fancy way of saying a method that returns a command. What specifically do we want our command to do? Well, our primary method of driving will be using inputs from a controller. We have an Xbox controller in `Robot.java` called `driver`, and the `leftSpeed` and `rightSpeed` values are actually going to be the y values of the left and right joysticks on that controller.
 
-So our `drive` method should return a Command that drives the robot based on inputs from a controller. Since the controller is in `Robot.java`, not `Drive` (it is not part of the Drive subsystem), our method will need to take as inputs some way of retrieving the values from the controller.
+So our `drive` method should return a `Command` that drives the robot based on inputs from a controller. Since the controller is in `Robot.java`, not `Drive` (it is not part of the Drive subsystem), our method will need to take as inputs some way of retrieving the values from the controller.
 
 Specifically, we're going to take two `DoubleSuppliers`, one for the left velocity and one for the right velocity. In `Robot.java`, we'll call our method and give it methods to get the left and right y values on the Xbox controller. So, here's our method header:
 
@@ -359,16 +361,16 @@ Let’s add the AnalogGyro to the existing `Drive.java` file:
 ```
 ### Resetting the Gyro
 
-At the start of the match, it's important to reset the gyro so that your heading starts at 0. We'll do that in the constructor of `Drive`.
+At the start of the match, it's important to reset the gyro so that your heading starts at 0. We'll do that in the constructor of `Drive.java`.
 
 ```java
   gyro.reset();
 ```
 
- You also might reset the gyroscope anytime you need to ensure accurate heading data. Sometimes drift or skips might cause the measured angel to become less accurate over the course of a match, and a reset is a way to correct for that. 
+ You should reset the gyroscope anytime you need to ensure accurate heading data. Sudden robot movements, collisions, or physical rotation of the surface it is on can cause drift or skips over time, resulting in an incorrectly measured angle over the course of a match. Resets can correct for this.
 ## Adding Odometry
 
-Using the encoders and gyro we just made, we can start actually estimating our position. We do this using a WPILib class called [DifferentialDriveOdometry](https://docs.wpilib.org/en/stable/docs/software/kinematics-and-odometry/differential-drive-odometry.html), which helps estimate the position and angle on the field of a differential drive bot, using encoder and gyro values. Let's start by declaring a `differentialDriveOdometry` object at the top of our `Drive` subsystem. We will initialize it in the constructor.
+Using the encoders and gyro we just made, we can start actually estimating our position. We do this using a WPILib class called [DifferentialDriveOdometry](https://docs.wpilib.org/en/stable/docs/software/kinematics-and-odometry/differential-drive-odometry.html), which helps estimate the position and angle on the field of a differential drive bot, using encoder and gyro values. Let's start by declaring a `DifferentialDriveOdometry` object at the top of our `Drive` subsystem.
 
 ```java
   private final DifferentialDriveOdometry odometry;
@@ -386,7 +388,7 @@ Here’s how we initialize the odometry in the constructor:
             new Rotation2d(), 
             0, 
             0, 
-            new Pose2d();
+            new Pose2d());
 ```
 
 `new Pose2d()` just creates a `Pose2d` where all angles and coordinates as 0.
@@ -416,6 +418,7 @@ To ensure that our odometry is constantly updating as the robot moves, we run th
 ```
 
 Keep in mind, this will be changed in the simulation section to account for sim rotation.
+
 ## Getting pose
 
 The last thing to finish up our basic drive will be to get our pose based on the odometry. We can do this by using the `getPoseMeters` method from `odometry`. Keep in mind this returns a Pose2d. We want the robot's pose to be easily accessible by other classes, so we'll create a public method in `Drive` that returns the pose.
@@ -523,9 +526,12 @@ This should already be set up in the `configureGameBehavior` method in `Robot.ja
 ```
 
 This initializes Monologue with our robot, setting up the logging system to capture data as the robot runs and makes sure Monologue logs data at regular intervals, which we’ve defined with kDefaultPeriod. By logging data regularly, we can later review how the robot performed and make informed adjustments to our code.
+
 ### Using Monologue for NetworkTables Logging
 
-We use NetworkTables (NT) to make logging specific variables or objects easier. Read the [Telemetry doc](/reference-sheets/Telemetry.md) for specifics on logging with NT. We’re going to use the `@Log.NT` annotation as it allows us to log key metrics in real-time while the robot is running, which we can then view on dashboards like Shuffleboard or SmartDashboard.
+We use NetworkTables (NT) to make logging specific variables or objects easier. Read the [Telemetry doc](/reference-sheets/Telemetry.md) for specifics on logging with NT. Any values that may be useful for debugging should be logged, including currently running commands, joystick inputs, voltages, positions, etc..
+
+We’re going to use the `@Log.NT` annotation as it allows us to log key metrics in real-time while the robot is running, which we can then view on dashboards like Shuffleboard or SmartDashboard.
 
 Let's get started by making a field:
 
@@ -533,23 +539,21 @@ Let's get started by making a field:
   @Log.NT private final Field2d field2d = new Field2d();
 ```
 
-Read up on the [sim reference sheet](/reference-sheets/Simulation.md) to see when and what we should be logging through NT.
-
-One other thing we're going to log is going to be our position on the field. Simply use the annotation on the `getPose` method:
+One other thing we're going to log is going to be our position on the field. Simply use the annotation on the `pose` method:
 
 ```java
   @Log.NT
-  public Pose2d getPose() {
+  public Pose2d pose() {
     return odometry.getPoseMeters();
   }
 ```
 
-Another quick little thing we're going to log is to see if our motors are reaching their setpoints. This is done by returning the `atSetpoint` from both of the pid controllers and logging the data:
+Another quick little thing we're going to log is the distance travelled by our motors. Like before, we create a getter method that returns what we want and annotate it with `@Log.NT`, allowing us to see and interact with it in sim.
 
 ```java
   @Log.NT
-  public boolean atSetpoint() {
-    return leftPIDController.atSetpoint() && rightPIDController.atSetpoint();
+  public double getDistance() {
+    return (leftEncoder.getPosition() + rightEncoder.getPosition()) / 2;
   }
 ```
 
@@ -560,7 +564,7 @@ By logging these values, we can gain real-time insights into our robot’s perfo
 Finally, the periodic method is where we update various elements of the robot regularly during operation. It’s like the heartbeat of our subsystems. Specifically, we are going to update the field display with the robot’s current position, which helps us visualize its movement.
 
 ```java
-    field2d.setRobotPose(getPose());
+    field2d.setRobotPose(pose());
 ```
 ## Seeing the result
 
@@ -577,7 +581,6 @@ Since our driver port is 1, make sure your joystick is also on the same port val
 Lastly, to control the differential drive properly, the joystick will require to have 6 total `axis` as shown below. You can add more and change the bindings by going to `DS` then clicking on the settings of which ever keyboard you are using.
 
 ![drive joystick](https://github.com/user-attachments/assets/a6624ad8-f944-4e62-bc4d-a29eda974891)
-
 
 # Control Theory
 
