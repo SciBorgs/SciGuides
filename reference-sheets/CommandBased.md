@@ -28,7 +28,7 @@ Before we talk about types of commands, let's quickly go over what the technical
 - `public void initialize()`
 	- Called when the command is started
 - `public void execute()`
-	- Called every tic (every 0.02 seconds) while the command is running
+	- Called every tick (every 0.02 seconds) while the command is running
 - `public void end(boolean interrupted)`
 	- Called when the command is ended
 	- Commands can end either because their end condition is met or because they are interrupted by another command on the same subsystem. `end` takes whether or not the command has been interrupted as an input, so that you can change the end behavior of a command based on whether it reached its end condition.
