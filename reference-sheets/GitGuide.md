@@ -23,9 +23,10 @@ Review and discuss changes before merging them into the main branch. This helps 
 Simple list of all the most commonly used commands.
 
 #### Cloning
-`(In VSCode) ctrl + shift + p -> type in "git clone" -> enter the repo link from github`
+`git clone <repository-link | repository-name> [repository-folder]`
 
-clones the repository from github and makes a folder for it on your local device.
+Copies the repo (repository) from github and puts it in a folder on your computer. It will put it in a folder with the name of the repository unless you specify a folder afterwards.
+
 
 #### Committing
 `git commit [-m <message>]`
