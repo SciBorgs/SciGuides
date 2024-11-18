@@ -42,7 +42,7 @@ However, before you can commit, you need to “mark” the files you would like 
 #### Pulling
 `git pull`
 
-Copies any new commits that are on the remote GitHub repo to your local repo.
+Copies any new commits that are on the remote GitHub repo to your local repo and attempts to merge its changes into your local repository.
 
 #### Pushing
 `git push`
