@@ -1,6 +1,6 @@
 # Robot Simulation
 
-Simulation in WPILib allows for code and logic to be tested onboard your computer, rather than physical hardware. It's exceptionally useful for when construction and electronics have not finished the robot, but you have code to run!
+Simulation in WPILib allows for code and logic to be tested onboard your computer, rather than physical hardware. It's exceptionally useful for when mechanical hasn't finished the robot, but you have code to run!
 
 There are a few different facets of simulation to take note of before you can start, including:
 
@@ -13,7 +13,7 @@ There are a few different facets of simulation to take note of before you can st
 
 ## Logging & Dashboards
 
-In testing, it is common to want to directly observe robot measurements and values in order to tune your systems or debug. This is also incredibly important when working with simulation, as you otherwise have no reference to what is going on without a physical robot.
+In testing, it is common to want to directly observe current or past robot measurements and values in order to tune your systems or debug. This is also incredibly important when working with simulation, as you otherwise have no reference to what is going on without a physical robot.
 
 For more details, visit [our doc](/reference-sheets/Telemetry.md).
 
