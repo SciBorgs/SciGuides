@@ -33,7 +33,7 @@ Before we talk about types of commands, let's quickly go over what the technical
 	- Called when the command is ended
 	- Commands can end either because their end condition is met or because they are interrupted by another command on the same subsystem. `end` takes whether or not the command has been interrupted as an input, so that you can change the end behavior of a command based on whether it reached its end condition.
 - `public boolean isFinished()`
-	- This is the end condition for a command. It is called each tic after a command has been executed, and if it is `isFinished` returns `true`, the command is un-scheduled and `end(false)` is called (`false` because the command has not been interrupted).
+	- This is the end condition for a command. It is called each tick after a command has been executed, and if it is `isFinished` returns `true`, the command is un-scheduled and `end(false)` is called (`false` because the command has not been interrupted).
 
 I used the passive voice for these explanations, but just to be clear, all of these methods are being called by the `CommandScheduler`, which is in turn called periodically by `Robot`.
 
