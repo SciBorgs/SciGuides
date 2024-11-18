@@ -35,7 +35,7 @@ Every commit in GitHub you can think of as saving your progress. Although we’d
 
 `git commit -m “decreased code duplication in Robot.java”`
 
-However, before you can commit, you need to “mark” the files you would like to save. Only marked files will be saved. To mark a file you will need to  git add  modified files. For example, to add all changed files in your current directory, you may use: 
+However, before you can commit, you need to “mark” the files you would like to save. Only marked files will be saved. To mark a file you will need to `git add` modified files. For example, to add all changed files in your current directory, you may use: 
 
 `git add .`
 

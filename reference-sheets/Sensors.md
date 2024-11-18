@@ -24,7 +24,7 @@ It measures the rate of rotation of whatever plane it is on (and sometimes its r
 
 Detect if something has passed through them. Two key components: a part that shoots a ray of light, and a receiver. When the receiver no longer detects light, a signal is returned.
 
-For our program, beambreak sensors return true when unblocked, and false when blocked. **THIS IS SUBJECT TO CHANGE.**
+For our specific hardware, beambreak sensors return true when unblocked, and false when blocked.
 
 ## [Cameras](https://docs.photonvision.org/en/latest/docs/integration/aprilTagStrategies.html)
 
