@@ -107,17 +107,4 @@ If you’ve pulled, and are about to push changes after another team member has 
 ### MERGE CONFLICT?
 Let’s say that you’re editing a repo in your local remote, but origin gets updated while you’re still writing. Better yet, it just so happens that the updated files include the file that you’re working on right now! Try to pull, and then you’re thrown a merge conflict.
 
-To deal with the merge conflict, open up bash and navigate to the repository’s directory. Then, run
-
-`git status`
-
-
-to bring up a list of files affected by merge conflicts. Open those files, and in each scroll until you reach a construction like:
-
-```
-...
-	(Your local version)
-...
-```
-
-Keep what you want to keep and delete what you want to delete within those two blocks of code, and then delete the markers <<<<<<< …, =======, and >>>>>>> …. Finally, stage your changes, commit, and then push.
+To deal with the merge conflict, follow this [GitHub guide](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line?platform=windows).
