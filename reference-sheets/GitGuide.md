@@ -118,3 +118,5 @@ But even if you're extremely careful, you'll have a hard time avoiding merge con
 Let’s say that you’re editing a repo in your local remote, but origin gets updated while you’re still writing. Better yet, it just so happens that the updated files include the file that you’re working on right now! Try to pull, and then you’re thrown a merge conflict.
 
 To deal with the merge conflict, follow this [GitHub guide](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line?platform=windows).
+
+If you're using VSCode, they also have [a handy GUI](https://code.visualstudio.com/docs/sourcecontrol/overview#_merge-conflicts) for resolving merge conflicts!
