@@ -246,15 +246,28 @@ def applyThrice(var fun, var v) {
 }
 ```
 
-If `applyThrice` is a black box here's what it would look like: it would have one input slot for another little black box (`fun`), and one for a slip of paper (`v`). On the inside, it has a little mechanical arm that takes the inputted piece of paper and feeds it into the little inputted black box. When the little black box (`fun`) produces an output, the mechanical arm grabs it and feeds the output back into the input slot of `fun`. And then it does that again! Finally, the third time the little black box produces an output, the arm takes it and sends it through the output slot of the main black box (`applyThrice`). 
+If `applyThrice` is a black box here's what it would look like: 
+- There would be two input slots:
+	- A square hole for a little black box (`fun`)
+	- A slot for a slip of paper (`v`) with a value scribbled on it.
+- On the inside of the black box:
+	- The little black box that (`fun`), once fed through the slot, sits in the center of the big box, held in place
+	- The slip of paper (`v`), once fed in, is grasped by a little mechanical arm. Here's what the arm does:
+		- It brings the paper (`v`) to the little black box (`fun`), and feeds it into `fun` as an input. Out the output slot of `fun` comes another slip of paper with a new value written on it. The mechanical arm grabs the new slip of paper.
+		- It takes the new slip of paper and moves it to the input side of `fun`, and feeds it in through the `input` slot (just like it did with `v`). A third slip of paper comes out of the output slot of `fun` with yet another new value, and the arm grabs it.
+		- The arm feeds the third slip of paper to `fun` as an input! A final slip of paper comes out the output slot of `fun`, and the mechanical arm grabs it. But this time, it just takes the paper and sends it out the output slot of the main big black box.
 
-And remember, all of this is happening inside a black box. So from the perspective of someone using the function, all that happens is someone slides in a little black box and a slip of paper through the input slots of `applyThrice`, and then a different slip of paper comes out through the output slot.
+And remember, all of this is happening inside the big black box. So from the perspective of someone using the function, all that happens is someone slides in a little black box and a slip of paper through the input slots of `applyThrice`, and then a different slip of paper comes out through the output slot. They don't see the mechanical arm at all.
 
 Let's go through an example ([f](#example-f) is a function that takes a number and multiplies it by $2$):
 
 `applyThrice(f, 2)`
 
-`applyThrice` will call `f` on `2`, getting `4`, and then call `f` on `4`, getting `8`, and then call `f` on `8`, getting `16`. So `applyThrice(f, 2)` &rarr; `16`.
+In this example, `fun` is `f`, and `v` is `2`. So `applyThrice` will return `f(f(f(2)))`.
+
+`f` multiplies an input by 2, so `f(2)` is 4. And `f(f(2))` is `f(4)` which is 8. And finally, `f(f(f(2)))` is `f(8)` which is 16.
+
+So, ultimately, `applyThrice(f, 2)` &rarr; `16`.
 ## Practice Problems
 
 1. Write a function that takes as an input an integer `n` and returns that integer modulo 4.

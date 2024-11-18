@@ -37,18 +37,17 @@ Make sure to clone the project on your computer inside of your code folder!
 ---
 # Robot Code Structure
 
-## Command Based programming
-
 Robot code is structured using *subsystems* and *commands* within FRC's *command-based framework*. This architecture simplifies robot programming by breaking down complex tasks into smaller, manageable pieces. 
 
 All of your Subsystem classes must extend `SubsystemBase`. (Commands extend `Command`, but you won't really be writing full Command classes).
 
 Running commands and enforcing the one-command-per-subsystem rule is managed by the `CommandScheduler`. Essentially, if you want to run a command, you tell the `CommandScheduler`, and then each time the code runs the `CommandScheduler` goes through all the `Commands` that it has been told to run, and runs them.
 
+---
+
 Please read the following sheets before moving forward:
 - [Subsystems and Commands]()
 - [File Structure]()
-
 # Understanding the hardware
 
 In order to program a robot, you first need to understand the physical hardware that you are working with, and particularly the electrical components.
@@ -284,7 +283,7 @@ We set a subsystem's default command using `subsystem.setDefaultCommand(command)
 ```
 
 Now, if you had a real robot to test on, it would drive!! But knowing that would probably be more exciting if you could see and drive around some sort of simulation. Unfortunately, we can't do that yet because to simulate the movement of the robot, we would need an estimate for where the robot is on the field, which we don't have yet. So let's work on getting that.
-# Wheel Odometry
+# Odometry
 
 *Odometry* is the process of using data from sensors to estimate your position and how it changes. In this case, the sensors that we'll be relying on are encoders (for our wheels) to and a gyroscope.
 
@@ -509,7 +508,7 @@ The `simulationPeriodic` method is where we update the simulation. This method i
   }
 ```
 
-- `leftEncoder.setPosition` and `rightEncoder.setPosition`  update the simulated encoder positions to match the simulated robot’s movement.
+- `leftEncoder.setPosition` and `rightEncoder.setPosition` update the simulated encoder positions to match the simulated robot’s movement.
 - `simRotation`: Updates the simulated Rotation2d based on the robot’s simulated heading.
 
 This method ensures that our simulated sensors provide accurate feedback as the robot "moves" in the simulation, allowing us to test and tweak our code.
@@ -581,7 +580,6 @@ Since our driver port is 1, make sure your joystick is also on the same port val
 Lastly, to control the differential drive properly, the joystick will require to have 6 total `axis` as shown below. You can add more and change the bindings by going to `DS` then clicking on the settings of which ever keyboard you are using.
 
 ![drive joystick](https://github.com/user-attachments/assets/a6624ad8-f944-4e62-bc4d-a29eda974891)
-
 # Control Theory
 
 Before we get started, please make sure you have read the [Control Theory reference sheet](/reference-sheets/Control-theory.md) as we are going to assume you are aware of what PID and Feedforward generally do.
@@ -666,7 +664,7 @@ Finally, we combine the outputs and send them to the motors:
 ```
 
 Here, the final motor voltage is calculated by adding the PID and feedforward outputs together. These voltages are then sent to the motors, controlling the movement of the robot.
-## Unit Testing & System Checks
+# Unit Testing & System Checks
 
 #### Unit Tests
 
