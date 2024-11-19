@@ -2,7 +2,7 @@
 
 SciGuides is a ***living document***. Both it and [SciGuidesRobotBase](https://github.com/SciBorgs/SciGuidesRobotBase) should be updated yearly to reflect current team programming standards and all changes to WPILib, external docs, and vendor libs.
 
-Affiliated members of 1155 and 2265 should feel free to add or modify any contents of SciGuides and its template repository as needed to improve the learning experience for team members and JV students.
+Members of 2265 should feel free to add or modify any contents of SciGuides and its template repository as needed through a PR to improve the learning experience for team members and JV students.
   
 ## Getting Started
 
@@ -10,7 +10,11 @@ If you have changes you'd like to make, discuss with a mentor or programming lea
 
 Use any editor of your choice, whether that be VSCode, Obsidian, or whatever else.
 
-Please create your own branch and pull request (PR) to make changes through the review system.
+All changes must undergo the review process as listed below.
+
+1. Please create your own branch and pull request (PR) to make changes from.
+2. Request a review from relevant members of leadership, and respond.
+3. Repeat step 2 until approval.
 
 Do not open duplicate pull requests or issues; check that others have not already made or discussed your desired request.
 
@@ -24,7 +28,7 @@ We hope to maintain a quality standard for our work, so all writing should rough
 
 - Don't reinvent the wheel.
   - It's a waste of time to recreate and maintain documentation that others have already created in-depth, so we heavily reference existing documentation from vendors, libraries, and WPILib.
-  - Minimize what must be changed from year-to-year! There is no need to restate information with existing documentation, unless it's just a few sentences for the purposes of introduction.
+  - Minimize what must be changed from year-to-year! Avoid restating existing documentation; we recommend including only a few sentences for the purposes of introduction, before linking to it.
 - Experiencing is the heart of learning.
   - It is our firm belief that people learn best when actually **writing** and **seeing** code and images on the screen. Code examples, code examples, code examples (and the occasional image and gif, too!)
   - In the same vein, aim to be as concise and to-the-point as possible. Gigantic text walls are daunting and difficult to follow.
@@ -36,9 +40,28 @@ We hope to maintain a quality standard for our work, so all writing should rough
 - These guidelines are not immutable.
   - Use your own discretion (or that of your fellow team members) to determine what is best for this repository to achieve its goals.
 
-### Writing Tips
+#### Specifics
 
-Avoid paragraphs of text.
+For GitHub & editor compability purposes, all comments should be formatted like so:
+`[comment]: # (YOUR-COMMENT-HERE)`
+
+### Style & Writing Tips
+
+There are a few boxes to check when writing engaging, cool pages, especially not having lengthy paragraphs of text!
+
+#### Fundamentals
+
+Prioritize readability.
+- Break down complex paragraphs and explanations into smaller parts; use identation and [whitespace](#spacing-techniques) to your advantage.
+- Use [GitHub markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) features to emphasize and guide certain parts of the doc. This includes headings, lists, separators, footnotes, etc.
+- Be concise and to-the-point with your words.
+- Avoid repetition unless it just makes sense.
+
+Keep in mind your target audience; introduce complexity bit-by-bit for beginners, and relax for advanced students.
+
+To the best of your ability, anticipate common learning mistakes or pitfalls and address them so that in-person mentors won't have to.
+
+#### Spacing Techniques
 
 A good idea is to put yourself in the shoes of a brand new robotics student learning the ropes. If you were them, would you rather read this...
 
@@ -70,21 +93,10 @@ I'd like to bet you chose the second selection. And that's because you can easil
 
 So, if you find yourself writing something too long (which you should avoid regardless), space it out a bit! Especially for instructions.
 
-### Style
+## TL;DR (too long; didn't read):
 
-Use [GitHub-style markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) to your advantage!
-
-All robot code should be formatted in single / triple code blocks with **proper indentation**. It should also be run through spotless, our code formatter.
-
-[comment]: # (The above might just be ridiculous)
-
-For GitHub & editor compability purposes, all comments should be formatted like so:
-`[comment]: # (YOUR-COMMENT-HERE)`
-
-## TL;DR ("too long; didn't read):
-
-- Create a branch and pull request of your own to add features.
-  - Consult with leadership before
+- Create a branch and pull request of your own to add features. Your changes will be merged after looping through the review process.
+  - Consult with leadership before making any changes; you wouldn't want to make unnecessary additions!
 - Instead of wordily explaining concepts on your own, reference external docs and sources for **in-depth information**.
   - A good balance we follow is to introduce a concept / process with a few sentences before linking to more in-depth documentation.
 - Keep your documents readable - no text walls (they hurt the eyes!)
