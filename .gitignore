@@ -1,3 +1,4 @@
 *.code-workspace
 
 .obsidian
+.DS_Store
