@@ -308,7 +308,7 @@ Also, if you haven't yet, now would be a great time to commit and push your chan
 
 Write a non-static method that calculates and returns the angle in degrees between a point and the positive x axis. Or more specifically, the angle of point p is the angle from the positive x axis to the line that goes through the origin and point p. Counterclockwise is positive. 
 
-This will require trigonometry. If you're not familiar with basic trig, look at [this doc](link).
+This will require trigonometry. If you're not familiar with basic trig, look at [this doc](/reference-sheets/Trigonometry.md).
 
 You can look up how to perform trigonometric functions in Java (the Java trig functions generally operate in radians, so you'll need to use `Math.toDegrees` and `Math.toRadians` to make sure you're being consistent about units).
 
