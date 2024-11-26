@@ -34,7 +34,7 @@ But if we want to do that, to pass `isEven` around in Java, it needs to have a t
 public static <T> List<T> filter(List<T> l, ___ condition);
 ```
 
-*Side note: having the \<T\> before the return type of the method is the notation for using a declaring a generic type to be used in a method rather than an entire class.*
+*Side note: having the \<T\> before the return type of the method is the notation for declaring a generic type to be used in a method rather than an entire class.*
 
 So let's think about what type `condition` should be. All that really matters is that it is a function with an input of type `T` and an output of type `boolean`. So we want to have some simple way to specify that.
 
