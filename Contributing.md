@@ -1,0 +1,104 @@
+# Contributing to SciGuides
+
+SciGuides is a ***living document***. Both it and [SciGuidesRobotBase](https://github.com/SciBorgs/SciGuidesRobotBase) should be updated yearly to reflect current team programming standards and all changes to WPILib, external docs, and vendor libs.
+
+Members of 2265 should feel free to add or modify any contents of SciGuides and its template repository as needed through a PR to improve the learning experience for team members and JV students.
+  
+## Getting Started
+
+If you have changes you'd like to make, discuss with a mentor or programming leadership before making them.
+
+Use any editor of your choice, whether that be VSCode, Obsidian, or whatever else.
+
+All changes must undergo the review process as listed below.
+
+1. Please create your own branch and pull request (PR) to make changes from.
+2. Request a review from relevant members of leadership, and respond.
+3. Repeat step 2 until approval.
+
+Do not open duplicate pull requests or issues; check that others have not already made or discussed your desired request.
+
+## Creating content
+
+See the [summary](#tldr-too-long-didnt-read) for quick reference.
+
+### Guidelines
+
+We hope to maintain a quality standard for our work, so all writing should roughly follow the below guidelines:
+
+- Don't reinvent the wheel.
+  - It's a waste of time to recreate and maintain documentation that others have already created in-depth, so we heavily reference existing documentation from vendors, libraries, and WPILib.
+  - Minimize what must be changed from year-to-year! Avoid restating existing documentation; we recommend including only a few sentences for the purposes of introduction, before linking to it.
+- Experiencing is the heart of learning.
+  - It is our firm belief that people learn best when actually **writing** and **seeing** code and images on the screen. Code examples, code examples, code examples (and the occasional image and gif, too!)
+  - In the same vein, aim to be as concise and to-the-point as possible. Gigantic text walls are daunting and difficult to follow.
+- Make sure your guides are **functional** and **working**.
+  - The code created by following your guide should actually work. For projects, write the code and copy-paste the necessary code examples into the doc.
+  - Even better, you may want to write the code first and base your doc on the steps you take. It's good practice, I swear!
+- Keep to typical standards of documentation.
+  - Please look over your grammar, punctuation, and spelling before submitting your PR for review. At a baseline, errors should not obstruct understanding or behave as a distraction.
+- These guidelines are not immutable.
+  - Use your own discretion (or that of your fellow team members) to determine what is best for this repository to achieve its goals.
+
+#### Specifics
+
+For GitHub & editor compability purposes, all comments should be formatted like so:
+`[comment]: # (YOUR-COMMENT-HERE)`
+
+### Style & Writing Tips
+
+There are a few boxes to check when writing engaging, cool pages, especially not having lengthy paragraphs of text!
+
+#### Fundamentals
+
+Prioritize readability.
+- Break down complex paragraphs and explanations into smaller parts; use identation and [whitespace](#spacing-techniques) to your advantage.
+- Use [GitHub markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) features to emphasize and guide certain parts of the doc. This includes headings, lists, separators, footnotes, etc.
+- Be concise and to-the-point with your words.
+- Avoid repetition unless it just makes sense.
+
+Keep in mind your target audience; introduce complexity bit-by-bit for beginners, and relax for advanced students.
+
+To the best of your ability, anticipate common learning mistakes or pitfalls and address them so that in-person mentors won't have to.
+
+#### Spacing Techniques
+
+A good idea is to put yourself in the shoes of a brand new robotics student learning the ropes. If you were them, would you rather read this...
+
+---
+
+*Java, the workhorse of enterprise software, often feels like a language stuck in the past despite its incremental improvements. Its verbose syntax can make even simple tasks feel like wading through boilerplate code, with developers writing lines upon lines just to declare objects or handle exceptions. The "write once, run anywhere" mantra sometimes translates to "debug everywhere," especially with JVM inconsistencies across environments. Performance, though respectable, often pales in comparison to more modern, lightweight languages, and its garbage collection, while helpful, can cause unpredictable hiccups. Java's ecosystem, though vast, can be overwhelming, with libraries and frameworks that vary wildly in quality. Despite all this, it remains entrenched, leaving developers with no choice but to navigate its quirks for the sake of legacy systems and industry demand.*
+###### Generated by GPT-4o. Does not represent the opinions of the team nor any related individuals.
+
+---
+
+or this...?
+
+---
+
+*Java, the workhorse of enterprise software, often feels like a language stuck in the past despite its incremental improvements.*
+
+*Its verbose syntax can make even simple tasks feel like wading through boilerplate code, with developers writing lines upon lines just to declare objects or handle exceptions. The "write once, run anywhere" mantra sometimes translates to "debug everywhere,"especially with JVM inconsistencies across environments.*
+
+*Performance, though respectable, often pales in comparison to more modern, lightweight languages, and its garbage collection, while helpful, can cause unpredictable hiccups.*
+
+Java's ecosystem, though vast, can be overwhelming, with libraries and frameworks that vary wildly in quality.*
+
+*Despite all this, it remains entrenched, leaving developers with no choice but to navigate its quirks for the sake of legacy systems and industry demand.*
+###### Generated by GPT-4o. Does not represent the opinions of the team nor any related individuals.
+
+---
+
+I'd like to bet you chose the second selection. And that's because you can easily pick out and read it! Each new topic is put on its own, allowing for simpler referencing and understanding.
+
+So, if you find yourself writing something too long (which you should avoid regardless), space it out a bit! Especially for instructions.
+
+## TL;DR (too long; didn't read):
+
+- Create a branch and pull request of your own to add features. Your changes will be merged after looping through the review process.
+  - Consult with leadership before making any changes; you wouldn't want to make unnecessary additions!
+- Instead of wordily explaining concepts on your own, reference external docs and sources for **in-depth information**.
+  - A good balance we follow is to introduce a concept / process with a few sentences before linking to more in-depth documentation.
+- Keep your documents readable - no text walls (they hurt the eyes!)
+  - Take advantage of text-spacing techniques with newlines, codeblocks, images, & other styling elements (like this list!)
+- See the specific [style section](#style) above.
