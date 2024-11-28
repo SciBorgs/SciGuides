@@ -75,7 +75,7 @@ $\sin(t)$ = $y$
 
 You can also see this labeled on the diagram. And it turns out, this is the full definition of the trig functions.
 
-The coordinates of any point on the unit circle are ($\cos(\theta)$, $\sin(\theta)$), where $\theta$ is the angle from the positive x axis to the point. And $\tan(\theta)$ is still $\sin(\theta)$ / $\cos(\theta)$.
+The coordinates of any point on the unit circle are ($\cos(\theta)$, $\sin(\theta)$ ), where $\theta$ is the angle from the positive x axis to the point. And $\tan(\theta)$ is still $\sin(\theta)$ / $\cos(\theta)$.
 
 ![](https://d20khd7ddkh5ls.cloudfront.net/trig2_2.png)
 
@@ -83,7 +83,7 @@ This definition works for obtuse angles as well as acute angles. Let's look at a
 
 ![](https://iitutor.com/wp-content/uploads/2019/03/N1303-Angles-in-the-Second-Quadrant.png)
 
-The coordinates of this point B are still ($\cos(\theta)$, $\sin(\theta)$). As you can see, the x value is negative, so cosine of an angle in the second quadrant must be negative. The y value is still positive though, so sine of an angle in the second quadrant is positive.
+The coordinates of this point B are still ($\cos(\theta)$, $\sin(\theta)$ ). As you can see, the x value is negative, so cosine of an angle in the second quadrant must be negative. The y value is still positive though, so sine of an angle in the second quadrant is positive.
 
 You can do similar evaluations in the other quadrants. Ultimately, you'll find that:
 - cosine is positive in I and IV
@@ -92,7 +92,7 @@ You can do similar evaluations in the other quadrants. Ultimately, you'll find t
 
 If thinking in terms of right triangles was helpful to you, you can imagine dropping a line from B to the x axis to create a triangle, and consider the x length (adjacent) to be negative in quadrants II and III, and the y lengths to be negative in quadrants III and IV, even though we generally consider all lengths to be positive. 
 
-To wrap up, we'll turn to the values of trig functions for the angles 0, $\pi$/2, $\pi$, and 3$\pi$/2 (or 0°, 90°, 180°, 270°).
+To wrap up, we'll turn to the values of trig functions for the angles 0, $\pi$/2, $\pi$, and $3 \pi$/2 (or 0°, 90°, 180°, 270°).
 
 Let's look back to our unit circle:
 
