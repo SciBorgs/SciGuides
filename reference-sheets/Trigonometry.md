@@ -10,7 +10,7 @@ You are probably most familiar with angles being measured in degrees, where a ri
 
 There's another common unit for angles that are less arbitrary, called *radians*.
 
-360° is 2$\pi$ radians. For a unit circle (a circle of radius 1 centered at the origin), 2$\pi$ is also the circumference of a circle (circumference = 2$\pi$r). And in fact, for any sector of a unit circle with an angle of $\theta$ radians, the circumference is also $\theta$!
+360° is $2\pi$ radians. For a unit circle (a circle of radius 1 centered at the origin), $2\pi$ is also the circumference of a circle (circumference = $2\pi r$ ). And in fact, for any sector of a unit circle with an angle of $\theta$ radians, the circumference is also $\theta$!
 
 ![](images/unit-circle.png)
 
