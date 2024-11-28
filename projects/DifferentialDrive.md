@@ -30,7 +30,7 @@ To move the robot forward/backward, both wheels must move at the same speed in t
 
 The first step will be to create a repository for this project. We'll be using [this](https://github.com/SciBorgs/SciGuidesRobotBase) base template for this project (and all other robot code projects in SciGuides). Follow the instructions in the README to create a new repository based on the template. Give your repository a descriptive name such as "Differential Drive Bot".
 
-In the README of your new repository, link [this guide](link).
+In the README of your new repository, link [this guide](https://github.com/SciBorgs/SciGuides/blob/main/projects/DifferentialDrive.md).
 
 Make sure to clone the project on your computer inside of your code folder!
 
@@ -46,8 +46,8 @@ Running commands and enforcing the one-command-per-subsystem rule is managed by 
 ---
 
 Please read the following sheets before moving forward:
-- [Subsystems and Commands]()
-- [File Structure]()
+- [Subsystems and Commands](/reference-sheets/CommandBased.md)
+- [File Structure](/reference-sheets/FileStructure.md)
 # Understanding the hardware
 
 In order to program a robot, you first need to understand the physical hardware that you are working with, and particularly the electrical components.
