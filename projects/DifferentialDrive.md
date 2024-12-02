@@ -168,6 +168,8 @@ The first thing that we'll do is reset all our sparks to a default state, cleari
   }
 ```
 
+*Note: you'll need to import List for this*
+
 Next, we're going to set something called the idle mode of our motors, which essentially determines the behavior of the motor when it's not being told to do anything. The options are:
 - `kBrake`: stop as fast as possible
 - `kCoast`: don't provide any voltage and just let it spin freely
