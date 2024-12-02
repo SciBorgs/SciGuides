@@ -251,7 +251,7 @@ public Command drive(DoubleSupplier vLeft, DoubleSupplier vRight);
 
 *Note: the two `drive` methods have the same name, but are not the same method. As long as the types of the parameters are different, you can have multiple methods with the same name.*
 
-Next up, let's decide what type of Command we want to use. This isn't just something we want . o do once - we need to get new inputs from the controller each tick - so we'll use a run command. We've talked about `Commands.run`, but in a Subsystem there's actually another method just called `run`, which calls `Commands.run` but uses that subsystem as the requirement. So `drive.run(action)` is the same as `Commands.run(action, drive)`. That's the method we're going to use for this, since we want to create a `RunCommand` that requires a drive subsystem.
+Next up, let's decide what type of Command we want to use. This isn't just something we want to do once - we need to get new inputs from the controller each tick - so we'll use a run command. We've talked about `Commands.run`, but in a Subsystem there's actually another method just called `run`, which calls `Commands.run` but uses that subsystem as the requirement. So `drive.run(action)` is the same as `Commands.run(action, drive)`. That's the method we're going to use for this, since we want to create a `RunCommand` that requires a drive subsystem.
 
 And the action is just going to be calling the other `drive` method using `vLeft` and `vRight`!
 
