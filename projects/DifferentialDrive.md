@@ -78,7 +78,7 @@ Once you do that, your files should look something like this:
 ![file order](https://github.com/user-attachments/assets/d37980f3-c1d6-4a9a-9e5f-66c0163496d7)
 # Ports
 
-In our `Drive.jav` class, we will make all of our 4 motors using `CANSparkMax` objects. When you create a `CANSparkMax` object, you give it a port and a motor type (don't worry about what the motor type means for now). With that port, it is able to interface with the motor connected to the port through the RIO.
+In our `Drive.java` class, we will make all of our 4 motors using `CANSparkMax` objects. When you create a `CANSparkMax` object, you give it a port and a motor type (don't worry about what the motor type means for now). With that port, it is able to interface with the motor connected to the port through the RIO.
 
 Before we create our motor objects, let's add our ports to `Ports.java`.
 
@@ -162,11 +162,13 @@ The first thing that we'll do is reset all our sparks to a default state, cleari
 
 ```java
   public Drive() {
-    for (CANSparkMax spark : List.of(leftLeader, leftFollower, rightLeader, rightFollower) {
+    for (CANSparkMax spark : List.of(leftLeader, leftFollower, rightLeader, rightFollower)) {
 	    spark.restoreFactoryDefaults();
     }
   }
 ```
+
+*Note: you'll need to import List for this*
 
 Next, we're going to set something called the idle mode of our motors, which essentially determines the behavior of the motor when it's not being told to do anything. The options are:
 - `kBrake`: stop as fast as possible
@@ -246,7 +248,7 @@ So our `drive` method should return a `Command` that drives the robot based on i
 Specifically, we're going to take two `DoubleSuppliers`, one for the left velocity and one for the right velocity. In `Robot.java`, we'll call our method and give it methods to get the left and right y values on the Xbox controller. So, here's our method header:
 
 ```java
-public Command drive(DoubleSupplier vLeft, DoubleSupplier vRight)
+public Command drive(DoubleSupplier vLeft, DoubleSupplier vRight);
 ```
 
 *Note: the two `drive` methods have the same name, but are not the same method. As long as the types of the parameters are different, you can have multiple methods with the same name.*
@@ -256,7 +258,7 @@ Next up, let's decide what type of Command we want to use. This isn't just somet
 And the action is just going to be calling the other `drive` method using `vLeft` and `vRight`!
 
 ```java
-  private Command drive(double vLeft, double vRight) {
+  public Command drive(DoubleSupplier vLeft, DoubleSupplier vRight) {
     return run(() -> drive(vLeft.getAsDouble(), vRight.getAsDouble()));
   }
 ```
@@ -330,7 +332,7 @@ We also need to calculate a separate conversion factor for velocity. The encoder
   public static final double VELOCITY_FACTOR = POSITION_FACTOR / 60.0;
 ```
 
-Now we just need to use the conversion method from the encoder class in `Drive.java`.
+Now we just need to use the conversion method from the encoder class inside *the constructor* of `Drive.java`.
 
 ```java
     leftEncoder.setPositionConversionFactor(DriveConstants.POSITION_FACTOR);
@@ -343,7 +345,7 @@ Now we just need to use the conversion method from the encoder class in `Drive.j
 
 At the start of the match (or any time you need to reset the robot's position), it's important to reset the encoder values to zero. This ensures that your distance calculations start from a known point.
 
-We'll reset the encoders during the subsystem initialization (in the Constructor):
+We'll reset the encoders during the subsystem initialization (in the constructor):
 
 ```java
     leftEncoder.setPosition(0);
@@ -351,9 +353,9 @@ We'll reset the encoders during the subsystem initialization (in the Constructor
 ```
 ## Adding a gyroscope
 
-We're going to use the `AnalogGyro` class. We need to give the port of the gyro to the constructor, so we need to add that port in `Ports.java`. (Make up any integer that isn't already used).
+We're going to use the `AnalogGyro` class. We need to give the port of the gyro to the constructor, so we need to add that port in `Ports.java`.  Call the constant `GYRO_CHANNEl` and give it the value 1.
 
-Let’s add the AnalogGyro to the existing `Drive.java` file:
+Let’s add the AnalogGyro to the top of the existing `Drive.java` file (under the encoders):
 
 ```java
   private final AnalogGyro gyro = new AnalogGyro(Ports.Drive.GYRO_CHANNEL);
@@ -398,7 +400,7 @@ To keep track of the robot’s position in real-time, we need to update the odom
 Here's how you might update odometry:
 
 ```java
-  public void updateOdometry(Rotation2d rotation) {
+  private void updateOdometry(Rotation2d rotation) {
     odometry.update(rotation, leftEncoder.getPosition(), rightEncoder.getPosition());
   }
 ```
@@ -426,6 +428,96 @@ The last thing to finish up our basic drive will be to get our pose based on the
   public Pose2d pose() {
     return odometry.getPoseMeters();
   }
+```
+# Control Theory
+
+Before we get started, please make sure you have read the [Control Theory reference sheet](/reference-sheets/ControlTheory.md) as we are going to assume you are aware of what PID and Feedforward generally do.
+
+In this section, we're going to create PID and feedforward controllers to convert from desired speeds to voltages.
+## Why We Use Controllers
+
+Before we dive into the code, let’s touch on why creating control systems are important for driving a robot. Ultimately, the motors run because they are given some voltage. Right now, we're driving using the `motor.set` method, which takes a speed. The CANSparkMax motor controllers have their own control systems that generate voltages based on speeds. But those systems aren't tuned to your robot. They work pretty well when you just have a free-spinning motor, but your motors are on robots. They're in gear boxes and are weighed down. So if you actually want to accurately reach your target speeds, you need to have control systems that are tuned to your system.
+
+In this case, we're going to do that by making our own PID and feedforward controllers which we'll use to convert velocities to voltages, and then just feeding those voltages into our motors.
+## Feedforward
+
+First off, we're going to create a feedforward model, which will use an ideal model of our system to tell us what voltages we should use. Its output will be our prediction of what voltage is required to maintain the velocity that we're trying to reach. This will be entirely based on our desired velocity, and will not take into account our current velocity at all. It factors in predictable challenges like friction, but not unexpected factors like slipping on the carpet.
+
+Here's how we can create a feedforward controller:
+
+```java
+  private final SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(FF.kS, FF.kV);
+```
+
+- kS and kV are constants that become coefficients in an equation to convert from desired velocity to voltage
+	- The kS term in the equation accounts for constant voltage to overcome friction
+	- The kV term accounts for the voltage to maintain a certain velocity
+- These FF constants are stored in `DriveConstants.java` and are imported. Keep in mind these are just random values to get you started with the project. With a real robot, it will be important to tune your values to work for your system.
+
+```java
+  public static final class FF {
+    public static final double kS = 1;
+    public static final double kV = 3;
+  }
+```
+## PID
+
+Next we can add a PID controllers. The feedforward model is pretty good, but it's not at all perfect. It also doesn't account for external forces that might get in the way of our movement. So we'll make PID controllers, which will actually take into account error (how far we are from the desired velocity). That way we can react when we aren't reaching our setpoints. Essentially, we're building on a pretty good estimate to account for its flaws.
+
+With the feedforward controller we only made one. That's because all the FF controller needs is a velocity, and it will always return the same voltage when given the same velocity. So we can just use it twice, one for each side.
+
+PID controllers on the other hand, don't just take into account your current speed and your current setpoint --- it also stores and uses your previous velocities. And our left and right motors have different velocities, so we need two controllers. One will be for the left wheels, and will store past velocity values for the left side, and one will do the same for the right wheels.
+
+```java
+  private final PIDController leftPIDController =
+      new PIDController(PID.kP, PID.kI, PID.kD);
+  private final PIDController rightPIDController =
+      new PIDController(PID.kP, PID.kI, PID.kD);
+```
+
+As you can see, we used three constants for this controller: kP, kI, and kD. We'll define them in DriveConstants.java.
+
+```java
+  public static final class PID {
+    public static final double kP = 8.5;
+    public static final double kI = 0.0;
+    public static final double kD = 0.0;
+  }
+```
+## Combining FF and PID
+
+Now, let’s see how we can use these two control mechanisms to actually drive our robot! We’ll look at the `drive` method, which is responsible for controlling the motor voltages.
+
+Based on our desired speeds, we can get outputs from PID and FF. We can then add these together and get our final voltage that we're going to send to the motor. To find these outputs, we need to give the controllers our desired speeds. The `drive` method really takes a percentage of our maximum velocity, from -1 to 1, rather than the actual velocity. So to find our desired velocities we can multiply `leftSpeed` and `rightSpeed` by our maximum speed.
+
+We'll define our maximum speed in our `DriveConstants` class:
+```java
+  public static final double MAX_SPEED = 2; // Meters per second
+```
+
+Using that, we can find the feedforward and PID outputs for each side:
+```java
+  public void drive(double leftSpeed, double rightSpeed) {
+	final double realLeftSpeed = leftSpeed * DriveConstants.MAX_SPEED;
+	final double realRightSpeed = rightSpeed * DriveConstants.MAX_SPEED;
+	
+    final double leftFeedforward = feedforward.calculate(realLeftSpeed);
+    final double rightFeedforward = feedforward.calculate(realRightSpeed);
+
+    final double leftPID = 
+      leftPIDController.calculate(leftEncoder.getVelocity(), realLeftSpeed);
+    final double rightPID = 
+      rightPIDController.calculate(rightEncoder.getVelocity(), realRightSpeed);
+  }
+```
+
+Finally, we combine the outputs and send them to the motors:
+```java
+      double leftVoltage = leftPID + leftFeedforward;
+      double rightVoltage = rightPID + rightFeedforward;
+
+      leftLeader.setVoltage(leftVoltage);
+      rightLeader.setVoltage(rightVoltage);
 ```
 # Simulation and Logging
 
@@ -467,32 +559,26 @@ Remember that all of these values would be stored in `DriveConstants.java`:
 
 By setting up the simulation with these constants, we’re creating a physics model of our robot that behaves similarly to how it would in real life.
 
-Before we start periodically updating our sim values, make sure to set the voltage to our sim drive in the `drive` method:
+Before we start periodically updating our sim values, make sure to set the voltage to our sim drive in the `drive` method (the one that returns void):
 
 ```java
     driveSim.setInputs(leftVoltage, rightVoltage);
 ```
 
-Last thing to set up will be our sim rotation that was previously mentioned. We'll start by making a new `Rotation2d`:
-
-```java
-  private Rotation2d simRotation = new Rotation2d();
-```
-
-Then simply change our `updateOdometry` method in `periodic()` to account for our new rotation.
+Next, we need to update our odometry using our simulated heading in simulation:
 
 ```java
   public void periodic() {
-    updateOdometry(Robot.isReal() ? gyro.getRotation2d() : simRotation);
+    updateOdometry(Robot.isReal() ? gyro.getRotation2d() :  
+							        driveSim.getHeading());
   }
 ```
 
 - `Robot.isReal()` returns whether or not we are connected to a real robot
-- What do the `?` and `:` do? That whole statement is referred to as a [ternary operator](https://www.baeldung.com/java-ternary-operator).
-- We will update our `simRotation` value in `simulationPeriodic` as seen below.
+- What are the `?` and `:` symbols? That whole statement is a [ternary operator](https://www.baeldung.com/java-ternary-operator).
 ### Simulation periodic
 
-The `simulationPeriodic` method is where we update the simulation. This method is called regularly during the robot’s operation to keep the simulated sensors and drivetrain in sync with the rest of the code. The `@Override` annotation above the method is there so that the compiler knows it's the inherited method from `SubsystemBase`. However, it isn't neccessary to include.
+The `simulationPeriodic` method is where we update the simulation. This method is called every tick (0.2 seconds) when the robot is simulated so that we can keep the simulated sensors and drivetrain in sync with the rest of the code. The `@Override` annotation above the method is there so that the compiler knows it's the inherited method from `SubsystemBase`, but it isn't necessary to include.
 
 ```java
   @Override
@@ -501,19 +587,17 @@ The `simulationPeriodic` method is where we update the simulation. This method i
     driveSim.update(Constants.PERIOD.in(Seconds));
     leftEncoder.setPosition(driveSim.getLeftPositionMeters());
     rightEncoder.setPosition(driveSim.getRightPositionMeters());
-    simRotation = driveSim.getHeading();
   }
 ```
 
 - `leftEncoder.setPosition` and `rightEncoder.setPosition` update the simulated encoder positions to match the simulated robot’s movement.
-- `simRotation`: Updates the simulated Rotation2d based on the robot’s simulated heading.
 
 This method ensures that our simulated sensors provide accurate feedback as the robot "moves" in the simulation, allowing us to test and tweak our code.
 ## Logging: Capturing Important Data
 
-Now let’s talk about logging. Logging is crucial for understanding how our robot behaves over time, diagnosing issues, and improving performance. We’re going to use Monologue for logging, which gives us a structured way to record and analyze data from the robot’s systems.
+Now let’s talk about logging. Logging, or telemetry, is a way of recording information in real time. That information might include data from sensors, estimated positions, what command is running, etc. Logging is crucial for understanding how our robot behaves over time, diagnosing issues, and improving performance. Read the [Telemetry doc](/reference-sheets/Telemetry.md) to learn more about logging and how we do it!
 
-This should already be set up in the `configureGameBehavior` method in `Robot.java`. You should see the following lines:
+We’re going to use a tool called Monologue for logging, which gives us a structured way to record and analyze data from the robot’s systems. This should already be set up in the `configureGameBehavior` method in `Robot.java`. You should see the following lines:
 
 ```java
     Monologue.setupMonologue(this, "/Robot", false, true);
@@ -521,43 +605,22 @@ This should already be set up in the `configureGameBehavior` method in `Robot.ja
     addPeriodic(FaultLogger::update, 1);
 ```
 
-This initializes Monologue with our robot, setting up the logging system to capture data as the robot runs and makes sure Monologue logs data at regular intervals, which we’ve defined with kDefaultPeriod. By logging data regularly, we can later review how the robot performed and make informed adjustments to our code.
-
+This initializes Monologue with our robot, setting up the logging system to capture data as the robot runs and makes sure Monologue logs data at regular intervals, which we’ve defined with kDefaultPeriod. By logging data regularly, we can view information in real time and later review how the robot performed and make informed adjustments to our code.
 ### Using Monologue for NetworkTables Logging
 
-We use NetworkTables (NT) to make logging specific variables or objects easier. Read the [Telemetry doc](/reference-sheets/Telemetry.md) for specifics on logging with NT. Any values that may be useful for debugging should be logged, including currently running commands, joystick inputs, voltages, positions, etc..
+We use NetworkTables (NT) to make logging specific variables or objects easier. You should log any values that might be useful for debugging, or that will help you understand what is happening with the robot in general. So that includes commands, joystick inputs, voltages, positions, etc..
 
-We’re going to use the `@Log.NT` annotation as it allows us to log key metrics in real-time while the robot is running, which we can then view on dashboards like Shuffleboard or SmartDashboard.
+We use the `@Log.NT` annotation to indicate what values we want to be logged, and Monologue will periodically capture and record those values, which we can view in realtime or afterwords on dashboards like Shuffleboard or SmartDashboard.
 
-Let's get started by making a field:
-
-```java
-  @Log.NT private final Field2d field2d = new Field2d();
-```
-
-One other thing we're going to log is going to be our position on the field. Simply use the annotation on the `pose` method:
+Let's get started by making a Field2d object (discussed in the Simulation reference sheet):
 
 ```java
-  @Log.NT
-  public Pose2d pose() {
-    return odometry.getPoseMeters();
-  }
+  @Log.NT 
+  private final Field2d field2d = new Field2d();
 ```
-
-Another quick little thing we're going to log is the distance travelled by our motors. Like before, we create a getter method that returns what we want and annotate it with `@Log.NT`, allowing us to see and interact with it in sim.
-
-```java
-  @Log.NT
-  public double getDistance() {
-    return (leftEncoder.getPosition() + rightEncoder.getPosition()) / 2;
-  }
-```
-
-By logging these values, we can gain real-time insights into our robot’s performance, which is essential for making data-driven decisions and quickly diagnosing issues.
-
 ### Updating the Robot: periodic
 
-Finally, the periodic method is where we update various elements of the robot regularly during operation. It’s like the heartbeat of our subsystems. Specifically, we are going to update the field display with the robot’s current position, which helps us visualize its movement.
+The field2d will show us a field, but we want to actually see our robot moving on the field, so we need to periodically update the Field2d object with the position of our robot. We'll do that in the `periodic` method because we want our position to be updated regularly, and whether or not our robot is simulated.
 
 ```java
     field2d.setRobotPose(pose());
@@ -577,11 +640,6 @@ Since our driver port is 1, make sure your joystick is also on the same port val
 Lastly, to control the differential drive properly, the joystick will require to have 6 total `axis` as shown below. You can add more and change the bindings by going to `DS` then clicking on the settings of which ever keyboard you are using.
 
 ![drive joystick](https://github.com/user-attachments/assets/a6624ad8-f944-4e62-bc4d-a29eda974891)
-
-
 # Unit Testing & System Checks
-
-Coming soon!
-# Control Theory
 
 Coming soon!
