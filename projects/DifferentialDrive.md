@@ -488,7 +488,7 @@ Now, let’s see how we can use these two control mechanisms to actually drive o
 
 Based on our desired speeds, we can get outputs from PID and FF. We can then add these together and get our final voltage that we're going to send to the motor. To find these outputs, we need to give the controllers our desired speeds. The `drive` method really takes a percentage of our maximum velocity, from -1 to 1, rather than the actual velocity. So to find our desired velocities we can multiply `leftSpeed` and `rightSpeed` by our maximum speed.
 
-We'll define our maxim speed in our `DriveConstants` class:
+We'll define our maximum speed in our `DriveConstants` class:
 ```java
   public static final double MAX_SPEED = 2; // Meters per second
 ```
@@ -510,7 +510,6 @@ Using that, we can find the feedforward and PID outputs for each side:
 ```
 
 Finally, we combine the outputs and send them to the motors:
-
 ```java
       double leftVoltage = leftPID + leftFeedforward;
       double rightVoltage = rightPID + rightFeedforward;
@@ -558,13 +557,13 @@ Remember that all of these values would be stored in `DriveConstants.java`:
 
 By setting up the simulation with these constants, we’re creating a physics model of our robot that behaves similarly to how it would in real life.
 
-Before we start periodically updating our sim values, make sure to set the voltage to our sim drive in the `drive` method:
+Before we start periodically updating our sim values, make sure to set the voltage to our sim drive in the `drive` method (the one that returns void):
 
 ```java
     driveSim.setInputs(leftVoltage, rightVoltage);
 ```
 
-Last thing to set up will be updating our odometry using our simulated heading in simulation:
+Next, we need to update our odometry using our simulated heading in simulation:
 
 ```java
   public void periodic() {
@@ -574,10 +573,10 @@ Last thing to set up will be updating our odometry using our simulated heading i
 ```
 
 - `Robot.isReal()` returns whether or not we are connected to a real robot
-- What do the `?` and `:` do? That whole statement is referred to as a [ternary operator](https://www.baeldung.com/java-ternary-operator).
+- What are the `?` and `:` symbols? That whole statement is a [ternary operator](https://www.baeldung.com/java-ternary-operator).
 ### Simulation periodic
 
-The `simulationPeriodic` method is where we update the simulation. This method is called regularly during the robot’s operation to keep the simulated sensors and drivetrain in sync with the rest of the code. The `@Override` annotation above the method is there so that the compiler knows it's the inherited method from `SubsystemBase`. However, it isn't necessary to include.
+The `simulationPeriodic` method is where we update the simulation. This method is called every tick (0.2 seconds) when the robot is simulated so that we can keep the simulated sensors and drivetrain in sync with the rest of the code. The `@Override` annotation above the method is there so that the compiler knows it's the inherited method from `SubsystemBase`, but it isn't necessary to include.
 
 ```java
   @Override
@@ -586,7 +585,6 @@ The `simulationPeriodic` method is where we update the simulation. This method i
     driveSim.update(Constants.PERIOD.in(Seconds));
     leftEncoder.setPosition(driveSim.getLeftPositionMeters());
     rightEncoder.setPosition(driveSim.getRightPositionMeters());
-
   }
 ```
 
@@ -595,9 +593,9 @@ The `simulationPeriodic` method is where we update the simulation. This method i
 This method ensures that our simulated sensors provide accurate feedback as the robot "moves" in the simulation, allowing us to test and tweak our code.
 ## Logging: Capturing Important Data
 
-Now let’s talk about logging. Logging is crucial for understanding how our robot behaves over time, diagnosing issues, and improving performance. We’re going to use Monologue for logging, which gives us a structured way to record and analyze data from the robot’s systems.
+Now let’s talk about logging. Logging, or telemetry, is a way of recording information in real time. That information might include data from sensors, estimated positions, what command is running, etc. Logging is crucial for understanding how our robot behaves over time, diagnosing issues, and improving performance. Read the [Telemetry doc](/reference-sheets/Telemetry.md) to learn more about logging and how we do it!
 
-This should already be set up in the `configureGameBehavior` method in `Robot.java`. You should see the following lines:
+We’re going to use a tool called Monologue for logging, which gives us a structured way to record and analyze data from the robot’s systems. This should already be set up in the `configureGameBehavior` method in `Robot.java`. You should see the following lines:
 
 ```java
     Monologue.setupMonologue(this, "/Robot", false, true);
@@ -605,32 +603,22 @@ This should already be set up in the `configureGameBehavior` method in `Robot.ja
     addPeriodic(FaultLogger::update, 1);
 ```
 
-This initializes Monologue with our robot, setting up the logging system to capture data as the robot runs and makes sure Monologue logs data at regular intervals, which we’ve defined with kDefaultPeriod. By logging data regularly, we can later review how the robot performed and make informed adjustments to our code.
+This initializes Monologue with our robot, setting up the logging system to capture data as the robot runs and makes sure Monologue logs data at regular intervals, which we’ve defined with kDefaultPeriod. By logging data regularly, we can view information in real time and later review how the robot performed and make informed adjustments to our code.
 ### Using Monologue for NetworkTables Logging
 
-We use NetworkTables (NT) to make logging specific variables or objects easier. Read the [Telemetry doc](/reference-sheets/Telemetry.md) for specifics on logging with NT. Any values that may be useful for debugging should be logged, including currently running commands, joystick inputs, voltages, positions, etc..
+We use NetworkTables (NT) to make logging specific variables or objects easier. You should log any values that might be useful for debugging, or that will help you understand what is happening with the robot in general. So that includes commands, joystick inputs, voltages, positions, etc..
 
-We’re going to use the `@Log.NT` annotation as it allows us to log key metrics in real-time while the robot is running, which we can then view on dashboards like Shuffleboard or SmartDashboard.
+We use the `@Log.NT` annotation to indicate what values we want to be logged, and Monologue will periodically capture and record those values, which we can view in realtime or afterwords on dashboards like Shuffleboard or SmartDashboard.
 
-Let's get started by making a field:
-
-```java
-  @Log.NT private final Field2d field2d = new Field2d();
-```
-
-One other thing we're going to log is going to be our position on the field. Simply use the annotation on the `pose` method:
+Let's get started by making a Field2d object (discussed in the Simulation reference sheet):
 
 ```java
-  @Log.NT
-  public Pose2d pose() {
-    return odometry.getPoseMeters();
-  }
+  @Log.NT 
+  private final Field2d field2d = new Field2d();
 ```
-
-By logging these values, we can both simulate our robot and gain real-time insights into our robot’s performance, which is essential for making data-driven decisions and quickly diagnosing issues.
 ### Updating the Robot: periodic
 
-Finally, the periodic method is where we update various elements of the robot regularly during operation. It’s like the heartbeat of our subsystems. Specifically, we are going to update the field display with the robot’s current position, which helps us visualize its movement.
+The field2d will show us a field, but we want to actually see our robot moving on the field, so we need to periodically update the Field2d object with the position of our robot. We'll do that in the `periodic` method because we want our position to be updated regularly, and whether or not our robot is simulated.
 
 ```java
     field2d.setRobotPose(pose());
@@ -656,7 +644,7 @@ Lastly, to control the differential drive properly, the joystick will require to
 
 Make sure that you've read through the [unit testing guide](/reference-sheets/UnitTests.md)!
 
-We're going to use unit tests to make sure that all of the logic we're using to control our drivetrain is working as expected.
+In robot code, we use unit tests to make sure that all of the logic we're using to control our drivetrain is working as expected.
 
 We'll start it by creating a `DriveTest.java` file in `test/robot/` folder. In order to test our drivetrain, we're going to need to have a Drive subsystem in our testing class:
 
