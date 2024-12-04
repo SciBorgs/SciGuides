@@ -266,7 +266,7 @@ And the action is just going to be calling the other `drive` method using `vLeft
 
 Now we're going to go to `Robot.java` and write the code to actually drive the robot using the driver controller!
 
-There should already be two `CommandXboxController` objects called `operator` and `driver` defined at the top of the class. You can delete the `operator` controller, and we'll use the `driver` one for driving.
+There should already be two `CommandXboxController` objects called `operator` and `driver` defined at the top of the class. You can ignore the `operator` controller, and we'll use the `driver` one for driving.
 
 Next up, we need to actually create our instance of the drive subsystem! You can do this right under the comment that says `// SUBSYSTEMS`:
 
