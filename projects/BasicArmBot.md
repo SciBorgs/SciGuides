@@ -6,7 +6,7 @@
 
 In this tutorial, you will write code for a robot with a single-jointed arm and simulate its movement. The desired robot will have a single arm joint with an elevated axis of rotation, equipped with a static (non-pivoting) intake mechanism at the end of the arm.
 
-You are expected to have completed the [Differential Drive](/DifferentialDrive.md) project; we will be building upo it. You should also be familiar with the concepts and usage of interfaces, inheritance, and the command-based paradigm.
+You are expected to have completed the [Differential Drive](/projects/DifferentialDrive.md) project; we will be building upo it. You should also be familiar with the concepts and usage of interfaces, inheritance, and the command-based paradigm.
 
 All code examples are subject to change as a result of future library updates and improvements.
 
@@ -51,6 +51,9 @@ public class RealArm implements ArmIO {
     private final DutyCycleEncoder encoder = new DutyCycleEncoder(1);
 
     public RealArm() {
+        // Don't forget this! It'll yell at you if anything is wrong with the motor...
+        FaultLogger.register(motor);
+
         // ...
     }
 }
@@ -379,9 +382,9 @@ Use the predetermined `POSITION_FACTOR` constant in `ArmConstants` as the base, 
     public RealArm() {
         // ...
 
-        encoder.setDistancePerRotation(POSITION_FACTOR.in(Radians));
-        // or
         encoder.setDistancePerRotation(POSITION_FACTOR.in(Degrees));
+        // or (preferably)
+        encoder.setDistancePerRotation(POSITION_FACTOR.in(Radians));
     }
 ```
 
@@ -481,7 +484,7 @@ And finally, let's return the created test:
 
 #### As a unit test
 
-As you know, all unit tests are made in their own separate control files. Create a file `ArmTest.java` in the nested robot folder of the test directory. For reminder, read the [Unit Test]() section of the docs.
+As you know, all unit tests are made in their own separate control files. Create a file `ArmTest.java` in the nested robot folder of the test directory. For reminder, read the Unit Test section of the docs.
 
 Like in the differential drive project, create the simulated version of the arm that we will use to access the hardware simulation and `moveToTest()` command. Be sure to include the annotated setup() and destroy() methods that run before and after each test run.
 
@@ -569,9 +572,9 @@ In your `periodic()` method, update your PID constants using the values above wi
     }
 ```
 
-In the sim GUI, you can click on the values of the DoubleEntry above to set new values.
+In the sim GUI, you can click on the values of the DoubleEntry above to set new values, though this can be inconsistent at times.
 
-In AdvantageScope, tuning mode can be turned on [like so](https://github.com/Mechanical-Advantage/AdvantageScope/blob/main/docs/OPEN-LIVE.md#tuning-mode).
+As a result, for tuning purposes, we encourage you use AdvantageScope, a [logger](/reference-sheets/Telemetry.md) packaged with WPILib that consistently allows for these changes. It can also display your `Mechanism2d` widget, though you'll still need to control it with the sim GUI. Tuning mode can be turned on [like so](https://github.com/Mechanical-Advantage/AdvantageScope/blob/main/docs/OPEN-LIVE.md#tuning-mode).  It's an amazing resource to use: you'll see it again later, especially in the testing process.
 
 Note that the constants themselves will not change in code, only for the simulation. Be sure to note down what values worked and update your constants with those correctly tuned values!
 
