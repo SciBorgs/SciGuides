@@ -6,18 +6,14 @@
 
 In this tutorial, you will write code for a robot with a single-jointed arm and simulate its movement. The desired robot will have a single arm joint with an elevated axis of rotation, equipped with a static (non-pivoting) intake mechanism at the end of the arm.
 
-You are expected to have completed some level of the Differential Drive projects, as this project will build upon that codebase. You should also be familiar with the concepts and usage of interfaces, inheritance, and the command-based paradigm.
-
-[comment]: # (add diff drive link when completed)
+You are expected to have completed the [Differential Drive](/DifferentialDrive.md) project; we will be building upo it. You should also be familiar with the concepts and usage of interfaces, inheritance, and the command-based paradigm.
 
 All code examples are subject to change as a result of future library updates and improvements.
 
 ## Setting up your environment
 
 Using your knowledge of Git, create a new branch for your arm bot. Name it something like `basic-arm-bot`. *Make sure to also move to that branch!*
-If unfamiliar, please check our style sheet for ideal code and git practices.
-
-[comment]: # (add style sheet link when completed)
+If unfamiliar, please check our [style sheet](/reference-sheets/GitGuide.md) for ideal code and git practices.
 
 Before you move on, create an `Arm.java` subsystem and an associated `ArmConstants.java` file in the robot folder of your project.
 
@@ -25,7 +21,7 @@ Before you move on, create an `Arm.java` subsystem and an associated `ArmConstan
 
 Before we start, we'll be abstracting the hardware components to streamline our code.
 
-Moving hardware like motors and encoders to class implementations of an interface decouples them from subsystem code, enabling modularity that supports simulation and flexibility in using different hardware or none at all! For a deeper dive, you should look at our [hardware abstraction datasheet](/archive/HardwareAbstraction.md).
+Moving hardware like motors and encoders to class implementations of an interface decouples them from subsystem code, enabling modularity that supports simulation and flexibility in using different hardware or none at all! For a deeper dive, take a look at our [hardware abstraction datasheet](/archive/HardwareAbstraction.md).
 
 Begin by creating your first IO interface in its Java file. This will act as an abstraction for a real and simulated set of hardware, so only include method headers that you think they will share.
 
@@ -108,8 +104,6 @@ For your convenience, you may copy-paste these relevant predetermined constants 
      * The factors by which encoder measurements are different from actual motor rotation; default
      * units.
      */
-    public static final double MOTOR_GEARING = 12.0 / 64.0 * 20.0 / 70.0 * 36.0 / 56.0 * 16.0 / 54.0;
-
     public static final double THROUGHBORE_GEARING = 16.0 / 54.0;
 
     /** Unit conversions objects for the encoders. Uses the Java units library. */
@@ -187,9 +181,9 @@ Initialize your arm simulator with the new constants, like below...
     sim.update(PERIOD.in(Seconds)); // every 0.02 secs
 ```
 
-To complete this IO subsystem, create the last implementation called `NoArm`. It should describe a non-existent arm, without any hardware but with methods returning 0 or doing nothing.
+To complete this IO subsystem, create the last implementation called `NoArm`. It should describe a non-existent arm, without any hardware but with each method either returning 0 or doing nothing.
 
-This class is useful for when a mechanism is broken or is not on the robot, allowing us to run the rest of the robot without major errors.
+This class is useful for when physical mechanisms are broken or are not on the robot. It allows us to run the rest of the robot without the major errors that instantiating broken or non-existent hardware would bring.
 
 ### Subsystem Integration
 
@@ -211,7 +205,7 @@ Of course, we still want the arm to reach the setpoint quickly.
 
 A smoother alternative to the regular PID would be the addition of a trapezoid profile. Velocity will increase, coast, and then decrease over time under a set of velocity and acceleration limits to reach a goal smoothly, plotting a graph in the shape of a trapezoid. WPILib has [its own implementation of this](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/profiled-pidcontroller.html) in `ProfiledPIDController`. *Please read the docs*.
 
-Considering that the mechanism is an arm, it should be intuitive that gravity will have a much greater (non-negligible) effect on it than other mechanisms. To account for this, we can use [WPILib's `ArmFeedForward`](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/feedforward.html#armfeedforward), which incorporates a G term for output.
+Considering the weight and length of robot arms, we cannot ignore gravity when controlling for its position. To account for this, we can use [WPILib's `ArmFeedForward`](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/feedforward.html#armfeedforward), which incorporates a kG term that counteracts gravity at each point in its movement.
 
 The top of your file should look similar to this:
 
@@ -247,7 +241,7 @@ First, we'll create a non-factory method to set voltage with our controllers giv
     double pidOutput = pid.calculate(hardware.position(), goal);
     // Notice the distinction between goal and setpoint; 
     // the feedforward uses the pid's newly generated setpoint as input
-    // and thus will help reach that setpoint.
+    // and will help reach that setpoint as a result.
     double ffOutput = ff.calculate(pid.getSetpoint().position, pid.getSetpoint().velocity);
     hardware.setVoltage(pidOutput + ffOutput);
   }
@@ -268,21 +262,17 @@ It'll look something like this:
 
 You might even want to [overload](https://www.w3schools.com/java/java_methods_overloading.asp) it to take in a goal using the Units library, but that's just for safety and not strictly required.
 
-Finally, make a static `create()` method that will actually instantiate the `Arm` with IO implementations. You can read on why we do this in our style sheet.
-
-[comment]: # (add style sheet link when completed)
+Finally, make a static `create()` method that will actually instantiate the `Arm` with IO implementations. This avoids boilerplate when instantiating in `Robot.java`.
 
 ```java
     /**
      * A factory to create a new arm based on if the robot is real or simulated.
      */
     public static Arm create() {
+        // ternary operator: we create an arm with real hardware for a real arm, and simulated hardware for sim
         return Robot.isReal() ? new Arm(new RealArm()) : new Arm(new SimArm());
     }
 ```
-
-We use the ternary operator; if the robot is real, we create the subsystem with real hardware, otherwise we create the subsystem with simulated hardware.
-
 ## Organizing the file system
 
 With the introduction of this IO system, notice the substantial number of files. Multiply that by the two additional subsystems, and that makes for an unreadable file system. So, let's change that.
@@ -307,9 +297,7 @@ On the SciBorgs, subsystem files and their constants are put in one specific sub
     └── ...
 ```
 
-This file system structure can be referenced at any time here, or in our style sheet.
-
-[comment]: # (add style sheet link when completed)
+This file system structure can be referenced at any time here, or in its [reference sheet](/reference-sheets/FileStructure.md).
 
 ## Making the claw
 
