@@ -21,11 +21,11 @@ Logging libraries, third-party or WPILib-made, are not monolithic. Some are anno
 
 ## Dashboards
 
-There are two types of dashboards: driving and programming. We'll be talking about the ones related to debugging.
+There are two types of dashboards: driving and programming. We'll be talking about the ones related to programming.
 
 These programs allow you to view data over NetworkTables in real time, allowing you to see logged data while working on a real or simulated robot. These **will be your main tools for debugging**.
 
-Here's a [nice list](https://docs.wpilib.org/en/stable/docs/software/dashboards/dashboard-intro.html) of them.
+Here's a [nice list](https://docs.wpilib.org/en/stable/docs/software/dashboards/dashboard-intro.html) of them. We love AdvantageScope: it does both!
 
 ## Log Viewers
 
