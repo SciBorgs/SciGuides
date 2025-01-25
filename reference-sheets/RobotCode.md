@@ -1,19 +1,31 @@
+- [Deciding on your code structure](#deciding-on-your-code-structure)
+	- [Picking your Subsystems](#picking-your-subsystems)
+	- [Picking your Commands](#picking-your-commands)
+- [Organizing your files and folders](#organizing-your-files-and-folders)
+	- [Subsystem folders](#subsystem-folders)
+- [Writing your subsystem files](#writing-your-subsystem-files)
+	- [Constants file](#constants-file)
+	- [IO Interface](#io-interface)
+	- [IO Classes](#io-classes)
+	- [Control File](#control-file)
+- [Writing Command Files](#writing-command-files)
+
 
 ## Deciding on your code structure
 Before you write any code, the first thing you need to do is decide how your code will be structured. File structure is important to decide before you start coding because then you can figure out how to divide the work between your programmers and will stop future confusion between the team members.
 
-## Picking your Subsystems
+### Picking your Subsystems
 The first thing to do in any robot code project is to pick what subsystems your code will be based around. The subsystems you pick should be moving parts of the robot that will act independently of one another. For example, the rollers on a roller intake will move as one, even if the rollers on either side of the intake will move in opposite directions, so it should be one subsystem, but an arm attached to an elevator will act independently of the elevator it's attached to, so they should be two different subsystems even though they're attached. 
 
 Here is an image of our 2025 robot's first KrayonCAD draft, with the subsystems circled:
 ![](cad-diagram-circle-subsystems.png)
-## Picking your commands
+### Picking your Commands
 Now that you have your subsystems decided, you should figure out how you'll structure your [commands](reference-sheets/CommandBased). Commands should be used mainly when two subsystems will be moving in a coordinated motion. For example, if you have a wristed intake, the wrist should move down and the rollers should start intaking, which are two different subsystems that you'd like to use in coordination. So, you can organize those subsystems into command files and call those commands to achieve this.
 
 ## Organizing your files and folders
 When we make our code, we have a very specific [file structure](/reference-sheets/FileStructure.md), with subsystems each having their own folder, and commands all placed in one folder together. 
 
-## Subsystem folders
+### Subsystem folders
 Each subsystem will have its own folder where its hardware, control and constants are all handled and worked with. 
 
 In each subsystem folder, there is:
