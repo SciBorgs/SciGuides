@@ -25,6 +25,24 @@ Now that you have your subsystems decided, you should figure out how you'll stru
 ## Organizing your files and folders
 When we make our code, we have a very specific [file structure](/reference-sheets/FileStructure.md), with subsystems each having their own folder, and commands all placed in one folder together. 
 
+### Skeleton files
+When it comes to actually making the codebase, the absolute first thing to do is make something called skeletons. These are files that have every single method written out, but without method bodies. 
+
+For methods returning
+- void: write nothing
+- double: return 0
+- a Command, return Commands.none()
+- a wpilib Units value, just return 0 of those units
+
+This allows everyone to work out how the code will be structured before any method bodies are written, allowing the programmers to all agree on the codebase structure beforehand. This not only helps stop conflicts, but also allows people to work on commands before the subsystems are actually finished, because they can use the skeleton methods to write everything using those subsystems, even if the subsystem doesn't work yet.
+
+To figure out which files to make and which methods to make, skim through the rest of the guide. When your skeleton is all figured out, immediately make a pull request so that the codebase skeleton is completed quickly (this should take, like, a day at most). 
+
+Unit testing is not required for a skeleton, since they would all fail anyway. 
+Everything returns 0 after all.
+
+Also, ask for a review! One of the worst things that can happen is that you write your entire codebase based on the skeleton, and it turns out that the skeleton was wonky the whole time and you have to redo an entire part of the codebase (something that could have been prevented with a second opinion).
+
 ### Subsystem folders
 Each subsystem will have its own folder where its hardware, control and constants are all handled and worked with. 
 
@@ -51,7 +69,9 @@ Depending on the situation, your subsystem at any setup of the robot can be real
 
 In the interface, you'll declare which methods the IO classes (all of which will be implementing the interface) will have to contain. This is the only way that the control file can give instructions to and receive information from the hardware.
 
-Here, you'll have to decide if your subsystem will require feedback. Something like an arm or an elevator will want to know the position of the hardware at any time so it can use feedback for more precise and controlled movements, however something like an intake roller doesn't care, since all it needs to know is "go" or "stop", making it a simple motor subsystem rather than a feedback subsystem.
+Here, you'll have to decide if your subsystem will require feedback. 
+
+Something like an arm or an elevator will want to know the position of the hardware at any time so it can use feedback for more precise and controlled movements, however something like an intake roller doesn't care, since all it needs to know is "go" or "stop", making it a simple motor subsystem rather than a feedback subsystem.
 
 If your subsystem wants feedback, make methods as such:
 ``` 
@@ -62,14 +82,24 @@ public double position();
 public double velocity();
 ```
 
-If your subsystem is a simple motor, these methods are unnecessary and should be omitted. However, all subsystem IO interfaces need a way of giving instructions, such as either setting the voltage (in feedback mechanisms) or setting the power, a number from -1 to 1 (in simple motor mechanisms). 
+If your subsystem is a simple motor, these methods are unnecessary and should be omitted. 
 
-Any other methods that would be helpful, such as methods to set current limits of motors should also be included in the IO interface, as the control file can only interact with the hardware through the methods in the interface. This also means that if your subsystem has sensors such as a beam break, a method to access the value of the sensor is necessary and should be included.
+However, all subsystem IO interfaces need a way of giving instructions, such as either setting the voltage (in feedback mechanisms) or setting the power, a number from -1 to 1 (in simple motor mechanisms). 
+
+Any other methods that would be helpful, such as methods to set current limits of motors should also be included in the IO interface, as the control file can only interact with the hardware through the methods in the interface. 
+
+This also means that if your subsystem has sensors such as a beam break, a method to access the value of the sensor is necessary and should be included.
 
 An IO interface should also extend AutoCloseable, allowing every subsystem to be closed at once for unit testing purposes (there will be more about unit testing later).
 
 ### IO Classes
-Now that you have a way of interacting with the IO classes, you have to make the IO classes themselves. As many subsystems as possible should be able to be simulated, since that allows you to test them even when the robot is not present. However, you'll find that you'll only be able to do this with feedback mechanisms, since with simple motor mechanisms there's nothing to simulate, it's just a motor. There's also no way to get information from the simulation, since the IO interface doesn't have the methods required to get such information, rendering simulation completely useless. Therefore, feedback subsystems should have the following IO files:
+Now that you have a way of interacting with the IO classes, you have to make the IO classes themselves. 
+
+You should be able to simulate as many subsystems as possible, since that allows you to test them even when the robot is not present. However, you'll find that you'll only be able to do this with feedback mechanisms, since with simple motor mechanisms there's nothing to simulate; it's just a motor. 
+
+There's also no way to get information from the simulation, since the IO interface doesn't have the methods required to get such information, rendering simulation completely useless. 
+
+Therefore, feedback subsystems should have the following IO files:
 - RealSubsystem.java
 - SimSubsystem.java
 - NoSubsystem.java
@@ -80,7 +110,7 @@ The reason NoSubsystem exists is mostly for competition purposes, as if one of o
 ##### RealSubsystem
 RealSubsystem should have motors, and any other part involved with control, such as [sensors](reference-sheets/Sensors) or pneumatics (don't use pneumatics). You'll declare these parts in the fields, then instantiate and configure the motors in the constructor. Make sure to register the motor\[s] in FaultLogger and add the motor\[s] to SparkUtils! 
 
-Parts will take in an integer value representing the port they will take on the electronics. So, make a subclass for your subsystem in Ports.java, and for each part you use in the subsystem, add a constant to the subclass in Ports.java. Then, make a static import for Ports.Subsystem in your RealSubsystem.java to make  
+Parts will take in an integer value representing the port they will take on the electronics. So, make a subclass for your subsystem in Ports.java, and for each part you use in the subsystem, add a constant to the subclass in Ports.java. Then, make a static import for Ports.Subsystem in your RealSubsystem.java to get all of those values.
 ##### SimSubsystem
 SimSubsystem should revolve mainly around a [simulated version](reference-sheets/Simulation.md) of the mechanism, for example a SingleJointedArmSim for a simulated arm/wrist/pivot and an ElevatorSim for a simulated elevator. Remember to update the sim regularly, either periodically or whenever you get information from it.
 ##### NoSubsystem
@@ -130,16 +160,21 @@ private Subsystem(SubsystemIO hardware) {
 Note the use of a ternary operator (a fancy if statement) in the create() method. 
 
 If the subsystem is a simple motor subsystem, meaning there is no SimSubsystem file, it can be replaced with a NoSubsystem constructor.
+
 These factory methods greatly simplify the process of instantiating subsystems when in the central Robot.java file. 
 
 #### Fields and Control
 If the subsystem is a simple motor, all you'll need to do is make commands out of setting the power of the motor. However, if it's a feedback subsystem it'll be a bit more complicated.
 
-The best way to control one of these is to use [control theory](reference-sheets/ControlTheory.md) to our advantage. It's best to use both a feedforward controller and a feedback controller. These should be two private final fields. Feedback controllers and feedforward controllers use PID constants and SysID constants respectively, so they should be present in your SubsystemConstants file. 
+The best way to control one of these is to use [control theory](reference-sheets/ControlTheory.md) to our advantage. It's best to use both a feedforward controller and a feedback controller. These should be two private final fields.
+
+Feedback controllers and feedforward controllers use PID constants and SysID constants respectively, so they should be present in your SubsystemConstants file. 
 
 Your feedforward controller should be based on the subsystem it's controlling, such as an ArmFeedForward for an arm/wrist/pivot and an ElevatorFeedForward for an elevator. 
 
-Now, you need to decide whether you want to directly control the **velocity** of the subsystem or the **position** of the subsystem. If you're controlling shooting rollers, you want to be able to precisely control the velocity of the rollers but you don't really care about the position. However, if you're controlling an arm or an elevator, usually you'll care more about the position of it much more than the velocity. (usually.)
+Now, you need to decide whether you want to directly control the **velocity** of the subsystem or the **position** of the subsystem. 
+
+If you're controlling shooting rollers, you want to be able to precisely control the velocity of the rollers but you don't really care about the position. However, if you're controlling an arm or an elevator, usually you'll care more about the position of it much more than the velocity. (usually.)
 
 If you care more about position than velocity then you should use a ProfiledPIDController as your feedback, but if you care more about the velocity than the position, then for your feedback you should use a PIDController as your feedback.
 ```
@@ -176,7 +211,9 @@ These methods calculate the desired next velocity, then set it. One returns noth
 (Author's note: I personally prefer using the Command method. it's cooler :) )
 
 #### Getters for Logging
-Both when we use sim and when we test our robot in real life, [logging](reference-sheets/Telemetry) everything is very helpful for gleaning information on things. However, the only place that uses Logged is Subsystem.java, meaning that we need to log values in this subsystem. So, for each information-returning method in the IO interface, we need to write a method that returns the output of the interface method, and log the outside method. 
+Both when we use sim and when we test our robot in real life, [logging](reference-sheets/Telemetry) everything is very helpful for gleaning information on things. However, the only place that uses Logged is Subsystem.java, meaning that we need to log values in this subsystem. 
+
+So, for each information-returning method in the IO interface, we need to write a method that returns the output of the interface method, and log the outside method. 
 ```
 @Log
 /** @return The velocity, in [units] per second. */
@@ -195,7 +232,8 @@ return hardware.position();
 
 Also, although this wasn't done in the previous code, logging everything is extremely useful. 
 controller fields, the hardware field, and control methods should all be logged.
-The main things that shouldn't be logged are subsystem-specific commands, which will be covered in two sentences.
+
+The main things that don't need to be logged are subsystem-specific commands, which will be covered in two sentences.
 
 Although not covered in this document, if making SysID routines, those should be logged, and if you're making a visualizer for sim, these field should be logged as well.
 
@@ -210,19 +248,37 @@ public Command doThing() {
 	return goTo(SubsystemConstants.THING_STATE);
 }
 ```
-Here, THING_STATE is a constant state, and doThing() will try to go to that state every single time it's called. Also, your Subsystem.java should have a static import for SubsystemConstants.java, meaning there should be no need for the `SubsystemConstants.` before the `THING_STATE`.
+Here, THING_STATE is a constant state, and doThing() will try to go to that state when it's called. 
+
+Also, your Subsystem.java should have a static import for SubsystemConstants.java, meaning there should be no need for the `SubsystemConstants.` before the `THING_STATE`.
+
+Now, an extremely important point: default commands. When a subsystem isn't being told what to do (no command is actively scheduled), it will rely on its default command for instructions.
+
+You can set the default command of a subsystem in the constructor, using
+`setDefaultCommand( ... );`
+Instead of the ..., put the command that the subsystem should run when it's not being used by anything.
 
 #### Finishing Touches to the Subsystem folder
 Make sure to javadoc EVERYTHING. There shouldn't be a single undocumented method or field in your entire branch. Try to keep method names short and simple, since the function and use case of the method should be either outlined or implied by the javadoc. 
 
 #### Writing Unit Tests
 Everyone's favorite activity! Writing unit tests!!
-For each feedback subsystem, it's imperative that you write unit tests. Writing unit tests helps weed out possible errors, not only in the commands but also in the rest of the subsystem, before it becomes a massive issue. That's why it's best to write them as you go, so you can catch errors before they propagate and get out of hand. 
+For each feedback subsystem, it's imperative that you write unit tests. 
 
-A way to make this simple is to make a method that returns a Test in the subsystem file, and uses the control method as well as the state of the sim to determine if the control method is working. This makes it simple to write a repeatable test for your subsystem, which is useful especially when dealing with something as important as the control command, where something not working will break the entire subsystem.
+Writing unit tests helps weed out possible errors, not only in the commands but also in the rest of the subsystem, before it becomes a massive issue. 
+
+That's why it's best to write them as you go, so you can catch errors before they propagate and get out of hand. 
+
+A way to make this simple is to make a method that returns a Test in the subsystem file, and uses the control method as well as the state of the sim to determine if the control method is working. 
+
+This makes it simple to write a repeatable test for your subsystem, which is useful especially when dealing with something as important as the control command, where something not working will break the entire subsystem.
 
 ## Writing Command Files
-Now that you have all of your subsystems written and completed, you can use those subsystems in commands. Each command class will have fields for each of the subsystems that it requires, take in those subsystems in the constructor, and set the subsystem fields to the inputted subsystems. The command files should go under the commands folder, and the name should somewhat represent what the commands inside will do. 
+Now that you have all of your subsystems written and completed, you can use those subsystems in commands.
+
+Each command class will have fields for each of the subsystems that it requires, take in those subsystems in the constructor, and set the subsystem fields to the inputted subsystems. 
+
+The command files should go under the commands folder, and the name should somewhat represent what the commands inside will do. 
 
 Now, you can use commands from those subsystems and compile them in such a way that they coordinate in their motions. You can use [this](reference-sheets/CommandBased) as a guide for making commands. Make sure to write it in a way that the command finishes, and does everything it is supposed to, and when it's supposed to.
 
@@ -232,3 +288,36 @@ Lastly, add names to your commands using .withName("name"). It's not mandatory, 
 
 Make sure to also write unit tests for these! They're a great way of figuring out whether your commands work, end, and schedule correctly.
 
+## Central robot file
+Everything we've previously made comes together in Robot.java, a file that takes every subsystem and every command and puts them to use.
+
+#### Instantiating Subsystems and Commands
+This part is easy. All you have to do is go through each subsystem you made and make a new field in Robot.java for each one of them using your create() factory method.
+```
+// SUBSYSTEMS 
+
+private final Subsystem subsystem = Subsystem.create();
+ ...
+private final OtherSubsystem other = OtherSubsystem.create();
+```
+For now, we won't use none().
+
+Now that we have those subsystems, we can use our command classes that will hypothetically take in those subsystems.
+```
+private final Commanding commanding = new Commanding(subsystem, other);
+```
+This command class, called "commanding," has subsystem requirements of both Subsystem and OtherSubsystem, so we will pass those objects into it. Now, it will use those two subsystems in the command scheduler when it runs commands.
+#### Configuring bindings
+Now, for the final stretch. We may have all of the commands and subsystems done, but the driver and operator need a way to run those commands. 
+
+The easiest way to do this is using triggers, gained from buttons and axes on the driver's and operator's controllers. You can hook commands straight to the triggers using 
+`onTrue()` and `whileTrue()` (although triggers are not limited to these two methods).
+
+Make sure the following is in configureBindings(). 
+```
+operator.a().onTrue(subsystem.doThing());
+operator.b().whileTrue(commanding.doMoreThing());
+```
+While trying things out in sim, it's easiest to hook things up to driver.a() or driver.b() for simplicity reasons but when actually configuring bindings for gameplay with the robot it's best to figure out with your drive team which commands should be connected to which buttons/axes.
+
+However, it's not too difficult to figure out how these methods work and configuring bindings should turn out pretty easy compared to what you've done previously.
