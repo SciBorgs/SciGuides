@@ -62,7 +62,7 @@ In each subsystem folder, there is:
 ## Writing your subsystem files
 ### Constants file
 The constants file is very simple. It should store constants required for your subsystem, such as maximum height for an elevator, starting angle for an arm or configurations for a motor. Any constant that will be used in robot code for this subsystem should be stored in this file. Since they are constants, all fields should look like this: 
-```
+```java
 public static final CONSTANT_FIELD = ...;
 ```
 Keep in mind that they should be static, since the fields will be accessed directly from the class, and final since they're... constant constants.
@@ -71,7 +71,7 @@ Use cases for methods in constant files are limited but methods are sometimes us
 For now, though, you can ignore using methods in constants files.
 
 ### IO Interface
-Depending on the situation, your subsystem at any setup of the robot can be real, or it can be simulated. In order to be able to use the same control despite the difference in hardware, we use inheritance. An IO interface will allow you to give instructions and receive information regardless of the hardware being used. 
+Depending on the situation, your subsystem at any setup of the robot can be real, or it can be simulated. In order to be able to use the same control despite the difference in hardware, we use an interface. An IO interface will allow you to give instructions and receive information regardless of the hardware being used. 
 
 In the interface, you'll declare which methods the IO classes (all of which will be implementing the interface) will have to contain. This is the only way that the control file can give instructions to and receive information from the hardware.
 
@@ -142,7 +142,7 @@ The control file should have a field of type SubsystemIO. This will act as the h
 Rather than using a public constructor to make our subsystems in Robot.java, it's better to form static factory methods inside the class, and make the constructor private, since the constructor takes in a SubsystemIO and we can make those in Subsystem.java, and then use a different IO class based on if the robot is real or not.
 
 Essentially, we want to make two different public static methods that take in nothing and return a Subsystem. They'll look something like this (with the constructor at the bottom):
-```
+```java
 private SubsystemIO hardware;
 
 /** Creates a real Subsystem if the robot is real and a sim if it isn't. */
@@ -183,7 +183,7 @@ Now, you need to decide whether you want to directly control the **velocity** of
 If you're controlling shooting rollers, you want to be able to precisely control the velocity of the rollers but you don't really care about the position. However, if you're controlling an arm or an elevator, usually you'll care more about the position of it much more than the velocity. (usually.)
 
 If you care more about position than velocity then you should use a ProfiledPIDController as your feedback, but if you care more about the velocity than the position, then for your feedback you should use a PIDController as your feedback.
-```
+```java
 // Keep in mind "Subsystem" is a placeholder for your subsystem
 private SubsystemFeedForward feedforward = new SubsystemFeedForward( ... );
 
@@ -195,7 +195,7 @@ private PIDController feedback = new PIDController( ... );
 ```
 
 You can use these controllers through the `calculate()` method on both of them. They'll return the next voltage you'll want to pass into your hardware. When you want to use this, just sum the two controllers' voltages and set the voltage of your hardware. The method body for using the subsystem should look something like this:
-``` 
+```java
 /** This case is when the method has a void return type */
 private void update(double goal) {
 	double ff = feedforward.calculate( ... );
@@ -204,7 +204,7 @@ private void update(double goal) {
 }
 ```
 The two methods are named differently, but either name works.
-```
+```java
 /** This case is when the method returns a Command */
 public Command goTo(double goal) {
 	return run(() -> {
@@ -220,7 +220,7 @@ These methods calculate the desired next velocity, then set it. One returns noth
 Both when we use sim and when we test our robot in real life, [logging](reference-sheets/Telemetry) everything is very helpful for gleaning information on things. However, the only place that uses Logged is Subsystem.java, meaning that we need to log values in this subsystem. 
 
 So, for each information-returning method in the IO interface, we need to write a method that returns the output of the interface method, and log the outside method. 
-```
+```java
 @Log
 /** @return The velocity, in [units] per second. */
 public double velocity() {
@@ -248,7 +248,7 @@ In your control file, you'll be able to make commands whose only subsystem requi
 
 The commands made inside this subsystem class will typically use the control method we made earlier and simply use a state from SubsystemConstants as its input for the control method. It'll simply return a command to go to a specific, pre-designated state.
 
-```
+```java
 /** Does thing. This example uses the Command version of the control method. */
 public Command doThing() {
 	return goTo(SubsystemConstants.THING_STATE);
@@ -299,7 +299,7 @@ Everything we've previously made comes together in Robot.java, a file that takes
 
 #### Instantiating Subsystems and Command Classes
 This part is easy. All you have to do is go through each subsystem you made and make a new field in Robot.java for each one of them using your create() factory method.
-```
+```java
 // SUBSYSTEMS 
 
 private final Subsystem subsystem = Subsystem.create();
@@ -309,7 +309,7 @@ private final OtherSubsystem other = OtherSubsystem.create();
 For now, we won't use none().
 
 Now that we have those subsystems, we can use our command classes that will hypothetically take in those subsystems.
-```
+```java
 private final Commanding commanding = new Commanding(subsystem, other);
 ```
 This command class, called "commanding," has subsystem requirements of both Subsystem and OtherSubsystem, so we will pass those objects into it. Now, it will use those two subsystems in the command scheduler when it runs commands.
@@ -320,7 +320,7 @@ The easiest way to do this is using triggers, gained from buttons and axes on th
 `onTrue()` and `whileTrue()` (although triggers are not limited to these two methods).
 
 Make sure the following is in configureBindings(). 
-```
+```java
 operator.a().onTrue(subsystem.doThing());
 operator.b().whileTrue(commanding.doMoreThing());
 ```
