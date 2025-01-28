@@ -2,6 +2,7 @@
 	- [Picking your Subsystems](#picking-your-subsystems)
 	- [Picking your Commands](#picking-your-commands)
 - [Organizing your files and folders](#organizing-your-files-and-folders)
+	- [Skeleton Files](#skeleton-files)
 	- [Subsystem folders](#subsystem-folders)
 - [Writing your subsystem files](#writing-your-subsystem-files)
 	- [Constants file](#constants-file)
@@ -9,6 +10,9 @@
 	- [IO Classes](#io-classes)
 	- [Control File](#control-file)
 - [Writing Command Files](#writing-command-files)
+- [Central Robot File](#central-robot-file)
+	- [Instantiating Subsystems and Command Classes](#instantiating-subsystems-and-command-classes)
+	- [Configuring Bindings](#configuring-bindings)
 
 
 ## Deciding on your code structure
@@ -18,9 +22,11 @@ Before you write any code, the first thing you need to do is decide how your cod
 The first thing to do in any robot code project is to pick what subsystems your code will be based around. The subsystems you pick should be moving parts of the robot that will act independently of one another. For example, the rollers on a roller intake will move as one, even if the rollers on either side of the intake will move in opposite directions, so it should be one subsystem, but an arm attached to an elevator will act independently of the elevator it's attached to, so they should be two different subsystems even though they're attached. 
 
 Here is an image of our 2025 robot's first KrayonCAD draft, with the subsystems circled:
-![](cad-diagram-circle-subsystems.png)
+![](/images/cad-diagram-circle-subsystems.png)
 ### Picking your Commands
-Now that you have your subsystems decided, you should figure out how you'll structure your [commands](reference-sheets/CommandBased). Commands should be used mainly when two subsystems will be moving in a coordinated motion. For example, if you have a wristed intake, the wrist should move down and the rollers should start intaking, which are two different subsystems that you'd like to use in coordination. So, you can organize those subsystems into command files and call those commands to achieve this.
+Now that you have your subsystems decided, you should figure out how you'll structure your [commands](reference-sheets/CommandBased). Commands you make will mostly have only one subsystem as its requirement, so you can consider actions that the subsystem alone will do.
+
+Commands don't have to be limited to one subsystem, however. Command files can be used to create commands that require more than one subsystem for when those subsystems will be moving in a coordinated motion. For example, if you have a wristed intake, the wrist should move down and the rollers should start intaking, which are two different subsystems that you'd like to use in coordination. So, you can organize those subsystems into command files and call those commands to achieve this.
 
 ## Organizing your files and folders
 When we make our code, we have a very specific [file structure](/reference-sheets/FileStructure.md), with subsystems each having their own folder, and commands all placed in one folder together. 
@@ -291,7 +297,7 @@ Make sure to also write unit tests for these! They're a great way of figuring ou
 ## Central robot file
 Everything we've previously made comes together in Robot.java, a file that takes every subsystem and every command and puts them to use.
 
-#### Instantiating Subsystems and Commands
+#### Instantiating Subsystems and Command Classes
 This part is easy. All you have to do is go through each subsystem you made and make a new field in Robot.java for each one of them using your create() factory method.
 ```
 // SUBSYSTEMS 
