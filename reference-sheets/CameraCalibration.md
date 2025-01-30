@@ -1,6 +1,6 @@
 # Contents
 - [Environment setup](#environment-setup)
-- [Video recording](#video-recording)
+- [Video Recording](#video-recording)
 - [Command Crusades](#command-crusades)
 - [Quick Overview](#quick-overview)
 
@@ -16,7 +16,7 @@ To get started with camera calibration, you will need to set up your environment
 2. **Troubleshooting Installation Issues**: If this is your first time installing Ubuntu, you might encounter some issues. Don't worry! Simply search for solutions online. There are plenty of resources and forums where you can find simple solutions to common problems.
 3. **Installing Dependencies**: Throughout this process, you might not have all the necessary dependencies installed. If you run a command and it prompts you to install something, just go ahead and install it. This is a normal part of setting up your environment.
 
-# Video recording
+# Video Recording
 To record the video for calibration, follow these steps:
 
 1. **Download OBS**: You will need OBS Studio to record your video. Download it from [here](https://obsproject.com/). Follow the installation instructions on the website.
