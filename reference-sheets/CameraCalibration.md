@@ -97,6 +97,13 @@ After recording the video and saving it in the designated folder, follow these s
      ```sh
      ./file.py /path/to/cameramodel /path/to/json
      ```
+    - Once json file is retrived, upload it to your robot project under `resources/calibrations/file.json`
+# Conclusion
+Calibrating a camera can be a learning process, especially if it's your first time. Take your time with the videos and see what works and what doesn't. Play around with different techniques and you might find a better way to get improved coverage.
+
+**Important Note**: Be very clear and descriptive with both your files and in real life about which camera calibration belongs to which camera. Mixing them up can lead to incorrect calibrations and poor results. Label everything meticulously to avoid confusion.
+
+Good luck with your camera calibration!
 
 # Quick Overview
 - Step 1: Record a video with the camera trying to get the calibration image to all areas of the frame at different distances and skews
@@ -112,4 +119,7 @@ After recording the video and saving it in the designated folder, follow these s
 - Step 11: `mrcal-show-projection-uncertainty opencv8.cameramodel --cbmax 0.5 --unset key`
 - Step 12: See if that output makes sense
 - Step 13: Convert the mrcal .cameramodel file to a photonvision json and import it
+
+
+
 
