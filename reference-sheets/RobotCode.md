@@ -1,3 +1,5 @@
+Writing a complete robot is a long but typically formulaic process. This guide is a walkthrough of that process, and will cover everything from planning your project to writing classes and tests for it. 
+
 - [Deciding on your code structure](#deciding-on-your-code-structure)
 	- [Picking your Subsystems](#picking-your-subsystems)
 	- [Picking your Commands](#picking-your-commands)
@@ -125,8 +127,8 @@ This one's super easy. All you need is a constructor and the interface methods. 
 
 Now, for Real and Sim, add all methods required by the interface to the class and complete the method bodies. 
 
-Over each inherited method, place an `@Override` to tell java that it is an inherited method (though java will probably do this for you).
-There's no need to add javadoc to inherited methods, because the javadoc from the interface file will be passed down to the implementations.
+Over each implemented method, place an `@Override` to tell java that it is an implemented method from an interface (though java will probably do this for you).
+There's no need to add javadoc to these methods, because the javadoc from the interface file will be passed down to the implementations.
 
 ### Control File
 Now that all of your hardware stuff is worked out, you need to effectively control it. 
@@ -137,7 +139,7 @@ Control files should extend SubsystemBase\*, as well as implementing Logged and 
 \*SubsystemBase is a class and the "Subsystem" does not change to *your* subsystem, unlike other classes mentioned in this guide.
 
 #### Factory Methods
-The control file should have a field of type SubsystemIO. This will act as the hardware. The field is not actually a SubsystemIO, it is one of the IO classes, but since they all will inherit the methods in the interface, those methods can be called regardless of the type of the hardware. The control methods will act on the hardware and use the interface methods to do this. 
+The control file should have a field of type SubsystemIO. This will act as the hardware. The field is not actually a SubsystemIO, it is one of the IO classes, but since they all will implement the methods from the interface, those methods can be called regardless of the type of the hardware. The control methods will act on the hardware and use the interface methods to do this. 
 
 Rather than using a public constructor to make our subsystems in Robot.java, it's better to form static factory methods inside the class, and make the constructor private, since the constructor takes in a SubsystemIO and we can make those in Subsystem.java, and then use a different IO class based on if the robot is real or not.
 
