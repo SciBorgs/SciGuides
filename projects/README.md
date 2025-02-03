@@ -1,4 +1,4 @@
-## Best Practices
+# Best Practices
 
 As you go through these tutorials and projects, here are some practices you should try to follow:
 1. Go through all example code thoroughly until you understand it. If it's not clicking, ask for help.
