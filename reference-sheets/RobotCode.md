@@ -116,7 +116,7 @@ where SimSubsystem.java can be omitted for simple motor subsystems.
 The reason NoSubsystem exists is mostly for competition purposes, as if one of our subsystems break down it's better to not use it at all than to continue to give it commands and waste power.
 
 ##### RealSubsystem
-RealSubsystem should have motors, and any other part involved with control, such as [sensors](reference-sheets/Sensors) or pneumatics (don't use pneumatics). You'll declare these parts in the fields, then instantiate and configure the motors in the constructor. Make sure to register the motor\[s] in FaultLogger and add the motor\[s] to SparkUtils! 
+RealSubsystem should have motors, and any other part involved with control, such as [sensors](reference-sheets/Sensors). You'll declare these parts in the fields, then instantiate and configure the motors in the constructor. Make sure to register the motor\[s] in FaultLogger and add the motor\[s] to SparkUtils! 
 
 Parts will take in an integer value representing the port they will take on the electronics. So, make a subclass for your subsystem in Ports.java, and for each part you use in the subsystem, add a constant to the subclass in Ports.java. Then, make a static import for Ports.Subsystem in your RealSubsystem.java to get all of those values.
 ##### SimSubsystem
