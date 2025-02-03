@@ -44,7 +44,7 @@ For methods returning
 
 This allows everyone to work out how the code will be structured before any method bodies are written, allowing the programmers to all agree on the codebase structure beforehand. This not only helps stop conflicts, but also allows people to work on commands before the subsystems are actually finished, because they can use the skeleton methods to write everything using those subsystems, even if the subsystem doesn't work yet.
 
-To figure out which files to make and which methods to make, skim through the rest of the guide. When your skeleton is all figured out, immediately make a pull request so that the codebase skeleton is completed quickly (this should take, like, a day at most). 
+To figure out which files to make and which methods to make, skim through the rest of the guide. When your skeleton is all figured out, immediately make a pull request so that the codebase skeleton is completed quickly (this should take a day at most). 
 
 Unit testing is not required for a skeleton, since they would all fail anyway. 
 Everything returns 0 after all.
