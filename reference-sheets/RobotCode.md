@@ -44,7 +44,7 @@ For methods returning
 
 This allows everyone to work out how the code will be structured before any method bodies are written, allowing the programmers to all agree on the codebase structure beforehand. This not only helps stop conflicts, but also allows people to work on commands before the subsystems are actually finished, because they can use the skeleton methods to write everything using those subsystems, even if the subsystem doesn't work yet.
 
-To figure out which files to make and which methods to make, skim through the rest of the guide. When your skeleton is all figured out, immediately make a pull request so that the codebase skeleton is completed quickly (this should take, like, a day at most). 
+To figure out which files to make and which methods to make, skim through the rest of the guide. When your skeleton is all figured out, immediately make a pull request so that the codebase skeleton is completed quickly (this should take a day at most). 
 
 Unit testing is not required for a skeleton, since they would all fail anyway. 
 Everything returns 0 after all.
@@ -116,7 +116,7 @@ where SimSubsystem.java can be omitted for simple motor subsystems.
 The reason NoSubsystem exists is mostly for competition purposes, as if one of our subsystems break down it's better to not use it at all than to continue to give it commands and waste power.
 
 ##### RealSubsystem
-RealSubsystem should have motors, and any other part involved with control, such as [sensors](reference-sheets/Sensors) or pneumatics (don't use pneumatics). You'll declare these parts in the fields, then instantiate and configure the motors in the constructor. Make sure to register the motor\[s] in FaultLogger and add the motor\[s] to SparkUtils! 
+RealSubsystem should have motors, and any other part involved with control, such as [sensors](reference-sheets/Sensors). You'll declare these parts in the fields, then instantiate and configure the motors in the constructor. Make sure to register the motor\[s] in FaultLogger and add the motor\[s] to SparkUtils! 
 
 Parts will take in an integer value representing the port they will take on the electronics. So, make a subclass for your subsystem in Ports.java, and for each part you use in the subsystem, add a constant to the subclass in Ports.java. Then, make a static import for Ports.Subsystem in your RealSubsystem.java to get all of those values.
 ##### SimSubsystem
