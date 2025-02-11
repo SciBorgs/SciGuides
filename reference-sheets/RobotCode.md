@@ -103,7 +103,7 @@ An IO interface should also extend AutoCloseable, allowing every subsystem to be
 ### IO Classes
 Now that you have a way of interacting with the IO classes, you have to make the IO classes themselves. 
 
-You should be able to simulate as many subsystems as possible, since that allows you to test them even when the robot is not present. However, you'll find that you'll only be able to do this with feedback mechanisms, since with simple motor mechanisms there's nothing to simulate; it's just a motor. 
+You should try to simulate as many subsystems as possible, since that allows you to test them even when the robot is not present. However, you'll only be able to do this with feedback mechanisms, since with simple motor mechanisms there's nothing to simulate; it's just a motor. 
 
 There's also no way to get information from the simulation, since the IO interface doesn't have the methods required to get such information, rendering simulation completely useless. 
 
