@@ -20,7 +20,7 @@ If you can satisfy the above, you're ready to move on!
 1. **Download Ubuntu**: You will need to have Ubuntu installed on your system. Follow the instructions on the [website](https://ubuntu.com/download/desktop) to install it on your machine.
    1. If you're using Windows, you can download WSL through Windows Powershell instead as shown [here](https://learn.microsoft.com/en-us/windows/wsl/install#install-wsl-command). If it crashes, enable Windows Hypervisor Platform through `appwiz.cpl` > Turn Windows Features On or Off.
    2. Run this command: `sudo apt update && sudo apt upgrade`
-   2. After it has been downloaded and setup, run this command to get mrcal setup for future usage: `apt install mrcal libmrcal-dev python3-mrcal`.
+   3. After it has been downloaded and setup, run this command to get mrcal setup for future usage: `apt install mrcal libmrcal-dev python3-mrcal`.
 
 2. **Troubleshooting Installation Issues**: If this is your first time installing Ubuntu, you might encounter some issues. Don't worry! Simply search for solutions online. There are plenty of resources and forums where you can find simple solutions to common problems.
    - **Installing Dependencies**: Throughout this process, you might not have all the necessary dependencies installed. Initially, you may need to run If you run a command and it prompts you to install something, install it. This is a normal part of setting up your environment.
@@ -28,12 +28,12 @@ If you can satisfy the above, you're ready to move on!
 # Video Recording
 To record the video for calibration, follow these steps:
 
-1. **Download OBS**: You will need OBS Studio to record your video. Download it from [here](https://obsproject.com/). Follow the installation instructions on the website.
+1. **Download OBS**: We recommend using OBS to record your video. Follow the installation instructions on [the website]((https://obsproject.com/)).
 2. **OBS Setup**:
    - **Frame Rate**: Set the frame rate to 60 FPS (or more!).
    - **Output Location**: Change the output location to a new folder that you will use for this entire process.
    - **Resolution**: Set the resolution to match your camera's resolution (e.g., 1280x720).
-   - **Output Format**: Ensure the video is lossless and saved in AVI format. This will take up **a lot** of storage, .
+   - **Output Format**: Ensure the video is lossless and saved in AVI format. This will take up **a lot** of storage.
 3. **Print Chessboard Pattern**: Print the chessboard pattern from [here](https://github.com/dkogan/mrgingham/raw/master/chessboard.14x14.pdf). Make sure it is centered and fills up the whole page. When recording the video, the chessboard pattern must be on a flat surface, ideally taped down.
 4. **Recording the Video**:
    - **Example Video**: Here is an example of a good video for reference: [Calibration Video Example](https://www.youtube.com/watch?v=ez_5TA_SDto).
