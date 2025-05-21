@@ -11,13 +11,13 @@ This guide provides a simplified, more direct approach to camera calibration *us
 To get started with camera calibration, you will need to set up your environment.
 
 At minimum, you must have
-- a machine performant enough to record a smooth **≥60 fps**, 720p video
+- a machine that can handle recording a smooth **≥60 fps**, 720p camera feed
 - a machine with administrative privileges
 - **10 gigabytes** of storage space to store videos and images in
 
 If you can satisfy the above, you're ready to move on!
 
-1. **Download Ubuntu**: You will need to have Ubuntu installed on your system. Follow the instructions on the [website](https://ubuntu.com/download/desktop) to install it on your machine.
+1. **Download Ubuntu**: You will need to have Linux installed. Follow the instructions on the [website](https://ubuntu.com/download/desktop) to install it on your machine.
    1. If you're using Windows, you can download WSL through Windows Powershell instead as shown [here](https://learn.microsoft.com/en-us/windows/wsl/install#install-wsl-command). If it crashes, enable Windows Hypervisor Platform through `appwiz.cpl` > Turn Windows Features On or Off.
    2. Run this command: `sudo apt update && sudo apt upgrade`
    3. After it has been downloaded and setup, run this command to get mrcal setup for future usage: `apt install mrcal libmrcal-dev python3-mrcal`.
@@ -34,7 +34,7 @@ To record the video for calibration, follow these steps:
    - **Output Location**: Change the output location to a new folder that you will use for this entire process.
    - **Resolution**: Set the resolution to match your camera's resolution (e.g., 1280x720).
    - **Output Format**: Ensure the video is lossless and saved in AVI format. This will take up **a lot** of storage.
-3. **Print Chessboard Pattern**: Print the chessboard pattern from [here](https://github.com/dkogan/mrgingham/raw/master/chessboard.14x14.pdf). Make sure it is centered and fills up the whole page. When recording the video, the chessboard pattern must be on a flat surface, ideally taped down.
+3. **Print Chessboard Pattern**: Print the chessboard pattern from [here](https://github.com/dkogan/mrgingham/raw/master/chessboard.14x14.pdf). Make sure it is centered and fills up the whole page. When recording the video, the chessboard pattern must be on a flat surface.
 4. **Recording the Video**:
    - **Example Video**: Here is an example of a good video for reference: [Calibration Video Example](https://www.youtube.com/watch?v=ez_5TA_SDto).
    - **Setup**: Hold the chessboard in front of the camera, not too far away or too close, and focus the camera on the pattern. Once it looks very clear, start recording.
@@ -48,7 +48,7 @@ After recording the video and saving it in the designated folder, follow these s
 1. **Split Video into Frames**:
    - Using Ubuntu, navigate to the folder containing your video file.
    - Run the following command to split the video into individual JPG frames:
-     ```
+     ```sh
      ffmpeg -i input.avi %04d.JPG
      ```
    - Note: This process will take some time, depending on the length of the video, your system performance, and resources allocated to Linux.
@@ -74,10 +74,12 @@ After recording the video and saving it in the designated folder, follow these s
      vnl-filter -p x,y | \
      feedgnuplot --domain --square --set 'xrange [0:1280] noextend' --set 'yrange [720:0] noextend'
      ```
-   - The screen should show purple areas in a graph representing your coverage. Here is an example of what good coverage should look like: [Good Coverage Example](https://www.chiefdelphi.com/uploads/default/original/3X/5/f/5f7f3a3729081426a83c6749b8e1705076b898c4.png).
+   - The screen should show purple areas in a graph representing your coverage. Here is an example of what good coverage should look like: [Good Coverage Example](https://www.chiefdelphi.com/uploads/default/original/3X/5/f/5f7f3a3729081426a83c6749b8e1705076b898c4.png). Notice that it's still not perfect, especially on the edges.
+   - *You can fill in those missing spots* by  retaking a video focusing on the calibration's weak points, and converting that video into frames with a different template name. **Continue only when you are satisfied with your coverage**.
+
 
 4. **Calculate Focal Length**:
-   - Once you have coverage you are happy with, you need to calculate the focal length of your camera since it is needed for the calibration. You may do so [here](https://www.desmos.com/calculator/2qdnj5xi6l).
+   - Calibration requires the focal length of your camera. Linked [here](https://www.desmos.com/calculator/2qdnj5xi6l) is a calculator.
 
 5. **Run Calibration**:
    - Run the following command to calibrate the camera:
@@ -90,7 +92,7 @@ After recording the video and saving it in the designated folder, follow these s
      --object-width-n 14 \
      '*.JPG'
      ```
-   - Replace `FOCAL HERE` with your calculated focal length, and `OBJECT SPACING` with your calibration board's square side length.
+   - Replace `FOCAL HERE` with your calculated focal length, and `OBJECT SPACING` with the side length of each square on your calibration board. If using image files other than `*.JPG`, replace the wildcard with the file extension of your image frames (`*.PNG`, `*.JPEG`, `*.jpg`, etc.)
 
 6. **Show Projection Uncertainty**:
    - Run the following command to visualize the projection uncertainty:
@@ -106,6 +108,7 @@ After recording the video and saving it in the designated folder, follow these s
      ./file.py /path/to/cameramodel /path/to/json
      ```
     - Once json file is retrived, upload it to your robot project under `resources/calibrations/file.json`
+
 # Conclusion
 Calibrating a camera can be a learning process, especially if it's your first time. Take your time with the videos and see what works and what doesn't. Play around with different techniques and you might find a better way to get improved coverage.
 
