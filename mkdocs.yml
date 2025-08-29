@@ -1,0 +1,38 @@
+site_name: SciGuides
+theme:
+  name: material
+  custom_dir: overrides
+  logo: images/logo.png
+  favicon: images/logo.png
+  palette:
+    scheme: slate
+    primary: yellow
+    accent: amber
+  font:
+    text: Roboto
+    code: Roboto mono
+  features:
+    - navigation.footer
+  footer: ""
+
+nav:
+  - Home: index.md
+  - Intro To Programming:
+    - About: ./projects/intro-to-programming/README.md
+    - Programming 101: ./projects/intro-to-programming/Programming101.md
+    - Java 101: ./projects/intro-to-programming/Java101.md
+    - Java 102: ./projects/intro-to-programming/Java102.md
+  - Differential Drive: ./projects/DifferentialDrive.md
+  - Reference Sheets:
+    - About: ./reference-sheets/README.md
+    - Advanced Java: ./reference-sheets/AdvancedJava.md
+    - Command Based Programming: ./reference-sheets/CommandBased.md
+    - Command Line Navigation: ./reference-sheets/CommandLineNavigation.md
+    - Control Theory: ./reference-sheets/ControlTheory.md
+    - Environment Setup: ./reference-sheets/EnvironmentSetup.md
+    - File Structure: ./reference-sheets/FileStructure.md
+    - Git Guide: ./reference-sheets/GitGuide.md
+    - Sensors: ./reference-sheets/Sensors.md
+    - Simulation: ./reference-sheets/Simulation.md
+    - Telemetry: ./reference-sheets/Telemetry.md
+    - Trig Guide: ./reference-sheets/Trigonometry.md

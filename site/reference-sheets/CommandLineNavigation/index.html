@@ -1,0 +1,1845 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../CommandBased/">
+      
+      
+        <link rel="next" href="../ControlTheory/">
+      
+      
+      <link rel="icon" href="../../images/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
+    
+    
+      
+        <title>Command Line Navigation - SciGuides</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2afb09e1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="yellow" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="SciGuides" class="md-header__button md-logo" aria-label="SciGuides" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SciGuides
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Command Line Navigation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SciGuides" class="md-nav__button md-logo" aria-label="SciGuides" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    SciGuides
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Intro To Programming
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Intro To Programming
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/intro-to-programming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/intro-to-programming/Programming101/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Programming 101
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/intro-to-programming/Java101/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Java 101
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/intro-to-programming/Java102/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Java 102
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/DifferentialDrive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Differential Drive
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Reference Sheets
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Reference Sheets
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AdvancedJava/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Advanced Java
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CommandBased/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command Based Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Command Line Navigation
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command Line Navigation
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goals
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLMs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#computer-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Computer Organization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paths
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessing-the-command-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessing the Command Line
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-line-shortcuts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command Line Shortcuts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-pwd-print-working-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. pwd (Print Working Directory)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ls-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. ls (List)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. ls (List)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-cd-change-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. cd (Change Directory)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. cd (Change Directory)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-mkdir-make-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. mkdir (Make Directory)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. mkdir (Make Directory)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-touch-macoslinux-or-type-nul-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. touch (macOS/Linux) or type nul &gt; (Windows)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. touch (macOS/Linux) or type nul &gt; (Windows)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-cat-concatenate-and-print" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. cat (Concatenate and Print)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. cat (Concatenate and Print)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-cp-copy" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. cp (Copy)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. cp (Copy)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-mv-move-or-rename" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. mv (Move or Rename)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. mv (Move or Rename)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-rm-remove" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. rm (Remove)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. rm (Remove)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ControlTheory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Control Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EnvironmentSetup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environment Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FileStructure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GitGuide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Git Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Sensors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sensors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Simulation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Simulation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Telemetry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Telemetry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Trigonometry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Trig Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goals
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLMs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#computer-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Computer Organization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paths
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessing-the-command-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessing the Command Line
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-line-shortcuts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command Line Shortcuts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-pwd-print-working-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. pwd (Print Working Directory)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ls-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. ls (List)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. ls (List)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-cd-change-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. cd (Change Directory)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. cd (Change Directory)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-mkdir-make-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. mkdir (Make Directory)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. mkdir (Make Directory)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-touch-macoslinux-or-type-nul-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. touch (macOS/Linux) or type nul &gt; (Windows)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. touch (macOS/Linux) or type nul &gt; (Windows)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-cat-concatenate-and-print" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. cat (Concatenate and Print)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. cat (Concatenate and Print)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-cp-copy" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. cp (Copy)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. cp (Copy)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-mv-move-or-rename" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. mv (Move or Rename)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. mv (Move or Rename)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-rm-remove" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. rm (Remove)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. rm (Remove)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Command Line Navigation</h1>
+
+<h2 id="introduction">Introduction</h2>
+<p>The command line interface (CLI), also known as the terminal or shell, is a text-based interface for interacting with your computer's operating system. Instead of using a graphical user interface (GUI) with icons and windows, you type commands to perform actions like navigating directories, creating files, or running programs.</p>
+<h2 id="goals">Goals</h2>
+<p>Familiarity with the following ideas and commands:</p>
+<ul>
+<li>How a computer organizes files</li>
+<li>Command Line shortcuts</li>
+<li>Basic commands<ul>
+<li>pwd</li>
+<li>ls</li>
+<li>cd</li>
+<li>mkdir</li>
+<li>touch/type nul &gt;</li>
+<li>cat</li>
+<li>cp</li>
+<li>mv</li>
+<li>rm</li>
+</ul>
+</li>
+</ul>
+<p>This guide is really only scratching the surface on Command Line use, but it should give you what you need to get started.</p>
+<h2 id="best-practices">Best Practices</h2>
+<p>If you're learning this for the first time, follow along! Whenever a new command is taught, try the examples on your own machine.</p>
+<h2 id="llms">LLMs</h2>
+<p>Command Line navigation is an area in which LLMs are incredibly useful. If you ever want to know how to do something on Command Line, ask ChatGPT or Claude!</p>
+<h2 id="computer-organization">Computer Organization</h2>
+<p>Computers organize files and folders in a hierarchical structure, often called a file system. The top-level directory is called the root directory. On Windows, this is typically represented by <code>C:\</code>, while on Mac and Linux, it's represented by <code>/</code>.</p>
+<p>Your user account has a home directory where your personal files are stored:</p>
+<ul>
+<li>On Mac and Linux: <code>/home/username</code> (often shortened to <code>~</code>)</li>
+<li>On Windows: <code>C:\Users\username</code></li>
+</ul>
+<p>That's where the folders that you're used to seeing (Documents, Downloads, etc) are.</p>
+<p>As you navigate through the file system, you'll be working within a specific directory at any given time. This is called your working directory. When you open a new terminal, it usually starts in your home directory.</p>
+<p>When referring to directories, there are two special references you'll often encounter: <code>.</code> (dot) refers to the current directory, and <code>..</code> (dot dot) refers to the parent directory (one level up). These are useful for navigating the file system and specifying file paths.</p>
+<h2 id="paths">Paths</h2>
+<p>When referring to files or directories, we use paths. There are two types of paths: absolute and relative.</p>
+<p>An absolute path provides the complete location of a file or directory from a fixed point in the file system, regardless of the current working directory. This fixed point is typically:</p>
+<ul>
+<li>The root directory, represented by <code>/</code> on Mac/Linux or a drive letter (e.g., <code>C:\</code>) on Windows.</li>
+<li>The home directory, often represented by <code>~</code> on Unix-like systems.</li>
+</ul>
+<p>Examples of absolute paths:</p>
+<ul>
+<li><code>/home/username/Documents/file.txt</code> (from root on Unix-like systems)</li>
+<li><code>C:\Users\username\Documents\file.txt</code> (from root on Windows)</li>
+<li><code>~/Documents/file.txt</code> (from home directory)</li>
+</ul>
+<p>A relative path, on the other hand, specifies the location of a file or directory relative to the current working directory. It doesn't start with <code>/</code>, a drive letter, or <code>~</code>.</p>
+<p>For instance, if you're in <code>/home/username</code>, you can refer to a file in your Documents folder as <code>Documents/file.txt</code>. Relative paths often make commands shorter and more portable, especially when working within your own directory structure.</p>
+<p>And remember, you can use <code>.</code> to refer to the current directory and <code>..</code> to refer to the parent. So if you were in the <code>/home/username/Documents</code>, and you want to refer to a file whose absolute path is <code>/home/username/file.txt</code>, you could do that using <code>../file.txt</code>.</p>
+<h2 id="accessing-the-command-line">Accessing the Command Line</h2>
+<ul>
+<li><strong>Mac</strong>: Open the "Terminal" application (found in Applications &gt; Utilities)</li>
+<li><strong>Windows</strong>: Open "PowerShell" (or "Command Prompt" if your computer does not have "PowerShell")<ul>
+<li>If you end up using "CommandPrompt", some of the commands in this guide will not work. When that happens, ask ChatGPT or Claude or another LLM how to translate the command to use in "CommandPrompt".</li>
+</ul>
+</li>
+<li><strong>Linux</strong>: Open your distribution's terminal application (often accessible with Ctrl+Alt+T)</li>
+</ul>
+<p>Once you've got your CLI open, all you need to do to execute a command is type it and hit enter!</p>
+<h2 id="command-line-shortcuts">Command Line Shortcuts</h2>
+<p>These keyboard shortcuts will be very important to efficiently using Command Line. The most important ones are italicized.</p>
+<ol>
+<li><strong>Tab Completion</strong>: Press the Tab key to autocomplete file names, directory names, and commands. If there are multiple possibilities, press Tab twice to see all options.</li>
+<li><strong>Command History</strong>:<ul>
+<li><em>Use the Up and Down arrow keys to navigate through previously used commands.</em></li>
+<li>Ctrl + R: Search through command history (start typing to search).</li>
+</ul>
+</li>
+<li><strong>Cursor Movement</strong>:<ul>
+<li><em>Ctrl + A: Move cursor to the beginning of the line.</em></li>
+<li><em>Ctrl + E: Move cursor to the end of the line.</em></li>
+<li><em>Option + Left/Right Arrow (Mac) or Ctrl + Left/Right Arrow (Windows/Linux): Move cursor word by word.</em></li>
+</ul>
+</li>
+<li><strong>Editing</strong>:<ul>
+<li><em>Ctrl + U: Clear the line before the cursor.</em></li>
+<li><em>Ctrl + K: Clear the line after the cursor.</em></li>
+<li><em>Ctrl + W: Delete the word before the cursor.</em></li>
+</ul>
+</li>
+<li><strong>Process Control</strong>:<ul>
+<li><em>Ctrl + C: Interrupt (terminate) the current command.</em></li>
+<li>Ctrl + Z: Suspend the current command (can be resumed later).</li>
+</ul>
+</li>
+<li><strong>Screen Control</strong>:<ul>
+<li>Ctrl + L: Clear the screen (same as the <code>clear</code> command).</li>
+</ul>
+</li>
+<li><strong>Terminal Output Control</strong>:<ul>
+<li>Ctrl + S: Pause output to the screen.</li>
+<li>Ctrl + Q: Resume output to the screen.</li>
+</ul>
+</li>
+</ol>
+<h2 id="basic-commands">Basic Commands</h2>
+<h2 id="1-pwd-print-working-directory">1. pwd (Print Working Directory)</h2>
+<p><code>pwd</code> shows your current location in the file system.</p>
+<h2 id="2-ls-list">2. ls (List)</h2>
+<p><code>ls</code> lists the contents of a directory.</p>
+<h3 id="usage">Usage</h3>
+<p>To list contents of working directory:</p>
+<pre><code class="language-bash">ls
+</code></pre>
+<p>To list contents of another directory:</p>
+<pre><code class="language-bash">ls [path to directory]
+</code></pre>
+<h3 id="examples">Examples</h3>
+<p>Show contents of parent directory:</p>
+<pre><code class="language-bash">ls ..
+</code></pre>
+<p>Show contents of parent of parent directory:</p>
+<pre><code class="language-bash">ls ../..
+</code></pre>
+<p>Show contents of Documents:</p>
+<pre><code class="language-bash">ls ~/Documents
+</code></pre>
+<h2 id="3-cd-change-directory">3. cd (Change Directory)</h2>
+<p><code>cd</code> allows you to move between directories.</p>
+<h3 id="usage_1">Usage</h3>
+<p>To move to the home directory:</p>
+<pre><code class="language-bash">cd
+</code></pre>
+<p>To move to another directory:</p>
+<pre><code class="language-bash">cd [path-to-directory]
+</code></pre>
+<h3 id="examples_1">Examples</h3>
+<p>Move to parent directory:</p>
+<pre><code class="language-bash">cd ..
+</code></pre>
+<p>Move to Documents:</p>
+<pre><code class="language-bash">cd ~/Documents
+</code></pre>
+<p>Move to the parent of the home directory:</p>
+<pre><code class="language-bash">cd ~/..
+</code></pre>
+<p>Move back to your home directory:</p>
+<pre><code class="language-bash">cd
+</code></pre>
+<h2 id="4-mkdir-make-directory">4. mkdir (Make Directory)</h2>
+<p><code>mkdir</code> creates a new directory.</p>
+<h3 id="usage_2">Usage</h3>
+<pre><code class="language-bash">mkdir [path-to-new-directory]
+</code></pre>
+<h3 id="examples_2">Examples</h3>
+<p>Make a new directory in your working directory:</p>
+<pre><code class="language-bash">mkdir cml-practice
+</code></pre>
+<p>Make a new directory inside of <code>cml-practice</code>:</p>
+<pre><code class="language-bash">mkdir cml-practice/foo
+</code></pre>
+<p>Make a new directory in <code>cml-practice</code>, but do so from within <code>foo</code>:</p>
+<pre><code class="language-bash">cd cml-practice/foo
+mkdir ../bar
+</code></pre>
+<p>Make a new directory in Documents:</p>
+<pre><code class="language-bash">mkdir ~/Documents/cml-practice-documents
+</code></pre>
+<h2 id="5-touch-macoslinux-or-type-nul-windows">5. touch (macOS/Linux) or type nul &gt; (Windows)</h2>
+<p>These commands create a new, empty file.</p>
+<h3 id="usage_3">Usage</h3>
+<p><code>touch</code>:</p>
+<pre><code class="language-bash">touch [path-to-new-file]
+</code></pre>
+<p><code>type nul &gt;</code>:</p>
+<pre><code class="language-powershell">type nul &gt; [path-to-new-file]
+</code></pre>
+<h3 id="examples_3">Examples</h3>
+<p>Create a file inside of <code>foo</code> (Mac/Linux):</p>
+<pre><code class="language-bash">touch cml-practice/foo/file.txt
+</code></pre>
+<p>Create a file inside of <code>foo</code> (Windows):</p>
+<pre><code class="language-powershell">type nul &gt; cml-practice/foo/file.txt
+</code></pre>
+<h2 id="6-cat-concatenate-and-print">6. cat (Concatenate and Print)</h2>
+<p><code>cat</code> displays the contents of a file.</p>
+<h3 id="usage_4">Usage</h3>
+<pre><code class="language-bash">cat [path-to-file]
+</code></pre>
+<h3 id="examples_4">Examples</h3>
+<p>Before we look at the contents of a file, let's make a file with something in it to see (you don't need to understand exactly what's happening here -- it shouldn't be super useful to you):</p>
+<pre><code class="language-bash">echo &quot;Hello world!&quot; &gt; cml-practice/foo/hello.txt
+</code></pre>
+<p>(If you're using CommandPrompt, don't include the quotation marks)</p>
+<p>Now we should have a file <code>cml-practice/foo/hello.txt</code> whose contents is the text "Hello World!"</p>
+<p>Let's look at it:</p>
+<pre><code class="language-bash">cat cml-practice/foo/hello.txt
+</code></pre>
+<h2 id="7-cp-copy">7. cp (Copy)</h2>
+<p><code>cp</code> copies files or directories.</p>
+<h3 id="usage_5">Usage</h3>
+<p>To copy a file:</p>
+<pre><code class="language-bash">cp [path-to-source] [path-to-destination]
+</code></pre>
+<p>If the destination path is a directory, it will copy the source file into that destination directory, with the original file name. If the destination path is to a file name, the contents of the source file will be moved to the destination file.</p>
+<p>To copy a directory (Mac/Linux):</p>
+<pre><code class="language-bash">cp -r [path-to-source-dir] [path-to-destination]
+</code></pre>
+<h3 id="examples_5">Examples</h3>
+<p>Copy hello.txt to bar (and then print the contents to confirm that it worked):</p>
+<pre><code class="language-bash">cp cml-practice/foo/hello.txt cml-practice/bar
+cat cml-pracice/bar/hello.txt
+</code></pre>
+<p>Copy file.txt to cml-practice/baz.txt (and list the contents of cml-practice to confirm that it worked):</p>
+<pre><code class="language-bash">cp cml-practice/foo/file.txt cml-practice/baz.txt
+ls cml-practice
+</code></pre>
+<h2 id="8-mv-move-or-rename">8. mv (Move or Rename)</h2>
+<p><code>mv</code> moves files or directories. It can also be used to rename files or directories, because renaming something is really just moving its contents to something with a different name.</p>
+<h3 id="usage_6">Usage</h3>
+<p>To move a file or directory:</p>
+<pre><code class="language-bash">mv [path-to-source] [path-to-destination]
+</code></pre>
+<p>If the source is a file and the destination is a directory, the file will be moved into that directory. If the source and destination are both files, the contents of the file will be moved to a file at the destination path. If the source is a directory, the destination cannot be a file.</p>
+<p>With both files and directories, if the source and destination have the same parent directory, the file or directory will effectively just be renamed.</p>
+<h3 id="examples_6">Examples</h3>
+<p>Rename file.txt to new-name.txt (and then verify that it worked):</p>
+<pre><code class="language-bash">mv cml-practice/foo/file.txt cml-practice/foo/new-name.txt
+ls cml-practice/foo
+</code></pre>
+<p>Make a new directory inside of bar, and then move it to cml-practice (and then verify that it worked):</p>
+<pre><code class="language-bash">mkdir cml-practice/bar/foobar
+ls cml-practice/bar
+mv cml-practice/bar/foobar cml-practice
+ls cml-practice
+</code></pre>
+<h2 id="9-rm-remove">9. rm (Remove)</h2>
+<p><code>rm</code> deletes files or directories.</p>
+<h3 id="usage_7">Usage</h3>
+<p>To remove a file:</p>
+<pre><code class="language-bash">rm [path-to-file]
+</code></pre>
+<p>To remove an empty directory:</p>
+<pre><code class="language-bash">rm -d [path-to-empty-dir]
+</code></pre>
+<p>To remove a directory and its contents:</p>
+<pre><code class="language-bash">rm -r [path-to-dir]
+</code></pre>
+<p><em>Be very careful with rm -r. This will delete everything in a directory, and there is no undo!</em></p>
+<h3 id="examples_7">Examples</h3>
+<p>Remove cml-pracice/bar/hello.txt:</p>
+<pre><code class="language-bash">rm cml-pracice/bar/hello.txt
+</code></pre>
+<p>Remove ~/Documents/cml-practice-documents:</p>
+<pre><code class="language-bash">rm -d ~/Documents/cml-practice-documents
+</code></pre>
+<p>Remove the entirety of cml-practice:</p>
+<pre><code class="language-bash">rm -r cml-practice
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../CommandBased/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Command Based Programming">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Command Based Programming
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../ControlTheory/" class="md-footer__link md-footer__link--next" aria-label="Next: Control Theory">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Control Theory
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

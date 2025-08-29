@@ -1,0 +1,2603 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../Java101/">
+      
+      
+      <link rel="icon" href="../../../images/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
+    
+    
+      
+        <title>Programming 101 - SciGuides</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.2afb09e1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="yellow" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="SciGuides" class="md-header__button md-logo" aria-label="SciGuides" data-md-component="logo">
+      
+  <img src="../../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SciGuides
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Programming 101
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="SciGuides" class="md-nav__button md-logo" aria-label="SciGuides" data-md-component="logo">
+      
+  <img src="../../../images/logo.png" alt="logo">
+
+    </a>
+    SciGuides
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Intro To Programming
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Intro To Programming
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Programming 101
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Programming 101
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-this-for-me" class="md-nav__link">
+    <span class="md-ellipsis">
+      Is this for me?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Is this for me?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goals
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#materials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Materials
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best practices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pseudocode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pseudocode
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is code?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comments
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Operations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arithmetic-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arithmetic Operators
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Arithmetic Operators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modulus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modulus
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparison-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparison Operators
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variables
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-f" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: f
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-iseven" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: isEven
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-xor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: xor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-applythrice" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: applyThrice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practice-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice Problems
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scope
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mutability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mutability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Types
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#array-mutability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Array Mutability
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practice-problems_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice Problems
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loops" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loops
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#while-loops" class="md-nav__link">
+    <span class="md-ellipsis">
+      While Loops
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="While Loops">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 1.5
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#for-each-loops" class="md-nav__link">
+    <span class="md-ellipsis">
+      For Each Loops
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="For Each Loops">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 5
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practice-problems_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice Problems
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#side-effects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Side Effects
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-statements" class="md-nav__link">
+    <span class="md-ellipsis">
+      If Statements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-sumeven" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: sumEven
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-collatz-conjecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Collatz Conjecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practice-problems_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice Problems
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#glossary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glossary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Java101/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Java 101
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Java102/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Java 102
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DifferentialDrive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Differential Drive
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Reference Sheets
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Reference Sheets
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference-sheets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference-sheets/AdvancedJava/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Advanced Java
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference-sheets/CommandBased/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command Based Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference-sheets/CommandLineNavigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command Line Navigation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference-sheets/ControlTheory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Control Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference-sheets/EnvironmentSetup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environment Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference-sheets/FileStructure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference-sheets/GitGuide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Git Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference-sheets/Sensors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sensors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference-sheets/Simulation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Simulation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference-sheets/Telemetry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Telemetry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference-sheets/Trigonometry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Trig Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-this-for-me" class="md-nav__link">
+    <span class="md-ellipsis">
+      Is this for me?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Is this for me?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goals
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#materials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Materials
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best practices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pseudocode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pseudocode
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is code?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comments
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Operations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arithmetic-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arithmetic Operators
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Arithmetic Operators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modulus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modulus
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparison-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparison Operators
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variables
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-f" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: f
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-iseven" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: isEven
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-xor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: xor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-applythrice" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: applyThrice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practice-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice Problems
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scope
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mutability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mutability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Types
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#array-mutability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Array Mutability
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practice-problems_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice Problems
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loops" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loops
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#while-loops" class="md-nav__link">
+    <span class="md-ellipsis">
+      While Loops
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="While Loops">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 1.5
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#for-each-loops" class="md-nav__link">
+    <span class="md-ellipsis">
+      For Each Loops
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="For Each Loops">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 5
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practice-problems_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice Problems
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#side-effects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Side Effects
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-statements" class="md-nav__link">
+    <span class="md-ellipsis">
+      If Statements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-sumeven" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: sumEven
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-collatz-conjecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Collatz Conjecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practice-problems_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice Problems
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#glossary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glossary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Programming 101</h1>
+
+<h2 id="introduction">Introduction</h2>
+<h2 id="is-this-for-me">Is this for me?</h2>
+<p>This tutorial has no prerequisites! It's written with the expectation that most of you have taken algebra 1, but if you haven't that shouldn't be a problem.</p>
+<p>As for whether you should skip this tutorial, look at the topics listed in <a href="#goals">Goals</a>. If you are comfortable with all of them (language doesn't matter) you can probably skip this. If you're comfortable with some but not all of the concepts, feel free to skip whatever you already know. If there's anything that you've learned already but you're not 100% sure you remember or have a good grasp on, you're highly encouraged to review it here.</p>
+<h3 id="goals">Goals</h3>
+<p>Familiarity with the following topics:</p>
+<ul>
+<li>arithmetic, logical, and comparison operations:<ul>
+<li>/ + - * </li>
+<li>modulo (%)</li>
+<li>== &gt; &lt;</li>
+<li>and or not</li>
+</ul>
+</li>
+<li>variables<ul>
+<li>scope</li>
+</ul>
+</li>
+<li>basic data types<ul>
+<li>integers</li>
+<li>doubles</li>
+<li>booleans</li>
+<li>strings</li>
+<li>lists/arrays</li>
+</ul>
+</li>
+<li>loops<ul>
+<li>while loops</li>
+<li>for each loops</li>
+</ul>
+</li>
+<li>functions</li>
+<li>if statements</li>
+</ul>
+<h2 id="materials">Materials</h2>
+<p>All you need for this is <strong>a pen and paper</strong>.</p>
+<p>I know many of you will read this, and then proceed to use your computers for everything anyway. But, for this tutorial, a computer will not help you. You will not be running any code. If you really want, you could write in a code block in google docs, but if possible, it is straightforwardly better in this case to be writing with your hand on paper or a tablet. You can write your code, any calculations you want to do, your thoughts, charts to work through loops, etc.</p>
+<h2 id="best-practices">Best practices</h2>
+<p>As always, follow the general <a href="../../../#best-practices">best practices</a>.</p>
+<p>One additional best practice for this tutorial:</p>
+<p>Do all of the practice problems (unless you're confident that you know exactly how to do it and you think it's a waste of your time). Check your work. If you're ever not 100% sure that you did a problem right, ask someone to check for you.</p>
+<h2 id="pseudocode">Pseudocode</h2>
+<p>This tutorial uses pseudocode. In other words, instead of using a real language that you can run on a computer, we're going to be using a made up language.</p>
+<p>The made up language is going to be very generic and simple. Much of the syntax will resemble Java, since that is the language that we use for robotics. (There will also be a strong resemblance to Python)</p>
+<p>The nice thing about pseudocode, as opposed to code that you run on computers, is that if you don't use quite the right syntax or formatting, that's fine, as long as what you're trying to do is clear.</p>
+<h2 id="what-is-code">What is code?</h2>
+<p>To over-simplify, code is an input or set of instructions that a computer evaluates. For our purposes, that input is in the form of text.</p>
+<h2 id="comments">Comments</h2>
+<p>Comments allow us to include commentary in our code, and let the computer know that we're writing text for people to read, not code for it to run. Generally, we use comments to add explanations about our code.</p>
+<p>In this pseudocode language (and also in Java), you can comment lines out using <code>//</code>, so any line that starts with two slashes is a comment.</p>
+<pre><code>// this is a comment
+</code></pre>
+<h2 id="operations">Operations</h2>
+<p>One of the very simplest things that you can do with code is basic mathematical operations.</p>
+<h2 id="arithmetic-operators">Arithmetic Operators</h2>
+<p>Arithmetic operations are probably the ones that you are most familiar with. They are used to manipulate numbers.
+These are the basic arithmetic operators:</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th style="text-align: center;">symbol</th>
+<th>example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>plus</td>
+<td style="text-align: center;"><code>+</code></td>
+<td><code>5 + 9</code> &rarr; <code>14</code></td>
+</tr>
+<tr>
+<td>minus</td>
+<td style="text-align: center;"><code>-</code></td>
+<td><code>8 - 4</code> &rarr; <code>4</code></td>
+</tr>
+<tr>
+<td>times</td>
+<td style="text-align: center;"><code>*</code></td>
+<td><code>8 * 2</code> &rarr; <code>16</code></td>
+</tr>
+<tr>
+<td>divided by</td>
+<td style="text-align: center;"><code>/</code></td>
+<td><code>20 / 4</code> &rarr; <code>5</code></td>
+</tr>
+<tr>
+<td>modulo</td>
+<td style="text-align: center;"><code>%</code></td>
+<td><code>5 % 2</code> &rarr; <code>1</code></td>
+</tr>
+</tbody>
+</table>
+<p>Most of these should be self explanatory. The exception to that is the modulo operator.</p>
+<h3 id="modulus">Modulus</h3>
+<p>Modulus essentially means remainder. So <code>a % b</code> evaluates to the remainder when you divide $a$ by $b$.</p>
+<p>Generally, modulus is done with non-negative integers only.</p>
+<p>Let's look at what we get when we take every integer $n$ from $0$ to $10$, and calculate $n \space \% \space 2$:</p>
+<table>
+<thead>
+<tr>
+<th>n</th>
+<th>n % 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$0$</td>
+<td>$0$</td>
+</tr>
+<tr>
+<td>$1$</td>
+<td>$1$</td>
+</tr>
+<tr>
+<td>$2$</td>
+<td>$0$</td>
+</tr>
+<tr>
+<td>$3$</td>
+<td>$1$</td>
+</tr>
+<tr>
+<td>$4$</td>
+<td>$0$</td>
+</tr>
+<tr>
+<td>$5$</td>
+<td>$1$</td>
+</tr>
+<tr>
+<td>$6$</td>
+<td>$0$</td>
+</tr>
+<tr>
+<td>$7$</td>
+<td>$1$</td>
+</tr>
+<tr>
+<td>$8$</td>
+<td>$0$</td>
+</tr>
+<tr>
+<td>$9$</td>
+<td>$1$</td>
+</tr>
+</tbody>
+</table>
+<p>A couple of things to note about this:</p>
+<ol>
+<li>The only two possible values for <code>n % 2</code> are $0$ and $1$.<ol>
+<li>General conclusion: For all non-negative integers $n$ and $a$, <code>n % a</code> will always evaluate to a non-negative integer <a href="#glossary">between</a> $0$ and $a$.</li>
+</ol>
+</li>
+<li>For all even values of $n$, <code>n % 2</code> evaluates to $0$. For all odd values of $n$, <code>n % 2</code> evaluates to $1$.<ol>
+<li>General conclusion: <a href="#glossary">Iff</a> <code>n % a</code> evaluates to $0$, then $n$ is divisible by $a$.</li>
+</ol>
+</li>
+</ol>
+<p>Take a second to think about those properties until they really make sense.</p>
+<h2 id="comparison-operators">Comparison Operators</h2>
+<p>Comparison operators compare values and return <a href="#glossary">booleans</a>. You should be familiar with most of these operations:</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th style="text-align: center;">symbol</th>
+<th>example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>equals</td>
+<td style="text-align: center;"><code>==</code></td>
+<td><code>5 == 5</code> &rarr; <code>true</code></td>
+</tr>
+<tr>
+<td>greater than</td>
+<td style="text-align: center;"><code>&gt;</code></td>
+<td><code>8 &gt; 8</code> &rarr; <code>false</code></td>
+</tr>
+<tr>
+<td>less than</td>
+<td style="text-align: center;"><code>&lt;</code></td>
+<td><code>8 &lt; 10</code> &rarr; <code>true</code></td>
+</tr>
+<tr>
+<td>greater than or equals</td>
+<td style="text-align: center;"><code>&gt;=</code></td>
+<td><code>8 &gt;= 8</code> &rarr; <code>true</code></td>
+</tr>
+<tr>
+<td>less than or equals</td>
+<td style="text-align: center;"><code>&lt;=</code></td>
+<td><code>8 &lt;= 5</code> &rarr; <code>false</code></td>
+</tr>
+<tr>
+<td>not equals</td>
+<td style="text-align: center;"><code>!=</code></td>
+<td><code>5 != 5</code> &rarr; <code>false</code></td>
+</tr>
+<tr>
+<td>## Logical Operators</td>
+<td style="text-align: center;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Logical operations transform booleans into other booleans (help). You should be very familiar with all of these words in english, but may not be used to using them in this context.</p>
+<table>
+<thead>
+<tr>
+<th>operator</th>
+<th style="text-align: center;">symbol</th>
+<th>examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>and</td>
+<td style="text-align: center;"><code>&amp;&amp;</code></td>
+<td><code>true &amp;&amp; true</code> &rarr; <code>true</code><br><code>true &amp;&amp; false</code> &rarr; <code>false</code><br><code>false &amp;&amp; false</code> &rarr; <code>false</code></td>
+</tr>
+<tr>
+<td>or</td>
+<td style="text-align: center;"><code>||</code></td>
+<td><code>true \|\| true</code> &rarr; <code>true</code><br><code>true \|\| false</code> &rarr; <code>true</code><br><code>false \|\| false</code> &rarr; <code>false</code></td>
+</tr>
+<tr>
+<td>not</td>
+<td style="text-align: center;"><code>!</code></td>
+<td><code>!true</code> &rarr; <code>false</code><br><code>!false</code> &rarr; <code>true</code></td>
+</tr>
+<tr>
+<td>## Practice problems</td>
+<td style="text-align: center;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Calculate what each of the following code expressions evaluates to (calculators allowed):</p>
+<ol>
+<li><code>((10 + 4) - 8) % 2</code></li>
+<li><code>(11 &lt; 11) || (23 % 2 == 1)</code></li>
+<li><code>(14 - 11) * 5 % 6</code></li>
+<li><code>(11 % 4 / 2 &lt;= 1) &amp;&amp; (17 % 2 != 0)</code></li>
+</ol>
+<h2 id="variables">Variables</h2>
+<p>Variables in programming are a pretty similar concept to variables in math.</p>
+<p>Essentially, a variable is a name attached to a value. Here's the basic syntax:</p>
+<pre><code class="language-java">var name = value
+</code></pre>
+<p>So let's say we have the following line:</p>
+<pre><code class="language-java">var x = 5
+</code></pre>
+<p>Now we have taken a value, $5$, and attached it to the name $x$.</p>
+<p>if we were to use $x$ in an expression, it would evaluate to $5$. For example:
+<code>x + 2</code> &rarr; <code>7</code></p>
+<p>Variables can have values that aren't numbers as well. For instance:</p>
+<pre><code class="language-java">var y = true
+</code></pre>
+<p><code>!y</code> &rarr; <code>false</code></p>
+<h2 id="functions">Functions</h2>
+<p>In math, functions are often defined as a mapping between inputs and outputs, where every input has a single output. To some extent, that definition works for functions in programming as well.</p>
+<p>You can also think of a function like a black box. You feed it some input through a slot, and it spits something out of a slot on the other side. There's some mechanism inside of the box that converts from input to output.</p>
+<p><img alt="" src="../../images/black-box-1.jpg" /></p>
+<p>Here's the general structure of a function definition:</p>
+<pre><code class="language-java">def functionName(var input) {
+    // code
+    return output
+}
+</code></pre>
+<h2 id="example-f">Example: f</h2>
+<p>Let's take a simple function that you might see in math, and write it in this format.
+The function we're going to use is: $f(x) = 2x$</p>
+<p>Okay so here's how we'd write that:</p>
+<pre><code class="language-java">def f(var x) {
+    return 2.0 * x
+}
+</code></pre>
+<p>So the name of this function is <code>f</code>, it's input is <code>x</code>, and its output is <code>2 * x</code>.</p>
+<p>Now that we have this function defined, we can <em>call</em> it on different values of <code>x</code>, or in other words, we can give the function an input and get an output. So, let's say we wanted to call <code>f</code> on the value $5$.3, here's what would happen:
+<code>f(5.3)</code> &rarr; <code>10.6</code></p>
+<h2 id="example-iseven">Example: isEven</h2>
+<p>In the previous example, both the input and output to our function were numbers. For this example, the input is going to be an integer and the output will be a boolean!</p>
+<p><img alt="" src="../../images/black-box-2.jpg" /></p>
+<p>More specifically, we're going to write a function that takes in an integer and returns whether or not that integer is even (or divisible by $2$).</p>
+<pre><code class="language-java">def isEven(var n) {
+    return n % 2 == 0
+}
+</code></pre>
+<p>Now, let's call our function on a few values and see what the output is:</p>
+<p><code>isEven(4)</code> &rarr; <code>true</code></p>
+<p><code>isEven(11)</code> &rarr; <code>false</code></p>
+<p><code>isEven(0)</code> &rarr; <code>true</code></p>
+<h2 id="example-xor">Example: xor</h2>
+<p>Generally, when we talk about <code>or</code> in math and programming, we mean and/or. In other words, <code>or</code> is true if at least one of the arguments passed to it is true. But there's also either/or (generally called <code>xor</code>), which is true if <em>exactly one</em> of the inputs is true. We're going to write an <code>xor</code> function, that will take two booleans as inputs and return whether exactly one is true.</p>
+<p>This is the first time we're going to see that functions can have multiple inputs (this is true in math as well, although it may not be something you've run into yet). The black box analogy still works, the box just has multiple slots for inputs.</p>
+<p><img alt="" src="../../images/black-box-3.jpg" /></p>
+<p>Here's <code>xor</code>:</p>
+<pre><code class="language-java">def xor(var a, var b) {
+    return (a &amp;&amp; (!b)) || (b &amp;&amp; (!a))
+}
+</code></pre>
+<p>Read through and try to understand the return statement. Essentially, <code>xor</code> returns true in two situations: <code>a</code> and <code>!b</code> are both true (<code>a</code> is true and <code>b</code> is false), or <code>b</code> and <code>!a</code> are both true (<code>b</code> is true and <code>a</code> is false). Let's look at a few examples:</p>
+<p><code>xor(true, false)</code> &rarr; <code>true</code></p>
+<p><code>xor(false, true)</code> &rarr; <code>true</code></p>
+<p><code>xor(true, true)</code> &rarr; <code>false</code></p>
+<p><code>xor(false, false)</code> &rarr; <code>false</code></p>
+<h2 id="example-applythrice">Example: applyThrice</h2>
+<p>In some sense, a function is a value, just like a boolean or an integer. Which is to say, you can have a function whose input or output is another function!</p>
+<p>If you want to go with the black box analogy, a function that takes another function as an input is like a black box with a slot where you feed in a different black box. And the mechanism inside the main black box might feed an input into the little black box, and then do something with the output.</p>
+<p><img alt="" src="../../images/black-box-4.jpg" /></p>
+<p>A function that outputs another function, on the other hand, is like a big black box with a mechanism that builds another black box, and a slot to output that black box that it generates. </p>
+<p><img alt="" src="../../images/black-box-5.jpg" /></p>
+<p>Here is a function that takes a function <code>fun</code>, and applies that function on the value <code>v</code> three times.</p>
+<pre><code class="language-java">def applyThrice(var fun, var v) {
+    return fun(fun(fun(v)))
+}
+</code></pre>
+<p>If <code>applyThrice</code> is a black box here's what it would look like: </p>
+<ul>
+<li>There would be two input slots:<ul>
+<li>A square hole for a little black box (<code>fun</code>)</li>
+<li>A slot for a slip of paper (<code>v</code>) with a value scribbled on it.</li>
+</ul>
+</li>
+<li>On the inside of the black box:<ul>
+<li>The little black box that (<code>fun</code>), once fed through the slot, sits in the center of the big box, held in place</li>
+<li>The slip of paper (<code>v</code>), once fed in, is grasped by a little mechanical arm. Here's what the arm does:<ul>
+<li>It brings the paper (<code>v</code>) to the little black box (<code>fun</code>), and feeds it into <code>fun</code> as an input. Out the output slot of <code>fun</code> comes another slip of paper with a new value written on it. The mechanical arm grabs the new slip of paper.</li>
+<li>It takes the new slip of paper and moves it to the input side of <code>fun</code>, and feeds it in through the <code>input</code> slot (just like it did with <code>v</code>). A third slip of paper comes out of the output slot of <code>fun</code> with yet another new value, and the arm grabs it.</li>
+<li>The arm feeds the third slip of paper to <code>fun</code> as an input! A final slip of paper comes out the output slot of <code>fun</code>, and the mechanical arm grabs it. But this time, it just takes the paper and sends it out the output slot of the main big black box.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>And remember, all of this is happening inside the big black box. So from the perspective of someone using the function, all that happens is someone slides in a little black box and a slip of paper through the input slots of <code>applyThrice</code>, and then a different slip of paper comes out through the output slot. They don't see the mechanical arm at all.</p>
+<p>Let's go through an example (<a href="#example-f">f</a> is a function that takes a number and multiplies it by $2$):</p>
+<p><code>applyThrice(f, 2)</code></p>
+<p>In this example, <code>fun</code> is <code>f</code>, and <code>v</code> is <code>2</code>. So <code>applyThrice</code> will return <code>f(f(f(2)))</code>.</p>
+<p><code>f</code> multiplies an input by 2, so <code>f(2)</code> is 4. And <code>f(f(2))</code> is <code>f(4)</code> which is 8. And finally, <code>f(f(f(2)))</code> is <code>f(8)</code> which is 16.</p>
+<p>So, ultimately, <code>applyThrice(f, 2)</code> &rarr; <code>16</code>.</p>
+<h2 id="practice-problems">Practice Problems</h2>
+<ol>
+<li>Write a function that takes as an input an integer <code>n</code> and returns that integer modulo 4.</li>
+<li>Write a function called <code>neither</code> that takes in three inputs: a value <code>v</code>, and two functions <code>f</code> and <code>g</code> (both of which return booleans). The <code>neither</code> function should return whether both <code>f</code> and <code>g</code> return <code>false</code> when called with <code>v</code> as an input.</li>
+</ol>
+<h2 id="scope">Scope</h2>
+<p>The <em>scope</em> of a variable is the part of the code where that variable can be referenced. Generally, the scope of a variable <code>v</code> is from when it is defined, to the end of the code block within which it is defined. </p>
+<p>Code blocks are usually denoted with curly braces. So, for instance, when you define a function, you have a pair of curly braces where the code for the function is written. That is a code block. (Other examples include <a href="#loops">loops</a> and <a href="#if-statements">if statements</a>).</p>
+<p>When a function takes inputs, variables are defined for each input. The scope of those variables is only inside of the function:</p>
+<pre><code class="language-java">// x is not defined yet
+def foo(var x) {
+    // x is defined
+}
+// x is not in scope, and therefore not defined
+</code></pre>
+<p>In the code above, if you were to try to reference <code>x</code> outside of the function <code>foo</code>, you would get an error.</p>
+<p>You could also create a new variable inside <code>foo</code>, and that variable would also go out of scope when the function ended:</p>
+<pre><code class="language-java">// x and y are not defined yet
+def foo(var x) {
+    // x is defined, y is not
+    var y = 3
+    // x and y are both defined and in scope
+}
+// x and y are not in scope, and therefore not defined
+</code></pre>
+<p>If, however, you defined a variable outside of <code>foo</code>, it would be in scope for the entire file!</p>
+<pre><code class="language-java">// x, y, and z is not defined
+var z = 8
+// z is defined, x and y are not defined
+def foo(var x) {
+    // x and z are is defined, y is not
+    var y = z + 2
+    // x, y, and z are defined and in scope
+}
+// z is in scope, x and y are not in scope
+</code></pre>
+<p>Now, let's say we made a new variable inside of <code>foo</code>, and called it <code>z</code>. This is called <em>shadowing</em>. You can create multiple variables with the same name, and have them in different scopes. When you try to refer to the name, you refer to the variable defined most recently. Here's an example:</p>
+<pre><code class="language-java">// x and z are not defined
+var z = 8
+// z is defined as 8, x is not defined
+def foo(var x) {
+    // x and z are is defined
+    var z = 7
+    // this z is shadowing the one we defined earlier
+    // if we refer to z here we will get 7
+}
+// only the original z remains
+// if we refer to z we will get 8
+</code></pre>
+<h2 id="mutability">Mutability</h2>
+<p>An important way that the variables we're talking about differ from mathematical variables, is that in most programming languages, variables are <em>mutable</em>, which is to say, they can be changed. Changing a variable looks similar to defining a variable, except that the word <code>var</code> is not used.</p>
+<pre><code class="language-java">// x is undefined
+var x = 0
+// x is defined as 0
+x = 3
+// x is defined as 3
+x = x + 2
+// x is defined as 5
+</code></pre>
+<p><strong>Be careful with mutability. Changing values can cause all sorts of bugs, so every time you find yourself mutating a value, think about whether it's necessary, and whether you're messing anything up.</strong></p>
+<h2 id="data-types">Data Types</h2>
+<p>There are many different types of values, or formats for storing data.</p>
+<h2 id="summary">Summary</h2>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>description</th>
+<th>examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>integer</td>
+<td>n/a</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td>double</td>
+<td>a number with a decimal point</td>
+<td><code>1.0</code><br><code>2.4</code></td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>see <a href="#glossary">glossary</a></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>string</td>
+<td>a collection of characters in quotation marks</td>
+<td><code>"hello world"</code><br><code>"123*&amp;@"</code></td>
+</tr>
+<tr>
+<td>array</td>
+<td>a collection of values that can be accessed by index</td>
+<td><code>[5, 4, 3, 2, 1]</code></td>
+</tr>
+<tr>
+<td>## Arrays</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Simply put, arrays are ordered collections of values that can be accessed efficiently by index. </p>
+<p><em>Note: in many languages (i.e. python) the data types called lists are arrays. Some languages, however, (i.e. scheme) have lists that are not arrays.</em></p>
+<p>Here's an example of an array of integers:
+<code>[1, 2, 3, 4, 5]</code>
+Actually, let's assign this array to a variable:</p>
+<pre><code class="language-java">var l = [1, 2, 3, 4, 5]
+</code></pre>
+<p>Now, if we wanted to extract a value from <code>l</code>, we could do so by using that value's <a href="#glossary">index</a>. And remember, we index starting from 0.</p>
+<p><code>l[0]</code> &rarr; <code>1</code>
+<code>l[4]</code> &rarr; <code>5</code>
+<code>l[5]</code> does not exist!</p>
+<p>We can also have arrays with other types of values in them:</p>
+<pre><code class="language-java">var stringArr = [&quot;once&quot;, &quot;upon&quot;, &quot;a&quot;, &quot;time&quot;]
+</code></pre>
+<p><code>stringArr[1]</code> &rarr; <code>"upon"</code></p>
+<h3 id="array-mutability">Array Mutability</h3>
+<p>Like variables, values in arrays can be changed.</p>
+<pre><code class="language-java">// l is undefined
+var l = [1, 2, 3]
+// l is defined as [1, 2, 3]
+l[1] = -1
+// l is defined as [1, -1, 3]
+l[2] = l[1] * l[2]
+// l is defined as [1, -1, -3]
+</code></pre>
+<p>Also like with variables, <strong>be careful when you mutate arrays</strong>.</p>
+<h2 id="practice-problems_1">Practice Problems</h2>
+<p>Here are some variables that will be used in the problems:</p>
+<pre><code class="language-java">var boolArr = [true, false, false, true, false, true]
+var intArr = [8, -4, 2, 9, -5, 3]
+var doubleArr = [6.4, 2.0, 9.8787, 0.003]
+</code></pre>
+<p>Calculate what each of the following code expressions evaluates to:</p>
+<ol>
+<li><code>boolArr[3] &amp;&amp; boolArr[1]</code></li>
+<li><code>boolArr[5] &amp;&amp; (boolArr[2] || (intArr[0] - intArr[2] + intArr[5] == 1))</code></li>
+<li><code>(intArr[4] * intArr[1]) % intArr[2]</code></li>
+<li><code>!(doubleArr[2] - doubleArr[3] &lt; doubleArr[0])</code></li>
+</ol>
+<h2 id="loops">Loops</h2>
+<p>Loops allow us to run the same code over and over again. We're going to learn about two different kinds of loops.</p>
+<h2 id="while-loops">While Loops</h2>
+<p>With while loops, we can take a chunk of code and say that it should be run repeatedly, as long as some condition is true. </p>
+<p>Here's the basic structure:</p>
+<pre><code class="language-java">while (condition) {
+    // code to run
+}
+</code></pre>
+<p>For each run of the loop, the computer will first check if the condition is true, and then if it is, it will run the code. Otherwise, the loop will end and the computer will move onto the code after the loop.</p>
+<h3 id="example-1">Example 1</h3>
+<p>Here's a simple example:</p>
+<pre><code class="language-java">var x = 0
+var sum = 0
+// this code will run until x is greater than or equal to 4
+while (x &lt; 4) {
+    // first, we add the current value of x to our sum
+    sum = sum + x
+    // then, we increase x by 1
+    x = x + 1
+}
+</code></pre>
+<p>After this loop runs, what is the value of <code>sum</code>?</p>
+<p>Let's go through this step by step. For each run of the loop, we're going to look at the values of <code>x</code> and <code>sum</code>, figure out whether the condition is true, and then (if the condition is true) we'll see how <code>x</code> and <code>sum</code> change when we run the code inside the loop.</p>
+<table>
+<thead>
+<tr>
+<th>sum</th>
+<th>x</th>
+<th>condition (x &lt; 4)</th>
+<th>next sum (sum + x)</th>
+<th>next x (x + 1)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$0$</td>
+<td>$0$</td>
+<td>$true$</td>
+<td>$0$</td>
+<td>$1$</td>
+</tr>
+<tr>
+<td>$0$</td>
+<td>$1$</td>
+<td>$true$</td>
+<td>$1$</td>
+<td>$2$</td>
+</tr>
+<tr>
+<td>$1$</td>
+<td>$2$</td>
+<td>$true$</td>
+<td>$3$</td>
+<td>$3$</td>
+</tr>
+<tr>
+<td>$3$</td>
+<td>$3$</td>
+<td>$true$</td>
+<td>$6$</td>
+<td>$4$</td>
+</tr>
+<tr>
+<td>$6$</td>
+<td>$4$</td>
+<td>$false$</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table>
+<p>So, our final value of <code>sum</code> is $6$! And what does <code>sum</code> represent? Well, we went through every integer <code>x</code> <a href="#glossary">between</a> $0$ and $4$, and for each value we added <code>x</code> to <code>sum</code>. So at the end of the day, <code>sum</code> is the sum of the integers from $0$ to $4$!</p>
+<h3 id="example-15">Example 1.5</h3>
+<p>Next, let's take the code we just wrote that found the sum of the integers from $0$ to $4$, and generalize it to make a function called <code>sumBelow</code> that finds the sum of the integers from $0$ to $n$:</p>
+<pre><code class="language-java">def sumBelow(var n) {
+    var x = 0
+    var sum = 0
+    // this code will run until x is greater than or equal to n
+    while (x &lt; n) {
+        // first, we add the current value of x to our sum
+        sum = sum + x
+        // then, we increase x by 1
+        x = x + 1
+    }
+    return sum
+}
+</code></pre>
+<p><em>Note: <code>x</code>,  and <code>sum</code>, and <code>n</code> are in scope only inside of the function. Each time you call the function, a new value of <code>n</code> is passed in, and new <code>sum</code> and <code>x</code> variables are created.</em></p>
+<p>So this is almost exactly the same as the example while loop, except instead of looping until <code>x</code> is greater than or equal to $4$, the loop continues until <code>x</code> is greater than or equal to <code>n</code>, where <code>n</code> is the input to the function. And then at the end, the function returns <code>sum</code>, so the output of the function is <code>sum</code>.</p>
+<p>If we call <code>sumBelow</code> on $4$, the output will be exactly the same as in <a href="#example-1">Example 1</a>.</p>
+<p><code>sumBelow(4)</code> &rarr; <code>6</code></p>
+<p>If, however, we call the function on $5$, we will instead get the sum of all the positive integers below 5.</p>
+<p><code>sumBelow(5)</code> &rarr; <code>10</code></p>
+<p>Evaluate what the following calls of <code>sumBelow</code> evaluate to:</p>
+<p><code>sumBelow(6)</code> &rarr;</p>
+<p><code>sumBelow(3)</code> &rarr;</p>
+<p><code>sumBelow(-1)</code> &rarr;</p>
+<h3 id="example-2">Example 2</h3>
+<pre><code class="language-java">var arr = [3, 6, 4, 1]
+var sum = 0
+var i = 0
+// this code will run until x is greater than or equal to 4
+while (i &lt; 4) {
+    // first, we add the ith value of arr to sum
+    sum = sum + arr[i]
+    // then, we increase i by 1
+    i = i + 1
+}
+</code></pre>
+<p>What is the value of <code>sum</code> after this loop runs?</p>
+<p>This example is very similar to the previous one, but the value that we are adding to sum and the variable that we are increasing repeatedly are not the same. Instead, we're essentially using <code>i</code> to loop through each value in the array arr. Let's analyze this loop like we did the last.</p>
+<table>
+<thead>
+<tr>
+<th><code>sum</code></th>
+<th><code>i</code></th>
+<th>condition (<code>x &lt; 4</code>)</th>
+<th><code>arr[i]</code></th>
+<th>next <code>sum</code> (<code>sum + arr[i]</code>)</th>
+<th>next <code>i</code> (<code>i + 1</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$0$</td>
+<td>$0$</td>
+<td>$true$</td>
+<td>$3$</td>
+<td>$3$</td>
+<td>$1$</td>
+</tr>
+<tr>
+<td>$3$</td>
+<td>$1$</td>
+<td>$true$</td>
+<td>$6$</td>
+<td>$9$</td>
+<td>$2$</td>
+</tr>
+<tr>
+<td>$9$</td>
+<td>$2$</td>
+<td>$true$</td>
+<td>$4$</td>
+<td>$13$</td>
+<td>$3$</td>
+</tr>
+<tr>
+<td>$13$</td>
+<td>$3$</td>
+<td>$true$</td>
+<td>$1$</td>
+<td>$14$</td>
+<td>$4$</td>
+</tr>
+<tr>
+<td>$14$</td>
+<td>$4$</td>
+<td>$false$</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table>
+<p>So, the final value of <code>sum</code> is $14$. If you go through step by step, what's happening is we're going through and adding each value of <code>arr</code> to <code>sum</code>, so that at the end of the day, <code>sum</code> is the sum of the values in <code>arr</code>.</p>
+<h2 id="for-each-loops">For Each Loops</h2>
+<p>For each loops (analogous to for loops in python) allow us to easily loop through the values of an array. Essentially, they are shorthand for what we do in <a href="#example-2">the second while loop example</a>.</p>
+<p>Here's the format of a for each loop:</p>
+<pre><code class="language-java">for (var element : array) {
+    // code to run, where element represents an element in the array
+}
+</code></pre>
+<h3 id="example-3">Example 3</h3>
+<p>Let's try to recreate the second while loop example, where we sum up the elements in an array, with a for each loop. Except this time, we'll put it into a function, so we can find the sum of any array:</p>
+<pre><code class="language-java">def sumArray(var arr) {
+    var sum = 0
+    for (var val : arr) {
+        sum = sum + val
+    }
+    return sum
+}
+</code></pre>
+<p>So this loop will run once for each value in <code>arr</code>, and every time in runs, the variable <code>val</code> will refer to a different value in <code>arr</code>. Then, for every run of the loop, <code>val</code> is added to <code>sum</code>. So, just like with our while loop, in the end <code>sum</code> ends up being the sum of the values in <code>arr</code>.</p>
+<p>Evaluate what the following calls of <code>sumArray</code> evaluate to:</p>
+<p><code>sumArray([3, 5, 4, 9])</code> &rarr;</p>
+<p><code>sumArray([-7, 6, 0, 2])</code> &rarr;</p>
+<h3 id="example-4">Example 4</h3>
+<p>Let's try an example using some non-numerical data types:</p>
+<pre><code class="language-java">var arr = [2, 6, 4, 1, 0]
+var allEven = true
+for (var n : arr) {
+    var nEven = (n % 2 == 0)
+    var allEven = allEven &amp;&amp; nEven
+}
+</code></pre>
+<p>Side note: <code>nEven</code> is defined <em>inside</em> of the loop. That means that the scope of <code>nEven</code> is inside of the loop. So each time the code in the loop is run, a new variable named <code>nEven</code> is created, and then every time the loop ends, that variable is destroyed. And <code>nEven</code> does not exist outside of the loop.</p>
+<p>Ok so, what is <code>allEven</code> at the end of the loop?</p>
+<p>This loop goes through each value <code>n</code> in <code>arr</code>. For every <code>n</code>, it first find whether <code>n</code> is even and stores that in <code>nEven</code>, and then changes <code>allEven</code> to be <code>allEven &amp;&amp; nEven</code>. The goal here is that at each step, <code>allEven</code> will be true if the current value of <code>n</code> is even and all of the previous values of <code>n</code> were even.</p>
+<p>Let's use a chart to analyze this. I'll do the first row, and you can fill in the rest.</p>
+<table>
+<thead>
+<tr>
+<th><code>allEven</code></th>
+<th><code>n</code></th>
+<th><code>nEven</code></th>
+<th>next <code>allEven</code> (<code>allEven &amp;&amp; nEven</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$true$</td>
+<td>$2$</td>
+<td>$true$</td>
+<td>$true$</td>
+</tr>
+<tr>
+<td></td>
+<td>$6$</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>$4$</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>$1$</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>$0$</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>### Example 4.5</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>In the last example, we used a loop to check that every value in an array is even (or divisible by 2). Let's generalize that to write a function that takes for inputs an array <code>arr</code> and an integer <code>fact</code>, and returns whether every value in <code>arr</code> is divisible by <code>fact</code>.</p>
+<pre><code class="language-java">def allDivisible(var arr, var fact) {
+    var divisible = true
+    for (var n : arr) {
+        var nDivisible = (n % fact == 0)
+        divisible = divisible &amp;&amp; nDivisible
+    }
+    return divisible
+}
+</code></pre>
+<p>Calculate what the following calls of <code>allDivisible</code> evaluate to:</p>
+<p><code>allDivisible([3, 6, 0, 9], 3)</code> &rarr;</p>
+<p><code>allDivisible([100, 225, 802, 445], 5)</code> &rarr;</p>
+<p><code>allDivisible([28, 8, 16, 2, 4004, 20], 4)</code> &rarr;</p>
+<p><em>Important note: when you have a function that takes an array as an input, you are technically capable of changing the values in that array. If you do, that is a <a href="#side-effects">side effect</a>. Be VERY CAREFUL about doing that -- it can cause errors very very easily. So don't change the values in an array passed to a function unless it's absolutely necessary. </em><em>It's almost always better to create a new array instead.</em>**</p>
+<h3 id="example-5">Example 5</h3>
+<p>Let's look at an example of a function that takes an array <code>arr</code> and a function <code>fun</code>, and uses a for each loop to return the sum of the outputs when each value in <code>arr</code> is plugged into <code>fun</code>.</p>
+<pre><code class="language-java">def sumOutputs(var arr, var fun) {
+    var sum = 0.0
+    for (var n : arr) {
+        sum = sum + fun(n)
+    }
+    return sum
+}
+</code></pre>
+<p>Now let's say we have the following functions <code>g</code> and <code>h</code>:</p>
+<pre><code class="language-java">def g(var x) {
+    return x * x
+}
+
+def h(var x) {
+    return 0.5 * x
+}
+</code></pre>
+<p>Evaluate the following calls to <code>sumOutputs</code> (calculators allowed):</p>
+<p><code>sumOutputs([2.0, 1.2, 4.3, 10.2], g)</code></p>
+<p><code>sumOutputs([2.0, 1.2, 4.3, 10.2], h)</code></p>
+<h2 id="practice-problems_2">Practice Problems</h2>
+<ol>
+<li>Evaluate the function calls at the end of the <a href="#example-15">sumBelow example</a></li>
+<li>Evaluate the function calls at the end of the <a href="#example-3">sumArray example</a></li>
+<li>Fill in the chart in <a href="#example-4">the second for each loop example</a></li>
+<li>Evaluate the function calls at the end of the <a href="#example-5">sumOutputs example</a></li>
+<li>Use a while loop to sum up the first 15 multiples of 3. You should start with a variable <code>sum</code> (and whatever other variables you think you need), and in the end, <code>sum</code> should hold your answer.</li>
+<li>Write a function that takes as an input an array of integers <code>arr</code> and returns the sum of all of the values modulo 4 (<em>hint: you can use the <code>sumOutputs</code> function</em>)</li>
+<li>Write a function that takes an array <code>arr</code> and uses a for each loop to determine if any of the values in an array <code>arr</code> are divisible by 7.</li>
+</ol>
+<h2 id="side-effects">Side Effects</h2>
+<p>Thus far, we've been thinking of functions as having an input (or multiple inputs) and an output. It turns out, however, that we can also make functions without inputs or outputs. This is useful mostly in situations when we are dealing with <em>side effects</em>. Any time that our code interacts with/effects something outside of itself, that's a side effect.</p>
+<p>With the black box analogy, you can think of side effects as there being a remote control inside of a black box that it can use to control other things.</p>
+<p><img alt="" src="../../images/black-box-6.jpg" /></p>
+<p>So, for instance, if we had a motor that our code was controlling, that would be a side effect.</p>
+<p>Let's go a little farther with that example. Let's say we have a motor <code>motor</code>. The motor has a sensor that finds its speed, and if we want to ping that sensor and get the speed, we call <code>speed(motor)</code>. If we want to set the speed of the motor, we call <code>set(motor, desiredSpeed)</code>. Both of those actions have side effects.</p>
+<p>Now, let's say we have four motors, stored in an array like this:</p>
+<pre><code class="language-java">var motors = [motor1, motor2, motor3, motor4]
+</code></pre>
+<p>We want to write a function that someone can call to find the average of the speeds of those motors. In that case, we don't actually want any input. We just want to give an output. Instead of a slot for inputs, the black box will just have a button that we can press to start it. </p>
+<p><img alt="" src="../../images/black-box-7.jpg" /></p>
+<p>The function would look something like this (see <a href="#example-5">sumOutputs</a>):</p>
+<pre><code class="language-java">def avgSpeed() {
+    return sumOutputs(motors, speed) / 4
+}
+</code></pre>
+<p>We also want to write a function that sets the speed of all of the motors to the same value. That function isn't going to have an output, because we don't need to get any information from it. Instead, we want it to <em>do something</em>. We want a black box without an output slot, that just swallows our inputs and presses some buttons on a remote control. </p>
+<p><img alt="" src="../../images/black-box-8.jpg" /></p>
+<p>So we won't return anything.</p>
+<pre><code class="language-java">def setAllMotors(var desiredSpeed) {
+    for (var motor : motors) {
+        set(motor, desiredSpeed)
+    }
+}
+</code></pre>
+<p>Now let's say we want to write a function that stops all of the motors. That doesn't need an input <em>or</em> an output. We just want to be able to run the same code again and again by calling a function. It's a black box with no openings at all, just a button.</p>
+<p><img alt="" src="../../images/black-box-9.jpg" /></p>
+<pre><code class="language-java">def stopMotors() {
+    setAllMotors(0)
+}
+</code></pre>
+<h2 id="if-statements">If Statements</h2>
+<p>If statements allow us to decide whether to run code based on conditions.</p>
+<p>Here's the general structure:</p>
+<pre><code class="language-java">if (condition) {
+    // code to run if condition is true
+}
+</code></pre>
+<p>There can also be else statements, with code to run if the condition is false:</p>
+<pre><code class="language-java">if (condition) {
+    // code to run if condition is true
+}
+else {
+    // code to run if condition is false
+}
+</code></pre>
+<h2 id="example-sumeven">Example: sumEven</h2>
+<p>We're going to use an if statement to add all of the values in an array that are even:</p>
+<pre><code class="language-java">def sumEven(var arr) {
+    var sum = 0
+    for (var n : arr) {
+        if (n % 2 == 0) {
+            sum = sum + n
+        }
+    }
+    return sum
+}
+</code></pre>
+<p>Evaluate the following call to <code>sumEven</code> (calculators allowed):</p>
+<p><code>sumEven([3, 620, 4, 135, 1102])</code> &rarr;</p>
+<p>Now, with this example, you actually could write a version of this function that doesn't use an if statement at all, (although the version here gets complicated if <code>arr</code> has negative elements):</p>
+<pre><code class="language-java">def sumEvenNoIf(var arr) {
+    var sum = 0
+    for (var n : arr) {
+        var nMultiplier = 1 - n % 2 
+        sum = sum + n * nMultiplier
+    }
+    return n
+}
+</code></pre>
+<p>See if you can figure out what's going on there! Maybe work through a few examples.</p>
+<h2 id="example-collatz-conjecture">Example: Collatz Conjecture</h2>
+<p>The <a href="https://www.youtube.com/watch?v=094y1Z2wpJg&amp;t">Collatz Conjecture</a> is a very famous unsolved math problem. I suggest you watch the video I linked (or at least the beginning), but if you don't want to, I'll give you a summary of the problem.</p>
+<p>Let's say you take an integer $n$ and repeatedly apply the following procedure:</p>
+<ul>
+<li>If $n$ is odd, you multiply $n$ by $3$ and add $1$.</li>
+<li>If $n$ is even, you divide $n$ by $2$
+So you do that again and again, each time plugging in the value you got from the previous time, until you get into a loop (you keep hitting the same numbers again and again).</li>
+</ul>
+<p>The Collatz Conjecture is that no matter what number you start with, you will always end up in the same loop: 4 2 1
+- $4$ &rarr; $4 / 2 = 2$ &rarr; $2 / 2 = 1$ &rarr; $1 \times 3 + 1 = 4$ &rarr; $4 / 2 = 2$ &rarr; etc</p>
+<p>The Collatz Conjecture is super simple, but it has never been proven or disproven, which is why it's so famous.</p>
+<p>Anyway, we will not be making any attempt to solve the Collatz Conjecture, but we will be writing a function that calculates how long it takes for a value to get back to $1$ and into the $4$ $2$ $1$ loop!</p>
+<pre><code class="language-java">def collatz(var start) {
+    var n = start
+    var count = 0
+    while (n != 1) {
+        if (n % 2 == 1) {
+            n = n * 3 + 1
+        }
+        else {
+            n = n / 2
+        }
+    }
+    return count
+}
+</code></pre>
+<h2 id="practice-problems_3">Practice Problems</h2>
+<ol>
+<li>Write a function called <code>max</code> that takes two doubles and returns whichever one is larger<ul>
+<li>Write a function called <code>maxArray</code> that takes an array and returns the biggest number in the array. Use <code>max</code>. If statements should not be necessary.</li>
+</ul>
+</li>
+<li>Write a function that called <code>sumIf</code> that takes an array <code>arr</code> and a function <code>f</code> that returns a boolean, and returns the sum of all the values <code>v</code> in <code>arr</code> for which <code>f(v)</code> is true (this will be similar to <a href="#example-sumeven">sumEven</a>).</li>
+</ol>
+<h2 id="glossary">Glossary</h2>
+<table>
+<thead>
+<tr>
+<th><strong>word/phrase</strong></th>
+<th><strong>meaning</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>between $\alpha$  and $\beta$</td>
+<td>by default, ranges are <em>inclusive</em> of the minimum, and <em>exclusive</em> of the maximum. So, if $x$ is between $\alpha$  and $\beta$, then $\alpha &lt;= x &lt; \beta$.</td>
+</tr>
+<tr>
+<td>iff</td>
+<td>if and only if</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>a value that is either $true$ or $false$</td>
+</tr>
+<tr>
+<td>index</td>
+<td>an integer that indicates the location of a value in a set. In programming, we index starting from 0, so the first value in a set has index 0, and the 2nd has index 1, etc.</td>
+</tr>
+<tr>
+<td>mutable</td>
+<td>can be changed</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: About">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                About
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../Java101/" class="md-footer__link md-footer__link--next" aria-label="Next: Java 101">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Java 101
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.footer"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2085 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../intro-to-programming/Java102/">
+      
+      
+        <link rel="next" href="../../reference-sheets/">
+      
+      
+      <link rel="icon" href="../../images/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
+    
+    
+      
+        <title>Differential Drive - SciGuides</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2afb09e1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="yellow" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="SciGuides" class="md-header__button md-logo" aria-label="SciGuides" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SciGuides
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Differential Drive
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SciGuides" class="md-nav__button md-logo" aria-label="SciGuides" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    SciGuides
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Intro To Programming
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Intro To Programming
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro-to-programming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro-to-programming/Programming101/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Programming 101
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro-to-programming/Java101/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Java 101
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro-to-programming/Java102/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Java 102
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Differential Drive
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Differential Drive
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goals
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-differential-drive" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is a differential drive?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-your-project-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating your project repo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#robot-code-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Robot Code Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-the-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding the hardware
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#drive-folder" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drive Folder
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ports
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#drive-subsystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drive Subsystem
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#motor-instantiation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Motor instantiation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#motor-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Motor configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#drive-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drive method
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#drive-command-factory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drive Command Factory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#driving-with-the-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      Driving with the controller
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#odometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Odometry
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-encoders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding encoders
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding encoders">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conversion-factors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conversion factors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resetting-the-encoders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resetting the Encoders
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-a-gyroscope" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding a gyroscope
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding a gyroscope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resetting-the-gyro" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resetting the Gyro
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-odometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding Odometry
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding Odometry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initializing-odometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initializing Odometry
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updating-odometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updating odometry
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-pose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting pose
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#control-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Control Theory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-we-use-controllers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why We Use Controllers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feedforward" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feedforward
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pid" class="md-nav__link">
+    <span class="md-ellipsis">
+      PID
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combining-ff-and-pid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Combining FF and PID
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simulation-and-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simulation and Logging
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-the-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting Up the Simulation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting Up the Simulation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simulation-periodic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simulation periodic
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-capturing-important-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging: Capturing Important Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logging: Capturing Important Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-monologue-for-networktables-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Monologue for NetworkTables Logging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updating-the-robot-periodic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updating the Robot: periodic
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seeing-the-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      Seeing the result
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unit-testing-system-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unit Testing &amp; System Checks
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Reference Sheets
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Reference Sheets
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference-sheets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference-sheets/AdvancedJava/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Advanced Java
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference-sheets/CommandBased/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command Based Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference-sheets/CommandLineNavigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command Line Navigation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference-sheets/ControlTheory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Control Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference-sheets/EnvironmentSetup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environment Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference-sheets/FileStructure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference-sheets/GitGuide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Git Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference-sheets/Sensors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sensors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference-sheets/Simulation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Simulation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference-sheets/Telemetry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Telemetry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference-sheets/Trigonometry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Trig Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goals
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-differential-drive" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is a differential drive?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-your-project-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating your project repo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#robot-code-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Robot Code Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-the-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding the hardware
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#drive-folder" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drive Folder
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ports
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#drive-subsystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drive Subsystem
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#motor-instantiation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Motor instantiation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#motor-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Motor configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#drive-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drive method
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#drive-command-factory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drive Command Factory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#driving-with-the-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      Driving with the controller
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#odometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Odometry
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-encoders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding encoders
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding encoders">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conversion-factors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conversion factors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resetting-the-encoders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resetting the Encoders
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-a-gyroscope" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding a gyroscope
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding a gyroscope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resetting-the-gyro" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resetting the Gyro
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-odometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding Odometry
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding Odometry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initializing-odometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initializing Odometry
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updating-odometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updating odometry
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-pose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting pose
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#control-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Control Theory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-we-use-controllers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why We Use Controllers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feedforward" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feedforward
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pid" class="md-nav__link">
+    <span class="md-ellipsis">
+      PID
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combining-ff-and-pid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Combining FF and PID
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simulation-and-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simulation and Logging
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-the-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting Up the Simulation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting Up the Simulation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simulation-periodic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simulation periodic
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-capturing-important-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging: Capturing Important Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logging: Capturing Important Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-monologue-for-networktables-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Monologue for NetworkTables Logging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updating-the-robot-periodic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updating the Robot: periodic
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seeing-the-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      Seeing the result
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unit-testing-system-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unit Testing &amp; System Checks
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Differential Drive</h1>
+
+<h2 id="introduction">Introduction</h2>
+<p><img alt="driveSim" src="https://github.com/user-attachments/assets/e6aba468-f3eb-4114-acfa-703089c8e9b5" /></p>
+<p>This project is going to cover how to make both a basic and an advanced differential drive.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Comfortable with all the <a href="../intro-to-programming/Java102/#goals">goals</a> and <a href="../intro-to-programming/Java102/#prerequisites">prerequisites</a> of Java102.</li>
+<li>Comfortable with <a href="../../reference-sheets/AdvancedJava/#lambdas-functional-interfaces">lambdas &amp; functional interfaces</a></li>
+<li>Familiarity with types of <a href="../../reference-sheets/Sensors/">sensors</a></li>
+<li><a href="../../reference-sheets/EnvironmentSetup/#wpilib">WPILib installed</a></li>
+</ul>
+<h2 id="goals">Goals</h2>
+<p>Some understanding of and familiarity with:</p>
+<ul>
+<li>Robot code</li>
+<li>Simulation</li>
+<li>Testing robot code</li>
+<li>Control theory</li>
+<li>Command-based programming</li>
+</ul>
+<p>Also, a working, simulated, tested differential drive!</p>
+<h2 id="what-is-a-differential-drive">What is a differential drive?</h2>
+<p><img alt="drive gif" src="https://github.com/user-attachments/assets/80fd7fac-beb5-4985-a0a5-8318654f5040" /></p>
+<p>A differential drive is a type of robot drivetrain where two separately-driven groups of wheels are used to move the robot. By varying the speed of each wheel, the robot can move forward, backward, or turn. This setup is widely used due to its simplicity and high degree of control over the robot’s movement.</p>
+<p>To move the robot forward/backward, both wheels must move at the same speed in the same direction. To turn, the wheels must move at different speeds or in opposite directions.</p>
+<h2 id="creating-your-project-repo">Creating your project repo</h2>
+<p>The first step will be to create a repository for this project. We'll be using <a href="https://github.com/SciBorgs/SciGuidesRobotBase">this</a> base template for this project (and all other robot code projects in SciGuides). Follow the instructions in the README to create a new repository based on the template. Give your repository a descriptive name such as "Differential Drive Bot".</p>
+<p>In the README of your new repository, link <a href="https://github.com/SciBorgs/SciGuides/blob/main/projects/DifferentialDrive.md">this guide</a>.</p>
+<p>Make sure to clone the project on your computer inside of your code folder!</p>
+<hr />
+<h2 id="robot-code-structure">Robot Code Structure</h2>
+<p>Robot code is structured using <em>subsystems</em> and <em>commands</em> within FRC's <em>command-based framework</em>. This architecture simplifies robot programming by breaking down complex tasks into smaller, manageable pieces. </p>
+<p>All of your Subsystem classes must extend <code>SubsystemBase</code>. (Commands extend <code>Command</code>, but you won't really be writing full Command classes).</p>
+<p>Running commands and enforcing the one-command-per-subsystem rule is managed by the <code>CommandScheduler</code>. Essentially, if you want to run a command, you tell the <code>CommandScheduler</code>, and then each time the code runs the <code>CommandScheduler</code> goes through all the <code>Commands</code> that it has been told to run, and runs them.</p>
+<hr />
+<p>Please read the following sheets before moving forward:</p>
+<ul>
+<li><a href="../../reference-sheets/CommandBased/">Subsystems and Commands</a></li>
+<li><a href="../../reference-sheets/FileStructure/">File Structure</a></li>
+</ul>
+<h2 id="understanding-the-hardware">Understanding the hardware</h2>
+<p>In order to program a robot, you first need to understand the physical hardware that you are working with, and particularly the electrical components.</p>
+<p>For this guide, we’ll be using <em>CANSparkMax motor controllers</em> paired with <em>NEO motors</em>.</p>
+<ul>
+<li><strong>CANSparkMax:</strong> A motor controller developed by REV Robotics designed specifically for controlling brushless motors like the NEO.</li>
+<li><strong>NEO Motor:</strong> A brushless motor designed by REV Robotics.</li>
+</ul>
+<p>Let's look at what a differential drivetrain might look like:</p>
+<p><img src="https://docs.wpilib.org/en/stable/_images/layout.jpg"></p>
+<p>The black cylinders between the two center wheels are motors. As you can see, there there are two motors attached to each side of the drivetrain.</p>
+<p>These motors are also connected via wires to motor controllers, which are connected ultimately to a roboRIO (gray square thing on the top). The roboRIO is a piece of hardware which connects and interfaces with all of the sensors and actuators on the robot (sensors collect data, actuators move). We can control those sensors and actuators by running code on the RIO.</p>
+<ul>
+<li>Remember <code>Ports.java</code>? Well, in order to control our electronics and for the RIO to send them signals, we need to know what physical ports our components are connected to. That's what we mean when we say that this file stores the ports for our components.</li>
+</ul>
+<p>The RoboRIO is connected to a radio (the white rectangle to the right of the RIO), which is how we generally connect our computers to the RIO.</p>
+<h2 id="drive-folder">Drive Folder</h2>
+<p>Our first step will be to create a drive folder for everything related to the Drive subsystem. It will include:</p>
+<ul>
+<li>a <code>Drive.java</code> subsystem that extends <code>SubsystemBase</code> and contains the logic to control the motors and the drivetrain.</li>
+<li><code>DriveConstants.java</code>, containing whatever constants we will need for our subsystem (i.e. the dimensions of the drivetrain).</li>
+</ul>
+<p>Once you do that, your files should look something like this:</p>
+<p><img alt="file order" src="https://github.com/user-attachments/assets/d37980f3-c1d6-4a9a-9e5f-66c0163496d7" /></p>
+<h2 id="ports">Ports</h2>
+<p>In our <code>Drive.java</code> class, we will make all of our 4 motors using <code>CANSparkMax</code> objects. When you create a <code>CANSparkMax</code> object, you give it a port and a motor type (don't worry about what the motor type means for now). With that port, it is able to interface with the motor connected to the port through the RIO.</p>
+<p>Before we create our motor objects, let's add our ports to <code>Ports.java</code>.</p>
+<p>Currently, the file should look like this:</p>
+<pre><code class="language-java">package robot;
+
+public final class Ports {
+  // TODO: Add and change all ports as needed.
+  public static final class OI {
+    public static final int OPERATOR = 0;
+    public static final int DRIVER = 1;
+  }
+}
+</code></pre>
+<p>We structure our ports by creating a new static class within the <code>Ports</code> class for each subsystem (or in the case of <code>OI</code>, that's for the Xbox controllers). So create a new class for <code>Drive</code> ports!</p>
+<pre><code class="language-java">package robot;
+
+public final class Ports {
+  // TODO: Add and change all ports as needed.
+  public static final class OI {
+    public static final int OPERATOR = 0;
+    public static final int DRIVER = 1;
+  }
+
+  public static final class Drive {
+    public static final int RIGHT_LEADER = 2;
+    public static final int RIGHT_FOLLOWER = 3;
+    // etc
+  }
+}
+</code></pre>
+<p>As we said earlier, there will be four motors total, two on the right and two on the left. We're going to call one on each side the leader, and one the follower. </p>
+<p>In the example code I added ports for the motors on the right. Make sure you add for the ones on the left as well! You can assign any values that you want, as long as they are all different (and if you ever want to test this on a real drive train, you'll need to make sure the ports are accurate).</p>
+<h2 id="drive-subsystem">Drive Subsystem</h2>
+<p>Now let's go back to <code>Drive.java</code> and write our subsystem!</p>
+<h2 id="motor-instantiation">Motor instantiation</h2>
+<p>First off, we have to actually make our motor objects. We'll use the ports form <code>Ports.java</code>, and the motor type for all of our motors will be <code>MotorType.kBrushless</code>.</p>
+<p>To do this, you will first need to import <code>MotorType</code>, <code>Ports</code>, and <code>CanSparkMax</code>. You will also have to import <code>SubsystemBase</code> so that you can make <code>Drive</code> into a Subsystem:</p>
+<pre><code class="language-java">package robot.drive;
+
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import robot.Ports;
+
+public class Drive extends SubsystemBase {
+
+}
+</code></pre>
+<p>We gave you all the imports for this, but in the future, a trick you can use is to start writing the thing you need to import and then press tab. So, in this case, if you were to start writing <code>Drive extends SubsystemBase</code>, but didn't finish the last word, <code>SubsystemBase</code> would come up as a suggestion:
+<img alt="" src="../../images/subsystembase.png" />
+If you then press tab, it will finish the word for you and <em>actually import SubsystemBase</em>!</p>
+<p>Okay, now we're ready to make our motors:</p>
+<pre><code class="language-java">public class Drive extends SubsystemBase {  
+  private final CANSparkMax leftLeader = new CANSparkMax(Ports.Drive.LEFT_LEADER, MotorType.kBrushless);
+}
+</code></pre>
+<p>Below the instantiation of <code>leftLeader</code>, make variables for all the other motors! (<code>leftFollower</code>, <code>rightLeader</code>, and <code>rightFollower</code>).</p>
+<h2 id="motor-configuration">Motor configuration</h2>
+<p>For our motors to work the way we want them to, we'll need to configure some specific settings. This will happen inside of our constructor, and we will be using various methods of the <code>CANSparkMax</code> class.</p>
+<p>The first thing that we'll do is reset all our sparks to a default state, clearing any old configurations that they may have had:</p>
+<pre><code class="language-java">  public Drive() {
+    for (CANSparkMax spark : List.of(leftLeader, leftFollower, rightLeader, rightFollower)) {
+        spark.restoreFactoryDefaults();
+    }
+  }
+</code></pre>
+<p><em>Note: you'll need to import List for this</em></p>
+<p>Next, we're going to set something called the idle mode of our motors, which essentially determines the behavior of the motor when it's not being told to do anything. The options are:</p>
+<ul>
+<li><code>kBrake</code>: stop as fast as possible</li>
+<li><code>kCoast</code>: don't provide any voltage and just let it spin freely</li>
+</ul>
+<p>For a drivetrain, we don't want our robot to just keep drifting when we stop driving, so we want all our motors on brake mode (make sure you import <code>CANSparkBase.IdleMode</code>):</p>
+<pre><code class="language-java">  public Drive() {
+    for (CANSparkMax spark : List.of(leftLeader, leftFollower, rightLeader, rightFollower)) {
+        spark.restoreFactoryDefaults();
+        spark.setIdleMode(IdleMode.kBrake);
+    }
+  }
+</code></pre>
+<p>For the next part, we're going to need to understand why we're calling our motors leaders and followers. If you think about it, for a differential drive to work all of the wheels on one side need to be moving at the same speed. The point of having two motors isn't actually to control two wheels <em>separately</em>. Instead, it's to have enough power to control two wheels <em>together</em>.</p>
+<p>So that means that we always want the two motors on the right and the two motors on the left to be moving the same way. We accomplish this by telling one motor on each side (the <em>follower</em>) to follow the other one (the <em>leader</em>). That way we only have to control the two leaders, and the followers will just copy them. We can do this using the <code>follow</code> method that of the <code>CANSparkMax</code> class.</p>
+<pre><code class="language-java">  public Drive() {
+      for (CANSparkMax spark : List.of(leftLeader, leftFollower, rightLeader, rightFollower)) {
+        spark.restoreFactoryDefaults();
+        spark.setIdleMode(IdleMode.kBrake);
+    }
+
+    rightFollower.follow(rightLeader);
+    leftFollower.follow(leftLeader);
+  }
+</code></pre>
+<p>Now, for our last setting, take a look back at the image of the drivetrain where you can see all of the electronics. Notice how the motors on the left are facing left, and the motors on the right are facing right.</p>
+<p>By default, applying a positive voltage to the motors will make them go counterclockwise. So let's say that we want the robot to move straight, and so we apply the same positive voltage to both sides, and all of the motors move counterclockwise. Try to visualize what would happen.</p>
+<p>Because the wheels are facing opposite directions, clockwise doesn't mean the same thing for the two sides. The left wheels will end up going backwards, and the right ones will go forwards, and instead of going straight, the whole drivetrain will rotate counterclockwise.</p>
+<p>That's pretty confusing. Ideally, we'd like positive to mean forward for both sides. So in the code, we invert the left side. This means that it will negate every value we give it, so if we give it a positive voltage it will actually rotate counterclockwise. We do this using the <code>setInverted</code> method.</p>
+<pre><code class="language-java">  public Drive() {
+      for (CANSparkMax spark : List.of(leftLeader, leftFollower, rightLeader, rightFollower)) {
+        spark.restoreFactoryDefaults();
+        spark.setIdleMode(IdleMode.kBrake);
+    }
+
+    rightFollower.follow(rightLeader);
+    leftFollower.follow(leftLeader);
+
+    leftLeader.setInverted(true);
+  }
+</code></pre>
+<h2 id="drive-method">Drive method</h2>
+<p>Now that our motors are configured, we can actually make a drive method that will allow the motors to run! This method will take in a <code>leftSpeed</code> and a <code>rightSpeed</code> which we will pass to our motors.</p>
+<p><em>Side note: calling these values speed is actually a misnomer, since they specify both speed and direction, but using the terms interchangeably is pretty standard practice in this context.</em></p>
+<p>We will be using the <code>set</code> method of the <code>CANSparkMax</code> class, which takes a number between -1 and 1, where 1 is full speed forwards, 0 is no speed, and -1 is full speed backwards. So we're actually giving percentages of our max speed, not the speed itself.</p>
+<pre><code class="language-java">  private void drive(double leftSpeed, double rightSpeed) {
+    leftLeader.set(leftSpeed);
+    rightLeader.set(rightSpeed);
+  }
+</code></pre>
+<h2 id="drive-command-factory">Drive Command Factory</h2>
+<p>You might notice that the <code>drive</code> method above is private. But that means that we can't actually tell our robot to drive from <code>Robot.java</code>! So, why isn't it public? Well, when we tell subsystems to move, we generally always want that to be done through a <code>Command</code>, that way we can enforce the one-command-per-subsystem rule. So we actually don't want anybody outside of <code>Drive</code> to be directly calling this <code>drive</code> method.</p>
+<p>Instead, we're going to write a <em>command factory</em>, which is just a fancy way of saying a method that returns a command. What specifically do we want our command to do? Well, our primary method of driving will be using inputs from a controller. We have an Xbox controller in <code>Robot.java</code> called <code>driver</code>, and the <code>leftSpeed</code> and <code>rightSpeed</code> values are actually going to be the y values of the left and right joysticks on that controller.</p>
+<p>So our <code>drive</code> method should return a <code>Command</code> that drives the robot based on inputs from a controller. Since the controller is in <code>Robot.java</code>, not <code>Drive</code> (it is not part of the Drive subsystem), our method will need to take as inputs some way of retrieving the values from the controller.</p>
+<p>Specifically, we're going to take two <code>DoubleSuppliers</code>, one for the left velocity and one for the right velocity. In <code>Robot.java</code>, we'll call our method and give it methods to get the left and right y values on the Xbox controller. So, here's our method header:</p>
+<pre><code class="language-java">public Command drive(DoubleSupplier vLeft, DoubleSupplier vRight);
+</code></pre>
+<p><em>Note: the two <code>drive</code> methods have the same name, but are not the same method. As long as the types of the parameters are different, you can have multiple methods with the same name.</em></p>
+<p>Next up, let's decide what type of Command we want to use. This isn't just something we want to do once - we need to get new inputs from the controller each tick - so we'll use a run command. We've talked about <code>Commands.run</code>, but in a Subsystem there's actually another method just called <code>run</code>, which calls <code>Commands.run</code> but uses that subsystem as the requirement. So <code>drive.run(action)</code> is the same as <code>Commands.run(action, drive)</code>. That's the method we're going to use for this, since we want to create a <code>RunCommand</code> that requires a drive subsystem.</p>
+<p>And the action is just going to be calling the other <code>drive</code> method using <code>vLeft</code> and <code>vRight</code>!</p>
+<pre><code class="language-java">  public Command drive(DoubleSupplier vLeft, DoubleSupplier vRight) {
+    return run(() -&gt; drive(vLeft.getAsDouble(), vRight.getAsDouble()));
+  }
+</code></pre>
+<h2 id="driving-with-the-controller">Driving with the controller</h2>
+<p>Now we're going to go to <code>Robot.java</code> and write the code to actually drive the robot using the driver controller!</p>
+<p>There should already be two <code>CommandXboxController</code> objects called <code>operator</code> and <code>driver</code> defined at the top of the class. You can ignore the <code>operator</code> controller, and we'll use the <code>driver</code> one for driving.</p>
+<p>Next up, we need to actually create our instance of the drive subsystem! You can do this right under the comment that says <code>// SUBSYSTEMS</code>:</p>
+<pre><code class="language-java">  Drive drive = new Drive();
+</code></pre>
+<p>Now that we have our drivetrain initialized, we can set up driving with controllers. We're going to do that by setting a <em>default command</em> for drive. A default command is a command that runs on a subsystem whenever no other commands that require that subsystem are running. For drive, if we're not telling it to do something else, we always want it to be listening to the controller and driving.</p>
+<p>We set a subsystem's default command using <code>subsystem.setDefaultCommand(command)</code>. And we do those configurations in the <code>configureBindings</code> method inside of <code>Robot</code>. This method (along with <code>configureGameBehavior</code>) is called by <code>Robot</code>'s constructor, and are used to configure settings that need to be configured right when the robot is started up.</p>
+<pre><code class="language-java">  private void configureBindings() {
+    drive.setDefaultCommand(drive.drive(driver::getLeftY, driver::getRightY));
+}
+</code></pre>
+<p>Now, if you had a real robot to test on, it would drive!! But knowing that would probably be more exciting if you could see and drive around some sort of simulation. Unfortunately, we can't do that yet because to simulate the movement of the robot, we would need an estimate for where the robot is on the field, which we don't have yet. So let's work on getting that.</p>
+<h2 id="odometry">Odometry</h2>
+<p><em>Odometry</em> is the process of using data from sensors to estimate your position and how it changes. In this case, the sensors that we'll be relying on are encoders (for our wheels) to and a gyroscope.</p>
+<p>Brush up on the <a href="../../reference-sheets/Sensors/">sensors guide</a> if you're uncertain what encoders and gyros are.</p>
+<h2 id="adding-encoders">Adding encoders</h2>
+<p>Our first step is to add encoders to our <code>Drive</code> subsystem. We'll be using the relative encoders that are built-in to our sparks. We can get them using the <code>getEncoder</code> method of <code>CANSparkMax</code>.</p>
+<p>You can add the encoders right under where the sparks themselves are declared. Note that we only need the encoders of the leaders, because the followers should be doing the same thing as the leaders!</p>
+<pre><code class="language-java">  private final RelativeEncoder leftEncoder = leftLeader.getEncoder();
+  private final RelativeEncoder rightEncoder = rightLeader.getEncoder();
+</code></pre>
+<h3 id="conversion-factors">Conversion factors</h3>
+<p>By default, the encoders measure rotations of the motors. But we want to measure distance traveled. There are a couple of conversions that we need to make to do that:</p>
+<ol>
+<li>From rotations of the motor to rotations of the wheel<ul>
+<li>This is dependent on the gears that connect the motor to the wheel.</li>
+</ul>
+</li>
+<li>From rotations of the wheel to distance traveled<ul>
+<li>This is dependent on the radius of the wheels. One rotation of the wheel translates to traveling one circumference of the wheel.</li>
+</ul>
+</li>
+</ol>
+<p>So to convert between encoder readings, we need to know the gearing (wheel rotations per motor rotation) and circumference of the wheels. We can put these values in the <code>DriveConstants.java</code> file. We'll choose some arbitrary values, but if you're testing on a real robot make sure these values are accurate.</p>
+<pre><code class="language-java">package robot.drive;
+
+public class DriveConstants {
+  public static final double WHEEL_RADIUS = 0.08; //Meters
+  public static final double CIRCUMFERENCE = 2.0 * Math.PI * WHEEL_RADIUS;
+  public static final double GEARING = 8.0;
+}
+</code></pre>
+<p>Then, from these values we can calculate our conversion factor for position. This is the number that we multiply the encoder rotations by to get distance traveled. We need to multiply by gearing to convert to wheel rotations, and then by circumference to convert to distance.</p>
+<pre><code class="language-java">  public static final double POSITION_FACTOR = CIRCUMFERENCE * GEARING;
+</code></pre>
+<p>We also need to calculate a separate conversion factor for velocity. The encoder by default gives you velocity in rotations per minute. We want it in meters per second. We can use the <code>POSITION_FACTOR</code> to convert to meters, and divide by 60 to convert from minutes to seconds.</p>
+<pre><code class="language-java">  public static final double VELOCITY_FACTOR = POSITION_FACTOR / 60.0;
+</code></pre>
+<p>Now we just need to use the conversion method from the encoder class inside <em>the constructor</em> of <code>Drive.java</code>.</p>
+<pre><code class="language-java">    leftEncoder.setPositionConversionFactor(DriveConstants.POSITION_FACTOR);
+    rightEncoder.setPositionConversionFactor(DriveConstants.POSITION_FACTOR);
+
+    leftEncoder.setVelocityConversionFactor(DriveConstants.VELOCITY_FACTOR);
+    rightEncoder.setVelocityConversionFactor(DriveConstants.VELOCITY_FACTOR);
+</code></pre>
+<h3 id="resetting-the-encoders">Resetting the Encoders</h3>
+<p>At the start of the match (or any time you need to reset the robot's position), it's important to reset the encoder values to zero. This ensures that your distance calculations start from a known point.</p>
+<p>We'll reset the encoders during the subsystem initialization (in the constructor):</p>
+<pre><code class="language-java">    leftEncoder.setPosition(0);
+    rightEncoder.setPosition(0);
+</code></pre>
+<h2 id="adding-a-gyroscope">Adding a gyroscope</h2>
+<p>We're going to use the <code>AnalogGyro</code> class. We need to give the port of the gyro to the constructor, so we need to add that port in <code>Ports.java</code>.  Call the constant <code>GYRO_CHANNEl</code> and give it the value 1.</p>
+<p>Let’s add the AnalogGyro to the top of the existing <code>Drive.java</code> file (under the encoders):</p>
+<pre><code class="language-java">  private final AnalogGyro gyro = new AnalogGyro(Ports.Drive.GYRO_CHANNEL);
+</code></pre>
+<h3 id="resetting-the-gyro">Resetting the Gyro</h3>
+<p>At the start of the match, it's important to reset the gyro so that your heading starts at 0. We'll do that in the constructor of <code>Drive.java</code>.</p>
+<pre><code class="language-java">  gyro.reset();
+</code></pre>
+<p>You should reset the gyroscope anytime you need to ensure accurate heading data. Sudden robot movements, collisions, or physical rotation of the surface it is on can cause drift or skips over time, resulting in an incorrectly measured angle over the course of a match. Resets can correct for this.</p>
+<h2 id="adding-odometry">Adding Odometry</h2>
+<p>Using the encoders and gyro we just made, we can start actually estimating our position. We do this using a WPILib class called <a href="https://docs.wpilib.org/en/stable/docs/software/kinematics-and-odometry/differential-drive-odometry.html">DifferentialDriveOdometry</a>, which helps estimate the position and angle on the field of a differential drive bot, using encoder and gyro values. Let's start by declaring a <code>DifferentialDriveOdometry</code> object at the top of our <code>Drive</code> subsystem.</p>
+<pre><code class="language-java">  private final DifferentialDriveOdometry odometry;
+</code></pre>
+<h3 id="initializing-odometry">Initializing Odometry</h3>
+<p>We declared our odometry already, but we still need to initialize it. Odometry needs an initial orientation for the robot, so we're just going to assume that it starts at the origin with a heading of 0.</p>
+<p>Read <a href="https://docs.wpilib.org/en/stable/docs/software/advanced-controls/geometry/pose.html">this</a> for a brief explanation of <code>Rotation2d</code>, <code>Translation2d</code>, and <code>Pose2d</code>.</p>
+<p>Here’s how we initialize the odometry in the constructor:</p>
+<pre><code class="language-java">    odometry = new DifferentialDriveOdometry(
+            new Rotation2d(), 
+            0, 
+            0, 
+            new Pose2d());
+</code></pre>
+<p><code>new Pose2d()</code> just creates a <code>Pose2d</code> where all angles and coordinates as 0.</p>
+<h3 id="updating-odometry">Updating odometry</h3>
+<p>To keep track of the robot’s position in real-time, we need to update the odometry regularly with the latest encoder readings.</p>
+<p>Here's how you might update odometry:</p>
+<pre><code class="language-java">  private void updateOdometry(Rotation2d rotation) {
+    odometry.update(rotation, leftEncoder.getPosition(), rightEncoder.getPosition());
+  }
+</code></pre>
+<p><em>Note: We are passing in rotation as a parameter because once we want to simulate our robot, it'll be easier to distinguish between our real and sim rotation.</em></p>
+<p>Aside from updating our odometry, we might need to reset it. I will leave this up to you to figure out how to do. (Hint: <code>odometry</code> has a method called <code>resetOdometry</code>). We won't need it for this project but if you're using the drive for autos example, it is important to reset your odometry whenever autos start.</p>
+<p>To ensure that our odometry is constantly updating as the robot moves, we run the <code>updateOdometry()</code> method periodically every tick (0.02 seconds by default). This will go in the <code>periodic()</code> method which all subsystems inherit from <code>SubsystemBase</code>, and is called every tick.</p>
+<pre><code class="language-java">  @Override 
+  public void periodic() {
+    updateOdometry(gyro.getRotation2d());
+  }
+</code></pre>
+<p>Keep in mind, this will be changed in the simulation section to account for sim rotation.</p>
+<h2 id="getting-pose">Getting pose</h2>
+<p>The last thing to finish up our basic drive will be to get our pose based on the odometry. We can do this by using the <code>getPoseMeters</code> method from <code>odometry</code>. Keep in mind this returns a Pose2d. We want the robot's pose to be easily accessible by other classes, so we'll create a public method in <code>Drive</code> that returns the pose.</p>
+<pre><code class="language-java">  public Pose2d pose() {
+    return odometry.getPoseMeters();
+  }
+</code></pre>
+<h2 id="control-theory">Control Theory</h2>
+<p>Before we get started, please make sure you have read the <a href="../../reference-sheets/ControlTheory/">Control Theory reference sheet</a> as we are going to assume you are aware of what PID and Feedforward generally do.</p>
+<p>In this section, we're going to create PID and feedforward controllers to convert from desired speeds to voltages.</p>
+<h2 id="why-we-use-controllers">Why We Use Controllers</h2>
+<p>Before we dive into the code, let’s touch on why creating control systems are important for driving a robot. Ultimately, the motors run because they are given some voltage. Right now, we're driving using the <code>motor.set</code> method, which takes a speed. The CANSparkMax motor controllers have their own control systems that generate voltages based on speeds. But those systems aren't tuned to your robot. They work pretty well when you just have a free-spinning motor, but your motors are on robots. They're in gear boxes and are weighed down. So if you actually want to accurately reach your target speeds, you need to have control systems that are tuned to your system.</p>
+<p>In this case, we're going to do that by making our own PID and feedforward controllers which we'll use to convert velocities to voltages, and then just feeding those voltages into our motors.</p>
+<h2 id="feedforward">Feedforward</h2>
+<p>First off, we're going to create a feedforward model, which will use an ideal model of our system to tell us what voltages we should use. Its output will be our prediction of what voltage is required to maintain the velocity that we're trying to reach. This will be entirely based on our desired velocity, and will not take into account our current velocity at all. It factors in predictable challenges like friction, but not unexpected factors like slipping on the carpet.</p>
+<p>Here's how we can create a feedforward controller:</p>
+<pre><code class="language-java">  private final SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(FF.kS, FF.kV);
+</code></pre>
+<ul>
+<li>kS and kV are constants that become coefficients in an equation to convert from desired velocity to voltage<ul>
+<li>The kS term in the equation accounts for constant voltage to overcome friction</li>
+<li>The kV term accounts for the voltage to maintain a certain velocity</li>
+</ul>
+</li>
+<li>These FF constants are stored in <code>DriveConstants.java</code> and are imported. Keep in mind these are just random values to get you started with the project. With a real robot, it will be important to tune your values to work for your system.</li>
+</ul>
+<pre><code class="language-java">  public static final class FF {
+    public static final double kS = 1;
+    public static final double kV = 3;
+  }
+</code></pre>
+<h2 id="pid">PID</h2>
+<p>Next we can add a PID controllers. The feedforward model is pretty good, but it's not at all perfect. It also doesn't account for external forces that might get in the way of our movement. So we'll make PID controllers, which will actually take into account error (how far we are from the desired velocity). That way we can react when we aren't reaching our setpoints. Essentially, we're building on a pretty good estimate to account for its flaws.</p>
+<p>With the feedforward controller we only made one. That's because all the FF controller needs is a velocity, and it will always return the same voltage when given the same velocity. So we can just use it twice, one for each side.</p>
+<p>PID controllers on the other hand, don't just take into account your current speed and your current setpoint --- it also stores and uses your previous velocities. And our left and right motors have different velocities, so we need two controllers. One will be for the left wheels, and will store past velocity values for the left side, and one will do the same for the right wheels.</p>
+<pre><code class="language-java">  private final PIDController leftPIDController =
+      new PIDController(PID.kP, PID.kI, PID.kD);
+  private final PIDController rightPIDController =
+      new PIDController(PID.kP, PID.kI, PID.kD);
+</code></pre>
+<p>As you can see, we used three constants for this controller: kP, kI, and kD. We'll define them in DriveConstants.java.</p>
+<pre><code class="language-java">  public static final class PID {
+    public static final double kP = 8.5;
+    public static final double kI = 0.0;
+    public static final double kD = 0.0;
+  }
+</code></pre>
+<h2 id="combining-ff-and-pid">Combining FF and PID</h2>
+<p>Now, let’s see how we can use these two control mechanisms to actually drive our robot! We’ll look at the <code>drive</code> method, which is responsible for controlling the motor voltages.</p>
+<p>Based on our desired speeds, we can get outputs from PID and FF. We can then add these together and get our final voltage that we're going to send to the motor. To find these outputs, we need to give the controllers our desired speeds. The <code>drive</code> method really takes a percentage of our maximum velocity, from -1 to 1, rather than the actual velocity. So to find our desired velocities we can multiply <code>leftSpeed</code> and <code>rightSpeed</code> by our maximum speed.</p>
+<p>We'll define our maximum speed in our <code>DriveConstants</code> class:</p>
+<pre><code class="language-java">  public static final double MAX_SPEED = 2; // Meters per second
+</code></pre>
+<p>Using that, we can find the feedforward and PID outputs for each side:</p>
+<pre><code class="language-java">  public void drive(double leftSpeed, double rightSpeed) {
+    final double realLeftSpeed = leftSpeed * DriveConstants.MAX_SPEED;
+    final double realRightSpeed = rightSpeed * DriveConstants.MAX_SPEED;
+
+    final double leftFeedforward = feedforward.calculate(realLeftSpeed);
+    final double rightFeedforward = feedforward.calculate(realRightSpeed);
+
+    final double leftPID = 
+      leftPIDController.calculate(leftEncoder.getVelocity(), realLeftSpeed);
+    final double rightPID = 
+      rightPIDController.calculate(rightEncoder.getVelocity(), realRightSpeed);
+  }
+</code></pre>
+<p>Finally, we combine the outputs and send them to the motors:</p>
+<pre><code class="language-java">      double leftVoltage = leftPID + leftFeedforward;
+      double rightVoltage = rightPID + rightFeedforward;
+
+      leftLeader.setVoltage(leftVoltage);
+      rightLeader.setVoltage(rightVoltage);
+</code></pre>
+<h2 id="simulation-and-logging">Simulation and Logging</h2>
+<p>Now we've reached the point where we can actually simulate our robot and drive it around! Please read the <a href="../../reference-sheets/Simulation/">Simulation guide</a> before continuing on with this.</p>
+<h2 id="setting-up-the-simulation">Setting Up the Simulation</h2>
+<p>To <a href="https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/drivesim-tutorial/index.html">simulate the drivetrain</a>, we’re going to use the <code>DifferentialDrivetrainSim</code> class. This simulation will model the physical characteristics of our robot—like the motors, mass, and wheel dimensions—so we can see how the code will affect the robot in a virtual environment.</p>
+<p>Here’s how we set it up in our <code>Drive.java</code> constructor:</p>
+<pre><code class="language-java">  private final DifferentialDrivetrainSim driveSim;
+  // ...
+  public Drive() {
+    // ...
+    driveSim =
+        new DifferentialDrivetrainSim(
+            DCMotor.getMiniCIM(2),
+            DriveConstants.GEARING,
+            DriveConstants.MOI,
+            DriveConstants.DRIVE_MASS,
+            DriveConstants.WHEEL_RADIUS,
+            DriveConstants.TRACK_WIDTH,
+            DriveConstants.STD_DEVS);
+    //...
+  }
+</code></pre>
+<p>Remember that all of these values would be stored in <code>DriveConstants.java</code>:</p>
+<pre><code class="language-java">  public static final double TRACK_WIDTH = 0.7112; // Meters
+  public static final double WHEEL_RADIUS = 0.08; //Meters
+  public static final double GEARING = 8.0;
+  public static final double MOI = 7.5;
+  public static final double DRIVE_MASS = 60.0; //kg
+  public static final Matrix&lt;N7, N1&gt; STD_DEVS = VecBuilder.fill(0, 0, 0, 0, 0, 0, 0);
+</code></pre>
+<p>By setting up the simulation with these constants, we’re creating a physics model of our robot that behaves similarly to how it would in real life.</p>
+<p>Before we start periodically updating our sim values, make sure to set the voltage to our sim drive in the <code>drive</code> method (the one that returns void):</p>
+<pre><code class="language-java">    driveSim.setInputs(leftVoltage, rightVoltage);
+</code></pre>
+<p>Next, we need to update our odometry using our simulated heading in simulation:</p>
+<pre><code class="language-java">  public void periodic() {
+    updateOdometry(Robot.isReal() ? gyro.getRotation2d() :  
+                                    driveSim.getHeading());
+  }
+</code></pre>
+<ul>
+<li><code>Robot.isReal()</code> returns whether or not we are connected to a real robot</li>
+<li>What are the <code>?</code> and <code>:</code> symbols? That whole statement is a <a href="https://www.baeldung.com/java-ternary-operator">ternary operator</a>.</li>
+</ul>
+<h3 id="simulation-periodic">Simulation periodic</h3>
+<p>The <code>simulationPeriodic</code> method is where we update the simulation. This method is called every tick (0.2 seconds) when the robot is simulated so that we can keep the simulated sensors and drivetrain in sync with the rest of the code. The <code>@Override</code> annotation above the method is there so that the compiler knows it's the inherited method from <code>SubsystemBase</code>, but it isn't necessary to include.</p>
+<pre><code class="language-java">  @Override
+  public void simulationPeriodic() {
+    // sim.update() tells the simulation how much time has passed
+    driveSim.update(Constants.PERIOD.in(Seconds));
+    leftEncoder.setPosition(driveSim.getLeftPositionMeters());
+    rightEncoder.setPosition(driveSim.getRightPositionMeters());
+  }
+</code></pre>
+<ul>
+<li><code>leftEncoder.setPosition</code> and <code>rightEncoder.setPosition</code> update the simulated encoder positions to match the simulated robot’s movement.</li>
+</ul>
+<p>This method ensures that our simulated sensors provide accurate feedback as the robot "moves" in the simulation, allowing us to test and tweak our code.</p>
+<h2 id="logging-capturing-important-data">Logging: Capturing Important Data</h2>
+<p>Now let’s talk about logging. Logging, or telemetry, is a way of recording information in real time. That information might include data from sensors, estimated positions, what command is running, etc. Logging is crucial for understanding how our robot behaves over time, diagnosing issues, and improving performance. Read the <a href="../../reference-sheets/Telemetry/">Telemetry doc</a> to learn more about logging and how we do it!</p>
+<p>We’re going to use a tool called Monologue for logging, which gives us a structured way to record and analyze data from the robot’s systems. This should already be set up in the <code>configureGameBehavior</code> method in <code>Robot.java</code>. You should see the following lines:</p>
+<pre><code class="language-java">    Monologue.setupMonologue(this, &quot;/Robot&quot;, false, true);
+    addPeriodic(Monologue::updateAll, kDefaultPeriod);
+    addPeriodic(FaultLogger::update, 1);
+</code></pre>
+<p>This initializes Monologue with our robot, setting up the logging system to capture data as the robot runs and makes sure Monologue logs data at regular intervals, which we’ve defined with kDefaultPeriod. By logging data regularly, we can view information in real time and later review how the robot performed and make informed adjustments to our code.</p>
+<h3 id="using-monologue-for-networktables-logging">Using Monologue for NetworkTables Logging</h3>
+<p>We use NetworkTables (NT) to make logging specific variables or objects easier. You should log any values that might be useful for debugging, or that will help you understand what is happening with the robot in general. So that includes commands, joystick inputs, voltages, positions, etc..</p>
+<p>We use the <code>@Log.NT</code> annotation to indicate what values we want to be logged, and Monologue will periodically capture and record those values, which we can view in realtime or afterwords on dashboards like Shuffleboard or SmartDashboard.</p>
+<p>Let's get started by making a Field2d object (discussed in the Simulation reference sheet):</p>
+<pre><code class="language-java">  @Log.NT 
+  private final Field2d field2d = new Field2d();
+</code></pre>
+<h3 id="updating-the-robot-periodic">Updating the Robot: periodic</h3>
+<p>The field2d will show us a field, but we want to actually see our robot moving on the field, so we need to periodically update the Field2d object with the position of our robot. We'll do that in the <code>periodic</code> method because we want our position to be updated regularly, and whether or not our robot is simulated.</p>
+<pre><code class="language-java">    field2d.setRobotPose(pose());
+</code></pre>
+<h2 id="seeing-the-result">Seeing the result</h2>
+<p>Start by launching sim and opening up NetworkTables. Use the <a href="https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/simulation-gui.html">sim gui guide</a> to help you navigate around. </p>
+<p>To see our <code>Field2d</code> widget, go to NetworkTables, then SmartDashboard, and click "field". </p>
+<p>Next, to see our logged data, click NetworkTables and the first option. You should see something similar to the image below.</p>
+<p><img alt="drive NT" src="https://github.com/user-attachments/assets/2be285f4-a3ea-40f5-bdf7-e9bb661f44ba" /></p>
+<p>Since our driver port is 1, make sure your joystick is also on the same port value in sim or else it will not get any inputs. </p>
+<p>Lastly, to control the differential drive properly, the joystick will require to have 6 total <code>axis</code> as shown below. You can add more and change the bindings by going to <code>DS</code> then clicking on the settings of which ever keyboard you are using.</p>
+<p><img alt="drive joystick" src="https://github.com/user-attachments/assets/a6624ad8-f944-4e62-bc4d-a29eda974891" /></p>
+<h2 id="unit-testing-system-checks">Unit Testing &amp; System Checks</h2>
+<p>Coming soon!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../intro-to-programming/Java102/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Java 102">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Java 102
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../reference-sheets/" class="md-footer__link md-footer__link--next" aria-label="Next: About">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                About
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

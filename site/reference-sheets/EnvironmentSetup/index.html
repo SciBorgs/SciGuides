@@ -1,0 +1,1503 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../ControlTheory/">
+      
+      
+        <link rel="next" href="../FileStructure/">
+      
+      
+      <link rel="icon" href="../../images/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
+    
+    
+      
+        <title>Environment Setup - SciGuides</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2afb09e1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="yellow" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="SciGuides" class="md-header__button md-logo" aria-label="SciGuides" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SciGuides
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Environment Setup
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SciGuides" class="md-nav__button md-logo" aria-label="SciGuides" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    SciGuides
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Intro To Programming
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Intro To Programming
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/intro-to-programming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/intro-to-programming/Programming101/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Programming 101
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/intro-to-programming/Java101/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Java 101
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/intro-to-programming/Java102/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Java 102
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/DifferentialDrive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Differential Drive
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Reference Sheets
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Reference Sheets
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AdvancedJava/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Advanced Java
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CommandBased/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command Based Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CommandLineNavigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command Line Navigation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ControlTheory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Control Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Environment Setup
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environment Setup
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goals
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-code-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local Code Organization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finder-mac-or-file-explorer-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finder (Mac) or File Explorer (Windows)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-line-mac-windows-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command Line (Mac, Windows, Linux)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checking-if-git-is-installed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checking if Git is installed
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Checking if Git is installed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-mac-and-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      For Mac and Linux:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      For Windows:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing Git
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing Git">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      For Mac:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-windows_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      For Windows:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      For Linux:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-github-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a GitHub Account
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring Git
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication-personal-access-token-pat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication: Personal Access Token (PAT)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visual-studio-code-not-wpilib" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visual Studio Code (not WPILib)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wpilib" class="md-nav__link">
+    <span class="md-ellipsis">
+      WPILib
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      A Secret
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      FAQ
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FileStructure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GitGuide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Git Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Sensors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sensors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Simulation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Simulation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Telemetry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Telemetry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Trigonometry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Trig Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goals
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-code-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local Code Organization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finder-mac-or-file-explorer-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finder (Mac) or File Explorer (Windows)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-line-mac-windows-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command Line (Mac, Windows, Linux)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checking-if-git-is-installed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checking if Git is installed
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Checking if Git is installed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-mac-and-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      For Mac and Linux:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      For Windows:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing Git
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing Git">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      For Mac:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-windows_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      For Windows:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      For Linux:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-github-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a GitHub Account
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring Git
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication-personal-access-token-pat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication: Personal Access Token (PAT)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visual-studio-code-not-wpilib" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visual Studio Code (not WPILib)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wpilib" class="md-nav__link">
+    <span class="md-ellipsis">
+      WPILib
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      A Secret
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      FAQ
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Environment Setup</h1>
+
+<h2 id="introduction">Introduction</h2>
+<p>This is a guide to setting up your computer. It includes instructions on organizing files locally, setting up git and Github, setting up an environment to code in Java, and setting up an environment to write robotics-specific code.</p>
+<h2 id="goals">Goals</h2>
+<ul>
+<li><a href="#local-code-organization">Create code folder</a></li>
+<li><a href="#git">Set up git &amp; Github</a><ul>
+<li>Make sure git is installed</li>
+<li>Make Github account</li>
+<li>Add PAT</li>
+</ul>
+</li>
+<li><a href="#visual-studio-code-not-wpilib">Set up regular VSCode</a></li>
+<li><a href="#wpilib">Set up WPILib VSCode</a></li>
+</ul>
+<h2 id="local-code-organization">Local Code Organization</h2>
+<p>All of the files on your computer are organized into a tree of <em>directories</em>, or folders. When you use Finder or File Explorer, you are navigating through those directories. </p>
+<p>Most of the relevant files on your computer are inside of your home directory. The top level contents of your home directory include Downloads, Documents, Desktop, Applications, and other directories that you should be familiar with.</p>
+<p>When you write code, the files that you write in will exist somewhere on your computer. For the sake of organization, you need to decide where that is.</p>
+<p>Oftentimes, people will make one directory that contains all of their code. Within that, they might have separate directories for robotics code and other code. And then individual projects are placed inside of those directories.</p>
+<p>Another option is to just make one directory for robotics, and if you ever want to write non-robotics code, you can make a different directory for that.</p>
+<p>You can do whichever of those you feel more comfortable with. Or if there's another way you want to organize your code, that's fine -- as long as it's all in its own directory and not on OneDrive or iCloud!</p>
+<p>Next, you need to decide where you want to put your code/robotics directory. You really only have two reasonable options for this:</p>
+<ol>
+<li>Directly in your home directory</li>
+<li>Inside Documents
+If you're coding a lot, I'd definitely recommend number 1. Otherwise, either way is fine.</li>
+</ol>
+<p>Once you've decided how you want to organize your code on your computer, you have a couple options for how you're actually going to make the directory:</p>
+<h2 id="finder-mac-or-file-explorer-windows">Finder (Mac) or File Explorer (Windows)</h2>
+<p>Open Finder/File Explorer. </p>
+<p>If you want to put your folder in Documents, open Documents.</p>
+<p>If you want to put your folder in the home directory, go to the home directory</p>
+<ul>
+<li>for Mac: Command + Shift + H</li>
+<li>for Windows: go to the location bar and enter %USERPROFILE%</li>
+</ul>
+<p>Once you're in the right place, create a new folder (right click, press <em>new folder</em>). Give your folder a descriptive name, and make sure it has <strong><em>no spaces</em></strong>.</p>
+<p>Make sure your folder is easily accessible</p>
+<ul>
+<li>for Mac: drag your folder over to the sidebar</li>
+<li>for Windows: save your folder to quick access</li>
+</ul>
+<h2 id="command-line-mac-windows-linux">Command Line (Mac, Windows, Linux)</h2>
+<p>Open command line.</p>
+<ul>
+<li>for Mac or Linux: open Terminal</li>
+<li>for Windows: open PowerShell</li>
+</ul>
+<p>For each of the next steps, I'm going to give you a line to write in the console that you just pulled up, and explain what it does.</p>
+<p>Navigate to your home directory (you're probably there already by default, but this will make sure):</p>
+<pre><code>cd
+</code></pre>
+<p>Only if you want your directory to be in Documents:</p>
+<pre><code>cd Documents
+</code></pre>
+<p>Make the directory:</p>
+<pre><code>mkdir &lt;name&gt;
+</code></pre>
+<p>Replace \<name> with whatever you want your directory to be called. So if you wanted the name to be "code", you'd write <code>mkdir code</code>. Whatever you do, make sure your name has no spaces!</p>
+<p>Lastly, I highly recommend you go to whatever file navigator you use (Finder, File Explorer, etc) and pin the folder you made so that it's easily accessible. If you're not sure how to do that, read the <a href="#finder-mac-or-file-explorer-windows">Finder/File Explorer section</a>.</p>
+<h2 id="git">Git</h2>
+<p>Git is a distributed version control system that helps you track changes in your code over time. It allows multiple people to work on the same project simultaneously and merge their changes seamlessly. Git is essential for collaborative coding and is widely used in software development, including robotics projects.</p>
+<h2 id="checking-if-git-is-installed">Checking if Git is installed</h2>
+<p>Before installing Git, let's check if it's already installed on your system.</p>
+<h3 id="for-mac-and-linux">For Mac and Linux:</h3>
+<ol>
+<li>Open Terminal</li>
+<li>Type the following command and press Enter:
+   <code>git --version</code></li>
+<li>If Git is installed, you'll see a version number (e.g., "git version 2.30.1")</li>
+<li>If you see "command not found", you'll need to install Git</li>
+</ol>
+<h3 id="for-windows">For Windows:</h3>
+<ol>
+<li>Open PowerShell</li>
+<li>Type the following command and press Enter:
+   <code>git --version</code></li>
+<li>If Git is installed, you'll see a version number</li>
+<li>If you see an error message, you'll need to install Git</li>
+</ol>
+<h2 id="installing-git">Installing Git</h2>
+<p>If Git is not installed on your system, follow these steps:</p>
+<h3 id="for-mac">For Mac:</h3>
+<ol>
+<li>Install Homebrew if you haven't already (visit https://brew.sh/ for instructions)</li>
+<li>Open Terminal</li>
+<li>Run the following command:
+   <code>brew install git</code></li>
+</ol>
+<h3 id="for-windows_1">For Windows:</h3>
+<ol>
+<li>Visit https://git-scm.com/download/win</li>
+<li>Download the latest version for your system (64-bit or 32-bit)</li>
+<li>Run the installer and follow the prompts (you can use the default settings)</li>
+</ol>
+<h3 id="for-linux">For Linux:</h3>
+<p>For Ubuntu or Debian-based distributions:</p>
+<ol>
+<li>Open Terminal</li>
+<li>Run the following commands:
+   <code>sudo apt update
+   sudo apt install git</code></li>
+</ol>
+<p>For other distributions, consult your package manager's documentation.</p>
+<h2 id="creating-a-github-account">Creating a GitHub Account</h2>
+<p>GitHub is a web-based platform that uses Git for version control. It's where you'll store your code repositories online.</p>
+<ol>
+<li>Visit https://github.com/</li>
+<li>Click "Sign up" in the top right corner</li>
+<li>Follow the prompts to create your account</li>
+</ol>
+<h2 id="configuring-git">Configuring Git</h2>
+<p>After installing Git and creating a GitHub account, you need to configure Git with your name, email, and preferred code editor:</p>
+<ol>
+<li>Open Terminal (Mac/Linux) or PowerShell (Windows)</li>
+<li>Set your name:
+   <code>git config --global user.name "Your Name"</code></li>
+<li>Set your email (use the same email as your GitHub account):
+   <code>git config --global user.email "youremail@example.com"</code></li>
+<li>Set your preferred code editor (for our purposes, this will be VSCode):
+   <code>git config --global core.editor "code --wait"</code></li>
+</ol>
+<h2 id="authentication-personal-access-token-pat">Authentication: Personal Access Token (PAT)</h2>
+<p>GitHub now requires a Personal Access Token for authentication instead of a password when using Git from the command line. Here's how to set it up:</p>
+<ol>
+<li>Go to GitHub and log in</li>
+<li>Click on your profile picture in the top-right corner and select "Settings"</li>
+<li>Scroll down to "Developer settings" in the left sidebar</li>
+<li>Click on "Personal access tokens" and then "Generate new token"</li>
+<li>Give your token a descriptive name, set the expiration to the maximum amount (1 year), and select the appropriate scopes (at minimum, select "repo")</li>
+<li>Click "Generate token" at the bottom of the page</li>
+<li>Copy the generated token immediately (you won't be able to see it again)</li>
+<li>Open Terminal (Mac/Linux) or PowerShell (Windows)</li>
+<li>Run the following command:</li>
+</ol>
+<pre><code>git ls-remote https://github.com/fake-username/fake-repo-name.git
+</code></pre>
+<ol>
+<li>When prompted for your password, enter your PAT instead.</li>
+<li>If you got a "Repository not found" error, everything went right! If you get If you get an "Authentication failed" error, double-check your PAT and try again.</li>
+<li>On most modern systems, Git will automatically store your credentials after you've entered them once. If, however, you find that you're being asked for your PAT repeatedly, you may need to set up a credential helper:</li>
+</ol>
+<p>For Mac/Linux:</p>
+<pre><code>git config --global credential.helper store
+</code></pre>
+<p>For Windows:</p>
+<pre><code>git config --global credential.helper wincred
+</code></pre>
+<p>Note: There are other authentication methods available, such as SSH keys, but PAT is recommended for its simplicity and security. If you're interested in exploring other options, you can refer to GitHub's documentation on authentication.</p>
+<h2 id="visual-studio-code-not-wpilib">Visual Studio Code (not WPILib)</h2>
+<p>This is going to be for writing non-robotics code. For instance, you can use regular VSC for <a href="../../projects/intro-to-programming/Java101/">Java101</a> and <a href="../../projects/intro-to-programming/Java102/">Java102</a>. If you'd rather not have this on your computer, feel free to skip this step.</p>
+<ol>
+<li>Download the latest version of the <a href="https://www.oracle.com/java/technologies/downloads/">Java Development Kit</a> (JDK). This is what will allow you to actually develop and run code in Java.<ol>
+<li>Once you've downloaded an installer, click on it and follow the instructions.</li>
+</ol>
+</li>
+<li><a href="https://code.visualstudio.com/download">Download VSCode here</a>.</li>
+<li>Once VSCode is installed, open it.</li>
+<li>Install the Java Extension Pack:<ul>
+<li>Click on the Extensions icon in the left sidebar (it looks like four squares)</li>
+<li>In the search bar, type "Extension Pack for Java"</li>
+<li>Look for the package by Microsoft and click "Install"</li>
+<li>This pack includes several useful extensions for Java development, including the Language Support for Java by Red Hat, Debugger for Java, Java Test Runner, and Maven for Java</li>
+</ul>
+</li>
+<li>Optional: Install Git Graph:<ul>
+<li>In the Extensions sidebar, search for "Git Graph"</li>
+<li>Look for the extension by mhutchie and click "Install"</li>
+<li>This extension provides a graphical view of your Git repository, which can be very helpful when working with version control</li>
+</ul>
+</li>
+</ol>
+<h2 id="wpilib">WPILib</h2>
+<ol>
+<li><a href="https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-2/wpilib-setup.html">Follow this guide to install WPILib</a> (we use Java, so ignore the additional C++ installation)</li>
+<li>If you have a school laptop and cannot find WPILib VSCode after install, refer to the <a href="#faq">FAQ</a>.</li>
+<li>Optional: Change the WPILib VSCode icon to distinguish from regular VSCode<ol>
+<li>Download <a href="../images/wpilib.png">the WPILib logo</a></li>
+<li>Replace the icon:<ul>
+<li>For Windows:<ol>
+<li>Right-click on the WPILib VSCode shortcut</li>
+<li>Select "Properties"</li>
+<li>Click "Change Icon"</li>
+<li>Browse to the downloaded WPILib logo and select it</li>
+<li>Click "OK" to apply the changes</li>
+</ol>
+</li>
+<li>For Mac:<ol>
+<li>Locate the WPILib VSCode app in Finder</li>
+<li>Right-click (or Control-click) on the app and select "Get Info"</li>
+<li>Drag the downloaded WPILib logo onto the icon in the top-left corner of the Get Info window</li>
+</ol>
+</li>
+<li>For Linux:<ol>
+<li>Locate your .desktop file for WPILib VSCode (usually in ~/.local/share/applications/ or /usr/share/applications/)</li>
+<li>Open the .desktop file with a text editor</li>
+<li>Find the line starting with "Icon="</li>
+<li>Replace the value with the full path to your downloaded WPILib logo</li>
+<li>Save the file and refresh your desktop environment</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>Install additional extensions:<ul>
+<li>Open WPILib VSCode</li>
+<li>Click on the Extensions icon in the left sidebar (it looks like four squares)</li>
+<li>Install "Test Runner for Java" by Microsoft</li>
+<li>Optionally: Install "Git Graph" by mhutchie</li>
+</ul>
+</li>
+</ol>
+<h2 id="a-secret">A Secret</h2>
+<p>I didn't write the <a href="#git">git section</a>. I also didn't write several parts of the <a href="#visual-studio-code-not-wpilib">VSCode</a> and <a href="#wpilib">WPILib</a> sections. Instead, I prompted <a href="https://claude.ai">Claude</a> to do it for me.</p>
+<p>The moral of this story is that chat bots like Claude and ChatGPT are fantastic resources when used well. And getting help with git or command line or installing things are all great uses for AI.</p>
+<h2 id="faq">FAQ</h2>
+<ul>
+<li>My VSCode terminal won't recognize Git!<ul>
+<li>Refer to the <a href="#configuring-git">git configuration section</a>, particularly about setting preferred code editor.</li>
+</ul>
+</li>
+<li>I can't find my WPILib VSCode install in Windows search!<ul>
+<li>This is a known issue for school laptops, which do not have the admin permissions needed to create necessary shortcuts.</li>
+<li>You must manually find the <code>/wpilib/YEAR/vscode</code> directory; its default location is in <code>C:/Users/Public</code>.<ul>
+<li>Alternatively, find a searchable WPILib-related file, right click on it, and click <code>Open File Location</code>. If it leads to a shortcut, repeat the step; if you've done it right, you should be in the <code>/wpilib</code> folder.</li>
+</ul>
+</li>
+<li>After locating the directory, find <code>Code.exe</code>, and drag it to your taskbar. You should now have easy access to WPILib VSCode.</li>
+<li>Feel free to make a shortcut wherever you would like and ask for help if you need it - don't spend too much time here!</li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../ControlTheory/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Control Theory">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Control Theory
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../FileStructure/" class="md-footer__link md-footer__link--next" aria-label="Next: File Structure">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                File Structure
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

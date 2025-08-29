@@ -1,0 +1,2456 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Java101/">
+      
+      
+        <link rel="next" href="../../DifferentialDrive/">
+      
+      
+      <link rel="icon" href="../../../images/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
+    
+    
+      
+        <title>Java 102 - SciGuides</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.2afb09e1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="yellow" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="SciGuides" class="md-header__button md-logo" aria-label="SciGuides" data-md-component="logo">
+      
+  <img src="../../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SciGuides
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Java 102
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="SciGuides" class="md-nav__button md-logo" aria-label="SciGuides" data-md-component="logo">
+      
+  <img src="../../../images/logo.png" alt="logo">
+
+    </a>
+    SciGuides
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Intro To Programming
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Intro To Programming
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Programming101/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Programming 101
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Java101/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Java 101
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Java 102
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Java 102
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goals
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classes-and-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classes and Objects
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objects
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#point" class="md-nav__link">
+    <span class="md-ellipsis">
+      Point
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Point">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fields
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constructor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constructor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#translation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Translation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tostring" class="md-nav__link">
+    <span class="md-ellipsis">
+      ToString
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practice-center-of-mass" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice: Center of Mass
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practice-angle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice: Angle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenge-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenge: Rotation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#polymorphism" class="md-nav__link">
+    <span class="md-ellipsis">
+      Polymorphism
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Generics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arraylists" class="md-nav__link">
+    <span class="md-ellipsis">
+      ArrayLists
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grid
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generics-in-methods-printarray" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generics in methods: printArray
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practice-diagonal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice: Diagonal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practice-maxsidelength" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice: maxSideLength
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interfaces
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interfaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#circle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Circle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#square" class="md-nav__link">
+    <span class="md-ellipsis">
+      Square
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sumarea" class="md-nav__link">
+    <span class="md-ellipsis">
+      SumArea
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scaleall" class="md-nav__link">
+    <span class="md-ellipsis">
+      ScaleAll
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shape
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practice-frompoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice: fromPoints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practice-right-triangle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice: Right Triangle
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inheritance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inheritance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#object-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      Object class
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#library" class="md-nav__link">
+    <span class="md-ellipsis">
+      Library
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practice-returnall" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice: returnAll
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practice-availableitems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice: availableItems
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#glossary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glossary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DifferentialDrive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Differential Drive
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Reference Sheets
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Reference Sheets
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference-sheets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference-sheets/AdvancedJava/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Advanced Java
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference-sheets/CommandBased/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command Based Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference-sheets/CommandLineNavigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command Line Navigation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference-sheets/ControlTheory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Control Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference-sheets/EnvironmentSetup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environment Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference-sheets/FileStructure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference-sheets/GitGuide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Git Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference-sheets/Sensors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sensors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference-sheets/Simulation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Simulation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference-sheets/Telemetry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Telemetry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference-sheets/Trigonometry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Trig Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goals
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classes-and-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classes and Objects
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objects
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#point" class="md-nav__link">
+    <span class="md-ellipsis">
+      Point
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Point">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fields
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constructor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constructor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#translation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Translation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tostring" class="md-nav__link">
+    <span class="md-ellipsis">
+      ToString
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practice-center-of-mass" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice: Center of Mass
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practice-angle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice: Angle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenge-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenge: Rotation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#polymorphism" class="md-nav__link">
+    <span class="md-ellipsis">
+      Polymorphism
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Generics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arraylists" class="md-nav__link">
+    <span class="md-ellipsis">
+      ArrayLists
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grid
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generics-in-methods-printarray" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generics in methods: printArray
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practice-diagonal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice: Diagonal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practice-maxsidelength" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice: maxSideLength
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interfaces
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interfaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#circle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Circle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#square" class="md-nav__link">
+    <span class="md-ellipsis">
+      Square
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sumarea" class="md-nav__link">
+    <span class="md-ellipsis">
+      SumArea
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scaleall" class="md-nav__link">
+    <span class="md-ellipsis">
+      ScaleAll
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shape
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practice-frompoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice: fromPoints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practice-right-triangle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice: Right Triangle
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inheritance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inheritance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#object-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      Object class
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#library" class="md-nav__link">
+    <span class="md-ellipsis">
+      Library
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practice-returnall" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice: returnAll
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practice-availableitems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice: availableItems
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#glossary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glossary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Java 102</h1>
+
+<h2 id="introduction">Introduction</h2>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Comfortable with all of the <a href="../Java101/#goals">goals for Java101</a>.</li>
+<li>Comfortable with <a href="../../../reference-sheets/CommandLineNavigation/">command-line navigation</a></li>
+<li>Environment set up<ul>
+<li><a href="../../../reference-sheets/EnvironmentSetup/#local-code-organization">Code directory created</a></li>
+<li><a href="../../../reference-sheets/EnvironmentSetup/#visual-studio-code-not-wpilib">VSCode installed</a></li>
+<li><a href="../../../reference-sheets/EnvironmentSetup/#git">Git &amp; Github set up</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="goals">Goals</h2>
+<p>Familiarity with the following concepts:</p>
+<ul>
+<li>Classes and Objects<ul>
+<li>fields</li>
+<li>constructors</li>
+<li>methods</li>
+<li>static</li>
+<li>public/private</li>
+</ul>
+</li>
+<li>Polymorphism<ul>
+<li>Interfaces</li>
+<li>Generics</li>
+<li>Inheritance</li>
+</ul>
+</li>
+<li>Functional Interfaces</li>
+<li>Streams</li>
+</ul>
+<h2 id="best-practices">Best Practices</h2>
+<p>See <a href="../Java101/#best-practices">Java101</a>.</p>
+<h2 id="setup">Setup</h2>
+<p>If you did <a href="../Java101/">Java101</a>, use the same repository that you used there. Otherwise, follow the <a href="../Java101/#setup">instructions in Java101 to set up a repository</a>.</p>
+<p>Make another directory called <code>java102</code>. We'll be working in that directory. Make a file in java102 called <code>Main.java</code>, as well as a <code>README.md</code> file.</p>
+<p><em>Note: you will likely need to add <code>package java102;</code> to the top of each Java file you make in the <code>java102</code> directory.</em></p>
+<p>In the README, link <a href="./">this guide</a>.</p>
+<h2 id="classes-and-objects">Classes and Objects</h2>
+<h2 id="objects">Objects</h2>
+<p>An <em>object</em> in Java is a bundle of related data and functions that work together to perform specific tasks in a program. Think of it as a custom-built tool that combines information (<a href="#glossary">fields</a>) and actions (<a href="#glossary">methods</a>) into a single unit.</p>
+<p>For example, if you're planning the trajectory of a robot through a 2d plane, you might have a Point object. This object would store the x and y coordinates of the point, and would have one method to translate a Point in the x direction, and one to translate it in the y direction.</p>
+<h2 id="classes">Classes</h2>
+<p>In Java, a class is like a blueprint or template for creating objects. It defines what data and methods the objects will have. An object is an instance of a class - a specific realization of that blueprint. Classes can also hold what are called <em>static</em> methods or fields that are related to objects of that class, but that don't actually belong to individual objects. For example, a <code>Point</code> class might have a method that finds the distance between two <code>Point</code> objects.</p>
+<p>A class can also be thought of as the <a href="../Java101/">type</a> of an object. So if you were to make a point variable, the type of that variable would be <code>Point</code>. In fact, some of the types that we've been using are object types (specifically Strings and arrays -- although arrays are a special case). Generally, whenever there is a type that is capitalized, that is an object type.</p>
+<h2 id="point">Point</h2>
+<p>Let's write out the class that is a blueprint for the <code>Point</code> object that we described:</p>
+<p>First off, create a new file called <code>Point.java</code>. The contents should look like this:</p>
+<pre><code class="language-java">public class Point {
+
+}
+</code></pre>
+<h3 id="fields">Fields</h3>
+<p>Next, we'll declare the fields that will store data for the object. We want to store the x and y coordinates, both of which are doubles. We do this similarly to how we declared variables in <a href="../Java101/#variables">Java101</a>, but with a couple differences:</p>
+<ul>
+<li>We will not use the word <code>static</code>, because these fields belong to individual points.</li>
+<li>We will write <code>public final</code> before the type and name of each field.<ul>
+<li>Adding <code>final</code> before a variable ensures that that once initialized, a variable cannot be mutated. In this case, the x and y coordinates of a point should never change. If they did, we would no longer be talking about the same point, and that would get very confusing.</li>
+</ul>
+</li>
+<li>We will <em>declare</em> our variables without <em>initializing</em> them. <ul>
+<li>In other words, we will write the names and types of the variables, indicating that they exist and allowing us to reference them in other parts of the code. (This is called declaring a variable.)</li>
+<li>But we will not give them values (also called initializing variables). Instead, each instance of the <code>Point</code> class (each <code>Point</code> object) will have its own values for <code>x</code> and <code>y</code>.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-java">public class Point {
+    public final double x;
+    public final double y;
+}
+</code></pre>
+<h3 id="constructor">Constructor</h3>
+<p>Okay, we have now declared fields to store the x and y coordinates of our points.</p>
+<p>Next up, we need to write what's called a <em>constructor</em>. A constructor is a special kind of function that creates an object. Each class has a constructor, and that constructor is called to generate a new object instance of that class. If there's anything about an object that you want to be different for each object, you generally do that in the constructor. </p>
+<p>So, in this case, we want each <code>Point</code> to have its own values for <code>x</code> and <code>y</code>, and we want whoever makes the <code>Point</code> to be able to decide those values. We can do that by having the constructor take <code>x</code> and <code>y</code> values as arguments (or inputs).</p>
+<p>The syntax for writing constructors somewhat similar to how we wrote functions in <a href="../Java101/#functionsmethods">Java101</a>. Here are the differences:</p>
+<ul>
+<li>We won't use the word <code>static</code> (again, this belongs to a particular <code>Point</code>).</li>
+<li>We will add the word <code>public</code>.</li>
+<li>We will not specify a return type (this is because the return type of a constructor is always going to be the type of the object, in this case a <code>Point</code>).</li>
+<li>The name of the constructor is always the same as the name of the class (so <code>Point</code>).</li>
+<li>We don't need to return anything. A new <code>Point</code> is automatically created and then returned.</li>
+</ul>
+<p>Here we go:</p>
+<pre><code class="language-java">public class Point {
+    public final double x;
+    public final double y;
+
+    public Point(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+}
+</code></pre>
+<p>The one thing in the constructor that we haven't explained yet is the keyword <code>this</code>. The <code>this</code> keyword is used to refer to the top level scope of a particular object (the object scope). All non-static fields and methods are part of that scope. So when the constructor says <code>this.x</code>, it is referring to its <code>x</code> field. When the constructor just says <code>x</code>, however, without the <code>this</code>, it is referring to the argument <code>x</code> that was passed into the constructor. That <code>x</code> was declared more recently, so, as we discussed in <a href="../Programming101/#scope">Programming101</a>, it will by default shadow the top level field <code>x</code>.</p>
+<p>This means that when the constructor has <code>this.x = x</code>, the first <code>x</code> refers to the field, and the second <code>x</code> refers to the argument. So it is setting the value of the field <code>x</code> to be whatever value for <code>x</code> was passed into the constructor as an argument (and the same with <code>y</code>).</p>
+<p>So now we have a way to create a new <code>Point</code> object. Let's try it out! Go back to your main file, and add the following inside of the <code>main</code> function:</p>
+<pre><code class="language-java">Point point = new Point(4, 3);
+</code></pre>
+<p>The keyword <code>new</code> is always used before calling a constructor to create a new object (remember arrays -- add link). We passed into the constructor 4 and 3, so the coordinates of our point should be (4, 3). Let's check! We can access the fields of an object by using the notation <code>object.field</code>:</p>
+<pre><code class="language-java">System.out.println(&quot;x: &quot; + point.x + &quot;y: &quot; + point.y);
+</code></pre>
+<p>Run the code, and see if the values that are printed are what you expect!</p>
+<h3 id="translation">Translation</h3>
+<p>Now, go back to the <code>Point.java</code> file. We're going to write a method to translate a point in the x direction. We'll do this just like we defined functions in <a href="../Java101/#functionsmethods">Java101</a>, with the following changes:</p>
+<ul>
+<li>We won't use the word <code>static</code> because this method belongs to each particular <code>Point</code>.<ul>
+<li>In other words, each <code>Point</code> not only has its own values of <code>x</code> and <code>y</code>, but also its own methods for translation that use its values of <code>x</code> and <code>y</code>.</li>
+</ul>
+</li>
+<li>We will add the word <code>public</code> (we'll explain this later).</li>
+</ul>
+<p>Let's call this method <code>translateX</code>. This is a method that belongs to the <code>Point</code> class, so it already has access to the data stored in the object (<code>x</code> and <code>y</code>). The only other input that it needs is how much to translate by. We'll call that value <code>t</code>.</p>
+<p>The return type of <code>translateX</code> will be a new <code>Point</code>, because it is returning the point that will result after a translation.</p>
+<pre><code class="language-java">public class Point {
+    public final double x;
+    public final double y;
+
+    public Point(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public Point translateX(double t) {
+        return new Point(x + t, y);
+    }
+}
+</code></pre>
+<p>We can also add a method to translate in the y direction:</p>
+<pre><code class="language-java">public class Point {
+    public final double x;
+    public final double y;
+
+    public Point(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public Point translateX(double t) {
+        return new Point(x + t, y);
+    }
+
+    public Point translateY(double t) {
+        return new Point(x, y + t);
+    }
+}
+</code></pre>
+<p>Okay, let's test our our new methods! Go back to <code>Main.java</code>. Inside the <code>main</code> function, we're going to reflect <code>point</code> a few times.</p>
+<pre><code class="language-java">Point xTranslation = point.translateX(3); // should be (7, 3)
+Point yTranslation = point.translateY(-7); // should be (4, -4)
+Point xyTranslation = point.translateX(-4).translateY(-3); // should be (0, 0)
+</code></pre>
+<p>Now that we have the lots of translations, let's print out the x and y values of our new points to check that they're correct.</p>
+<pre><code class="language-java">System.out.println(&quot;x transl: (&quot; + xTranslation.x + &quot;, &quot; + xTranslation.y + &quot;)&quot;);
+System.out.println(&quot;y transl: (&quot; + yTranslation.x + &quot;, &quot; + yTranslation.y + &quot;)&quot;);
+System.out.println(&quot;xy transl: (&quot; + xyTranslation.x + &quot;, &quot; + xyTranslation.y + &quot;)&quot;);
+</code></pre>
+<p>You can run the code and make sure the values are what you expected.</p>
+<h3 id="tostring">ToString</h3>
+<p>One thing you might notice is that the code we wrote to print out our points is pretty repetitive. We wrote essentially the same thing 3 times, but we used different variables. Usually, when you're writing repetitive code, there's a more efficient option. In this case, we're going to add a <code>toString</code> method.</p>
+<p>A <code>toString</code> method tells the computer how to convert an object into a <code>String</code>. When you write <code>System.out.println(object)</code>, that object is automatically converted to a string and printed using its toString method. </p>
+<p>Each object has a default <code>toString</code> method. Let's try to print a <code>Point</code> using its default <code>toString</code> method and see what happens:</p>
+<pre><code class="language-java">System.out.println(&quot;point: &quot; + point);
+</code></pre>
+<p>You should see something like this: <code>point: Point@15db9742</code> (the sequence of letters and numbers after the @ may be different).</p>
+<p>That isn't a particularly helpful representation of a <code>Point</code>. What we actually want is something that tells us the <code>x</code> and <code>y</code> coordinates of the point. So we're going to override the default <code>toString</code> method to do that (we'll get into what overriding really means later on). Go back to <code>Point.java</code>.</p>
+<pre><code class="language-java">public class Point {
+    public final double x;
+    public final double y;
+
+    public Point(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public Point translateX(double t) {
+        return new Point(x + t, y);
+    }
+
+    public Point translateY(double t) {
+        return new Point(x, y + t);
+    }
+
+    @Override
+    public String toString() {
+        return &quot;(&quot; + x + &quot;, &quot; + y + &quot;)&quot;;
+    }
+}
+</code></pre>
+<p>Now, we can simplify our code in <code>Main.java</code>! Instead of printing reflected points like this:</p>
+<pre><code class="language-java">System.out.println(&quot;x transl: (&quot; + xTranslation.x + &quot;, &quot; + xTranslation.y + &quot;)&quot;);
+System.out.println(&quot;y transl: (&quot; + yTranslation.x + &quot;, &quot; + yTranslation.y + &quot;)&quot;);
+System.out.println(&quot;xy transl: (&quot; + xyTranslation.x + &quot;, &quot; + xyTranslation.y + &quot;)&quot;);
+</code></pre>
+<p>We can do this:</p>
+<pre><code class="language-java">System.out.println(&quot;x transl: &quot; + xTranslation);
+System.out.println(&quot;y transl: &quot; + yTranslation);
+System.out.println(&quot;xy transl: &quot; + xyTranslation);
+</code></pre>
+<h3 id="distance">Distance</h3>
+<p>Okay, now that we've done that, let's add one last thing to our <code>Point</code> class: a method to find the distance between two points. We'll call it <code>distance</code>.</p>
+<p>This <code>distance</code> method is going to take two <code>Point</code> objects and find the distance between them. Remember, the <code>distance</code> method will belong to the <code>Point</code> class as a whole, not to particular <code>Point</code> objects. It will be a <code>static</code> method.</p>
+<p><em>note: We used the static keyword when we were writing functions and variables in the <code>Main</code> class, because nothing we were writing was meant to be specific to instances of the <code>Main</code> class (in fact, we never created instances of that class).</em></p>
+<p>One last thing before we write our distance function: We're going to be using <code>Math.sqrt</code>, which takes the square root of a double, and <code>Math.pow</code>, which is how we calculate exponents (<code>Math.pow(a, b)</code> &rarr; $a ^ b$).</p>
+<pre><code class="language-java">public class Point {
+    public final double x;
+    public final double y;
+
+    public Point(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public Point translateX(double t) {
+        return new Point(x + t, y);
+    }
+
+    public Point translateY(double t) {
+        return new Point(x, y + t);
+    }
+
+    @Override
+    public String toString() {
+        return &quot;(&quot; + x + &quot;, &quot; + y + &quot;)&quot;;
+    }
+
+    public static double distance(Point p1, Point p2) {
+        return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
+    }
+}
+</code></pre>
+<p>Now let's test out the new distance function! Open <code>Main.java</code>. In the main function, create two points, <code>a</code> and <code>b</code>.</p>
+<p>We access non-static members of a class with <code>object.member</code>. So for instance, to translate point <code>p</code>, we'd call <code>p.translate</code>. But static members don't belong to specific objects, they belong to classes. So instead, we use <code>Class.member</code>. In this case, that would be <code>Point.distance</code>. Run the following line of code and double check it with your own calculations!</p>
+<pre><code class="language-java">System.out.println(Point.distance(a, b));
+</code></pre>
+<h3 id="practice-center-of-mass">Practice: Center of Mass</h3>
+<p>Let's say we have a bunch of points, each of which represents a point mass of equal mass. The <em>center of mass</em> of those points is the average position of the points. So the x coordinate of the center of mass is the average of all of the x coordinates of the points, and the y coordinate is the average of all of the y coordinates.</p>
+<p>Write a static method for the <code>Point</code> class that takes as an argument an array of <code>Point</code> objects, and returns the center of mass, as a <code>Point</code>. Here's the header (there will be a ; at the end, but when you actually write it there should be curly braces instead):</p>
+<pre><code class="language-java">public static Point centerOfMass(Point[] points);
+</code></pre>
+<p>When you're done, test our your new function with some simple examples!</p>
+<p>Also, if you haven't yet, now would be a great time to commit and push your changes.</p>
+<h3 id="practice-angle">Practice: Angle</h3>
+<p>Write a non-static method that calculates and returns the angle in degrees between a point and the positive x axis. Or more specifically, the angle of point p is the angle from the positive x axis to the line that goes through the origin and point p. Counterclockwise is positive. </p>
+<p>This will require trigonometry. If you're not familiar with basic trig, look at <a href="../../../reference-sheets/Trigonometry/">this doc</a>.</p>
+<p>You can look up how to perform trigonometric functions in Java (the Java trig functions generally operate in radians, so you'll need to use <code>Math.toDegrees</code> and <code>Math.toRadians</code> to make sure you're being consistent about units).</p>
+<p>Also, be careful to think about all the cases! This should work in all four quadrants.</p>
+<p>Here's the header:</p>
+<pre><code class="language-java">public double angle();
+</code></pre>
+<h3 id="challenge-rotation">Challenge: Rotation</h3>
+<p>As a challenge, try to write a method that rotates a point by <code>theta</code> degrees. To think about what this means, imagine a circle centered around the origin of a plane that passes through point p. The rotation of point p by positive 30 degrees is another point on that circle, but the angle between this new point and the positive x axis should be 30 degrees bigger than the angle between p and the positive x axis.</p>
+<p>Making a generalized form of this function will require trig. But first, try making a method that just rotates a point by 90 degrees counterclockwise:</p>
+<pre><code class="language-java">public Point rotate90();
+</code></pre>
+<p>Once you've written and tested that, try a general rotate method:</p>
+<pre><code class="language-java">public Point rotate(double theta);
+</code></pre>
+<h2 id="polymorphism">Polymorphism</h2>
+<p>Polymorphism is a concept in programming that means "many shapes" or "many forms." It refers to the idea that single thing (like a piece of code) can behave differently depending on how it's used. It allows a single function or operation or class or structure to work with different types of data, making programs more flexible and easier to manage.</p>
+<p>Think of it like how a tool like a wrench can work on different sizes of nuts and bolts. The wrench is one tool, but it can adjust to different tasks. Similarly, polymorphism lets code adjust and work in different situations without needing to be rewritten.</p>
+<p>In Java, there are several forms of polymorphism that we're going to talk about.</p>
+<h2 id="generics">Generics</h2>
+<p>Generics are a form of what's called <em>parametric polymorphism</em>. They are perhaps the simplest polymorphism in Java - and you've actually already seen them used in several places.</p>
+<p>Generics allows you to write classes and methods that can work with any data type while maintaining type safety. For example, an array uses generics so that it can store any type of object—<code>Integer</code>, <code>String</code>, <code>Boolean</code> etc—instead of having a separate class for each type of array.</p>
+<p>Something to note: I used the capital words for each of those types. That's because generics must be object types. Non-capitalized types (i.e. int, boolean, etc) are not object types. Instead they are <em>primitives</em> (look it up if you're interested). But each of them does have a corresponding object type, so those are what we use for cases like this.</p>
+<h3 id="arraylists">ArrayLists</h3>
+<p>Now, arrays are somewhat of a special case, and there are actually several differences between generics in arrays and other generics.</p>
+<p>So instead of talking about arrays, let's talk about ArrayLists. An <code>ArrayList</code> is similar to an array, but without a fixed length. So you can add new elements to an <code>ArrayList</code>.</p>
+<p>Here's how that works: an <code>ArrayList</code> stores its values in an <code>Array</code> that is longer than the length of the <code>ArrayList</code> (so if there are 5 elements in the <code>ArrayList</code>, those elements might be stored in the first 5 spots of a 10 element <code>Array</code>). When you add an element to the <code>ArrayList</code>,  it populates the next spot. If you keep adding elements, the <code>Array</code> eventually becomes full. At that point, if you try to add another element, the <code>ArrayList</code> will create a new <code>Array</code> with 1.5 times the size of the old array (i.e. from 10 to 15), and copy all the elements from the old <code>Array</code> to the new one.</p>
+<p>Let's look at how we would make an <code>ArrayList</code> of strings in the <code>main</code> method of our <code>Main.java</code> file:</p>
+<pre><code class="language-java">ArrayList&lt;String&gt; arr = new ArrayList&lt;&gt;();
+</code></pre>
+<p>So starting from the beginning of the line, the type for this variable is <code>ArrayList&lt;String&gt;</code>.  Inside the <code>ArrayList</code> class, the type of the element is not specified. It could be a <code>String</code> or an <code>Integer</code> or an <code>ArrayList</code> or a <code>double[]</code>, and whichever one it is, the <code>ArrayList</code> functions the same way. So when we make a new <code>ArrayList</code>, that's when we specify what the type of the elements are. The triangle brackets are the syntax in Java for doing that. So the type is <code>ArrayList&lt;String&gt;</code>, because it's an <code>ArrayList</code> with elements of type <code>String</code>.</p>
+<p>After the assignment operator (=), we create a new <code>ArrayList</code> using the class's constructor. The square brackets are there as well because the constructor also needs to know the type of the elements. In this particular case, we don't need to actually put the type in there because we already specified the type earlier, so the computer can infer that the same type (<code>String</code>) applies to the constructor as well. If we weren't saving the <code>ArrayList</code> as a variable (and therefore specifying its type), we would have to specify in the constructor: <code>new ArrayList&lt;String&gt;()</code>. The <code>ArrayList</code> starts out with 0 elements.</p>
+<p>We can (but do not have to) pass in an integer to the constructor. That integer sets not the initial size of the <code>ArrayList</code>, but instead the initial size of the <code>Array</code> in the <code>ArrayList</code>. This isn't typically something that will be necessary, but if you're creating an <code>ArrayList</code> and you know how long it's going to be, you might as well give that to the constructor.</p>
+<p>Now that we have our ArrayList <code>arr</code>, let's do something with it! We can get values from an ArrayList using the <code>get</code> method that takes an index. We can set values using <code>set</code> which takes an index and the value to set. We can see how many values are currently there using the <code>size</code> method. And we can add values by using the <code>add</code> method which takes a value to add.</p>
+<p>Oh, and unlike arrays, <code>ArrayLists</code> have <code>toString</code> methods that actually let us see the elements!</p>
+<p>Okay, let's build up <code>arr</code>:</p>
+<pre><code class="language-java">arr.add(&quot;Hello&quot;);
+arr.add(&quot;World&quot;);
+System.out.println(arr);
+arr.set(0, &quot;Goodbye&quot;);
+System.out.println(arr);
+</code></pre>
+<p>Now let's make another array:</p>
+<pre><code class="language-java">ArrayList&lt;Boolean&gt; conditions = new ArrayList&lt;&gt;();
+conditions.add(true);
+conditions.add(arr.get(0) == &quot;Hello&quot;);
+conditions.add(conditions.get(0) || conditions.get(1));
+</code></pre>
+<p>Try to figure out what each of the three elements of <code>conditions</code> should be. Then print out <code>conditions</code> and check that you were right!</p>
+<p>Now let's make an Integer ArrayList with 50 elements, all of which are 0:</p>
+<pre><code class="language-java">ArrayList&lt;Integer&gt; intArr = new ArrayList&lt;&gt;();
+for (int i = 0; i &lt; 50; i++) {
+    intArr.add(0);
+}
+System.out.println(intArr.size());
+System.out.println(intArr.get(32));
+</code></pre>
+<h3 id="grid">Grid</h3>
+<p>Now that we've used the generics in the context of <code>ArrayLists</code>, let's try making our own class that uses generics.</p>
+<p>Specifically, we're going to make a <code>Grid</code> class. Each <code>Grid</code> will represent a square grid of objects. We will be able to access and change each object in a <code>Grid</code>, as well as convert a <code>Grid</code> into a string. And all of this will work regardless of what kind of object each <code>Grid</code> contains - we could have one String <code>Grid</code> and one Integer <code>Grid</code> and one Boolean <code>Grid</code>, and they would all work.</p>
+<p>We're going to store our grids as <code>ArrayLists</code> because using generic types with arrays gets complicated. </p>
+<p>Okay, so here's how we'd make our grid class:</p>
+<pre><code class="language-java">import java.util.ArrayList;
+
+public class Grid&lt;T&gt; {
+    private final ArrayList&lt;ArrayList&lt;T&gt;&gt; grid;
+    public final int sideLength;
+
+    public Grid(int sideLength, T defaultVal) {
+        this.sideLength = sideLength;
+        this.grid = new ArrayList&lt;ArrayList&lt;T&gt;&gt;(sideLength);
+        for (int i = 0; i &lt; sideLength; i++) {
+            grid.add(new ArrayList&lt;&gt;(sideLength));
+            for (int j = 0; j &lt; sideLength; j++) {
+                grid.get(i).add(defaultVal);
+            }
+        }
+    }
+
+    public T get(int row, int col) {
+        return grid.get(row).get(col);
+    }
+
+    public void set(int row, int col, T val) {
+        grid.get(row).set(col, val);
+    }
+
+    @Override
+    public String toString() {
+        String str = &quot;&quot;;
+        for (ArrayList&lt;T&gt; row : grid) {
+            for (T element : row) {
+                str += element + &quot; &quot;;
+            }
+            str += &quot;\n&quot;;
+        }
+        return str;
+    }
+}
+</code></pre>
+<p>Okay, let's go through this step by step:</p>
+<hr />
+<p>At the very top, above the class declaration, we have this line:</p>
+<pre><code class="language-java">import java.util.ArrayList;
+</code></pre>
+<p>Unlike Strings and Integers and all of the Math functions we've used, to use an ArrayList you need to import it. The definition of the <code>ArrayList</code> class is not accessible unless you do that, so you won't be able to use it.</p>
+<hr />
+<p>The name of the class is not written simply as <code>Grid</code>, but as <code>Grid&lt;T&gt;</code>.  That indicates that this class uses a generic type called <code>T</code>. Within this class, whenever <code>T</code> is used, it is referring to the same unspecified type. When someone creates a new <code>Grid</code>, they will specify what type of <code>Grid</code> it is. If it is a string Grid, or a <code>Grid&lt;String&gt;</code>, then for that particular <code>Grid</code>, the type <code>T</code> will be <code>String</code>.</p>
+<hr />
+<p>The <code>Grid</code> class has two fields: <code>grid</code> and <code>sideLength</code>. <code>sideLength</code> is simply the length of the grid (the number of values in each row and column). </p>
+<p><code>grid</code>, on the other hand, actually stores the grid and its elements. Its type is <code>ArrayList&lt;ArrayList&lt;T&gt;&gt;</code> because the grid is represented by a 2D arraylist, and the elements of the grid are of course of type <code>T</code>.</p>
+<p>A couple of things you may have noticed about <code>grid</code>: </p>
+<hr />
+<p>First off, I said at some point that the keyword <code>final</code> prevents variables or fields from being mutated. But <code>grid</code> is a final variable, and yet we mutate its values in the <code>set</code> method. What gives? Well, <code>final</code> variables cannot be reassigned to totally new values. If, however, the value of a <code>final</code> variable is an object that can be mutated, you <em>can</em> mutate the object. So if you have <code>final int[] arr = new int[4]</code>, you cannot then say <code>arr = {4, 3, 2}</code>, but you <em>can</em> say <code>arr[2] = 7</code>. And the same thing goes with a final <code>ArrayList</code> variable. You can't reassign the variable, but you can set values in the list.</p>
+<p>So, when we say that <code>grid</code> is <code>final</code>, all that does is prevent anyone from reassigning <code>grid</code> to an entirely new <code>ArrayList</code>.</p>
+<hr />
+<p>The other thing you may have noticed is that I used the keyword <code>private</code> here for the first time. Thus far, we have only used <code>public</code>.</p>
+<p>The keywords <code>private</code> and <code>public</code> describe who is able to see and interact with different members of a class. Anything <code>public</code> can be accessed directly by anyone. Anything <code>private</code> can only accessed directly by other members of the class.</p>
+<p>In <a href="./#point">Point</a>, our coordinates were <code>public</code>, so anyone could access them (i.e. in <code>Main.java</code> we were not inside of the <code>Point</code> class, but we were still able to access <code>point.x</code> and <code>point.y</code>). They were also <code>final</code>, which is important. An integer that is <code>public</code> and <code>final</code> can be seen by anyone, but it cannot be changed by anyone. If the coordinates were just <code>public</code> and not <code>final</code>, anyone would be able to see <em>and change</em> them. We would be able to, in <code>Main.java</code>, write <code>point.x = 1</code> and that would change the <code>x</code> value of <code>point</code> to be 1.</p>
+<p>All of our methods have also been public, which is what allows us to call them in <code>Main.java</code>.</p>
+<p>In our <code>Grid</code> class, we do want anyone to be able to see the values in our <code>grid</code> and set new values, so why would we make the <code>grid</code> a <code>private</code> field? Well, while we are okay with people setting values of the grid, we would not be okay with someone adding values or resetting an entire row. If <code>grid</code> was a <code>public final</code> variable, and we had a <code>Grid</code> object called <code>g</code>, we would be able to do both of those things:</p>
+<ol>
+<li>Adding new rows/columns</li>
+</ol>
+<pre><code class="language-java">g.grid.add(new ArrayList&lt;T&gt;);
+</code></pre>
+<ol>
+<li>Resetting an entire row</li>
+</ol>
+<pre><code class="language-java">g.grid.set(0, new ArrayList&lt;T&gt;());
+</code></pre>
+<p>Generally, when you only want people to be able to interact with field in specific ways (i.e. see or change individual entries in a 2D ArrayList), it is best to make that thing field <code>private</code> and have all interactions with it happen through <code>public</code> methods.</p>
+<hr />
+<p>Okay, next up, let's look at the constructor. All the constructor takes is a side length and a default value. Then it sets the sideLength field and generates the grid.</p>
+<p>To start, it sets <code>grid</code> to a blank <code>ArrayList</code>. Then, it loops through the integers <code>i</code> from 0 to the <code>sideLength</code>, and for each value of <code>i</code> it adds another row to <code>grid</code> (that way in the end the number of rows is <code>sideLength</code>). Each row that it adds starts out as another blank <code>ArrayList</code>, but by using another for loop each row is populated with the <code>defaultValue</code>. The end result is a 2D <code>ArrayList</code> whose dimensions are <code>sideLength</code> by <code>sideLength</code>, and for which each element is <code>defaultValue</code>.</p>
+<hr />
+<p>Now let's turn to the methods. Since <code>grid</code> is <code>private</code>, we need to make methods to access and change the elements in <code>grid</code>, which is why we have <code>get</code> and <code>set</code>. We also have a <code>toString</code> so that we can print a <code>Grid</code> and be able to see its values. Note however that if type <code>T</code> has an unhelpful default <code>toString</code> method (like with arrays), this won't be especially helpful.</p>
+<p>Look through the three methods and make sure you understand everything that's happening.</p>
+<hr />
+<p>It's time to test out our <code>Grid</code> class! Open <code>Main.java</code>. Write the following in the <code>main</code> function to make a new grid of integers:</p>
+<pre><code class="language-java">Grid&lt;Integer&gt; grid = new Grid&lt;&gt;(5, 0);
+grid.set(2, 2, 4);
+System.out.println(grid);
+</code></pre>
+<h3 id="generics-in-methods-printarray">Generics in methods: printArray</h3>
+<p>You can also have generics at the individual method scope. So, for instance, if you want a method that prints out all the values in an array, you want that to work generically, regardless of what type of array the method is given. Of course, one option would be to just write that method inside of the <code>Array</code> class, because everything inside the <code>Array</code> class has access to the generic type of the elements of the array. But that's not possible, both because we don't have access to that class and because arrays really are a special case.</p>
+<p>So instead we're going to write a method <code>arrayToString</code> inside of <code>Main</code>. Instead of taking a specific kind of array, we're going to take a <code>T[]</code>, where <code>T</code> will represent whatever the type is of the elements of the array that is passed into our method.</p>
+<p>Here's how we can do that:</p>
+<pre><code class="language-java">static &lt;T&gt; String arrayToString(T[] arr) {
+    String str = &quot;[&quot;;
+    for (int i = 0; i &lt; arr.length - 1; i++) {
+        str += arr[i] + &quot;, &quot;;
+    }
+    return str + arr[arr.length - 1] + &quot;]&quot;;
+}
+</code></pre>
+<p>The key thing here is the <code>&lt;T&gt;</code> that comes before the return type. That says that for this function, we're going to be using some type <code>T</code>. The actual value of that type is determined anew each time the function is called (if it is called with a <code>String[]</code>, <code>T</code> is <code>String</code>).</p>
+<p>Test this out with some arrays!</p>
+<h3 id="practice-diagonal">Practice: Diagonal</h3>
+<p>Create a non-static method in <code>Grid</code> called <code>diagonal</code> that returns an <code>ArrayList</code> with the primary diagonal of the grid (from top left to bottom right). Here's the header:</p>
+<pre><code class="language-java">public ArrayList&lt;T&gt; diagonal();
+</code></pre>
+<h3 id="practice-maxsidelength">Practice: maxSideLength</h3>
+<p>Create a static method inside of <code>Grid</code> that returns the biggest <code>sideLength</code> of any <code>Grid</code> that's been made.</p>
+<p><em>Hint: use a static field to keep track of the current maximum, and update the maximum in the constructor.</em></p>
+<p>Here's the header:</p>
+<pre><code class="language-java">public static int maxSideLength();
+</code></pre>
+<h2 id="interfaces">Interfaces</h2>
+<p>Interfaces are a form of <em>subtype polymorphism</em>. Before I explain what interfaces are, let's build up a scenario in which you might want to use them.</p>
+<h3 id="circle">Circle</h3>
+<p>We're going to make a <code>Circle</code> class. It'll be simple: just a center and a radius, and some methods to get basic values like its area or to do basic transformations.</p>
+<pre><code class="language-java">public class Circle {
+    public final Point center;
+    public final double radius;
+
+    public Circle(Point center, double radius) {
+        this.center = center;
+        this.radius = radius;
+    }
+
+    public double area() {
+        return Math.PI * Math.pow(radius, 2);
+    }
+
+    public double perimeter() {
+        return 2 * Math.PI * radius;
+    }
+
+    /** 
+    * @return Whether point p is inside of the circle.
+    */
+    public boolean isInside(Point p) {
+        return Point.distance(center, p) &lt; radius;
+    }
+
+    /** 
+    * @return Whether point p part of/on the border of the circle.
+    */
+    public boolean isOn(Point p) {
+        return Point.distance(center, p) == radius;
+    }
+
+    /** 
+    * @param x How much to translate the circle by in the + x direction.
+    * @param y How much to translate the circle by in the + y direction.
+    * @return The circle that results from the translation.
+    */
+    public Circle translate(double x, double y) {
+        return new Circle(center.translateX(x).translateY(y), radius);
+    }
+
+    /** 
+    * @return The circle that results from scaling by k.
+    */
+    public Circle scale(double k) {
+        return new Circle(center, radius * k);
+    }
+
+    @Override
+    public String toString() {
+        return &quot;(center: &quot; + center + &quot;; radius: &quot; + radius + &quot;)&quot;;
+    }
+}
+</code></pre>
+<p>You may notice that I used a kind of comment that I haven't used before. These are called javadoc comments, and they're a great way to add commentary explaining how your methods work. When you're calling these methods from <code>Main</code> and you hover over the names of the methods, you should see the comments.</p>
+<p>Go back to you <code>Main</code> file and play around with this class a little bit. Make some circles, get their areas, check if certain points are on or inside of the circles, make transformations.</p>
+<h3 id="square">Square</h3>
+<p>Now we're going to make a <code>Square</code> class. Instead of a center and a radius, it will have the bottom left corner and the side length. (The sides of the square are necessarily parallel to the x and y axes). <code>Square</code> will have all of the same methods as <code>Circle</code>, as well as a method that returns an array of the corners. I will write some of the methods for you, and leave some blank for you to write.</p>
+<pre><code class="language-java">public class Square {
+    public final Point corner;
+    public final double sideLength;
+
+    /**
+    * @param corner The bottom left corner of the square
+    * @param sideLength
+    */
+    public Square(Point corner, double sideLength) {
+        this.corner = corner;
+        this.sideLength = sideLength;
+    }
+
+    public double area() {
+        // write this
+    }
+
+    public double perimeter() {
+        // write this
+    }
+
+    /** 
+    * @return Whether point p is inside of the square.
+    */
+    public boolean isInside(Point p) {
+        double xDist = p.x - corner.x;
+        double yDist = p.y - corner.y;
+        return 0 &lt; xDist &amp;&amp; xDist &lt; sideLength &amp;&amp;
+               0 &lt; yDist &amp;&amp; yDist &lt; sideLength;
+    }
+
+    /** 
+    * @return Whether point p part of/on the border of the square.
+    */
+    public boolean isOn(Point p) {
+        // write this
+    }
+
+    /** 
+    * @param x How much to translate the sqaure by in the + x direction.
+    * @param y How much to translate the squarer by in the + y direction.
+    * @return The sqaure that results from the translation.
+    */
+    public Square translate(double x, double y) {
+        // write this
+    }
+
+    /** 
+    * @return The sqaure that results from scaling the side length and maintaining the bottom left corner
+    */
+    public Square scale(double k) {
+        return new Square(corner, sideLength * k);
+    }
+
+    public Point[] corners() {
+        // write this
+    }
+
+    @Override
+    public String toString() {
+        return &quot;(corner: &quot; + corner + &quot;; side length: &quot; + sideLength + &quot;)&quot;;
+    }
+}
+</code></pre>
+<p>Fill in the missing functions, and experiment with some squares in <code>Main.java</code>.</p>
+<h3 id="sumarea">SumArea</h3>
+<p>Okay, so now I want to have, in the <code>Main.java</code> file, an array of shapes, both <code>Square</code> and <code>Circle</code> objects, and to have a function that finds the sum of the areas of all the shapes.</p>
+<p>In untyped pseudocode (like in Programming101), here's how we might loop through an array of shapes to find the sum of the areas:</p>
+<pre><code class="language-java">def sumAreas(var shapes) {
+    var sum = 0
+    for (var shape : shapes) {
+        sum += shape.area()
+    }
+    return sum
+}
+</code></pre>
+<p><code>Circle</code> and <code>Square</code> objects both have <code>area</code> methods, so if the computer followed those instructions the code would work. But the computer doesn't really have any way of <em>knowing</em> that it would work.</p>
+<p>What happens when you try to take this code and add types to it? Well, what type is <code>shapes</code>? It's an array, but an array of what? It's definitely not a <code>Square[]</code> or a <code>Circle[]</code>. <em>We</em> may know that the <code>shape.area</code> method exists for every value in <code>shapes</code>, but for the computer to understand that this code is safe, it has to know that too. That's what types are for.</p>
+<p>We want one type that describes both <code>Circle</code> and <code>Square</code> objects. And what information does the computer need to know about this new type? Well it needs to know that this type of object has an <code>area</code> method that it can call. (Ideally, it would also know that the new type had all of the other methods that <code>Circle</code> and <code>Square</code> objects have in common, although that's not important for <code>sumAreas</code> in specific).</p>
+<p>We can do this by creating an interface. An interface allows us to define a contract that classes can implement, specifying what methods they should have without providing the implementation details.</p>
+<p>In a <code>Shape</code> interface, we would want to have the methods that <code>Circle</code> and <code>Square</code> have in common. Let's start with just the <code>area</code> function, since it's relevant to our example:</p>
+<pre><code class="language-java">public interface Shape {
+    double area();
+}
+</code></pre>
+<p>Notice, we just write the headers of the methods, not the implementations. Different kinds of shapes will have their own unique implementations.</p>
+<p>Now, we need to tell our program that <code>Circle</code> and <code>Square</code> objects follow the <code>Shape</code> interface. We say that these classes <em>implement</em> the <code>Shape</code> interface. Here's how we show that in the code:</p>
+<pre><code class="language-java">public class Circle implements Shape {
+</code></pre>
+<pre><code class="language-java">public class Square implements Shape {
+</code></pre>
+<p><em>Side note: classes can implement multiple interfaces</em></p>
+<p>Now that you've updated your <code>Square</code> and <code>Circle</code> classes, you should be good to go! At this point, if you were to delete the <code>area</code> method from one of these classes (try it!), you would get an error, because <code>Circle</code> and <code>Square</code> are now required to have an <code>area</code> method.</p>
+<p>Okay, let's write our <code>sumArea</code> method in <code>Main.java</code>:</p>
+<pre><code class="language-java">static double sumArea(Shape[] shapes) {
+    double sum = 0;
+    for (Shape shape : shapes) {
+        sum += shape.area();
+    }
+    return sum;
+}
+</code></pre>
+<p>Now test it out in the <code>main</code> method!</p>
+<pre><code class="language-java">Shape[] shapes = {new Circle(new Point(1.8, -20), 2), 
+                  new Square(new Point(100, 2.1), 5.4),
+                  new Circle(new Point(0, 0), 1),
+                  new Circle(new Point(4, 9.123), 98.32),
+                  new Square(new Point(-321, 0), 0.02)};
+System.out.println(sumArea(shapes));
+</code></pre>
+<p>You should get around $30414.09$.</p>
+<h3 id="scaleall">ScaleAll</h3>
+<p>Next, lets write a static method in main that takes a <code>double</code> and <code>Shape[]</code> and returns a new <code>Shape[]</code>, but with each of the shapes scaled by the <code>double</code>.</p>
+<pre><code class="language-java">static Shape[] scaleAll(Shape[] shapes, double k) {
+    Shape[] scaled = new Shape[shapes.length];
+    for (int i = 0; i &lt; shapes.length; i++) {
+        scaled[i] = shapes[i].scale(k);
+    }
+    return scaled;
+}
+</code></pre>
+<p>The only problem with this is that it <code>Shape</code> objects only have <code>area</code> methods. For this purpose, we need them to have <code>scale</code> methods as well. So let's add that!</p>
+<pre><code class="language-java">public interface Shape {
+    public double area();
+
+    /** 
+    * @return The shape that results from scaling by k.
+    */
+    public Shape scale(double k);
+}
+</code></pre>
+<p>One thing to note about this new header: the return type for <code>scale</code> is <code>Shape</code>.</p>
+<p>In our <code>Circle</code> class, the return type for the <code>scale</code> method is <code>Circle</code>. In our <code>Square</code> class, the return type is <code>Square</code>. So why is the return type here <code>Shape</code>?</p>
+<p>Well, the <code>Circle</code> and <code>Square</code> objects are both examples of <code>Shape</code> objects, since they implement the <code>Shape</code> interface. So <code>Circle</code> and <code>Square</code> do indeed both have <code>scale</code> methods that return <code>Shape</code> objects.</p>
+<p>And that's enough information for us. We want to scale an array of <code>Shape</code> objects, and we want to put all of those return values into another array of <code>Shape</code> objects. So what we need to know, really, is that the <code>scale</code> method returns a <code>Shape</code>.</p>
+<p>Now, we are losing some information here. With this <code>Shape</code> interface, I could do the following:</p>
+<pre><code class="language-java">public class FakeShape implements Shape {
+    public double area() { return 0; }
+
+    public Square scale(double k) { 
+        return new Square(new Point(0, 0), 1); 
+    }
+}
+</code></pre>
+<p>I've created a new <code>Shape</code> class called <code>FakeShape</code>, but unlike <code>Circle</code> and <code>Square</code>, each of which have <code>scale</code> methods that return another instance of their own class, <code>FakeShape</code> has a <code>scale</code> method that returns a <code>Square</code>. That doesn't make much sense if you think about what it means to scale a shape - when you scale something you don't get a new type of shape, just a different size of the same shape. But the requirement in <code>Shape</code> is only that the return type of <code>scale</code> is a <code>Shape</code>, not that it's the same type as the class that its in.</p>
+<p>But we're just going to ignore that and trust ourselves to write reasonable code. (This can also cause other minor issues that you're unlikely to run into, but that's how this language goes).</p>
+<p>Test out the the <code>scaleAll</code> method in <code>main</code>! (It may take a little creativity since you can't just print out an array and see its contents).</p>
+<h3 id="shape">Shape</h3>
+<p>Anyway, we've now added <code>scale</code> to our <code>Shape</code> interface, but we don't have to stop there. There are more methods that all shapes (or at least the shapes in this guide) have. So let's add them all! Here's the new interface that defines what it means to be a <code>Shape</code>:</p>
+<pre><code class="language-java">public interface Shape {
+    public double area();
+
+    public double perimeter();
+
+    /** 
+    * @return Whether point p is inside of the shape.
+    */
+    public boolean isInside(Point p);
+    /** 
+    * @return Whether point p part of/on the border of the shape.
+    */
+    public boolean isOn(Point p);
+
+    /** 
+    * @param x How much to translate the shape by in the + x direction.
+    * @param y How much to translate the shape by in the + y direction.
+    * @return The shape that results from the translation.
+    */
+    public Shape translate(double x, double y);
+
+    /** 
+    * @return The shape that results from scaling by k.
+    */
+    public Shape scale(double k);
+}
+</code></pre>
+<h3 id="practice-frompoints">Practice: fromPoints</h3>
+<p>In the <code>Circle</code> class, create a static method that generates a <code>Circle</code> from three points that are on the edge of the circle (if you don't remember and can't figure out how to do this, look it up).</p>
+<pre><code class="language-java">public static Circle fromPoints(Point p1, Point p2, Point p3);
+</code></pre>
+<h3 id="practice-right-triangle">Practice: Right Triangle</h3>
+<p>Create a <code>RightTriangle</code> class that implements <code>Shape</code>. The sides of the triangle are necessarily parallel to the x and y axes, but the right angle can be in any corner (top right, bottom left, etc). You can store a corner and two side lengths (or any other combination of fields that describe a right triangle).</p>
+<p>In addition to all the methods in <code>Shape</code>, <code>RightTriangle</code> should have a static method called <code>similar</code> that takes two <code>RightTriangle</code> objects and returns whether or not they are similar.</p>
+<h2 id="inheritance">Inheritance</h2>
+<p>Inheritance is a form of polymorphism in Java that allows a class to inherit properties and methods from another class. We're not going to spend much time on this because inheritance is rarely the best solution to a problem and generally introduces more issues than it solves. In most cases, interfaces or generics provide simpler and more elegant solutions. Understanding inheritance will be most useful for understanding and interacting with the infrastructure that has already been written by other people.</p>
+<p>Inheritance is a way of having classes that <em>inherit</em> the traits (methods and fields) of other classes. If class <code>B</code> extends (or inherits from) class <code>A</code>, then a <code>B</code> object will also be an example of an <code>A</code> object and can b treated as such. This is similar to our interfaces, where <code>Circle</code> and <code>Square</code> were examples of <code>Shape</code> objects, with two main differences:</p>
+<ol>
+<li><code>A</code> is just an ordinary class. You can't just make a new <code>Shape</code> -- that doesn't mean anything. you have to make a <code>Square</code> or <code>Circle</code>. But you <em>can</em> just make a new <code>A</code>.</li>
+<li>The <code>A</code> class has methods with real implementations (including a constructor) and fields with values. It isn't just a template for its child classes (classes that inherit from it) to follow. <code>B</code> will be able to call methods from <code>A</code>. When you create a new <code>B</code>, the constructor for <code>B</code> will call the constructor for <code>A</code>. If you have an <code>B</code> object called <code>b</code>, you can call the methods that are defined in <code>A</code> on that object.</li>
+</ol>
+<p>Let's add some code to go along with this example.</p>
+<pre><code class="language-java">public class A {
+    protected final double field1;
+    protected final double field2;
+
+    public A(double field1, double field2) {
+        System.out.println(&quot;the constructor of A has been called&quot;);
+        this.field1 = field1;
+        this.field2 = field2;
+    }
+
+    public void method1() {
+        System.out.println(&quot;method 1 of A has been called&quot;);
+    }
+
+    public void method2() {
+        System.out.println(&quot;method 2 of A has been called&quot;);
+    }
+}
+</code></pre>
+<p>So A is just a very simple class with two fields and two methods. The only thing here that you haven't seen at all is the word <code>protected</code>. The key word <code>protected</code> describes something which is visible only to a class, classes that inherit from it (its subclasses or child classes), and the other classes in its package. So in this case, all of the <code>protected</code> fields will be accessible by <code>B</code>, (as well as any files in the same folder as <code>A</code>), and nothing else.</p>
+<pre><code class="language-java">public class B extends A {
+    public final String bField;
+
+    public B(double field1and2, String bField) {
+        super(field1and2, field1and2);
+        this.bField = bField;
+        System.out.println(&quot;the constructor of B has been called&quot;);
+    }
+
+    @Override 
+    public void method2() {
+        System.out.println(&quot;method 2 of B has been called&quot;);
+    }
+
+    public double field() {
+        return super.field1;
+    }
+}
+</code></pre>
+<p>Let's go through this line by line:</p>
+<pre><code class="language-java">public class B extends A {
+</code></pre>
+<p>Adding <code>extends A</code> to the class declaration indicates that <code>B</code> inherits from/is a child class of <code>A</code>.</p>
+<pre><code class="language-java">super(field1and2, field1and2);
+</code></pre>
+<p><code>super</code> is a keyword for a class to refer to its parent class (similar to <code>this</code>, a keyword for a class to refer to itself). So this line is calling the constructor of this class's parent class, <code>A</code>. The constructor of a child class <em>must</em> call the constructor of its parent class. In fact, it has to be the very first thing that the constructor does.</p>
+<p>If the parent class has a constructor that takes no arguments at all, the child class doesn't have to explicitly call the parent constructor --- it will happen automatically. But if, as in this case, the parent's constructor needs to be given inputs, the child class has to do that explicitly.</p>
+<p>In this particular case, <code>A</code> takes two double fields as inputs. <code>B</code> takes a double and a String. The double is passed to the constructor of <code>B</code> twice. So if you pass 4 to <code>B</code> as <code>field1and2</code>, it will construct an <code>A</code> with 4 and 4. Remember, <code>B</code> inherits the traits of <code>A</code>, including its protected fields <code>field1</code> and <code>field2</code>, so when <code>B</code> references <code>super.field1</code> or <code>super.field2</code>, those values Bu both be 4.</p>
+<pre><code class="language-java">@Override
+public void method2() {
+</code></pre>
+<p>The interesting part of this code is the <code>@Override</code> decorator. <code>B</code> inherits the <code>method1</code> and <code>method2</code> of the <code>A</code> class already, so it doesn't need to create its own. With <code>method1</code>, it doesn't make its own. If you have a <code>B</code> object called <code>b</code> and you call <code>b.method1()</code>, the code that will run is the function definition for <code>method1</code> in the <code>A</code> class.</p>
+<p>But sometimes child classes want to have their own separate implementations for methods, so they override the methods of their parents. That's what <code>B</code> is doing here. It's making it's own definition for <code>method2</code>, so if you were to call <code>b.method2()</code>, instead of the code in <code>A</code> running, the code for <code>method2</code> in <code>B</code> will run.</p>
+<p>Adding the <code>@Override</code> decorator when you're overriding the method implementation of a parent class isn't technically necessary, but it's very good practice.</p>
+<p>So, what will happen if we in our main class do the following?</p>
+<pre><code class="language-java">A a = new A(12.3, 430);
+</code></pre>
+<p>We expect that code to call the <code>A</code> constructor, at which point it prints <code>"the constructor of A has been called"</code>. So we expect to see that on the console. Try it!</p>
+<p>What if we do this:</p>
+<pre><code class="language-java">B b = new B(-12.31, &quot;hello&quot;);
+</code></pre>
+<p>Well, this will call the constructor of <code>B</code>. But the constructor of <code>B</code> also calls the constructor of <code>A</code>! So what will it print? Think it through and then run it to check your logic.</p>
+<p>How about this?</p>
+<pre><code class="language-java">a.method1();
+b.method1();
+b.method2();
+</code></pre>
+<p>Again, think through what would print, and then check yourself by running it.</p>
+<p>Now what if we do this:</p>
+<pre><code class="language-java">A bInDisguise = new B(1002.013, &quot;world&quot;);
+bInDisguise.method2();
+</code></pre>
+<p>This will work because <code>B</code> inherits form <code>A</code>, and therefore <code>B</code> is a type of <code>A</code>. So if we have a variable of type <code>A</code>, the value could actually be a <code>B</code> object and that's okay. So what would that print?</p>
+<p>Now how about this:</p>
+<pre><code class="language-java">System.out.println(b.bField + &quot; &quot; + bInDisguise.bField);
+</code></pre>
+<p>What should that print? Does it work?</p>
+<p>What will actually happen in this case is that you'll get a compile-time error. Why? Well, even though we know that the value of <code>bInDisguise</code> is a <code>B</code> object, the type of the variable is <code>A</code>, so the computer will always treat it only as an <code>A</code> object. And <code>A</code> doesn't have a <code>bField</code>, so you can't access the <code>bField</code> of <code>bInDisguise</code>, because it's being treated as an <code>A</code>.</p>
+<h3 id="object-class">Object class</h3>
+<p>You have actually seen <code>@Override</code> in one other context in these guides: <code>toString</code> methods.</p>
+<p>When we write a <code>toString</code> method for a class, we use the <code>@Override</code> to show that we are overriding the default method implementation. But what are overriding exactly? With <code>B</code>, we were overriding the method defined in <code>A</code>. But our <code>Circle</code> class didn't inherit anything, did it? </p>
+<p>Well, actually it did. In fact, every single class in Java extends a class called <code>Object</code>.  In the case of <code>Circle</code>, it did not extend any other classes, so its direct parent class was by default <code>Object</code> --- just like if we had written:</p>
+<pre><code class="language-java">public class Circle extends Object implements Shape {
+</code></pre>
+<p>If, like <code>B</code>, a class does have an explicit parent class other than <code>Object</code>, it no longer is directly a child of <code>Object</code> (no class can have multiple parent classes), but it still indirectly inherits from <code>Object</code>. Let's think about this with the <code>A</code> <code>B</code> example. <code>B</code> inherits from <code>A</code>, so it does not directly inherit from <code>Object</code>. But <code>A</code> doesn't inherit from anything explicitly, so it is a direct child of <code>Object</code>. And that means not only that it inherits traits from <code>Object</code>, but also that it passes those traits to <code>B</code>. So, through <code>A</code>, <code>B</code> does indirectly inherit from <code>Object</code>.</p>
+<p>And what exactly do all these classes inherit from <code>Object</code>? Well, they inherit lots of methods that are useful for everything to have. I'm not going to go over all of them, but they include <code>toString</code>, <code>hashCode</code> (look it up if you're interested!), and <code>equals</code> (takes another object as an argument and returns whether they are the same).</p>
+<h3 id="library">Library</h3>
+<p>Let's say we're building a system to keep track of item checkouts at a library. We're going to make this incredibly simple (unrealistically so): Each item will store whether or not it has been checked out, and have a method to check the item out and to return it. Each item will also have a method to check if it is available.</p>
+<p>We're going to have two main types of items: books and DVDs. And there will be a class for each of these types of items.</p>
+<p>We'll have a <code>LibraryItem</code> that will be the parent class to <code>Book</code> and <code>DVD</code>.</p>
+<pre><code class="language-java">public class LibraryItem {
+    public final String title;
+    public final String itemId;
+
+    protected boolean isCheckedOut = false;
+
+    public LibraryItem(String title, String itemId) {
+        this.title = title;
+        this.itemId = itemId;
+    }
+
+    public boolean available() {
+        return !isCheckedOut;
+    }
+
+    public void checkOut() {
+        isCheckedOut = true;
+    }
+
+    public void returnItem() {
+        isCheckedOut = false;
+    }
+}
+</code></pre>
+<pre><code class="language-java">public class Book extends LibraryItem {
+    public final String author;
+    public final int pageCount;
+
+    public Book(String title, String itemId, String author, int pageCount) {
+        super(title, itemId);
+        this.author = author;
+        this.pageCount = pageCount;
+    }
+
+    @Override
+    public String toString() {
+        return &quot;Book: &quot; + title + &quot; by &quot; + author + &quot;, &quot; + 
+                pageCount + &quot; pages&quot;;
+    }
+}
+</code></pre>
+<pre><code class="language-java">public class DVD extends LibraryItem {
+    public final double runtime;
+
+    public DVD(String title, String itemId, double runtime) {
+        super(title, itemId);
+        this.runtime = runtime;
+    }
+
+    @Override
+    public String toString() {
+        return &quot;DVD: &quot; + title + &quot;, Runtime: &quot; + runtime + &quot; minutes&quot;;
+    }
+}
+</code></pre>
+<p>Read through this example carefully until you understand what's happening, and then complete the practice problems.</p>
+<h3 id="practice-returnall">Practice: returnAll</h3>
+<p>Make a static method in <code>Main</code> that takes an array of <code>LibraryItem</code> objects and returns them all to the library.</p>
+<pre><code class="language-java">public static void returnAll(LibraryItem[] items) {
+</code></pre>
+<p>Test your method when you're done!</p>
+<h3 id="practice-availableitems">Practice: availableItems</h3>
+<p>Make a static method in <code>Main</code> that takes an array of <code>LibraryItem</code> objects and outputs an <code>ArrayList</code> of <code>LibraryItem</code> objects with all of the available items from the input array.</p>
+<pre><code class="language-java">public static ArrayList&lt;LibraryItem&gt; availableItems(LibraryItem[] items) {
+</code></pre>
+<h2 id="glossary">Glossary</h2>
+<table>
+<thead>
+<tr>
+<th><strong>word/phrase</strong></th>
+<th><strong>meaning</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>field</td>
+<td>A variable belonging to an object or class.</td>
+</tr>
+<tr>
+<td>method</td>
+<td>A function belonging to an object or class.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../Java101/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Java 101">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Java 101
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../DifferentialDrive/" class="md-footer__link md-footer__link--next" aria-label="Next: Differential Drive">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Differential Drive
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.footer"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
