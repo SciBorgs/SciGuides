@@ -9,7 +9,7 @@ This can include methods like returning the current state of a mechanism, or act
 
 With this, we can create several **IO implementations** of a subsystem that implement the IO interface. Each implementation will provide the same input and output methods defined in the IO interface, but will have varying implementations of those methods **depending on the hardware being used.**
 
-In our main subsystem class, we can instantiate whichever IO implementation makes the most sense (i.e. instantiating an implementation of a mechanism that uses CANSparkMax motor controllers as opposed to an implementation that uses TalonSRXs) and interact with whatever hardware we're using through this implementation.
+In our main subsystem class, we can instantiate whichever IO implementation makes the most sense (i.e. instantiating an implementation of a mechanism that uses SparkMax motor controllers as opposed to an implementation that uses TalonSRXs) and interact with whatever hardware we're using through this implementation.
 
 Below is an example diagram of creating a subsystem for an Arm.
 
@@ -29,7 +29,7 @@ Let's say we're working on a simple elevator subsystem powered by a single motor
 
 ```java
 public class Elevator extends SubsystemBase {
-    private final CANSparkMax motor;
+    private final SparkMax motor;
 
     private final Encoder encoder;
 
@@ -79,7 +79,7 @@ public interface ElevatorIO {
 
 ```java
 public class RealElevator implements ElevatorIO {
-    private final CANSparkMax motor;
+    private final SparkMax motor;
 
     private final Encoder encoder;
 

@@ -14,7 +14,6 @@ For more in-depth information on the inner workings, visit [the docs](https://do
 
 Logging libraries, third-party or WPILib-made, are not monolithic. Some are annotation-based (using Java `@Annotations`), while others are framework-based. All are unique; a nice list of them can be found [here](https://docs.wpilib.org/en/stable/docs/software/telemetry/3rd-party-libraries.html).
 
-- [Monologue](https://github.com/shueja/Monologue/wiki) (we use this!)
 - [Epilogue](https://docs.wpilib.org/pt/latest/docs/software/telemetry/robot-telemetry-with-annotations.html) (official WPILib)
 - [AdvantageKit](https://github.com/Mechanical-Advantage/AdvantageKit/blob/main/docs/WHAT-IS-ADVANTAGEKIT.md)
 - [URCL](https://github.com/Mechanical-Advantage/URCL)

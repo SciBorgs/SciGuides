@@ -2,7 +2,7 @@
 
 This is a fun project to control a differential drive. We will go from a simple implementation to full auto path following and smooth driving. This should be a good introduction to usage of WPILib classes, command framework, controls, and autos.
 
-Note that the code shown here will not be specific to your implementation, and you may need to use different hardware classes (eg. REVLib's `CANSparkMax` and `RelativeEncoder`, rather than WPILib's `PWMSparkMax` and `Encoder`). Also, the shown code is not suitable for copy pasting, please implement it on your own from the docs, using the example code as reference.
+Note that the code shown here will not be specific to your implementation, and you may need to use different hardware classes (eg. REVLib's `SparkMax` and `RelativeEncoder`, rather than WPILib's `PWMSparkMax` and `Encoder`). Also, the shown code is not suitable for copy pasting, please implement it on your own from the docs, using the example code as reference.
 
 ## The most basic differential drive implementation possible
 
