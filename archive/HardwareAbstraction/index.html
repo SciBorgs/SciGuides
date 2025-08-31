@@ -777,7 +777,7 @@
 <p>With this system, a subsystem separates all its hardware methods into a separate interface called an <strong>IO interface</strong>.
 This can include methods like returning the current state of a mechanism, or actuating it towards a given state.</p>
 <p>With this, we can create several <strong>IO implementations</strong> of a subsystem that implement the IO interface. Each implementation will provide the same input and output methods defined in the IO interface, but will have varying implementations of those methods <strong>depending on the hardware being used.</strong></p>
-<p>In our main subsystem class, we can instantiate whichever IO implementation makes the most sense (i.e. instantiating an implementation of a mechanism that uses CANSparkMax motor controllers as opposed to an implementation that uses TalonSRXs) and interact with whatever hardware we're using through this implementation.</p>
+<p>In our main subsystem class, we can instantiate whichever IO implementation makes the most sense (i.e. instantiating an implementation of a mechanism that uses SparkMax motor controllers as opposed to an implementation that uses TalonSRXs) and interact with whatever hardware we're using through this implementation.</p>
 <p>Below is an example diagram of creating a subsystem for an Arm.</p>
 <p><img alt="Diagram of subsystem structure" src="https://i.imgur.com/FPie7cR.png" /></p>
 <p>In the diagram above, we make an IO interface that represents a joint on a single-jointed arm mechanism, and make 3 different implementations of this interface that
@@ -788,7 +788,7 @@ This can include methods like returning the current state of a mechanism, or act
 <h2 id="an-example">An example</h2>
 <p>Let's say we're working on a simple elevator subsystem powered by a single motor. Without hardware abstraction, your subsystem may look something like:</p>
 <pre><code class="language-java">public class Elevator extends SubsystemBase {
-    private final CANSparkMax motor;
+    private final SparkMax motor;
 
     private final Encoder encoder;
 
@@ -834,7 +834,7 @@ This can include methods like returning the current state of a mechanism, or act
 </code></pre>
 <p>...and create an IO implementation that extends this interface with hardware we'd use on the real robot:</p>
 <pre><code class="language-java">public class RealElevator implements ElevatorIO {
-    private final CANSparkMax motor;
+    private final SparkMax motor;
 
     private final Encoder encoder;
 

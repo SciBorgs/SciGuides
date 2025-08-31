@@ -773,7 +773,7 @@
 
 <h1 id="basic-differential-drive">Basic Differential Drive</h1>
 <p>This is a fun project to control a differential drive. We will go from a simple implementation to full auto path following and smooth driving. This should be a good introduction to usage of WPILib classes, command framework, controls, and autos.</p>
-<p>Note that the code shown here will not be specific to your implementation, and you may need to use different hardware classes (eg. REVLib's <code>CANSparkMax</code> and <code>RelativeEncoder</code>, rather than WPILib's <code>PWMSparkMax</code> and <code>Encoder</code>). Also, the shown code is not suitable for copy pasting, please implement it on your own from the docs, using the example code as reference.</p>
+<p>Note that the code shown here will not be specific to your implementation, and you may need to use different hardware classes (eg. REVLib's <code>SparkMax</code> and <code>RelativeEncoder</code>, rather than WPILib's <code>PWMSparkMax</code> and <code>Encoder</code>). Also, the shown code is not suitable for copy pasting, please implement it on your own from the docs, using the example code as reference.</p>
 <h2 id="the-most-basic-differential-drive-implementation-possible">The most basic differential drive implementation possible</h2>
 <p>All motor classes you'll interact with implement WPILib's <code>MotorController</code> interface. For more usage details, see <a href="https://docs.wpilib.org/en/stable/docs/software/hardware-apis/motors/using-motor-controllers.html#">here</a>.</p>
 <pre><code class="language-java">private final PWMSparkMax left = new PWMSparkMax(0);

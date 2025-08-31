@@ -747,9 +747,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#using-monologue-for-networktables-logging" class="md-nav__link">
+  <a href="#using-epilogue-for-networktables-logging" class="md-nav__link">
     <span class="md-ellipsis">
-      Using Monologue for NetworkTables Logging
+      Using Epilogue for NetworkTables Logging
     </span>
   </a>
   
@@ -1472,9 +1472,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#using-monologue-for-networktables-logging" class="md-nav__link">
+  <a href="#using-epilogue-for-networktables-logging" class="md-nav__link">
     <span class="md-ellipsis">
-      Using Monologue for NetworkTables Logging
+      Using Epilogue for NetworkTables Logging
     </span>
   </a>
   
@@ -1571,9 +1571,9 @@
 </ul>
 <h2 id="understanding-the-hardware">Understanding the hardware</h2>
 <p>In order to program a robot, you first need to understand the physical hardware that you are working with, and particularly the electrical components.</p>
-<p>For this guide, we’ll be using <em>CANSparkMax motor controllers</em> paired with <em>NEO motors</em>.</p>
+<p>For this guide, we’ll be using <em>SparkMax motor controllers</em> paired with <em>NEO motors</em>.</p>
 <ul>
-<li><strong>CANSparkMax:</strong> A motor controller developed by REV Robotics designed specifically for controlling brushless motors like the NEO.</li>
+<li><strong>SparkMax:</strong> A motor controller developed by REV Robotics designed specifically for controlling brushless motors like the NEO.</li>
 <li><strong>NEO Motor:</strong> A brushless motor designed by REV Robotics.</li>
 </ul>
 <p>Let's look at what a differential drivetrain might look like:</p>
@@ -1583,7 +1583,7 @@
 <ul>
 <li>Remember <code>Ports.java</code>? Well, in order to control our electronics and for the RIO to send them signals, we need to know what physical ports our components are connected to. That's what we mean when we say that this file stores the ports for our components.</li>
 </ul>
-<p>The RoboRIO is connected to a radio (the white rectangle to the right of the RIO), which is how we generally connect our computers to the RIO.</p>
+<p>The RoboRIO is connected to a radio (the white rectangle to the right of the RIO), which is how we generally connect our computers to the RIO. Instead of this white radio, teams now generally use the <a href="https://frc-radio.vivid-hosting.net/">VH-109</a></p>
 <h2 id="drive-folder">Drive Folder</h2>
 <p>Our first step will be to create a drive folder for everything related to the Drive subsystem. It will include:</p>
 <ul>
@@ -1593,7 +1593,7 @@
 <p>Once you do that, your files should look something like this:</p>
 <p><img alt="file order" src="https://github.com/user-attachments/assets/d37980f3-c1d6-4a9a-9e5f-66c0163496d7" /></p>
 <h2 id="ports">Ports</h2>
-<p>In our <code>Drive.java</code> class, we will make all of our 4 motors using <code>CANSparkMax</code> objects. When you create a <code>CANSparkMax</code> object, you give it a port and a motor type (don't worry about what the motor type means for now). With that port, it is able to interface with the motor connected to the port through the RIO.</p>
+<p>In our <code>Drive.java</code> class, we will make all of our 4 motors using <code>SparkMax</code> objects. When you create a <code>SparkMax</code> object, you give it a port and a motor type (don't worry about what the motor type means for now). With that port, it is able to interface with the motor connected to the port through the RIO.</p>
 <p>Before we create our motor objects, let's add our ports to <code>Ports.java</code>.</p>
 <p>Currently, the file should look like this:</p>
 <pre><code class="language-java">package robot;
@@ -1629,11 +1629,11 @@ public final class Ports {
 <p>Now let's go back to <code>Drive.java</code> and write our subsystem!</p>
 <h2 id="motor-instantiation">Motor instantiation</h2>
 <p>First off, we have to actually make our motor objects. We'll use the ports form <code>Ports.java</code>, and the motor type for all of our motors will be <code>MotorType.kBrushless</code>.</p>
-<p>To do this, you will first need to import <code>MotorType</code>, <code>Ports</code>, and <code>CanSparkMax</code>. You will also have to import <code>SubsystemBase</code> so that you can make <code>Drive</code> into a Subsystem:</p>
+<p>To do this, you will first need to import <code>MotorType</code>, <code>Ports</code>, and <code>SparkMax</code>. You will also have to import <code>SubsystemBase</code> so that you can make <code>Drive</code> into a Subsystem:</p>
 <pre><code class="language-java">package robot.drive;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import robot.Ports;
@@ -1647,65 +1647,98 @@ public class Drive extends SubsystemBase {
 If you then press tab, it will finish the word for you and <em>actually import SubsystemBase</em>!</p>
 <p>Okay, now we're ready to make our motors:</p>
 <pre><code class="language-java">public class Drive extends SubsystemBase {  
-  private final CANSparkMax leftLeader = new CANSparkMax(Ports.Drive.LEFT_LEADER, MotorType.kBrushless);
+  private final SparkMax leftLeader = new SparkMax(Ports.Drive.LEFT_LEADER, MotorType.kBrushless);
 }
 </code></pre>
 <p>Below the instantiation of <code>leftLeader</code>, make variables for all the other motors! (<code>leftFollower</code>, <code>rightLeader</code>, and <code>rightFollower</code>).</p>
 <h2 id="motor-configuration">Motor configuration</h2>
-<p>For our motors to work the way we want them to, we'll need to configure some specific settings. This will happen inside of our constructor, and we will be using various methods of the <code>CANSparkMax</code> class.</p>
-<p>The first thing that we'll do is reset all our sparks to a default state, clearing any old configurations that they may have had:</p>
+<p>For our motors to work the way we want them to, we'll need to configure some specific settings. This will happen inside of our constructor, and we will be using various methods of the <code>SparkMax</code> class.</p>
+<p>The first thing that we'll do is create some config files for our motors using the <code>SparkMaxConfig</code> class. You can tab the <code>SparkMaxConfig</code> to import it automatically like we said before.</p>
 <pre><code class="language-java">  public Drive() {
-    for (CANSparkMax spark : List.of(leftLeader, leftFollower, rightLeader, rightFollower)) {
-        spark.restoreFactoryDefaults();
-    }
+    SparkMaxConfig globalConfig = new SparkMaxConfig();
+    SparkMaxConfig rightLeaderConfig = new SparkMaxConfig();
+    SparkMaxConfig leftLeaderConfig = new SparkMaxConfig();
+    SparkMaxConfig leftFollowerConfig = new SparkMaxConfig();
+    SparkMaxConfig rightFollowerConfig = new SparkMaxConfig();
   }
 </code></pre>
-<p><em>Note: you'll need to import List for this</em></p>
+<p>The globalConfig will have our universal configurations, and we have these extra ones when we need to make individual changes for each motor.</p>
 <p>Next, we're going to set something called the idle mode of our motors, which essentially determines the behavior of the motor when it's not being told to do anything. The options are:</p>
 <ul>
 <li><code>kBrake</code>: stop as fast as possible</li>
 <li><code>kCoast</code>: don't provide any voltage and just let it spin freely</li>
 </ul>
-<p>For a drivetrain, we don't want our robot to just keep drifting when we stop driving, so we want all our motors on brake mode (make sure you import <code>CANSparkBase.IdleMode</code>):</p>
+<p>For a drivetrain, we don't want our robot to just keep drifting when we stop driving, so we want all our motors on brake mode (make sure you import <code>SparkBaseConfig.IdleMode</code>):</p>
 <pre><code class="language-java">  public Drive() {
-    for (CANSparkMax spark : List.of(leftLeader, leftFollower, rightLeader, rightFollower)) {
-        spark.restoreFactoryDefaults();
-        spark.setIdleMode(IdleMode.kBrake);
-    }
+    SparkMaxConfig globalConfig = new SparkMaxConfig();
+    SparkMaxConfig rightLeaderConfig = new SparkMaxConfig();
+    SparkMaxConfig leftLeaderConfig = new SparkMaxConfig();
+    SparkMaxConfig leftFollowerConfig = new SparkMaxConfig();
+    SparkMaxConfig rightFollowerConfig = new SparkMaxConfig();
+
+    globalConfig.idleMode(IdleMode.kBrake);
   }
 </code></pre>
 <p>For the next part, we're going to need to understand why we're calling our motors leaders and followers. If you think about it, for a differential drive to work all of the wheels on one side need to be moving at the same speed. The point of having two motors isn't actually to control two wheels <em>separately</em>. Instead, it's to have enough power to control two wheels <em>together</em>.</p>
-<p>So that means that we always want the two motors on the right and the two motors on the left to be moving the same way. We accomplish this by telling one motor on each side (the <em>follower</em>) to follow the other one (the <em>leader</em>). That way we only have to control the two leaders, and the followers will just copy them. We can do this using the <code>follow</code> method that of the <code>CANSparkMax</code> class.</p>
+<p>So that means that we always want the two motors on the right and the two motors on the left to be moving the same way. We accomplish this by telling one motor on each side (the <em>follower</em>) to follow the other one (the <em>leader</em>). That way we only have to control the two leaders, and the followers will just copy them. We can do this using the <code>follow</code> method that of the <code>SparkMaxConfig</code> class. Additionally, we use the <code>apply()</code> method to make sure that each config will have the global configurations we need (like brake mode).</p>
 <pre><code class="language-java">  public Drive() {
-      for (CANSparkMax spark : List.of(leftLeader, leftFollower, rightLeader, rightFollower)) {
-        spark.restoreFactoryDefaults();
-        spark.setIdleMode(IdleMode.kBrake);
-    }
+    SparkMaxConfig globalConfig = new SparkMaxConfig();
+    SparkMaxConfig rightLeaderConfig = new SparkMaxConfig();
+    SparkMaxConfig leftLeaderConfig = new SparkMaxConfig();
+    SparkMaxConfig leftFollowerConfig = new SparkMaxConfig();
+    SparkMaxConfig rightFollowerConfig = new SparkMaxConfig();
 
-    rightFollower.follow(rightLeader);
-    leftFollower.follow(leftLeader);
+    globalConfig.idleMode(IdleMode.kBrake);
+
+    leftFollowerConfig.apply(globalConfig).follow(Ports.Drive.LEFT_LEADER);
+    rightFollowerConfig.apply(globalConfig).follow(Ports.Drive.RIGHT_LEADER);
   }
 </code></pre>
 <p>Now, for our last setting, take a look back at the image of the drivetrain where you can see all of the electronics. Notice how the motors on the left are facing left, and the motors on the right are facing right.</p>
 <p>By default, applying a positive voltage to the motors will make them go counterclockwise. So let's say that we want the robot to move straight, and so we apply the same positive voltage to both sides, and all of the motors move counterclockwise. Try to visualize what would happen.</p>
 <p>Because the wheels are facing opposite directions, clockwise doesn't mean the same thing for the two sides. The left wheels will end up going backwards, and the right ones will go forwards, and instead of going straight, the whole drivetrain will rotate counterclockwise.</p>
-<p>That's pretty confusing. Ideally, we'd like positive to mean forward for both sides. So in the code, we invert the left side. This means that it will negate every value we give it, so if we give it a positive voltage it will actually rotate counterclockwise. We do this using the <code>setInverted</code> method.</p>
+<p>That's pretty confusing. Ideally, we'd like positive to mean forward for both sides. So in the code, we invert the left side. This means that it will negate every value we give it, so if we give it a positive voltage it will actually rotate counterclockwise. We do this using the <code>inverted</code> method.</p>
 <pre><code class="language-java">  public Drive() {
-      for (CANSparkMax spark : List.of(leftLeader, leftFollower, rightLeader, rightFollower)) {
-        spark.restoreFactoryDefaults();
-        spark.setIdleMode(IdleMode.kBrake);
-    }
+    SparkMaxConfig globalConfig = new SparkMaxConfig();
+    SparkMaxConfig rightLeaderConfig = new SparkMaxConfig();
+    SparkMaxConfig leftLeaderConfig = new SparkMaxConfig();
+    SparkMaxConfig leftFollowerConfig = new SparkMaxConfig();
+    SparkMaxConfig rightFollowerConfig = new SparkMaxConfig();
 
-    rightFollower.follow(rightLeader);
-    leftFollower.follow(leftLeader);
+    globalConfig.idleMode(IdleMode.kBrake);
 
-    leftLeader.setInverted(true);
+    leftFollowerConfig.apply(globalConfig).follow(Ports.Drive.LEFT_LEADER);
+    rightFollowerConfig.apply(globalConfig).follow(Ports.Drive.RIGHT_LEADER);
+    leftLeaderConfig.apply(globalConfig).inverted(true);
+    rightLeaderConfig.apply(globalConfig).inverted(false);
   }
 </code></pre>
+<p>Before we're done, we need to apply all of these config objects to their respective motors:</p>
+<pre><code class="language-java">    public Drive() {
+        SparkMaxConfig globalConfig = new SparkMaxConfig();
+        SparkMaxConfig rightLeaderConfig = new SparkMaxConfig();
+        SparkMaxConfig leftLeaderConfig = new SparkMaxConfig();
+        SparkMaxConfig leftFollowerConfig = new SparkMaxConfig();
+        SparkMaxConfig rightFollowerConfig = new SparkMaxConfig();
+
+        globalConfig.idleMode(IdleMode.kBrake);
+
+        leftLeaderConfig.apply(globalConfig).inverted(true);
+        leftFollowerConfig.apply(globalConfig).follow(Ports.Drive.LEFT_LEADER);
+        rightFollowerConfig.apply(globalConfig).follow(Ports.Drive.RIGHT_LEADER);
+        rightLeaderConfig.apply(globalConfig).inverted(false);
+
+        leftLeader.configure(leftLeaderConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
+        rightLeader.configure(rightLeaderConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
+        leftFollower.configure(leftFollowerConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
+        rightFollower.configure(rightFollowerConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
+    }
+</code></pre>
+<p>In the <code>configure()</code> method of these motors, you can see that in addition to the actual config object, we set <code>ResetMode</code> and <code>PersistMode</code>. <code>ResetMode</code> will reset configurations to the motor before you apply your new configurations. This will allow us to remove unintended configurations that may still be on the motor. <code>PersistMode</code> will allow configurations to persist across power cycles. For the same reason as <code>ResetMode</code>, we want to avoid these configurations persisting in case they're not what we want later.</p>
 <h2 id="drive-method">Drive method</h2>
 <p>Now that our motors are configured, we can actually make a drive method that will allow the motors to run! This method will take in a <code>leftSpeed</code> and a <code>rightSpeed</code> which we will pass to our motors.</p>
 <p><em>Side note: calling these values speed is actually a misnomer, since they specify both speed and direction, but using the terms interchangeably is pretty standard practice in this context.</em></p>
-<p>We will be using the <code>set</code> method of the <code>CANSparkMax</code> class, which takes a number between -1 and 1, where 1 is full speed forwards, 0 is no speed, and -1 is full speed backwards. So we're actually giving percentages of our max speed, not the speed itself.</p>
+<p>We will be using the <code>set</code> method of the <code>SparkMax</code> class, which takes a number between -1 and 1, where 1 is full speed forwards, 0 is no speed, and -1 is full speed backwards. So we're actually giving percentages of our max speed, not the speed itself.</p>
 <pre><code class="language-java">  private void drive(double leftSpeed, double rightSpeed) {
     leftLeader.set(leftSpeed);
     rightLeader.set(rightSpeed);
@@ -1718,7 +1751,7 @@ If you then press tab, it will finish the word for you and <em>actually import S
 <p>Specifically, we're going to take two <code>DoubleSuppliers</code>, one for the left velocity and one for the right velocity. In <code>Robot.java</code>, we'll call our method and give it methods to get the left and right y values on the Xbox controller. So, here's our method header:</p>
 <pre><code class="language-java">public Command drive(DoubleSupplier vLeft, DoubleSupplier vRight);
 </code></pre>
-<p><em>Note: the two <code>drive</code> methods have the same name, but are not the same method. As long as the types of the parameters are different, you can have multiple methods with the same name.</em></p>
+<p>*Note: the two <code>drive</code> methods have the same name, but are not the same method. As long as the types of the parameters are different, you can have multiple methods with the same name. This is called overloading the method. *</p>
 <p>Next up, let's decide what type of Command we want to use. This isn't just something we want to do once - we need to get new inputs from the controller each tick - so we'll use a run command. We've talked about <code>Commands.run</code>, but in a Subsystem there's actually another method just called <code>run</code>, which calls <code>Commands.run</code> but uses that subsystem as the requirement. So <code>drive.run(action)</code> is the same as <code>Commands.run(action, drive)</code>. That's the method we're going to use for this, since we want to create a <code>RunCommand</code> that requires a drive subsystem.</p>
 <p>And the action is just going to be calling the other <code>drive</code> method using <code>vLeft</code> and <code>vRight</code>!</p>
 <pre><code class="language-java">  public Command drive(DoubleSupplier vLeft, DoubleSupplier vRight) {
@@ -1742,7 +1775,7 @@ If you then press tab, it will finish the word for you and <em>actually import S
 <p><em>Odometry</em> is the process of using data from sensors to estimate your position and how it changes. In this case, the sensors that we'll be relying on are encoders (for our wheels) to and a gyroscope.</p>
 <p>Brush up on the <a href="../../reference-sheets/Sensors/">sensors guide</a> if you're uncertain what encoders and gyros are.</p>
 <h2 id="adding-encoders">Adding encoders</h2>
-<p>Our first step is to add encoders to our <code>Drive</code> subsystem. We'll be using the relative encoders that are built-in to our sparks. We can get them using the <code>getEncoder</code> method of <code>CANSparkMax</code>.</p>
+<p>Our first step is to add encoders to our <code>Drive</code> subsystem. We'll be using the relative encoders that are built-in to our sparks. We can get them using the <code>getEncoder</code> method of <code>SparkMax</code>.</p>
 <p>You can add the encoders right under where the sparks themselves are declared. Note that we only need the encoders of the leaders, because the followers should be doing the same thing as the leaders!</p>
 <pre><code class="language-java">  private final RelativeEncoder leftEncoder = leftLeader.getEncoder();
   private final RelativeEncoder rightEncoder = rightLeader.getEncoder();
@@ -1774,16 +1807,13 @@ public class DriveConstants {
 <p>We also need to calculate a separate conversion factor for velocity. The encoder by default gives you velocity in rotations per minute. We want it in meters per second. We can use the <code>POSITION_FACTOR</code> to convert to meters, and divide by 60 to convert from minutes to seconds.</p>
 <pre><code class="language-java">  public static final double VELOCITY_FACTOR = POSITION_FACTOR / 60.0;
 </code></pre>
-<p>Now we just need to use the conversion method from the encoder class inside <em>the constructor</em> of <code>Drive.java</code>.</p>
-<pre><code class="language-java">    leftEncoder.setPositionConversionFactor(DriveConstants.POSITION_FACTOR);
-    rightEncoder.setPositionConversionFactor(DriveConstants.POSITION_FACTOR);
-
-    leftEncoder.setVelocityConversionFactor(DriveConstants.VELOCITY_FACTOR);
-    rightEncoder.setVelocityConversionFactor(DriveConstants.VELOCITY_FACTOR);
+<p>Now we just need to use the conversion method from the <code>SparkMaxConfig</code> class inside <em>the constructor</em> of <code>Drive.java</code> where your motor configs are. Note that you just chain the .encoder part to where you were already configuring your right and left lead configs.</p>
+<pre><code class="language-java">  leftLeaderConfig.apply(globalConfig).inverted(true).encoder.positionConversionFactor(DriveConstants.POSITION_FACTOR).velocityConversionFactor(DriveConstants.VELOCITY_FACTOR);
+  rightLeaderConfig.apply(globalConfig).inverted(false).encoder.positionConversionFactor(DriveConstants.POSITION_FACTOR).velocityConversionFactor(DriveConstants.VELOCITY_FACTOR);
 </code></pre>
 <h3 id="resetting-the-encoders">Resetting the Encoders</h3>
 <p>At the start of the match (or any time you need to reset the robot's position), it's important to reset the encoder values to zero. This ensures that your distance calculations start from a known point.</p>
-<p>We'll reset the encoders during the subsystem initialization (in the constructor):</p>
+<p>We'll reset the encoders during the subsystem initialization (at the end of the constructor):</p>
 <pre><code class="language-java">    leftEncoder.setPosition(0);
     rightEncoder.setPosition(0);
 </code></pre>
@@ -1838,7 +1868,7 @@ public class DriveConstants {
 <p>Before we get started, please make sure you have read the <a href="../../reference-sheets/ControlTheory/">Control Theory reference sheet</a> as we are going to assume you are aware of what PID and Feedforward generally do.</p>
 <p>In this section, we're going to create PID and feedforward controllers to convert from desired speeds to voltages.</p>
 <h2 id="why-we-use-controllers">Why We Use Controllers</h2>
-<p>Before we dive into the code, let’s touch on why creating control systems are important for driving a robot. Ultimately, the motors run because they are given some voltage. Right now, we're driving using the <code>motor.set</code> method, which takes a speed. The CANSparkMax motor controllers have their own control systems that generate voltages based on speeds. But those systems aren't tuned to your robot. They work pretty well when you just have a free-spinning motor, but your motors are on robots. They're in gear boxes and are weighed down. So if you actually want to accurately reach your target speeds, you need to have control systems that are tuned to your system.</p>
+<p>Before we dive into the code, let’s touch on why creating control systems are important for driving a robot. Ultimately, the motors run because they are given some voltage. Right now, we're driving using the <code>motor.set</code> method, which takes a speed. The SparkMax motor controllers have their own control systems that generate voltages based on speeds. But those systems aren't tuned to your robot. They work pretty well when you just have a free-spinning motor, but your motors are on robots. They're in gear boxes and are weighed down. So if you actually want to accurately reach your target speeds, you need to have control systems that are tuned to your system.</p>
 <p>In this case, we're going to do that by making our own PID and feedforward controllers which we'll use to convert velocities to voltages, and then just feeding those voltages into our motors.</p>
 <h2 id="feedforward">Feedforward</h2>
 <p>First off, we're going to create a feedforward model, which will use an ideal model of our system to tell us what voltages we should use. Its output will be our prediction of what voltage is required to maintain the velocity that we're trying to reach. This will be entirely based on our desired velocity, and will not take into account our current velocity at all. It factors in predictable challenges like friction, but not unexpected factors like slipping on the carpet.</p>
@@ -1960,16 +1990,39 @@ public class DriveConstants {
 <p>This method ensures that our simulated sensors provide accurate feedback as the robot "moves" in the simulation, allowing us to test and tweak our code.</p>
 <h2 id="logging-capturing-important-data">Logging: Capturing Important Data</h2>
 <p>Now let’s talk about logging. Logging, or telemetry, is a way of recording information in real time. That information might include data from sensors, estimated positions, what command is running, etc. Logging is crucial for understanding how our robot behaves over time, diagnosing issues, and improving performance. Read the <a href="../../reference-sheets/Telemetry/">Telemetry doc</a> to learn more about logging and how we do it!</p>
-<p>We’re going to use a tool called Monologue for logging, which gives us a structured way to record and analyze data from the robot’s systems. This should already be set up in the <code>configureGameBehavior</code> method in <code>Robot.java</code>. You should see the following lines:</p>
-<pre><code class="language-java">    Monologue.setupMonologue(this, &quot;/Robot&quot;, false, true);
-    addPeriodic(Monologue::updateAll, kDefaultPeriod);
-    addPeriodic(FaultLogger::update, 1);
+<p>We’re going to use a tool called Epilogue for logging, which gives us a structured way to record and analyze data from the robot’s systems. This should already be set up in the <code>configureGameBehavior</code> method in <code>Robot.java</code>. You should see the following line:</p>
+<pre><code class="language-java">    Epilogue.bind(this);
 </code></pre>
-<p>This initializes Monologue with our robot, setting up the logging system to capture data as the robot runs and makes sure Monologue logs data at regular intervals, which we’ve defined with kDefaultPeriod. By logging data regularly, we can view information in real time and later review how the robot performed and make informed adjustments to our code.</p>
-<h3 id="using-monologue-for-networktables-logging">Using Monologue for NetworkTables Logging</h3>
+<p>This initializes Epilogue with our robot, setting up the logging system to capture data as the robot runs. By logging data regularly, we can view information in real time and later review how the robot performed and make informed adjustments to our code.</p>
+<h3 id="using-epilogue-for-networktables-logging">Using Epilogue for NetworkTables Logging</h3>
 <p>We use NetworkTables (NT) to make logging specific variables or objects easier. You should log any values that might be useful for debugging, or that will help you understand what is happening with the robot in general. So that includes commands, joystick inputs, voltages, positions, etc..</p>
-<p>We use the <code>@Log.NT</code> annotation to indicate what values we want to be logged, and Monologue will periodically capture and record those values, which we can view in realtime or afterwords on dashboards like Shuffleboard or SmartDashboard.</p>
-<p>Let's get started by making a Field2d object (discussed in the Simulation reference sheet):</p>
+<p>We can use the <code>@Logged</code> annotation to indicate what values we want to be logged, and Epilogue will periodically capture and record those values, which we can view in realtime or afterwords on dashboards like Shuffleboard or SmartDashboard. Generally, we put it on top of the class declarations, like you'll see in <code>Robot.java</code>:</p>
+<pre><code class="language-java">@Logged
+public class Robot extends CommandRobot {}
+</code></pre>
+<p>This automatically logs all applicable fields it can find within the class. You'll want to add this to your <code>Drive.java</code> as well.</p>
+<pre><code class="language-java">@Logged
+public class Drive extends SubsystemBase {}
+</code></pre>
+<p>You can also use this on individual fields in the Drive or Robot class if you don't want to log everything in the class.</p>
+<pre><code class="language-java">public class Drive extends SubsystemBase {
+  @Logged
+  public double getNum1() { return 0; };
+
+  public double getNum2() { return 0; };
+}
+</code></pre>
+<p>alternatively...</p>
+<pre><code class="language-java">@Logged
+public class Drive extends SubsystemBase {
+  public double getNum1() { return 0; };
+
+  @NotLogged
+  public double getNum2() { return 0; };
+}
+</code></pre>
+<p>Both of these will do the same thing.</p>
+<p>Now, let's get started by making a Field2d object (discussed in the Simulation reference sheet):</p>
 <pre><code class="language-java">  @Log.NT 
   private final Field2d field2d = new Field2d();
 </code></pre>
