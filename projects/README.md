@@ -2,7 +2,7 @@
 
 Hello, young aspiring **Sciborg** programmer! Welcome to *SciGuides*. 
 
-This guide covers **everything** from downloading your code editor, to git, to electronics, and finally; actually coding a robot able to compete in **First Robotics**. is meant to **compliment** the lessons shown in our beloved **JV Robotics Programming Course**. If you are not taking this course at the moment, it may be a little difficult for you to get started. No worries though! The internet is **your best friend**.
+This guide covers **everything** from downloading your code editor, to Git, to electronics, and finally; actually coding a robot able to compete in **FIRST® Robotics**. is meant to **compliment** the lessons shown in our beloved **JV Robotics Programming Course**. If you are not taking this course at the moment, it may be a little difficult for you to get started. No worries though! The internet is **your best friend**.
 
 Here is an excerpt from our **AI and Internet Policy**. 
 
