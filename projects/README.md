@@ -1,4 +1,4 @@
-## Quick-Start Guide
+# Quick-Start Guide
 
 Hello, young aspiring **Sciborg** programmer! Welcome to *SciGuides*. 
 
