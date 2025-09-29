@@ -1,6 +1,6 @@
 # Introduction to Programming
 
-Hello! This guide will go over **what** software we use and **why** we use it.
+**Hello young aspiring Sciborg programmer!** This guide will go over **what** software we will use in this course and **why** we use it.
 
 Here is what will be covered here:
 
@@ -12,7 +12,7 @@ Here is what will be covered here:
 
 ## What is FIRST® Robotics?
 
-**FIRST® Robotics** is an organization that hosts massive global robotics competitions with **1000’s of teams once every year**. These competitions are split up into **3 divisions** based on difficulty level.
+As you may have already learned from our wonderful *Core Mechanics Presentation*, **FIRST® Robotics** is an organization that hosts massive global robotics competitions with **1000’s of teams once every year**. These competitions are split up into **3 divisions** based on difficulty level.
 
 ### **1. FRC (FIRST® Robotics Competition)**
 *Grades 9-12 (The Sciborgs compete in this!)*
@@ -72,6 +72,4 @@ This is why we use **Git Project Management Software**. Git gives us commands th
 
 We use this in conjunction with **Github**, a website that gives us a **free server** to put our code onto and **get our code from**.
 
-## Farewell
-
-Farewell young aspiring Sciborgs programmer! Head over to [the Setup guide](./Setup.md) to continue your journey.
+>That is all! Farewell young aspiring Sciborgs programmer! Head over to [the Setup guide](./Setup.md) to continue your journey.

@@ -1,6 +1,6 @@
 # Setting up Software
 
-Hello! This guide will go over how to setup the software you will need to code a robot.
+**Hello young aspiring Sciborg programmer!** This guide will go over how to setup the software you will need to code a robot.
 
 Here is what will be covered here:
 
@@ -68,8 +68,7 @@ git config --global credential.helper store
 ```
 git config --global credential.helper wincred
 ```
-## Farewell
 
-That is all! Farewell young aspiring Sciborgs programmer! Head on to **Day 2** if you'd like.
+>That is all! Farewell young aspiring Sciborgs programmer! Head on to **Day 2** if you'd like.
 
 
