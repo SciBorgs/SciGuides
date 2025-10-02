@@ -5,14 +5,15 @@ Hello! This guide will serve as an **introduction** to **the Java programming la
 Here is what will be covered here:
 
 1. **[What is a program?](#what-is-a-program)**
-2. **[What is Java?](#what-is-java)**
-3. **[How is Java code organized?](#how-is-java-code-organized)**
-4. **[How do we store things?](#how-do-we-store-things)**
-5. **[How do we do things with those stored values?](#how-do-we-do-things-with-those-stored-values)**
-6. **[Basic Syntax and Convention](#basic-syntax-and-convention)**
-7. **[Primitives and the Main Class](#primitives-and-the-main-class)**
-7. **[Objects and Constructors](#objects-and-constructors)**
-8. **[The Console and System Class](#the-console)**
+2. **[What is computer memory?](#what-is-computer-memory)**
+3. **[What is Java?](#what-is-java)**
+4. **[How is Java code organized?](#how-is-java-code-organized)**
+5. **[How do we store things?](#how-do-we-store-things)**
+6. **[How do we do things with those stored values?](#how-do-we-do-things-with-those-stored-values)**
+7. **[Grammer in Java (Syntax)](#grammer-in-java-syntax)**
+8. **[Primitives and the Main Class](#primitives-and-the-main-class)**
+9. **[Constructors and Instantiation](#constructors-and-instantiation)**
+10. **[The Console and System Class](#the-console)**
 
 If you are curious on **what apps you're gonna need to get started** head over to [our Day 1 Guide](./Intro.md) to learn more.
 
@@ -22,9 +23,21 @@ A **program** is **an ordered list of instructions** that are done **one-after-t
 
 > CPU Commands include things like **ADD** and **SUBTRACT**. These commands can be represented with **binary codes** such as 0110 or 0111 that the CPU can **read** and **understand**.
 
+## What is computer memory?
+
+**Memory** is essentially **a space** where our program can **store** and **get** data while doing things. It is a gargatuan array of 1's and 0's that all have locations assigned to them. Storing data is useful because you would most likely want to base your program's **decisions** on **calculations** that you have made previously. 
+
+>Memory is **different** from your **ROM** (what you would call your *drive* or *main storage*) because it is **much** smaller and **much** faster.
+
+Our programs interact with memory **much more** than they interact with ROM (**because all of the data that we need to store permenantly usually can fit into a couple of text files**). Whenever we refer to **storing things** or **stored data** we are referring to storing **in memory**.
+
+>Another name for memory is **RAM**. **RAM** stands for **Random-Access-Memory**. What this means is that our program can **directly access this memory**. Things stored in **ROM** (Read-Only-Memory) are much slower to get to, but **do not get nuked after the program ends**.
+
+In this guide, and future guides, we will refer to **RAM** as memory and **ROM** as main storage.
+
 ## What is Java?
 
-**Java** is a **language** that we write code in. Java utilizes **english** words in a syntax that is very reliant on **Curly Braces { }** to define when certain **segements of code** start/stop, **Parentheses ( )** for operations and math, and **SemiColons;** to end specific **actions**. This lets Java code **ignore indentation** (and spacing for that matter) in order to **make writing/editing code easier**. Java also manages and interacts with the computer's **memory** for us (**instead of us having to do it ourselves**), allowing us to **store** data easily.
+**Java** is a **language** that we write code in. Java utilizes **english** words in a syntax that is very reliant on **Curly Braces { }** to define when certain **segements of code** start/stop, **Parentheses ( )** for operations and math, and **SemiColons;** to end specific **actions**. This lets Java code **ignore indentation** (and spacing for that matter) in order to **make writing/editing code easier**. Java also manages and interacts with the computer's **memory** for us (**instead of us having to do it ourselves**), allowing us to **store data** easily.
 
 ```
 class Robot {
@@ -39,9 +52,9 @@ class Robot {
 
 ## How is Java code organized?
 
-Java employs very popular **code-organization** technique called **Object-Oriented-Programming**. In this type of programming we split our **actions** (like driving the robot) and **stored data** (like the position of our Joystick) among **classes** that are located in seperate **.java files**. 
+Java employs very popular **code-organization** technique called **Object-Oriented-Programming**. In this type of programming we split our **actions** (like driving the robot) and **stored data** (like the data from our Xbox Controllers) among **objects** that are located in seperate **.java files**. Objects can both store data, and act on that stored data.
 
->In Java (unlike trash python), EVERYTHING is an Object. EVERYTHING is inside something else (unless it's the **main class**). EVERYWHERE YOU LOOK is just *objects inside objects inside objects*...
+>In Java, almost **EVERYTHING** is an object.
 
 **Stored data** in classes are called **fields**. **Actions** are organized into **methods**. Classes **do not hold these things** themselves (unless you use a specific keyword that we will talk about later). Classes define **how** a **chunk of memory** on your computer should be **reserved** to fit these things (there is the memory management I was talking about earlier). You use classes to create **objects** which are essentially **chunks of memory** where you can **store data** and **do things with that data**. 
 
@@ -107,29 +120,50 @@ public Number zeroer(Number input) {
 }
 ```
 
-## Basic Syntax and Convention
+## Grammer in Java (Syntax)
 
 Here are some rules for **Java Syntax**: 
 
 ```
-// Double Slashes create Comments! (these aren't part of the code)
-End all of your statements with Semicolons;
-{Wrap classes, methods, and the insides of logic statements in CurlyBraces}
-(Wrap all method inputs and logic inputs in parenthesis)
-DoNotIncludeSpacesInYourNames (Java can't handle it)
+1. // Double Slashes create Comments! (these aren't part of the code)
 
-For Fields (Access refers to keywords such as public or private):
-[Access] [Belonging] [Class] [Name] = [Value];
+2. End all of your statements with Semicolons;
 
-For Methods (make sure to seperate multiple inputs with commas):
-[Access] [Belonging] [Class] [Name] ([Input Class] [Input Name]) {[Action]}
+3. {Wrap classes, methods, and the insides of logic statements in CurlyBraces}
 
+4. (Wrap all method inputs and logic inputs in parenthesis)
+
+5. DoNotIncludeSpacesInYourNames (Java can't handle it)
 ```
 
 ## Primitives and the Main Class
 
-Java is all about objects inside objects inside objects. However, this does not go on forever.
+Java is all about **Object-Oriented-Programming**. However, **not everything is an object**.
 
-## Objects and Constructors
+>You can't have *"object inside objects inside objects inside objects inside objects-"* go on forever! There must be a **start point** and a **stop point**.
+
+When you run a Java program, the computer that is running it looks for one thing- **The Main method**. This method has a very unique structure that looks like this:
+
+```
+public static void main(String[] args) {
+	// This is what will be ran first!
+}
+```
+
+Once the program finds this method, it will start here and go down the list **one-by-one** and run everything. The class that contains the main method is called **the Main Class**. There is the **start point**. 
+
+Fundementally, Objects are just **a bunch of 1's and 0's**. Classes are made to tell you **which parts of that bunch mean what** (they assign names to specific clumps of 1's and 0's). 
+
+>*If you keep breaking things down into their parts, you will reach a point where **you can't break things down anymore**.*
+
+There will be a certain amount of times you can slice up those 1's and 0's before you find things that you **can't really break down further**. Physics draws this line at the **individual 1's and 0's** (You can't have some value be *half-true* or *half-on*). However, Java is a **programming language** that is meant to be **actually readable**. Because the entire point of having a programming language is so you **don't** have to interact with 1's and 0's, Java decides to draw this line at **numbers, letters, and booleans**.
+
+>Booleans are values that can be either **True/False**.
+
+These values are called **primitives**. Primitives are the only types of data that **are not** considered objects. They **do not** have parts to them and **cannot** be broken down further unless you are a **crazy psycopath** that likes to use C++. This is the **stop point**.
+
+## Constructors and Instantiation
+
+
 
 ## The Console
