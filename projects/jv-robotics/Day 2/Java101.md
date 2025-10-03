@@ -12,8 +12,7 @@ Here is what will be covered here:
 6. **[How do we do things with those stored values?](#how-do-we-do-things-with-those-stored-values)**
 7. **[Grammer in Java (Syntax)](#grammer-in-java-syntax)**
 8. **[Primitives and the Main Class](#primitives-and-the-main-class)**
-9. **[Constructors and Instantiation](#constructors-and-instantiation)**
-10. **[The Console and System Class](#the-console)**
+9. **[Java Native Interface and Signaling](#java-native-interface-and-signaling)**
 
 If you are curious on **what apps you're gonna need to get started** head over to [our Day 1 Guide](./Intro.md) to learn more.
 
@@ -22,6 +21,7 @@ If you are curious on **what apps you're gonna need to get started** head over t
 A **program** is **an ordered list of instructions** that are done **one-after-the-other** by the computer. We write **programs** with **code**. It is **written** in text with a special set of rules called **Syntax** (this is like **grammer** and **punctuation** rules, but for code). Every program has to be **broken down** into actions that a **CPU** can execute. These actions have to be in **binary** and are predefined **by the specific CPU that you are using** using specific **codes** (ARM and x86 processors are coded differently for this reason, they have different sets of commands).
 
 > CPU Commands include things like **ADD** and **SUBTRACT**. These commands can be represented with **binary codes** such as 0110 or 0111 that the CPU can **read** and **understand**.
+
 
 ## What is computer memory?
 
@@ -162,8 +162,15 @@ There will be a certain amount of times you can slice up those 1's and 0's befor
 
 These values are called **primitives**. Primitives are the only types of data that **are not** considered objects. They **do not** have parts to them and **cannot** be broken down further unless you are a **crazy psycopath** that likes to use C++. This is the **stop point**.
 
-## Constructors and Instantiation
+## Java Native Interface and Signaling
 
+So, we have our objects, our main method, our classes, our numbers and letters; **how do these things work to control a physical robot**? Well, Java doesn't really have a way of interacting with the **motors** and **other electronics** directly. Instead, Java uses **C++** to do it for us.
 
+>C++ has the power to send raw data through wires!
 
-## The Console
+In order to interact with C++, Java uses these **Java Native Interfaces** or **JNI**'s which essentially **holds C++ code** in a way that **can be used in your Java program**. These JNI's are almost all hidden from you while coding the robot (**WPILIB® manages them for us**). When the time comes to apply voltage to a motor or change the color of an LED, We run the code in the **.jni** file (with some **special methods**) and the computer sends a stream of 1's and 0's down the wires into the electronics devices.
+
+>We will revisit this much much later on! Don't worry too much about JNI's for now as alot of it will be hidden from you.
+
+>That is all! Farewell young aspiring Sciborgs programmer! Head over to **[Day 3](../Day%302/Java102.md)** to continue your journey.
+
