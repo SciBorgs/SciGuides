@@ -1,6 +1,6 @@
 # Introduction to Programming
 
-**Hello young aspiring Sciborg programmer!** This guide will go over **what** software we will use in this course and **why** we use it.
+**Hello young aspiring Sciborgs programmer!** This guide will go over **what** software we will use in this course and **why** we use it.
 
 Here is what will be covered here:
 
@@ -14,13 +14,16 @@ Here is what will be covered here:
 
 As you may have already learned from our wonderful *Core Mechanics Presentation*, **FIRST® Robotics** is an organization that hosts massive global robotics competitions with **1000’s of teams once every year**. These competitions are split up into **3 divisions** based on difficulty level.
 
-### **1. FRC (FIRST® Robotics Competition)**
+**1. FRC aka. FIRST® Robotics Competition**
+
 *Grades 9-12 (The Sciborgs compete in this!)*
 
-### **2. FTC (FIRST® Tech Challenge)**
+**2. FTC aka. FIRST® Tech Challenge**
+
 *Grades 7-12 (Apiero competes in this!)*
 
-### **3. FLL (FIRST® Lego League)**
+**3. FLL aka. FIRST® Lego League**
+
 *Grades 4-10 (We don't compete in this!)*
 
 *This programming course, along with the accompanying electronics and mechanical courses, are all based around **FRC robots**.* 

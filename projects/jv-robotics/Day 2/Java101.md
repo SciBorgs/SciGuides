@@ -1,6 +1,6 @@
 # Java 101
 
-Hello! This guide will serve as an **introduction** to **the Java programming language**.
+**Hello young aspiring Sciborgs programmer!** This guide will serve as an introduction to **the Java programming language**.
 
 Here is what will be covered here:
 
@@ -10,7 +10,7 @@ Here is what will be covered here:
 4. **[How is Java code organized?](#how-is-java-code-organized)**
 5. **[How do we store things?](#how-do-we-store-things)**
 6. **[How do we do things with those stored values?](#how-do-we-do-things-with-those-stored-values)**
-7. **[Grammer in Java (Syntax)](#grammer-in-java-syntax)**
+7. **[Grammar in Java (Syntax)](#grammar-in-java-syntax)**
 8. **[Primitives and the Main Class](#primitives-and-the-main-class)**
 9. **[Java Native Interface and Signaling](#java-native-interface-and-signaling)**
 
@@ -18,18 +18,18 @@ If you are curious on **what apps you're gonna need to get started** head over t
 
 ## What is a program?
 
-A **program** is **an ordered list of instructions** that are done **one-after-the-other** by the computer. We write **programs** with **code**. It is **written** in text with a special set of rules called **Syntax** (this is like **grammer** and **punctuation** rules, but for code). Every program has to be **broken down** into actions that a **CPU** can execute. These actions have to be in **binary** and are predefined **by the specific CPU that you are using** using specific **codes** (ARM and x86 processors are coded differently for this reason, they have different sets of commands).
+A **program** is **an ordered list of instructions** that are done **one-after-the-other** by the computer. We write **programs** with **code**. It is **written** in text with a special set of rules called **Syntax** (this is like **grammar** and **punctuation** rules, but for code). Every program has to be **broken down** into actions that a **CPU** can execute. These actions have to be in **binary** and are predefined **by your CPU** using specific **codes** (ARM and x86 processors are coded differently for this reason, they have different sets of commands).
 
 > CPU Commands include things like **ADD** and **SUBTRACT**. These commands can be represented with **binary codes** such as 0110 or 0111 that the CPU can **read** and **understand**.
 
 
 ## What is computer memory?
 
-**Memory** is essentially **a space** where our program can **store** and **get** data while doing things. It is a gargatuan array of 1's and 0's that all have locations assigned to them. Storing data is useful because you would most likely want to base your program's **decisions** on **calculations** that you have made previously. 
+**Memory** is essentially **a space** where our program can **store** and **get** data while doing things. It is a gargantuan array of 1's and 0's that all have locations assigned to them. Storing data is useful because you would most likely want to base your program's **decisions** on **calculations** that you have made previously. 
 
 >Memory is **different** from your **ROM** (what you would call your *drive* or *main storage*) because it is **much** smaller and **much** faster.
 
-Our programs interact with memory **much more** than they interact with ROM (**because all of the data that we need to store permenantly usually can fit into a couple of text files**). Whenever we refer to **storing things** or **stored data** we are referring to storing **in memory**.
+Our programs interact with memory **much more** than they interact with ROM (**because all of the data that we need to store permanently usually can fit into a couple of text files**). Whenever we refer to **storing things** or **stored data** we are referring to storing **in memory**.
 
 >Another name for memory is **RAM**. **RAM** stands for **Random-Access-Memory**. What this means is that our program can **directly access this memory**. Things stored in **ROM** (Read-Only-Memory) are much slower to get to, but **do not get nuked after the program ends**.
 
@@ -37,7 +37,7 @@ In this guide, and future guides, we will refer to **RAM** as memory and **ROM**
 
 ## What is Java?
 
-**Java** is a **language** that we write code in. Java utilizes **english** words in a syntax that is very reliant on **Curly Braces { }** to define when certain **segements of code** start/stop, **Parentheses ( )** for operations and math, and **SemiColons;** to end specific **actions**. This lets Java code **ignore indentation** (and spacing for that matter) in order to **make writing/editing code easier**. Java also manages and interacts with the computer's **memory** for us (**instead of us having to do it ourselves**), allowing us to **store data** easily.
+**Java** is a **language** that we write code in. Java utilizes **English** words in a syntax that is very reliant on **Curly Braces { }** to define when certain **segments of code** start/stop, **Parentheses ( )** for operations and math, and **SemiColons;** to end specific **actions**. This lets Java code **ignore indentation** (and spacing for that matter) in order to **make writing/editing code easier**. Java also manages and interacts with the computer's **memory** for us (**instead of us having to do it ourselves**), allowing us to **store data** easily.
 
 ```
 class Robot {
@@ -52,7 +52,7 @@ class Robot {
 
 ## How is Java code organized?
 
-Java employs very popular **code-organization** technique called **Object-Oriented-Programming**. In this type of programming we split our **actions** (like driving the robot) and **stored data** (like the data from our Xbox Controllers) among **objects** that are located in seperate **.java files**. Objects can both store data, and act on that stored data.
+Java employs a very popular **code-organization** technique called **Object-Oriented-Programming**. In this type of programming we split our **actions** (like driving the robot) and **stored data** (like the data from our Xbox Controllers) among **objects** that are located in separate **.java files**. Objects can both store data, and act on that stored data.
 
 >In Java, almost **EVERYTHING** is an object.
 
@@ -83,7 +83,7 @@ All you need to do to make a method is
 3. **Define the class of the input** (you can't really do much with 10111100110)
 4. **Create names for all of the inputs** (so that you can use them in the method itself).
 
-Methods **do not** have to output anything, not do they have to have **inputs**. 
+Methods **do not** have to output anything, nor do they have to have **inputs**. 
 >In these cases, you would switch out the output class with the **void** keyword. 
 
 Inside methods, you can do a couple of things:
@@ -94,7 +94,7 @@ Inside methods, you can do a couple of things:
 
 When you are **calling** a method that **has an output**, you can treat your method exactly the same as **any other form of stored data** (fields or variables).
 
-> **For example:** If I had a method called **twoPlusOne** which returns **3** (Yes, this is a completly pointless thing to do but bear with me); The statement **twoPlusOne() - 4** is a completly valid math expression (that will return -1).
+> **For example:** If I had a method called **twoPlusOne** which returns **3** (Yes, this is a completely pointless thing to do but bear with me); The statement **twoPlusOne() - 4** is a completely valid math expression (that will return -1).
 
 This is also why you need to define the output's **class**, since you need to  **reserve a space in memory** for the output to exist. 
 
@@ -102,7 +102,7 @@ This is also why you need to define the output's **class**, since you need to  *
 
 You need classes for inputs because your program can't really understand the jumble of 1's and 0's otherwise. When you **specify the class**, those 1's and 0's become actually readable **fields and methods**. 
 
->You put your **inputs** (along with their types) **inside the parantheses**.
+>You put your **inputs** (along with their types) **inside the parentheses**.
 
 You also have the ability to manage **where** methods can be accessed from in the program by adding certain **keywords** to the front of them (just like in fields).
 
@@ -120,7 +120,7 @@ public Number zeroer(Number input) {
 }
 ```
 
-## Grammer in Java (Syntax)
+## Grammar in Java (Syntax)
 
 Here are some rules for **Java Syntax**: 
 
@@ -146,13 +146,13 @@ When you run a Java program, the computer that is running it looks for one thing
 
 ```
 public static void main(String[] args) {
-	// This is what will be ran first!
+	// This is what will be run first!
 }
 ```
 
-Once the program finds this method, it will start here and go down the list **one-by-one** and run everything. The class that contains the main method is called **the Main Class**. There is the **start point**. 
+Once the program finds this method, it will start here and go down the list **one-by-one** and run everything. The class that contains the main method is called **the Main Class**. This is the **start point**. 
 
-Fundementally, Objects are just **a bunch of 1's and 0's**. Classes are made to tell you **which parts of that bunch mean what** (they assign names to specific clumps of 1's and 0's). 
+Fundamentally, Objects are just **a bunch of 1's and 0's**. Classes are made to tell you **which parts of that bunch mean what** (they assign names to specific clumps of 1's and 0's). 
 
 >*If you keep breaking things down into their parts, you will reach a point where **you can't break things down anymore**.*
 
@@ -160,7 +160,7 @@ There will be a certain amount of times you can slice up those 1's and 0's befor
 
 >Booleans are values that can be either **True/False**.
 
-These values are called **primitives**. Primitives are the only types of data that **are not** considered objects. They **do not** have parts to them and **cannot** be broken down further unless you are a **crazy psycopath** that likes to use C++. This is the **stop point**.
+These values are called **primitives**. Primitives are the only types of data that **are not** considered objects. They **do not** have parts to them and **cannot** be broken down further unless you are a **crazy psychopath** that likes to use C++. This is the **stop point**.
 
 ## Java Native Interface and Signaling
 
@@ -170,7 +170,7 @@ So, we have our objects, our main method, our classes, our numbers and letters; 
 
 In order to interact with C++, Java uses these **Java Native Interfaces** or **JNI**'s which essentially **holds C++ code** in a way that **can be used in your Java program**. These JNI's are almost all hidden from you while coding the robot (**WPILIB® manages them for us**). When the time comes to apply voltage to a motor or change the color of an LED, We run the code in the **.jni** file (with some **special methods**) and the computer sends a stream of 1's and 0's down the wires into the electronics devices.
 
->We will revisit this much much later on! Don't worry too much about JNI's for now as alot of it will be hidden from you.
+>We will revisit this much much later on! Don't worry too much about JNI's for now as a lot of it will be hidden from you.
 
 >That is all! Farewell young aspiring Sciborgs programmer! Head over to **[Day 3](../Day%302/Java102.md)** to continue your journey.
 
