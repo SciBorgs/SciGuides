@@ -1,4 +1,4 @@
-# Java102
+# Java102: The Practical Guide
 
 **Hello young aspiring Sciborgs programmer!** This guide will demonstrate some essential **features** and **rules** of the Java programming language.
 

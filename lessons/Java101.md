@@ -1,4 +1,4 @@
-# Java 101
+# Java 101: The Conceptual Guide
 
 **Hello young aspiring Sciborgs programmer!** This guide will serve as an introduction to **the Java programming language**.
 
