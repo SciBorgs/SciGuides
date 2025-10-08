@@ -27,13 +27,13 @@ A **program** is **an ordered list of instructions** that are done **one-after-t
 
 **Memory** is essentially **a space** where our program can **store** and **get** data while doing things. It is a gargantuan array of 1's and 0's that all have locations assigned to them. Storing data is useful because you would most likely want to base your program's **decisions** on **calculations** that you have made previously. 
 
->Memory is **different** from your **ROM** (what you would call your *drive* or *main storage*) because it is **much** smaller and **much** faster.
+>Memory (Primary Storage) is **different** from your **Secondary Storage** (what you would call your *main storage* or *drive*) because it is **much** smaller and **much** faster.
 
-Our programs interact with memory **much more** than they interact with ROM (**because all of the data that we need to store permanently usually can fit into a couple of text files**). Whenever we refer to **storing things** or **stored data** we are referring to storing **in memory**.
+Our programs interact with memory **much more** than they interact with secondary storage (**because all of the data that we need to store permanently usually can fit into a couple of text files**). Whenever we refer to **storing things** or **stored data** we are referring to storing **in memory**.
 
->Another name for memory is **RAM**. **RAM** stands for **Random-Access-Memory**. What this means is that our program can **directly access this memory**. Things stored in **ROM** (Read-Only-Memory) are much slower to get to, but **do not get nuked after the program ends**.
+>Another name for memory is **RAM**. **RAM** stands for **Random-Access-Memory**. What this means is that our program can **directly access this memory**. Things stored in **ROM** (Read-Only-Memory, or secondary storage) are much slower to get to, but **do not get nuked after the program ends**.
 
-In this guide, and future guides, we will refer to **RAM** as memory and **ROM** as main storage.
+In this guide, and future guides, we will refer to **RAM** as memory and **ROM** as secondary storage.
 
 ## What is Java?
 
