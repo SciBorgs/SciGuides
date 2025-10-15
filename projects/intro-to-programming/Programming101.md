@@ -158,7 +158,7 @@ In math, functions are often defined as a mapping between inputs and outputs, wh
 
 You can also think of a function like a black box. You feed it some input through a slot, and it spits something out of a slot on the other side. There's some mechanism inside of the box that converts from input to output.
 
-![](/projects/images/black-box-1.jpg)
+![](./images/black-box-1.jpg)
 
 Here's the general structure of a function definition:
 ```java
@@ -186,7 +186,7 @@ Now that we have this function defined, we can *call* it on different values of 
 
 In the previous example, both the input and output to our function were numbers. For this example, the input is going to be an integer and the output will be a boolean!
 
-![](/projects/images/black-box-2.jpg)
+![](./images/black-box-2.jpg)
 
 More specifically, we're going to write a function that takes in an integer and returns whether or not that integer is even (or divisible by $2$).
 ```java
@@ -208,7 +208,7 @@ Generally, when we talk about `or` in math and programming, we mean and/or. In o
 
 This is the first time we're going to see that functions can have multiple inputs (this is true in math as well, although it may not be something you've run into yet). The black box analogy still works, the box just has multiple slots for inputs.
 
-![](/projects/images/black-box-3.jpg)
+![](./images/black-box-3.jpg)
 
 Here's `xor`:
 
@@ -233,11 +233,11 @@ In some sense, a function is a value, just like a boolean or an integer. Which i
 
 If you want to go with the black box analogy, a function that takes another function as an input is like a black box with a slot where you feed in a different black box. And the mechanism inside the main black box might feed an input into the little black box, and then do something with the output.
 
-![](/projects/images/black-box-4.jpg)
+![](./images/black-box-4.jpg)
 
 A function that outputs another function, on the other hand, is like a big black box with a mechanism that builds another black box, and a slot to output that black box that it generates. 
 
-![](/projects/images/black-box-5.jpg)
+![](./images/black-box-5.jpg)
 
 Here is a function that takes a function `fun`, and applies that function on the value `v` three times.
 ```java
@@ -645,7 +645,7 @@ Thus far, we've been thinking of functions as having an input (or multiple input
 
 With the black box analogy, you can think of side effects as there being a remote control inside of a black box that it can use to control other things.
 
-![](/projects/images/black-box-6.jpg)
+![](./images/black-box-6.jpg)
 
 So, for instance, if we had a motor that our code was controlling, that would be a side effect.
 
@@ -659,7 +659,7 @@ var motors = [motor1, motor2, motor3, motor4]
 
  We want to write a function that someone can call to find the average of the speeds of those motors. In that case, we don't actually want any input. We just want to give an output. Instead of a slot for inputs, the black box will just have a button that we can press to start it. 
  
-![](/projects/images/black-box-7.jpg)
+![](./images/black-box-7.jpg)
 
  The function would look something like this (see [sumOutputs](#example-5)):
  
@@ -671,7 +671,7 @@ def avgSpeed() {
 
 We also want to write a function that sets the speed of all of the motors to the same value. That function isn't going to have an output, because we don't need to get any information from it. Instead, we want it to *do something*. We want a black box without an output slot, that just swallows our inputs and presses some buttons on a remote control. 
 
-![](/projects/images/black-box-8.jpg)
+![](./images/black-box-8.jpg)
 
 So we won't return anything.
 

@@ -142,7 +142,7 @@ public class Drive extends SubsystemBase {
 ```
 
 We gave you all the imports for this, but in the future, a trick you can use is to start writing the thing you need to import and then press tab. So, in this case, if you were to start writing `Drive extends SubsystemBase`, but didn't finish the last word, `SubsystemBase` would come up as a suggestion:
-![](/images/subsystembase.png)
+![](./images/subsystembase.png)
 If you then press tab, it will finish the word for you and *actually import SubsystemBase*!
 
 Okay, now we're ready to make our motors:
