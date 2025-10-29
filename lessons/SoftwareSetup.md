@@ -13,7 +13,7 @@ If you are curious on **what exactly you are downloading** head over to [our Int
 
 Head over to [the Github page for WPILIB®](https://github.com/wpilibsuite/allwpilib/releases/tag/v2025.3.2) and scroll down a bit in order to find the **"Downloads"** section. From here, pick your favorite operating system and **click the link** to install the ISO / DMG file.
 
-> If you are unsure of what to download, no worries! Search up: **"How do I tell what my operating system is?"**. If you are on a **Mac®**, then you also should look up **"How do I tell what processor I have?"** in order to pick between **ARM** and **Intel® (aka. x86)**. ARM chips are the ones **made by Apple®**, while Intel chips are (surprisingly) the ones **made by Intel®**. If you are using Linux and are wondering about what processor you have: **I will personally remove you from the JV Robotics Program and meet with your parents**.
+> If you are unsure of what to download, no worries! Search up: **"How do I tell what my operating system is?"**. If you are on a **Mac®**, then you also should look up **"How do I tell what processor I have?"** in order to pick between **ARM** and **Intel® (aka. x86)**. ARM chips are the ones **made by Apple®**, while Intel chips are (surprisingly) the ones **made by Intel®**. If you are using Linux and are wondering about what processor you have: **I'm not sure what else to tell you**.
 
 If you are on the **Windows® Operating System** you will need to **mount** the **ISO file** after it has been downloaded. 
 
