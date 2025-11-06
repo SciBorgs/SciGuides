@@ -1,6 +1,6 @@
 # Introduction to Software
 
-**Hello young aspiring Sciborgs programmer!** This guide will go over **what** software we will use in this course and **why** we use it.
+**Hello young aspiring programmer!** This guide will go over **what** software we will use in this course and **why** we use it.
 
 Here is what will be covered here:
 

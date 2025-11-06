@@ -1,6 +1,6 @@
 # Introduction to Java
 
-**Hello young aspiring Sciborgs programmer!** This guide will serve as a conceptual introduction to **the Java programming language**.
+**Hello young aspiring programmer!** This guide will serve as a conceptual introduction to **the Java programming language**.
 
 Here is what will be covered here:
 

@@ -1,6 +1,6 @@
 # Introduction to Java: Part 2
 
-**Hello young aspiring Sciborgs programmer!** This guide will serve as a practical introduction to **the Java programming language**.
+**Hello young aspiring programmer!** This guide will serve as a practical introduction to **the Java programming language**.
 
 Here is what will be covered here:
 
@@ -57,7 +57,7 @@ while (something == true) {
 }
 ```
 
-### **For** some amount of time, **keep doing** something
+### **For** each element in a list, **keep doing** something
 
 ```
 Number[] someDataSet = new Number[]{0, 1, 2, 3, 4, 5}; 
@@ -82,7 +82,7 @@ for (int n = 1; n < 67; n++) {
 
 Java gives us a very specific way to make our conditions (what we put into the **parenthesis** of our **decision-making structures**).
 
-In Java, you use two equal sign symbols `==` to create an **equation** between two boolean values **or** two objects.
+Use two equal sign symbols `==` to create an **equation** between two boolean values **or** two objects.
 
 ```
 True == False; // This is false!
@@ -90,7 +90,7 @@ False == False; // This is true!
 True == True; // This is true!
 ```
 
-In Java, you use the exclamation mark `!` symbol to **negate** a boolean value.
+Use the exclamation mark `!` symbol to **negate** a boolean value.
 
 ```
 !True == False; // This is true!
@@ -98,7 +98,7 @@ In Java, you use the exclamation mark `!` symbol to **negate** a boolean value.
 !False == True; // This is true!
 ```
 
-In Java, you use two vertical bars `||` to create a **disjunction** between two boolean values (this is equivalent to using the word **"or"**).
+Use two vertical bars `||` to create a **disjunction** between two boolean values (this is equivalent to using the word **"or"**).
 
 ```
 True || False; // This is true!
@@ -106,7 +106,7 @@ True || True; // This is true!
 False || False; // This is false!
 ```
 
-In Java, you use two ampersand symbols `&&` to create a **conjunction** between two boolean values.
+Use two ampersand symbols `&&` to create a **conjunction** between two boolean values.
 
 ```
 True && True; // This is true!
@@ -114,14 +114,14 @@ True && False; // This is false!
 False && False; // This is false!
 ```
 
-In Java, you use the greater-than `>` and less-than symbols `<` to create an **inequality** between two numbers.
+Use the greater-than `>` and less-than symbols `<` to create an **inequality** between two numbers.
 
 ```
 6 < 7; // This is true!
 6 > 7; // This is false!
 ```
 
-In Java, you can use the greater-than or equal-to `>=` as well as the less-than or equal-to `<=` to create an **inclusive inequality**.
+Use the greater-than or equal-to `>=` as well as the less-than or equal-to `<=` to create an **inclusive inequality**.
 
 ```
 7 >= 7; // This is true!
@@ -193,6 +193,8 @@ double weirderNumber = 3.14159265358;
 >These numbers are assigned by the *American Standard Code for Information Interchange* also known as **ASCII**.
 
 **Characters** ```char``` are represented using ```'Single Quotes'``` while **Strings** ```String``` are represented using ```"Double Quotes"```.
+
+Strings are **not** primitives, they are **classes** that hold **a list of characters** (along with a )
 
 >Hello young aspiring Sciborgs programmer! As you can tell, this part of SciGuides is **under construction**. Stay tuned for more code stuff!
 

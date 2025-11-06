@@ -1,6 +1,6 @@
 # Setting up Software
 
-**Hello young aspiring Sciborgs programmer!** This guide will go over how to setup the software you will need to code a robot.
+**Hello young aspiring programmer!** This guide will go over how to setup the software you will need to code a robot.
 
 Here is what will be covered here:
 
