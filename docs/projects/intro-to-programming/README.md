@@ -1,6 +1,6 @@
-# Intro to Programming
+# Introduction to Programming
 
-This is the Intro-to-Programming series!
+This is the Introduction-To-Programming series!
 
 Follow the guides in this series in this order:
 1. [Programming101](/projects/intro-to-programming/Programming101.md)

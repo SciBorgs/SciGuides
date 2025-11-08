@@ -79,6 +79,6 @@ git config --global credential.helper store
 git config --global credential.helper wincred
 ```
 
->That is all! Farewell young aspiring Sciborgs programmer! Head on to our **[Introduction To Java Guide](IntroToJava.md)** if you'd like.
+>That is all! Farewell young aspiring Sciborgs programmer! Head on to our **[Intro To Java Guide](IntroToJava.md)** if you'd like.
 
 

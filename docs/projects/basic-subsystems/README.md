@@ -3,7 +3,7 @@
 This is the Basic-Subsystems series!
 
 Each individual guide will cover a specific subsystem:
-1. [Drivetrain](DifferentialDrive.md)
+1. [Differential Drivetrain](DifferentialDrive.md)
 
 Feel free to skip whatever you already are comfortable with.
 
