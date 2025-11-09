@@ -104,7 +104,7 @@ To wrap up, we'll turn to the values of trig functions for the angles 0, $\pi$/2
 
 Let's look back to our unit circle:
 
-![](https://images.slideplayer.com/30/9515203/slides/slide_2.jpg)
+![](https://iitutor.com/wp-content/uploads/2019/03/N1303-Angles-in-the-Second-Quadrant.png)
 
 As you can see, at 0 the coordinates are (1, 0), so we know that:
 $\cos(0)$ = $1$
