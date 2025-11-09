@@ -75,4 +75,4 @@ This is why we use **Git Project Management Software**. Git gives us commands th
 
 We use this in conjunction with **Github**, a website that gives us a **free server** to put our code onto and **get our code from**.
 
->That is all! Farewell young aspiring Sciborgs programmer! Head over to [our Software Setup Guide](SoftwareSetup.md) to continue your journey.
+>That is all! Farewell young aspiring programmer! Head over to [our Software Setup Guide](SoftwareSetup.md) to continue your journey.

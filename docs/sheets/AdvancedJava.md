@@ -4,7 +4,7 @@
 
 - Enums
 - Records
-- [Lambdas & Functional Interfaces](#lambdas--functional-interfaces)
+- [Lambdas & Functional Interfaces](#lambdas-and-functional-interfaces)
 - Switch Expressions
 
 ## Enums
@@ -15,7 +15,7 @@ coming soon!
 
 coming soon!
 
-## Lambdas & Functional Interfaces
+## Lambdas and Functional Interfaces
 
 ## Functional Interfaces
 

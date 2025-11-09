@@ -220,7 +220,7 @@ Note: There are other authentication methods available, such as SSH keys, but PA
 
 ## Visual Studio Code (not WPILib)
 
-This is going to be for writing non-robotics code. For instance, you can use regular VSC for [Java101](tbd) and [Java102](tbd). If you'd rather not have this on your computer, feel free to skip this step.
+This is going to be for writing non-robotics code. For instance, you can use regular VSC for [Java101](../projects/intro-to-programming/Java101.md) and [Java102](../projects/intro-to-programming/Java102.md). If you'd rather not have this on your computer, feel free to skip this step.
 
 1. Download the latest version of the [Java Development Kit](https://www.oracle.com/java/technologies/downloads/) (JDK). This is what will allow you to actually develop and run code in Java.
    - Once you've downloaded an installer, click on it and follow the instructions.
@@ -267,11 +267,9 @@ This is going to be for writing non-robotics code. For instance, you can use reg
 
 ## A Secret
 
-I didn't write the [git section](#git). I also didn't write several parts of the [VSCode](#visual-studio-code-not-wpilib) and [WPILib](#wpilib) sections. Instead, I prompted [Claude](claude.ai) to do it for me.
+I didn't write the [git section](#git). I also didn't write several parts of the [VSCode](#visual-studio-code-not-wpilib) and [WPILib](#wpilib) sections. Instead, I prompted [Claude](https://claude.ai) to do it for me.
 
 The moral of this story is that chat bots like Claude and ChatGPT are fantastic resources when used well. And getting help with git or command line or installing things are all great uses for AI.
-
-[Go here](tbd) for more tips on how to use (and how not to use) chat bots and AI for programming!
 
 ## FAQ
 

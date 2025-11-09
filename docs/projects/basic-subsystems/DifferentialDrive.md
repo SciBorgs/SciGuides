@@ -7,9 +7,9 @@ This project is going to cover how to make both a basic and an advanced differen
 ## Prerequisites
 
 - Comfortable with all the [goals](../intro-to-programming/Java102.md#goals) and [prerequisites](../intro-to-programming/Java102.md#prerequisites) of Java102.
-- Comfortable with [functional interfaces & lambdas](/docs/sheets/AdvancedJava.md#functional-interfaces-lambdas)
-- Familiarity with types of [sensors](/docs/sheets/Sensors.md)
-- [WPILib installed](/docs/sheets/EnvironmentSetup.md#wpilib)
+- Comfortable with [functional interfaces & lambdas](../../sheets/AdvancedJava.md#lambdas-and-functional-interfaces)
+- Familiarity with types of [sensors](../../sheets/Sensors.md)
+- [WPILib installed](../../sheets/EnvironmentSetup.md#wpilib)
 
 ## Goals
 
@@ -53,8 +53,8 @@ Running commands and enforcing the one-command-per-subsystem rule is managed by 
 
 Please read the following sheets before moving forward:
 
-- [Subsystems and Commands](/docs/sheets/CommandBased.md)
-- [File Structure](/docs/sheets/FileStructure.md)
+- [Subsystems and Commands](../../sheets/CommandBased.md)
+- [File Structure](../../sheets/FileStructure.md)
 
 ## Understanding the hardware
 
@@ -309,7 +309,7 @@ Now, if you had a real robot to test on, it would drive!! But knowing that would
 
 *Odometry* is the process of using data from sensors to estimate your position and how it changes. In this case, the sensors that we'll be relying on are encoders (for our wheels) to and a gyroscope.
 
-Brush up on the [sensors guide](/docs/sheets/Sensors.md) if you're uncertain what encoders and gyros are.
+Brush up on the [sensors guide](../../sheets/Sensors.md) if you're uncertain what encoders and gyros are.
 
 ## Adding encoders
 
@@ -461,7 +461,7 @@ The last thing to finish up our basic drive will be to get our pose based on the
 
 ## Control Theory
 
-Before we get started, please make sure you have read the [Control Theory reference sheet](/docs/sheets/ControlTheory.md) as we are going to assume you are aware of what PID and Feedforward generally do.
+Before we get started, please make sure you have read the [Control Theory reference sheet](../../sheets/ControlTheory.md) as we are going to assume you are aware of what PID and Feedforward generally do.
 
 In this section, we're going to create PID and feedforward controllers to convert from desired speeds to voltages.
 
@@ -559,7 +559,7 @@ Finally, we combine the outputs and send them to the motors:
 
 ## Simulation and Logging
 
-Now we've reached the point where we can actually simulate our robot and drive it around! Please read the [Simulation guide](/docs/sheets/Simulation.md) before continuing on with this.
+Now we've reached the point where we can actually simulate our robot and drive it around! Please read the [Simulation guide](../../sheets/Simulation.md) before continuing on with this.
 
 ## Setting Up the Simulation
 
@@ -636,7 +636,7 @@ This method ensures that our simulated sensors provide accurate feedback as the 
 
 ## Logging: Capturing Important Data
 
-Now let’s talk about logging. Logging, or telemetry, is a way of recording information in real time. That information might include data from sensors, estimated positions, what command is running, etc. Logging is crucial for understanding how our robot behaves over time, diagnosing issues, and improving performance. Read the [Telemetry doc](/docs/sheets/Telemetry.md) to learn more about logging and how we do it!
+Now let’s talk about logging. Logging, or telemetry, is a way of recording information in real time. That information might include data from sensors, estimated positions, what command is running, etc. Logging is crucial for understanding how our robot behaves over time, diagnosing issues, and improving performance. Read the [Telemetry doc](../../sheets/Telemetry.md) to learn more about logging and how we do it!
 
 We’re going to use a tool called Monologue for logging, which gives us a structured way to record and analyze data from the robot’s systems. This should already be set up in the `configureGameBehavior` method in `Robot.java`. You should see the following lines:
 

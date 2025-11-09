@@ -196,7 +196,7 @@ double weirderNumber = 3.14159265358;
 
 Strings are **not** primitives, they are **classes** that hold **a list of characters** (along with a )
 
->Hello young aspiring Sciborgs programmer! As you can tell, this part of SciGuides is **under construction**. Stay tuned for more code stuff!
+>Hello young aspiring programmer! As you can tell, this part of SciGuides is **under construction**. Stay tuned for more code stuff!
 
 ## Lists, Arrays, Matrices, and Maps
 

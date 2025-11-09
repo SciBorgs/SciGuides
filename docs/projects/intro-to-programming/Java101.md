@@ -5,12 +5,12 @@ A more Java-Oriented intro to programming.
 ## Prerequisites
 
 - Comfortable with all of the [goals for Programming101](Programming101.md#goals).
-- Comfortable with [command-line navigation](/docs/sheets/CommandLineNavigation.md)
+- Comfortable with [command-line navigation](../../sheets/CommandLineNavigation.md)
 - Comfortable with git (ignore this one for now!)
 - Environment set up
-  - [Code directory created](/docs/sheets/EnvironmentSetup.md#local-code-organization)
-  - [VSCode installed](/docs/sheets/EnvironmentSetup.md#visual-studio-code-not-wpilib)
-  - [Git & Github set up](/docs/sheets/EnvironmentSetup.md#git)
+  - [Code directory created](../../sheets/EnvironmentSetup.md#local-code-organization)
+  - [VSCode installed](../../sheets/EnvironmentSetup.md#visual-studio-code-not-wpilib)
+  - [Git & Github set up](../../sheets/EnvironmentSetup.md#git)
 
 ## Goals
 
@@ -38,7 +38,7 @@ A GitHub repository, often referred to as a "repo," is a central location where 
 
 You're going to create a repo for the code that you write in this tutorial.
 
-1. Open [GitHub](github.com) and log in.
+1. Open [GitHub](https://github.com) and log in.
 2. Create a new repository
    - Click the '+' icon in the top-right corner of the page.
    - Select "New repository" from the dropdown menu.

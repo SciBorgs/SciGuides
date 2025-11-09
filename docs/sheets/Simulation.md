@@ -9,13 +9,13 @@ There are a few different facets of simulation to take note of before you can st
   - [Physics simulators](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/physics-sim.html)
   - [Mechanism2d](https://docs.wpilib.org/en/stable/docs/software/dashboards/glass/mech2d-widget.html)
   - [Field2d](https://docs.wpilib.org/en/stable/docs/software/dashboards/glass/field2d-widget.html)
-- [Logging & Dashboards](#logging--dashboards)
+- [Logging & Dashboards](#logging-and-dashboards)
 
-## Logging & Dashboards
+## Logging and Dashboards
 
 In testing, it is common to want to directly observe current or past robot measurements and values in order to tune your systems or debug. This is also incredibly important when working with simulation, as you otherwise have no reference to what is going on without a physical robot.
 
-For more details, visit [our doc](/docs/sheets/Telemetry.md).
+For more details, visit [our doc](Telemetry.md).
 
 ## Simulation Classes
 

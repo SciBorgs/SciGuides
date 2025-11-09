@@ -5,11 +5,11 @@ A more in-depth guide to Java.
 ## Prerequisites
 
 - Comfortable with all of the [goals for Java101](Java101.md#goals).
-- Comfortable with [command-line navigation](/docs/sheets/CommandLineNavigation.md)
+- Comfortable with [command-line navigation](../../sheets/CommandLineNavigation.md)
 - Environment set up
-  - [Code directory created](/docs/sheets/EnvironmentSetup.md#local-code-organization)
-  - [VSCode installed](/docs/sheets/EnvironmentSetup.md#visual-studio-code-not-wpilib)
-  - [Git & Github set up](/docs/sheets/EnvironmentSetup.md#git)
+  - [Code directory created](../../sheets/EnvironmentSetup.md#local-code-organization)
+  - [VSCode installed](../../sheets/EnvironmentSetup.md#visual-studio-code-not-wpilib)
+  - [Git & Github set up](../../sheets/EnvironmentSetup.md#git)
 
 ## Goals
 
@@ -34,7 +34,7 @@ See [Java101](Java101.md#best-practices).
 
 ## Setup
 
-If you did [Java101](Java101.md), use the same repository that you used there. Otherwise, follow the [instructions in Java101 to set up a repository](Java101.md#setup).
+If you did [Java101](Java101.md), use the same repository that you used there. Otherwise, follow the [instructions in Java101 to set up a repository](Java101.md#create-github-repo).
 
 Make another directory called `java102`. We'll be working in that directory. Make a file in java102 called `Main.java`, as well as a `README.md` file.
 
@@ -92,7 +92,7 @@ Next up, we need to write what's called a *constructor*. A constructor is a spec
 
 So, in this case, we want each `Point` to have its own values for `x` and `y`, and we want whoever makes the `Point` to be able to decide those values. We can do that by having the constructor take `x` and `y` values as arguments (or inputs).
 
-The syntax for writing constructors somewhat similar to how we wrote functions in [Java101](Java101.md#functions/methods). Here are the differences:
+The syntax for writing constructors somewhat similar to how we wrote functions in [Java101](Java101.md#functionsmethods). Here are the differences:
 
 - We won't use the word `static` (again, this belongs to a particular `Point`).
 - We will add the word `public`.
@@ -134,7 +134,7 @@ Run the code, and see if the values that are printed are what you expect!
 
 ### Translation
 
-Now, go back to the `Point.java` file. We're going to write a method to translate a point in the x direction. We'll do this just like we defined functions in [Java101](Java101.md#functions/methods), with the following changes:
+Now, go back to the `Point.java` file. We're going to write a method to translate a point in the x direction. We'll do this just like we defined functions in [Java101](Java101.md#functionsmethods), with the following changes:
 
 - We won't use the word `static` because this method belongs to each particular `Point`.
   - In other words, each `Point` not only has its own values of `x` and `y`, but also its own methods for translation that use its values of `x` and `y`.
@@ -322,7 +322,7 @@ Also, if you haven't yet, now would be a great time to commit and push your chan
 
 Write a non-static method that calculates and returns the angle in degrees between a point and the positive x axis. Or more specifically, the angle of point p is the angle from the positive x axis to the line that goes through the origin and point p. Counterclockwise is positive.
 
-This will require trigonometry. If you're not familiar with basic trig, look at [this doc](/docs/sheets/Trigonometry.md).
+This will require trigonometry. If you're not familiar with basic trig, look at [this doc](../../sheets/Trigonometry.md).
 
 You can look up how to perform trigonometric functions in Java (the Java trig functions generally operate in radians, so you'll need to use `Math.toDegrees` and `Math.toRadians` to make sure you're being consistent about units).
 

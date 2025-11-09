@@ -179,4 +179,4 @@ In order to interact with C++, Java uses these **Java Native Interfaces** or **J
 
 >We will revisit this much much later on! Don't worry too much about JNI's for now as a lot of it will be hidden from you.
 
->That is all! Farewell young aspiring Sciborgs programmer! Head over to **[our Intro to Java: Part 2 Guide](IntroToJava2.md)** to continue your journey.
+>That is all! Farewell young aspiring programmer! Head over to **[our Intro to Java: Part 2 Guide](IntroToJava2.md)** to continue your journey.
