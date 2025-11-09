@@ -1,6 +1,6 @@
 # Telemetry
 
-### The art of logging and log-viewing
+## The art of logging and log-viewing
 
 In testing (real or simulated), it is common to want to directly observe robot measurements and values in order to tune your systems and debug. Rather than looping print statements, WPILib provides interfaces allowing certain information to be logged while the robot runs.
 

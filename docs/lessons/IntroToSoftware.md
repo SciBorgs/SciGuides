@@ -28,7 +28,7 @@ As you may have already learned from our wonderful *Core Mechanics Presentation*
 
 *Grades 4-10 (We don't compete in this!)*
 
-*This programming course, along with the accompanying electronics and mechanical courses, are all based around **FRC robots**.* 
+*This programming course, along with the accompanying electronics and mechanical courses, are all based around **FRC robots**.*
 
 ## What do we use to interact with our robot?
 
@@ -37,7 +37,6 @@ FIRST® Robotics created a **special control system** called **WPILIB®** which 
 Due to the fact that **python is incredibly annoying** (all my homies **HATE** python), and that we are **too stupid for C++**, our school has collectively decided to use **Java as our language**.
 
 > To clarify, we don't use python because **it is the slowest language to run**, it **doesn't have OOP**, and **indentations make your code VERY annoying to handle**.
-
 
 > To clarify further, we don't use C++ because **it is very difficult**, it is **very easy to break**, and **we have an entire Java course in this school (AP® Computer Science).**
 
@@ -52,7 +51,6 @@ In the **Java code-editing sphere** there are two very prominent competitors **V
 (They created an official extension for Visual Studio Code as well as use it in their tutorials)
 
 > Note that **Visual Studio** and **Visual Studio Code** are very different apps.
-
 
 ## How do we collaborate with each other?
 

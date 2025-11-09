@@ -17,19 +17,24 @@ theme:
 
 nav:
   - Home: index.md
-  - Lessons: ./lessons/README.md
+  - Lessons: 
+    - About: ./lessons/README.md
     - Intro To Software: ./lessons/IntroToSoftware.md
     - Setting up Software: ./lessons/SoftwareSetup.md
     - Intro To Java: ./lessons/IntroToJava.md
-    - IntroToJava2: ./lessons/IntroToJava2.md
-  - Projects: ./projects/README.md
-    - Intro To Programming: ./projects/intro-to-programming/README.md
+    - Intro To Java 2: ./lessons/IntroToJava2.md
+  - Projects: 
+    - About: ./projects/README.md
+    - Intro To Programming: 
+      - About: ./projects/intro-to-programming/README.md
       - Programming 101: ./projects/intro-to-programming/Programming101.md
       - Java 101: ./projects/intro-to-programming/Java101.md
       - Java 102: ./projects/intro-to-programming/Java102.md
-    - Basic Subsystems: ./projects/basic-subsystems/README.md
+    - Basic Subsystems: 
+      - About: ./projects/basic-subsystems/README.md
       - Differential Drive: ./projects/basic-subsystems/DifferentialDrive.md
-  - Reference Sheets: ./sheets/README.md
+  - Reference Sheets: 
+    - About: ./sheets/README.md
     - Advanced Java: ./sheets/AdvancedJava.md
     - Command Based Programming: ./sheets/CommandBased.md
     - Command Line Navigation: ./sheets/CommandLineNavigation.md

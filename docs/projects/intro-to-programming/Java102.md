@@ -1,31 +1,37 @@
-# Introduction
+# Java 102
+
+A more in-depth guide to Java.
 
 ## Prerequisites
 
 - Comfortable with all of the [goals for Java101](Java101.md#goals).
-- Comfortable with [command-line navigation](/reference-sheets/CommandLineNavigation.md)
+- Comfortable with [command-line navigation](/docs/sheets/CommandLineNavigation.md)
 - Environment set up
-	- [Code directory created](/reference-sheets/EnvironmentSetup.md#local-code-organization)
-	- [VSCode installed](/reference-sheets/EnvironmentSetup.md#visual-studio-code-not-wpilib)
-	- [Git & Github set up](/reference-sheets/EnvironmentSetup.md#git)
+  - [Code directory created](/docs/sheets/EnvironmentSetup.md#local-code-organization)
+  - [VSCode installed](/docs/sheets/EnvironmentSetup.md#visual-studio-code-not-wpilib)
+  - [Git & Github set up](/docs/sheets/EnvironmentSetup.md#git)
+
 ## Goals
 
 Familiarity with the following concepts:
+
 - Classes and Objects
-	- fields
-	- constructors
-	- methods
-	- static
-	- public/private
+  - fields
+  - constructors
+  - methods
+  - static
+  - public/private
 - Polymorphism
-	- Interfaces
-	- Generics
-	- Inheritance
+  - Interfaces
+  - Generics
+  - Inheritance
 - Functional Interfaces
 - Streams
+
 ## Best Practices
 
 See [Java101](Java101.md#best-practices).
+
 ## Setup
 
 If you did [Java101](Java101.md), use the same repository that you used there. Otherwise, follow the [instructions in Java101 to set up a repository](Java101.md#setup).
@@ -34,19 +40,20 @@ Make another directory called `java102`. We'll be working in that directory. Mak
 
 *Note: you will likely need to add `package java102;` to the top of each Java file you make in the `java102` directory.*
 
-In the README, link [this guide](/projects/intro-to-programming/java102).
-# Classes and Objects
+In the README, link [this guide](Java102.md).
 
 ## Objects
 
 An *object* in Java is a bundle of related data and functions that work together to perform specific tasks in a program. Think of it as a custom-built tool that combines information ([fields](#glossary)) and actions ([methods](#glossary)) into a single unit.
 
 For example, if you're planning the trajectory of a robot through a 2d plane, you might have a Point object. This object would store the x and y coordinates of the point, and would have one method to translate a Point in the x direction, and one to translate it in the y direction.
+
 ## Classes
 
 In Java, a class is like a blueprint or template for creating objects. It defines what data and methods the objects will have. An object is an instance of a class - a specific realization of that blueprint. Classes can also hold what are called *static* methods or fields that are related to objects of that class, but that don't actually belong to individual objects. For example, a `Point` class might have a method that finds the distance between two `Point` objects.
 
 A class can also be thought of as the [type](Java101.md) of an object. So if you were to make a point variable, the type of that variable would be `Point`. In fact, some of the types that we've been using are object types (specifically Strings and arrays -- although arrays are a special case). Generally, whenever there is a type that is capitalized, that is an object type.
+
 ## Point
 
 Let's write out the class that is a blueprint for the `Point` object that we described:
@@ -58,32 +65,35 @@ public class Point {
 
 }
 ```
+
 ### Fields
 
 Next, we'll declare the fields that will store data for the object. We want to store the x and y coordinates, both of which are doubles. We do this similarly to how we declared variables in [Java101](Java101.md#variables), but with a couple differences:
+
 - We will not use the word `static`, because these fields belong to individual points.
 - We will write `public final` before the type and name of each field.
-	- We'll come back to the meaning of `public` in [Java103: Tic Tac Toe](/projects/intro-to-programming/tic-tac-toe).
-	- Adding `final` before a variable ensures that that once initialized, a variable cannot be mutated. In this case, the x and y coordinates of a point should never change. If they did, we would no longer be talking about the same point, and that would get very confusing.
-- We will *declare* our variables without *initializing* them. 
-	- In other words, we will write the names and types of the variables, indicating that they exist and allowing us to reference them in other parts of the code. (This is called declaring a variable.)
-	- But we will not give them values (also called initializing variables). Instead, each instance of the `Point` class (each `Point` object) will have its own values for `x` and `y`.
+  - Adding `final` before a variable ensures that that once initialized, a variable cannot be mutated. In this case, the x and y coordinates of a point should never change. If they did, we would no longer be talking about the same point, and that would get very confusing.
+- We will *declare* our variables without *initializing* them.
+  - In other words, we will write the names and types of the variables, indicating that they exist and allowing us to reference them in other parts of the code. (This is called declaring a variable.)
+  - But we will not give them values (also called initializing variables). Instead, each instance of the `Point` class (each `Point` object) will have its own values for `x` and `y`.
 
 ```java
 public class Point {
-	public final double x;
-	public final double y;
+ public final double x;
+ public final double y;
 }
 ```
+
 ### Constructor
 
 Okay, we have now declared fields to store the x and y coordinates of our points.
 
-Next up, we need to write what's called a *constructor*. A constructor is a special kind of function that creates an object. Each class has a constructor, and that constructor is called to generate a new object instance of that class. If there's anything about an object that you want to be different for each object, you generally do that in the constructor. 
+Next up, we need to write what's called a *constructor*. A constructor is a special kind of function that creates an object. Each class has a constructor, and that constructor is called to generate a new object instance of that class. If there's anything about an object that you want to be different for each object, you generally do that in the constructor.
 
 So, in this case, we want each `Point` to have its own values for `x` and `y`, and we want whoever makes the `Point` to be able to decide those values. We can do that by having the constructor take `x` and `y` values as arguments (or inputs).
 
 The syntax for writing constructors somewhat similar to how we wrote functions in [Java101](Java101.md#functions/methods). Here are the differences:
+
 - We won't use the word `static` (again, this belongs to a particular `Point`).
 - We will add the word `public`.
 - We will not specify a return type (this is because the return type of a constructor is always going to be the type of the object, in this case a `Point`).
@@ -94,13 +104,13 @@ Here we go:
 
 ```java
 public class Point {
-	public final double x;
-	public final double y;
+ public final double x;
+ public final double y;
 
-	public Point(double x, double y) {
-		this.x = x;
-		this.y = y;
-	}
+ public Point(double x, double y) {
+  this.x = x;
+  this.y = y;
+ }
 }
 ```
 
@@ -121,11 +131,13 @@ System.out.println("x: " + point.x + "y: " + point.y);
 ```
 
 Run the code, and see if the values that are printed are what you expect!
+
 ### Translation
 
 Now, go back to the `Point.java` file. We're going to write a method to translate a point in the x direction. We'll do this just like we defined functions in [Java101](Java101.md#functions/methods), with the following changes:
+
 - We won't use the word `static` because this method belongs to each particular `Point`.
-	- In other words, each `Point` not only has its own values of `x` and `y`, but also its own methods for translation that use its values of `x` and `y`.
+  - In other words, each `Point` not only has its own values of `x` and `y`, but also its own methods for translation that use its values of `x` and `y`.
 - We will add the word `public` (we'll explain this later).
 
 Let's call this method `translateX`. This is a method that belongs to the `Point` class, so it already has access to the data stored in the object (`x` and `y`). The only other input that it needs is how much to translate by. We'll call that value `t`.
@@ -134,17 +146,17 @@ The return type of `translateX` will be a new `Point`, because it is returning t
 
 ```java
 public class Point {
-	public final double x;
-	public final double y;
+ public final double x;
+ public final double y;
 
-	public Point(double x, double y) {
-		this.x = x;
-		this.y = y;
-	}
-	
-	public Point translateX(double t) {
-		return new Point(x + t, y);
-	}
+ public Point(double x, double y) {
+  this.x = x;
+  this.y = y;
+ }
+ 
+ public Point translateX(double t) {
+  return new Point(x + t, y);
+ }
 }
 ```
 
@@ -152,21 +164,21 @@ We can also add a method to translate in the y direction:
 
 ```java
 public class Point {
-	public final double x;
-	public final double y;
+ public final double x;
+ public final double y;
 
-	public Point(double x, double y) {
-		this.x = x;
-		this.y = y;
-	}
-	
-	public Point translateX(double t) {
-		return new Point(x + t, y);
-	}
-	
-	public Point translateY(double t) {
-		return new Point(x, y + t);
-	}
+ public Point(double x, double y) {
+  this.x = x;
+  this.y = y;
+ }
+ 
+ public Point translateX(double t) {
+  return new Point(x + t, y);
+ }
+ 
+ public Point translateY(double t) {
+  return new Point(x, y + t);
+ }
 }
 ```
 
@@ -187,11 +199,12 @@ System.out.println("xy transl: (" + xyTranslation.x + ", " + xyTranslation.y + "
 ```
 
 You can run the code and make sure the values are what you expected.
+
 ### ToString
 
 One thing you might notice is that the code we wrote to print out our points is pretty repetitive. We wrote essentially the same thing 3 times, but we used different variables. Usually, when you're writing repetitive code, there's a more efficient option. In this case, we're going to add a `toString` method.
 
-A `toString` method tells the computer how to convert an object into a `String`. When you write `System.out.println(object)`, that object is automatically converted to a string and printed using its toString method. 
+A `toString` method tells the computer how to convert an object into a `String`. When you write `System.out.println(object)`, that object is automatically converted to a string and printed using its toString method.
 
 Each object has a default `toString` method. Let's try to print a `Point` using its default `toString` method and see what happens:
 
@@ -205,26 +218,26 @@ That isn't a particularly helpful representation of a `Point`. What we actually 
 
 ```java
 public class Point {
-	public final double x;
-	public final double y;
+ public final double x;
+ public final double y;
 
-	public Point(double x, double y) {
-		this.x = x;
-		this.y = y;
-	}
-	
-	public Point translateX(double t) {
-		return new Point(x + t, y);
-	}
-	
-	public Point translateY(double t) {
-		return new Point(x, y + t);
-	}
+ public Point(double x, double y) {
+  this.x = x;
+  this.y = y;
+ }
+ 
+ public Point translateX(double t) {
+  return new Point(x + t, y);
+ }
+ 
+ public Point translateY(double t) {
+  return new Point(x, y + t);
+ }
 
-	@Override
-	public String toString() {
-		return "(" + x + ", " + y + ")";
-	}
+ @Override
+ public String toString() {
+  return "(" + x + ", " + y + ")";
+ }
 }
 ```
 
@@ -256,30 +269,30 @@ One last thing before we write our distance function: We're going to be using `M
 
 ```java
 public class Point {
-	public final double x;
-	public final double y;
+ public final double x;
+ public final double y;
 
-	public Point(double x, double y) {
-		this.x = x;
-		this.y = y;
-	}
-	
-	public Point translateX(double t) {
-		return new Point(x + t, y);
-	}
-	
-	public Point translateY(double t) {
-		return new Point(x, y + t);
-	}
+ public Point(double x, double y) {
+  this.x = x;
+  this.y = y;
+ }
+ 
+ public Point translateX(double t) {
+  return new Point(x + t, y);
+ }
+ 
+ public Point translateY(double t) {
+  return new Point(x, y + t);
+ }
 
-	@Override
-	public String toString() {
-		return "(" + x + ", " + y + ")";
-	}
+ @Override
+ public String toString() {
+  return "(" + x + ", " + y + ")";
+ }
 
-	public static double distance(Point p1, Point p2) {
-		return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
-	}
+ public static double distance(Point p1, Point p2) {
+  return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
+ }
 }
 ```
 
@@ -290,6 +303,7 @@ We access non-static members of a class with `object.member`. So for instance, t
 ```java
 System.out.println(Point.distance(a, b));
 ```
+
 ### Practice: Center of Mass
 
 Let's say we have a bunch of points, each of which represents a point mass of equal mass. The *center of mass* of those points is the average position of the points. So the x coordinate of the center of mass is the average of all of the x coordinates of the points, and the y coordinate is the average of all of the y coordinates.
@@ -306,9 +320,9 @@ Also, if you haven't yet, now would be a great time to commit and push your chan
 
 ### Practice: Angle
 
-Write a non-static method that calculates and returns the angle in degrees between a point and the positive x axis. Or more specifically, the angle of point p is the angle from the positive x axis to the line that goes through the origin and point p. Counterclockwise is positive. 
+Write a non-static method that calculates and returns the angle in degrees between a point and the positive x axis. Or more specifically, the angle of point p is the angle from the positive x axis to the line that goes through the origin and point p. Counterclockwise is positive.
 
-This will require trigonometry. If you're not familiar with basic trig, look at [this doc](/reference-sheets/Trigonometry.md).
+This will require trigonometry. If you're not familiar with basic trig, look at [this doc](/docs/sheets/Trigonometry.md).
 
 You can look up how to perform trigonometric functions in Java (the Java trig functions generally operate in radians, so you'll need to use `Math.toDegrees` and `Math.toRadians` to make sure you're being consistent about units).
 
@@ -319,6 +333,7 @@ Here's the header:
 ```java
 public double angle();
 ```
+
 ### Challenge: Rotation
 
 As a challenge, try to write a method that rotates a point by `theta` degrees. To think about what this means, imagine a circle centered around the origin of a plane that passes through point p. The rotation of point p by positive 30 degrees is another point on that circle, but the angle between this new point and the positive x axis should be 30 degrees bigger than the angle between p and the positive x axis.
@@ -334,13 +349,15 @@ Once you've written and tested that, try a general rotate method:
 ```java
 public Point rotate(double theta);
 ```
-# Polymorphism
+
+## Polymorphism
 
 Polymorphism is a concept in programming that means "many shapes" or "many forms." It refers to the idea that single thing (like a piece of code) can behave differently depending on how it's used. It allows a single function or operation or class or structure to work with different types of data, making programs more flexible and easier to manage.
 
 Think of it like how a tool like a wrench can work on different sizes of nuts and bolts. The wrench is one tool, but it can adjust to different tasks. Similarly, polymorphism lets code adjust and work in different situations without needing to be rewritten.
 
 In Java, there are several forms of polymorphism that we're going to talk about.
+
 ## Generics
 
 Generics are a form of what's called *parametric polymorphism*. They are perhaps the simplest polymorphism in Java - and you've actually already seen them used in several places.
@@ -348,6 +365,7 @@ Generics are a form of what's called *parametric polymorphism*. They are perhaps
 Generics allows you to write classes and methods that can work with any data type while maintaining type safety. For example, an array uses generics so that it can store any type of object—`Integer`, `String`, `Boolean` etc—instead of having a separate class for each type of array.
 
 Something to note: I used the capital words for each of those types. That's because generics must be object types. Non-capitalized types (i.e. int, boolean, etc) are not object types. Instead they are *primitives* (look it up if you're interested). But each of them does have a corresponding object type, so those are what we use for cases like this.
+
 ### ArrayLists
 
 Now, arrays are somewhat of a special case, and there are actually several differences between generics in arrays and other generics.
@@ -398,18 +416,19 @@ Now let's make an Integer ArrayList with 50 elements, all of which are 0:
 ```java
 ArrayList<Integer> intArr = new ArrayList<>();
 for (int i = 0; i < 50; i++) {
-	intArr.add(0);
+ intArr.add(0);
 }
 System.out.println(intArr.size());
 System.out.println(intArr.get(32));
 ```
+
 ### Grid
 
 Now that we've used the generics in the context of `ArrayLists`, let's try making our own class that uses generics.
 
  Specifically, we're going to make a `Grid` class. Each `Grid` will represent a square grid of objects. We will be able to access and change each object in a `Grid`, as well as convert a `Grid` into a string. And all of this will work regardless of what kind of object each `Grid` contains - we could have one String `Grid` and one Integer `Grid` and one Boolean `Grid`, and they would all work.
 
-We're going to store our grids as `ArrayLists` because using generic types with arrays gets complicated. 
+We're going to store our grids as `ArrayLists` because using generic types with arrays gets complicated.
 
 Okay, so here's how we'd make our grid class:
 
@@ -417,39 +436,39 @@ Okay, so here's how we'd make our grid class:
 import java.util.ArrayList;
 
 public class Grid<T> {
-	private final ArrayList<ArrayList<T>> grid;
-	public final int sideLength;
+ private final ArrayList<ArrayList<T>> grid;
+ public final int sideLength;
 
-	public Grid(int sideLength, T defaultVal) {
-		this.sideLength = sideLength;
-		this.grid = new ArrayList<ArrayList<T>>(sideLength);
-		for (int i = 0; i < sideLength; i++) {
-			grid.add(new ArrayList<>(sideLength));
-			for (int j = 0; j < sideLength; j++) {
-				grid.get(i).add(defaultVal);
-			}
-		}
-	}
+ public Grid(int sideLength, T defaultVal) {
+  this.sideLength = sideLength;
+  this.grid = new ArrayList<ArrayList<T>>(sideLength);
+  for (int i = 0; i < sideLength; i++) {
+   grid.add(new ArrayList<>(sideLength));
+   for (int j = 0; j < sideLength; j++) {
+    grid.get(i).add(defaultVal);
+   }
+  }
+ }
 
-	public T get(int row, int col) {
-		return grid.get(row).get(col);
-	}
+ public T get(int row, int col) {
+  return grid.get(row).get(col);
+ }
 
-	public void set(int row, int col, T val) {
-		grid.get(row).set(col, val);
-	}
+ public void set(int row, int col, T val) {
+  grid.get(row).set(col, val);
+ }
 
-	@Override
-	public String toString() {
-		String str = "";
-		for (ArrayList<T> row : grid) {
-			for (T element : row) {
-				str += element + " ";
-			}
-			str += "\n";
-		}
-		return str;
-	}
+ @Override
+ public String toString() {
+  String str = "";
+  for (ArrayList<T> row : grid) {
+   for (T element : row) {
+    str += element + " ";
+   }
+   str += "\n";
+  }
+  return str;
+ }
 }
 ```
 
@@ -471,11 +490,11 @@ The name of the class is not written simply as `Grid`, but as `Grid<T>`.  That i
 
 ___
 
-The `Grid` class has two fields: `grid` and `sideLength`. `sideLength` is simply the length of the grid (the number of values in each row and column). 
+The `Grid` class has two fields: `grid` and `sideLength`. `sideLength` is simply the length of the grid (the number of values in each row and column).
 
 `grid`, on the other hand, actually stores the grid and its elements. Its type is `ArrayList<ArrayList<T>>` because the grid is represented by a 2D arraylist, and the elements of the grid are of course of type `T`.
 
-A couple of things you may have noticed about `grid`: 
+A couple of things you may have noticed about `grid`:
 
 ___
 
@@ -494,14 +513,18 @@ In [Point](Java102.md#point), our coordinates were `public`, so anyone could acc
 All of our methods have also been public, which is what allows us to call them in `Main.java`.
 
 In our `Grid` class, we do want anyone to be able to see the values in our `grid` and set new values, so why would we make the `grid` a `private` field? Well, while we are okay with people setting values of the grid, we would not be okay with someone adding values or resetting an entire row. If `grid` was a `public final` variable, and we had a `Grid` object called `g`, we would be able to do both of those things:
+
 1. Adding new rows/columns
-```java
-g.grid.add(new ArrayList<T>);
-```
+
+   ```java
+   g.grid.add(new ArrayList<T>);
+   ```
+
 2. Resetting an entire row
-```java
-g.grid.set(0, new ArrayList<T>());
-```
+
+   ```java
+   g.grid.set(0, new ArrayList<T>());
+   ```
 
 Generally, when you only want people to be able to interact with field in specific ways (i.e. see or change individual entries in a 2D ArrayList), it is best to make that thing field `private` and have all interactions with it happen through `public` methods.
 
@@ -539,7 +562,7 @@ Here's how we can do that:
 static <T> String arrayToString(T[] arr) {
     String str = "[";
     for (int i = 0; i < arr.length - 1; i++) {
-		str += arr[i] + ", ";
+  str += arr[i] + ", ";
     }
     return str + arr[arr.length - 1] + "]";
 }
@@ -548,6 +571,7 @@ static <T> String arrayToString(T[] arr) {
 The key thing here is the `<T>` that comes before the return type. That says that for this function, we're going to be using some type `T`. The actual value of that type is determined anew each time the function is called (if it is called with a `String[]`, `T` is `String`).
 
 Test this out with some arrays!
+
 ### Practice: Diagonal
 
 Create a non-static method in `Grid` called `diagonal` that returns an `ArrayList` with the primary diagonal of the grid (from top left to bottom right). Here's the header:
@@ -567,142 +591,146 @@ Here's the header:
 ```java
 public static int maxSideLength();
 ```
+
 ## Interfaces
 
 Interfaces are a form of *subtype polymorphism*. Before I explain what interfaces are, let's build up a scenario in which you might want to use them.
+
 ### Circle
 
 We're going to make a `Circle` class. It'll be simple: just a center and a radius, and some methods to get basic values like its area or to do basic transformations.
 
 ```java
 public class Circle {
-	public final Point center;
-	public final double radius;
+ public final Point center;
+ public final double radius;
 
-	public Circle(Point center, double radius) {
-		this.center = center;
-		this.radius = radius;
-	}
+ public Circle(Point center, double radius) {
+  this.center = center;
+  this.radius = radius;
+ }
 
-	public double area() {
-		return Math.PI * Math.pow(radius, 2);
-	}
+ public double area() {
+  return Math.PI * Math.pow(radius, 2);
+ }
 
-	public double perimeter() {
-		return 2 * Math.PI * radius;
-	}
+ public double perimeter() {
+  return 2 * Math.PI * radius;
+ }
 
-	/** 
-	* @return Whether point p is inside of the circle.
-	*/
-	public boolean isInside(Point p) {
-		return Point.distance(center, p) < radius;
-	}
+ /** 
+ * @return Whether point p is inside of the circle.
+ */
+ public boolean isInside(Point p) {
+  return Point.distance(center, p) < radius;
+ }
 
-	/** 
-	* @return Whether point p part of/on the border of the circle.
-	*/
-	public boolean isOn(Point p) {
-		return Point.distance(center, p) == radius;
-	}
+ /** 
+ * @return Whether point p part of/on the border of the circle.
+ */
+ public boolean isOn(Point p) {
+  return Point.distance(center, p) == radius;
+ }
 
-	/** 
-	* @param x How much to translate the circle by in the + x direction.
-	* @param y How much to translate the circle by in the + y direction.
-	* @return The circle that results from the translation.
-	*/
-	public Circle translate(double x, double y) {
-		return new Circle(center.translateX(x).translateY(y), radius);
-	}
+ /** 
+ * @param x How much to translate the circle by in the + x direction.
+ * @param y How much to translate the circle by in the + y direction.
+ * @return The circle that results from the translation.
+ */
+ public Circle translate(double x, double y) {
+  return new Circle(center.translateX(x).translateY(y), radius);
+ }
 
-	/** 
-	* @return The circle that results from scaling by k.
-	*/
-	public Circle scale(double k) {
-		return new Circle(center, radius * k);
-	}
+ /** 
+ * @return The circle that results from scaling by k.
+ */
+ public Circle scale(double k) {
+  return new Circle(center, radius * k);
+ }
 
-	@Override
-	public String toString() {
-		return "(center: " + center + "; radius: " + radius + ")";
-	}
+ @Override
+ public String toString() {
+  return "(center: " + center + "; radius: " + radius + ")";
+ }
 }
 ```
 
 You may notice that I used a kind of comment that I haven't used before. These are called javadoc comments, and they're a great way to add commentary explaining how your methods work. When you're calling these methods from `Main` and you hover over the names of the methods, you should see the comments.
 
 Go back to you `Main` file and play around with this class a little bit. Make some circles, get their areas, check if certain points are on or inside of the circles, make transformations.
+
 ### Square
 
 Now we're going to make a `Square` class. Instead of a center and a radius, it will have the bottom left corner and the side length. (The sides of the square are necessarily parallel to the x and y axes). `Square` will have all of the same methods as `Circle`, as well as a method that returns an array of the corners. I will write some of the methods for you, and leave some blank for you to write.
 
 ```java
 public class Square {
-	public final Point corner;
-	public final double sideLength;
+ public final Point corner;
+ public final double sideLength;
 
-	/**
-	* @param corner The bottom left corner of the square
-	* @param sideLength
-	*/
-	public Square(Point corner, double sideLength) {
-		this.corner = corner;
-		this.sideLength = sideLength;
-	}
+ /**
+ * @param corner The bottom left corner of the square
+ * @param sideLength
+ */
+ public Square(Point corner, double sideLength) {
+  this.corner = corner;
+  this.sideLength = sideLength;
+ }
 
-	public double area() {
-		// write this
-	}
-	
-	public double perimeter() {
-		// write this
-	}
-	
-	/** 
-	* @return Whether point p is inside of the square.
-	*/
-	public boolean isInside(Point p) {
-		double xDist = p.x - corner.x;
-		double yDist = p.y - corner.y;
-		return 0 < xDist && xDist < sideLength &&
-			   0 < yDist && yDist < sideLength;
-	}
+ public double area() {
+  // write this
+ }
+ 
+ public double perimeter() {
+  // write this
+ }
+ 
+ /** 
+ * @return Whether point p is inside of the square.
+ */
+ public boolean isInside(Point p) {
+  double xDist = p.x - corner.x;
+  double yDist = p.y - corner.y;
+  return 0 < xDist && xDist < sideLength &&
+      0 < yDist && yDist < sideLength;
+ }
 
-	/** 
-	* @return Whether point p part of/on the border of the square.
-	*/
-	public boolean isOn(Point p) {
-		// write this
-	}
-	
-	/** 
-	* @param x How much to translate the sqaure by in the + x direction.
-	* @param y How much to translate the squarer by in the + y direction.
-	* @return The sqaure that results from the translation.
-	*/
-	public Square translate(double x, double y) {
-		// write this
-	}
+ /** 
+ * @return Whether point p part of/on the border of the square.
+ */
+ public boolean isOn(Point p) {
+  // write this
+ }
+ 
+ /** 
+ * @param x How much to translate the square by in the + x direction.
+ * @param y How much to translate the squarer by in the + y direction.
+ * @return The square that results from the translation.
+ */
+ public Square translate(double x, double y) {
+  // write this
+ }
 
-	/** 
-	* @return The sqaure that results from scaling the side length and maintaining the bottom left corner
-	*/
-	public Square scale(double k) {
-		return new Square(corner, sideLength * k);
-	}
+ /** 
+ * @return The square that results from scaling the side length and maintaining the bottom left corner
+ */
+ public Square scale(double k) {
+  return new Square(corner, sideLength * k);
+ }
 
-	public Point[] corners() {
-		// write this
-	}
+ public Point[] corners() {
+  // write this
+ }
 
-	@Override
-	public String toString() {
-		return "(corner: " + corner + "; side length: " + sideLength + ")";
-	}
+ @Override
+ public String toString() {
+  return "(corner: " + corner + "; side length: " + sideLength + ")";
+ }
 }
 ```
 
 Fill in the missing functions, and experiment with some squares in `Main.java`.
+
 ### SumArea
 
 Okay, so now I want to have, in the `Main.java` file, an array of shapes, both `Square` and `Circle` objects, and to have a function that finds the sum of the areas of all the shapes.
@@ -711,11 +739,11 @@ In untyped pseudocode (like in Programming101), here's how we might loop through
 
 ```java
 def sumAreas(var shapes) {
-	var sum = 0
-	for (var shape : shapes) {
-		sum += shape.area()
-	}
-	return sum
+ var sum = 0
+ for (var shape : shapes) {
+  sum += shape.area()
+ }
+ return sum
 }
 ```
 
@@ -755,11 +783,11 @@ Okay, let's write our `sumArea` method in `Main.java`:
 
 ```java
 static double sumArea(Shape[] shapes) {
-	double sum = 0;
-	for (Shape shape : shapes) {
-		sum += shape.area();
-	}
-	return sum;
+ double sum = 0;
+ for (Shape shape : shapes) {
+  sum += shape.area();
+ }
+ return sum;
 }
 ```
 
@@ -767,25 +795,26 @@ Now test it out in the `main` method!
 
 ```java
 Shape[] shapes = {new Circle(new Point(1.8, -20), 2), 
-				  new Square(new Point(100, 2.1), 5.4),
-				  new Circle(new Point(0, 0), 1),
-				  new Circle(new Point(4, 9.123), 98.32),
-				  new Square(new Point(-321, 0), 0.02)};
+      new Square(new Point(100, 2.1), 5.4),
+      new Circle(new Point(0, 0), 1),
+      new Circle(new Point(4, 9.123), 98.32),
+      new Square(new Point(-321, 0), 0.02)};
 System.out.println(sumArea(shapes));
 ```
 
 You should get around $30414.09$.
+
 ### ScaleAll
 
 Next, lets write a static method in main that takes a `double` and `Shape[]` and returns a new `Shape[]`, but with each of the shapes scaled by the `double`.
 
 ```java
 static Shape[] scaleAll(Shape[] shapes, double k) {
-	Shape[] scaled = new Shape[shapes.length];
-	for (int i = 0; i < shapes.length; i++) {
-		scaled[i] = shapes[i].scale(k);
-	}
-	return scaled;
+ Shape[] scaled = new Shape[shapes.length];
+ for (int i = 0; i < shapes.length; i++) {
+  scaled[i] = shapes[i].scale(k);
+ }
+ return scaled;
 }
 ```
 
@@ -793,12 +822,12 @@ The only problem with this is that it `Shape` objects only have `area` methods. 
 
 ```java
 public interface Shape {
-	public double area();
+ public double area();
 
-	/** 
-	* @return The shape that results from scaling by k.
-	*/
-	public Shape scale(double k);
+ /** 
+ * @return The shape that results from scaling by k.
+ */
+ public Shape scale(double k);
 }
 ```
 
@@ -814,11 +843,11 @@ Now, we are losing some information here. With this `Shape` interface, I could d
 
 ```java
 public class FakeShape implements Shape {
-	public double area() { return 0; }
+ public double area() { return 0; }
 
-	public Square scale(double k) { 
-		return new Square(new Point(0, 0), 1); 
-	}
+ public Square scale(double k) { 
+  return new Square(new Point(0, 0), 1); 
+ }
 }
 ```
 
@@ -827,38 +856,40 @@ I've created a new `Shape` class called `FakeShape`, but unlike `Circle` and `Sq
 But we're just going to ignore that and trust ourselves to write reasonable code. (This can also cause other minor issues that you're unlikely to run into, but that's how this language goes).
 
 Test out the the `scaleAll` method in `main`! (It may take a little creativity since you can't just print out an array and see its contents).
+
 ### Shape
 
 Anyway, we've now added `scale` to our `Shape` interface, but we don't have to stop there. There are more methods that all shapes (or at least the shapes in this guide) have. So let's add them all! Here's the new interface that defines what it means to be a `Shape`:
 
 ```java
 public interface Shape {
-	public double area();
+ public double area();
 
-	public double perimeter();
+ public double perimeter();
 
-	/** 
-	* @return Whether point p is inside of the shape.
-	*/
-	public boolean isInside(Point p);
-	/** 
-	* @return Whether point p part of/on the border of the shape.
-	*/
-	public boolean isOn(Point p);
+ /** 
+ * @return Whether point p is inside of the shape.
+ */
+ public boolean isInside(Point p);
+ /** 
+ * @return Whether point p part of/on the border of the shape.
+ */
+ public boolean isOn(Point p);
 
-	/** 
-	* @param x How much to translate the shape by in the + x direction.
-	* @param y How much to translate the shape by in the + y direction.
-	* @return The shape that results from the translation.
-	*/
-	public Shape translate(double x, double y);
+ /** 
+ * @param x How much to translate the shape by in the + x direction.
+ * @param y How much to translate the shape by in the + y direction.
+ * @return The shape that results from the translation.
+ */
+ public Shape translate(double x, double y);
 
-	/** 
-	* @return The shape that results from scaling by k.
-	*/
-	public Shape scale(double k);
+ /** 
+ * @return The shape that results from scaling by k.
+ */
+ public Shape scale(double k);
 }
 ```
+
 ### Practice: fromPoints
 
 In the `Circle` class, create a static method that generates a `Circle` from three points that are on the edge of the circle (if you don't remember and can't figure out how to do this, look it up).
@@ -866,39 +897,42 @@ In the `Circle` class, create a static method that generates a `Circle` from thr
 ```java
 public static Circle fromPoints(Point p1, Point p2, Point p3);
 ```
+
 ### Practice: Right Triangle
 
 Create a `RightTriangle` class that implements `Shape`. The sides of the triangle are necessarily parallel to the x and y axes, but the right angle can be in any corner (top right, bottom left, etc). You can store a corner and two side lengths (or any other combination of fields that describe a right triangle).
 
 In addition to all the methods in `Shape`, `RightTriangle` should have a static method called `similar` that takes two `RightTriangle` objects and returns whether or not they are similar.
+
 ## Inheritance
 
 Inheritance is a form of polymorphism in Java that allows a class to inherit properties and methods from another class. We're not going to spend much time on this because inheritance is rarely the best solution to a problem and generally introduces more issues than it solves. In most cases, interfaces or generics provide simpler and more elegant solutions. Understanding inheritance will be most useful for understanding and interacting with the infrastructure that has already been written by other people.
 
 Inheritance is a way of having classes that *inherit* the traits (methods and fields) of other classes. If class `B` extends (or inherits from) class `A`, then a `B` object will also be an example of an `A` object and can b treated as such. This is similar to our interfaces, where `Circle` and `Square` were examples of `Shape` objects, with two main differences:
-1.  `A` is just an ordinary class. You can't just make a new `Shape` -- that doesn't mean anything. you have to make a `Square` or `Circle`. But you *can* just make a new `A`.
+
+1. `A` is just an ordinary class. You can't just make a new `Shape` -- that doesn't mean anything. you have to make a `Square` or `Circle`. But you *can* just make a new `A`.
 2. The `A` class has methods with real implementations (including a constructor) and fields with values. It isn't just a template for its child classes (classes that inherit from it) to follow. `B` will be able to call methods from `A`. When you create a new `B`, the constructor for `B` will call the constructor for `A`. If you have an `B` object called `b`, you can call the methods that are defined in `A` on that object.
 
 Let's add some code to go along with this example.
 
 ```java
 public class A {
-	protected final double field1;
-	protected final double field2;
+ protected final double field1;
+ protected final double field2;
 
-	public A(double field1, double field2) {
-		System.out.println("the constructor of A has been called");
-		this.field1 = field1;
-		this.field2 = field2;
-	}
+ public A(double field1, double field2) {
+  System.out.println("the constructor of A has been called");
+  this.field1 = field1;
+  this.field2 = field2;
+ }
 
-	public void method1() {
-		System.out.println("method 1 of A has been called");
-	}
-	
-	public void method2() {
-		System.out.println("method 2 of A has been called");
-	}
+ public void method1() {
+  System.out.println("method 1 of A has been called");
+ }
+ 
+ public void method2() {
+  System.out.println("method 2 of A has been called");
+ }
 }
 ```
 
@@ -906,22 +940,22 @@ So A is just a very simple class with two fields and two methods. The only thing
 
 ```java
 public class B extends A {
-	public final String bField;
-	
-	public B(double field1and2, String bField) {
-		super(field1and2, field1and2);
-		this.bField = bField;
-		System.out.println("the constructor of B has been called");
-	}
+ public final String bField;
+ 
+ public B(double field1and2, String bField) {
+  super(field1and2, field1and2);
+  this.bField = bField;
+  System.out.println("the constructor of B has been called");
+ }
 
-	@Override 
-	public void method2() {
-		System.out.println("method 2 of B has been called");
-	}
+ @Override 
+ public void method2() {
+  System.out.println("method 2 of B has been called");
+ }
 
-	public double field() {
-		return super.field1;
-	}
+ public double field() {
+  return super.field1;
+ }
 }
 ```
 
@@ -998,11 +1032,12 @@ System.out.println(b.bField + " " + bInDisguise.bField);
 What should that print? Does it work?
 
 What will actually happen in this case is that you'll get a compile-time error. Why? Well, even though we know that the value of `bInDisguise` is a `B` object, the type of the variable is `A`, so the computer will always treat it only as an `A` object. And `A` doesn't have a `bField`, so you can't access the `bField` of `bInDisguise`, because it's being treated as an `A`.
+
 ### Object class
 
 You have actually seen `@Override` in one other context in these guides: `toString` methods.
 
-When we write a `toString` method for a class, we use the `@Override` to show that we are overriding the default method implementation. But what are overriding exactly? With `B`, we were overriding the method defined in `A`. But our `Circle` class didn't inherit anything, did it? 
+When we write a `toString` method for a class, we use the `@Override` to show that we are overriding the default method implementation. But what are overriding exactly? With `B`, we were overriding the method defined in `A`. But our `Circle` class didn't inherit anything, did it?
 
 Well, actually it did. In fact, every single class in Java extends a class called `Object`.  In the case of `Circle`, it did not extend any other classes, so its direct parent class was by default `Object` --- just like if we had written:
 
@@ -1034,9 +1069,9 @@ public class LibraryItem {
         this.itemId = itemId;
     }
 
-	public boolean available() {
-		return !isCheckedOut;
-	}
+ public boolean available() {
+  return !isCheckedOut;
+ }
 
     public void checkOut() {
         isCheckedOut = true;
@@ -1059,10 +1094,10 @@ public class Book extends LibraryItem {
         this.pageCount = pageCount;
     }
 
-	@Override
+ @Override
     public String toString() {
         return "Book: " + title + " by " + author + ", " + 
-		        pageCount + " pages";
+          pageCount + " pages";
     }
 }
 ```
@@ -1084,6 +1119,7 @@ public class DVD extends LibraryItem {
 ```
 
 Read through this example carefully until you understand what's happening, and then complete the practice problems.
+
 ### Practice: returnAll
 
 Make a static method in `Main` that takes an array of `LibraryItem` objects and returns them all to the library.
@@ -1093,6 +1129,7 @@ public static void returnAll(LibraryItem[] items) {
 ```
 
 Test your method when you're done!
+
 ### Practice: availableItems
 
 Make a static method in `Main` that takes an array of `LibraryItem` objects and outputs an `ArrayList` of `LibraryItem` objects with all of the available items from the input array.
@@ -1100,7 +1137,8 @@ Make a static method in `Main` that takes an array of `LibraryItem` objects and 
 ```java
 public static ArrayList<LibraryItem> availableItems(LibraryItem[] items) {
 ```
-# Glossary
+
+## Glossary
 
 | **word/phrase** | **meaning**                                 |
 | --------------- | ------------------------------------------- |

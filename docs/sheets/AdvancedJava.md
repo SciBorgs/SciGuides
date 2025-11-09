@@ -1,18 +1,23 @@
-# Contents
+# Advanced Java
+
+## Contents
 
 - Enums
 - Records
-- [Lambdas & Functional Interfaces](#lambdas-functional-interfaces)
+- [Lambdas & Functional Interfaces](#lambdas--functional-interfaces)
 - Switch Expressions
-# Enums
+
+## Enums
 
 coming soon!
-# Records
+
+## Records
 
 coming soon!
-# Lambdas & Functional Interfaces
 
-## Functional Interfaces 
+## Lambdas & Functional Interfaces
+
+## Functional Interfaces
 
 ### Example: filtering a list
 
@@ -56,22 +61,23 @@ public interface Function<T, R> {
 ```java
 @FunctionalInterface
 public interface Function<T, R> {
-	R apply(T t);
+ R apply(T t);
 }
 ```
 
 The `apply` method has an input of type `T` and an output of type `R`. So if you have a variable `condition` of type `Function<Integer, Boolean>`, you can call `condition.apply(5)` and get a boolean in return.
 
 That is how we can write our `filter` method (you can also use the `Predicate` interface)!
+
 ```java
 public static <T> List<T> filter(List<T> l, Function<T, Boolean> condition) {
-	ArrayList<T> filtered = new ArrayList<>();
-	for (T element : l) {
-		if (condition.apply(element)) {
-			filtered.add(element);
-		}
-	}
-	return filtered;
+ ArrayList<T> filtered = new ArrayList<>();
+ for (T element : l) {
+  if (condition.apply(element)) {
+   filtered.add(element);
+  }
+ }
+ return filtered;
 }
 ```
 
@@ -84,7 +90,7 @@ The notation for referring to methods as functional interfaces is:
 ```java
 // for static methods
 Class::method
-// for non-static methoods
+// for non-static methods
 object::method
 ```
 
@@ -93,26 +99,29 @@ In this case, `isEven` is definitely a static method. Let's say it's inside of a
 ```java
 List<Integer> filtered = filter(intList, Foo::isEven);
 ```
+
 ### Other functional interfaces
 
 Here are some other useful functional interfaces to know:
--  `Runnable`
-	- method: `void run()`
-	- no inputs, no outputs
+
+- `Runnable`
+  - method: `void run()`
+  - no inputs, no outputs
 - `Supplier<T>`
-	- method: `T get()`
-	- no inputs, output of type `T`
+  - method: `T get()`
+  - no inputs, output of type `T`
 - `Consumer<T>`
-	- method: `void accept(T t)`
-	- input of type `T`, no output
+  - method: `void accept(T t)`
+  - input of type `T`, no output
 - `BooleanSupplier`
-	- method: `boolean getAsBoolean()`
-	- works like a `Supplier<Boolean>`, but more efficient
+  - method: `boolean getAsBoolean()`
+  - works like a `Supplier<Boolean>`, but more efficient
 - `DoubleSupplier`
-	- method: `double getAsDouble()`
-	- works like a `Supplier<Double>`, but more efficient
+  - method: `double getAsDouble()`
+  - works like a `Supplier<Double>`, but more efficient
 
 There are many others as well, and if you ever need a functional interface that doesn't exist, you can make your own!
+
 ## Lambdas
 
 We've talked about functional interfaces, and how we can use them to pass around methods that belong to a class or object. Now we're going to talk about a different way of generating instances of functional interfaces.
@@ -120,6 +129,7 @@ We've talked about functional interfaces, and how we can use them to pass around
 A *lambda expression* is a concept in functional programming (you don't need to know what that means) that refers to an anonymous function, or a function without a name. In Java, lambdas are essentially a notation for creating implementations of functional interfaces.
 
 Here's the basic, oversimplified notation:
+
 ```java
 inputs -> output
 ```
@@ -154,12 +164,13 @@ If your lambda expression has multiple lines, you use curly braces. So for insta
 
 ```java
 i -> { 
-		System.out.println(i);
-		return i * 2; 
-	  }
+  System.out.println(i);
+  return i * 2; 
+   }
 ```
 
 Note that when you have curly braces, if your lambda has an output you need to write `return`!
-# Switch Expressions
+
+## Switch Expressions
 
 coming soon!

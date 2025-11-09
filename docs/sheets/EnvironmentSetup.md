@@ -1,18 +1,20 @@
-# Introduction
+# Environment Setup
 
 This is a guide to setting up your computer. It includes instructions on organizing files locally, setting up git and Github, setting up an environment to code in Java, and setting up an environment to write robotics-specific code.
+
 ## Goals
 
 - [Create code folder](#local-code-organization)
 - [Set up git & Github](#git)
-	- Make sure git is installed
-	- Make Github account
-	- Add PAT
+  - Make sure git is installed
+  - Make Github account
+  - Add PAT
 - [Set up regular VSCode](#visual-studio-code-not-wpilib)
 - [Set up WPILib VSCode](#wpilib)
-# Local Code Organization
 
-All of the files on your computer are organized into a tree of *directories*, or folders. When you use Finder or File Explorer, you are navigating through those directories. 
+## Local Code Organization
+
+All of the files on your computer are organized into a tree of *directories*, or folders. When you use Finder or File Explorer, you are navigating through those directories.
 
 Most of the relevant files on your computer are inside of your home directory. The top level contents of your home directory include Downloads, Documents, Desktop, Applications, and other directories that you should be familiar with.
 
@@ -25,126 +27,159 @@ Another option is to just make one directory for robotics, and if you ever want 
 You can do whichever of those you feel more comfortable with. Or if there's another way you want to organize your code, that's fine -- as long as it's all in its own directory and not on OneDrive or iCloud!
 
 Next, you need to decide where you want to put your code/robotics directory. You really only have two reasonable options for this:
+
 1. Directly in your home directory
 2. Inside Documents
 If you're coding a lot, I'd definitely recommend number 1. Otherwise, either way is fine.
 
 Once you've decided how you want to organize your code on your computer, you have a couple options for how you're actually going to make the directory:
+
 ## Finder (Mac) or File Explorer (Windows)
 
-Open Finder/File Explorer. 
+Open Finder/File Explorer.
 
 If you want to put your folder in Documents, open Documents.
 
 If you want to put your folder in the home directory, go to the home directory
+
 - for Mac: Command + Shift + H
 - for Windows: go to the location bar and enter %USERPROFILE%
 
 Once you're in the right place, create a new folder (right click, press *new folder*). Give your folder a descriptive name, and make sure it has ***no spaces***.
 
 Make sure your folder is easily accessible
+
 - for Mac: drag your folder over to the sidebar
 - for Windows: save your folder to quick access
+
 ## Command Line (Mac, Windows, Linux)
 
 Open command line.
+
 - for Mac or Linux: open Terminal
 - for Windows: open PowerShell
 
 For each of the next steps, I'm going to give you a line to write in the console that you just pulled up, and explain what it does.
 
 Navigate to your home directory (you're probably there already by default, but this will make sure):
-```
+
+```shell
 cd
 ```
 
 Only if you want your directory to be in Documents:
-```
+
+```shell
 cd Documents
 ```
 
 Make the directory:
-```
+
+```shell
 mkdir <name>
 ```
+
 Replace \<name> with whatever you want your directory to be called. So if you wanted the name to be "code", you'd write `mkdir code`. Whatever you do, make sure your name has no spaces!
 
 Lastly, I highly recommend you go to whatever file navigator you use (Finder, File Explorer, etc) and pin the folder you made so that it's easily accessible. If you're not sure how to do that, read the [Finder/File Explorer section](#finder-mac-or-file-explorer-windows).
-# Git
+
+## Git
 
 Git is a distributed version control system that helps you track changes in your code over time. It allows multiple people to work on the same project simultaneously and merge their changes seamlessly. Git is essential for collaborative coding and is widely used in software development, including robotics projects.
+
 ## Checking if Git is installed
 
 Before installing Git, let's check if it's already installed on your system.
-### For Mac and Linux:
+
+**For Mac and Linux:**
 
 1. Open Terminal
 2. Type the following command and press Enter:
-   ```
+
+   ```shell
    git --version
    ```
+
 3. If Git is installed, you'll see a version number (e.g., "git version 2.30.1")
 4. If you see "command not found", you'll need to install Git
-### For Windows:
+
+**For Windows:**
 
 1. Open PowerShell
 2. Type the following command and press Enter:
-   ```
+
+   ```shell
    git --version
    ```
+
 3. If Git is installed, you'll see a version number
 4. If you see an error message, you'll need to install Git
+
 ## Installing Git
 
 If Git is not installed on your system, follow these steps:
-### For Mac:
 
-1. Install Homebrew if you haven't already (visit https://brew.sh/ for instructions)
+**For Mac:**
+
+1. Install Homebrew if you haven't already (visit [the Homebrew website](https://brew.sh/) for instructions)
 2. Open Terminal
 3. Run the following command:
-   ```
+
+   ```shell
    brew install git
    ```
-### For Windows:
 
-1. Visit https://git-scm.com/download/win
+**For Windows:**
+
+1. Visit [the Git Website](https://git-scm.com/download/win)
 2. Download the latest version for your system (64-bit or 32-bit)
 3. Run the installer and follow the prompts (you can use the default settings)
-### For Linux:
+
+**For Linux:**
 
 For Ubuntu or Debian-based distributions:
+
 1. Open Terminal
 2. Run the following commands:
-   ```
+
+   ```shell
    sudo apt update
    sudo apt install git
    ```
 
 For other distributions, consult your package manager's documentation.
+
 ## Creating a GitHub Account
 
 GitHub is a web-based platform that uses Git for version control. It's where you'll store your code repositories online.
 
-1. Visit https://github.com/
+1. Visit [the Github website](https://github.com/)
 2. Click "Sign up" in the top right corner
 3. Follow the prompts to create your account
+
 ## Configuring Git
 
 After installing Git and creating a GitHub account, you need to configure Git with your name, email, and preferred code editor:
 
 1. Open Terminal (Mac/Linux) or PowerShell (Windows)
 2. Set your name:
-   ```
+
+   ```shell
    git config --global user.name "Your Name"
    ```
+
 3. Set your email (use the same email as your GitHub account):
-   ```
+
+   ```shell
    git config --global user.email "youremail@example.com"
    ```
+
 4. Set your preferred code editor (for our purposes, this will be VSCode):
-   ```
+
+   ```shell
    git config --global core.editor "code --wait"
    ```
+
 ## Authentication: Personal Access Token (PAT)
 
 GitHub now requires a Personal Access Token for authentication instead of a password when using Git from the command line. Here's how to set it up:
@@ -158,29 +193,37 @@ GitHub now requires a Personal Access Token for authentication instead of a pass
 7. Copy the generated token immediately (you won't be able to see it again)
 8. Open Terminal (Mac/Linux) or PowerShell (Windows)
 9. Run the following command:
-```
+
+```shell
 git ls-remote https://github.com/fake-username/fake-repo-name.git
 ```
-10. When prompted for your password, enter your PAT instead.
-11. If you got a "Repository not found" error, everything went right! If you get If you get an "Authentication failed" error, double-check your PAT and try again.
-12. On most modern systems, Git will automatically store your credentials after you've entered them once. If, however, you find that you're being asked for your PAT repeatedly, you may need to set up a credential helper:
+
+When prompted for your password, enter your PAT instead.
+
+If you got a "Repository not found" error, everything went right! If you get If you get an "Authentication failed" error, double-check your PAT and try again.
+
+On most modern systems, Git will automatically store your credentials after you've entered them once. If, however, you find that you're being asked for your PAT repeatedly, you may need to set up a credential helper:
 
 For Mac/Linux:
-```
+
+```shell
 git config --global credential.helper store
 ```
+
 For Windows:
-```
+
+```shell
 git config --global credential.helper wincred
 ```
 
 Note: There are other authentication methods available, such as SSH keys, but PAT is recommended for its simplicity and security. If you're interested in exploring other options, you can refer to GitHub's documentation on authentication.
-# Visual Studio Code (not WPILib)
+
+## Visual Studio Code (not WPILib)
 
 This is going to be for writing non-robotics code. For instance, you can use regular VSC for [Java101](tbd) and [Java102](tbd). If you'd rather not have this on your computer, feel free to skip this step.
 
 1. Download the latest version of the [Java Development Kit](https://www.oracle.com/java/technologies/downloads/) (JDK). This is what will allow you to actually develop and run code in Java.
-	1. Once you've downloaded an installer, click on it and follow the instructions.
+   - Once you've downloaded an installer, click on it and follow the instructions.
 2. [Download VSCode here](https://code.visualstudio.com/download).
 3. Once VSCode is installed, open it.
 4. Install the Java Extension Pack:
@@ -192,13 +235,14 @@ This is going to be for writing non-robotics code. For instance, you can use reg
     - In the Extensions sidebar, search for "Git Graph"
     - Look for the extension by mhutchie and click "Install"
     - This extension provides a graphical view of your Git repository, which can be very helpful when working with version control
-# WPILib
+
+## WPILib
 
 1. [Follow this guide to install WPILib](https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-2/wpilib-setup.html) (we use Java, so ignore the additional C++ installation)
-   1. If you have a school laptop and cannot find WPILib VSCode after install, refer to the [FAQ](#faq).
+   - If you have a school laptop and cannot find WPILib VSCode after install, refer to the [FAQ](#faq).
 2. Optional: Change the WPILib VSCode icon to distinguish from regular VSCode
-	1. Download [the WPILib logo](images/wpilib.png)
-	2. Replace the icon:
+   - Download [the WPILib logo](images/wpilib.png)
+   - Replace the icon:
         - For Windows:
             1. Right-click on the WPILib VSCode shortcut
             2. Select "Properties"
@@ -221,7 +265,7 @@ This is going to be for writing non-robotics code. For instance, you can use reg
     - Install "Test Runner for Java" by Microsoft
     - Optionally: Install "Git Graph" by mhutchie
 
-# A Secret
+## A Secret
 
 I didn't write the [git section](#git). I also didn't write several parts of the [VSCode](#visual-studio-code-not-wpilib) and [WPILib](#wpilib) sections. Instead, I prompted [Claude](claude.ai) to do it for me.
 
@@ -229,7 +273,7 @@ The moral of this story is that chat bots like Claude and ChatGPT are fantastic 
 
 [Go here](tbd) for more tips on how to use (and how not to use) chat bots and AI for programming!
 
-# FAQ
+## FAQ
 
 - My VSCode terminal won't recognize Git!
   - Refer to the [git configuration section](#configuring-git), particularly about setting preferred code editor.

@@ -15,11 +15,11 @@ Head over to [the Github page for WPILIB®](https://github.com/wpilibsuite/allwp
 
 > If you are unsure of what to download, no worries! Search up: **"How do I tell what my operating system is?"**. If you are on a **Mac®**, then you also should look up **"How do I tell what processor I have?"** in order to pick between **ARM** and **Intel® (aka. x86)**. ARM chips are the ones **made by Apple®**, while Intel chips are (surprisingly) the ones **made by Intel®**. If you are using Linux and are wondering about what processor you have: **I'm not sure what else to tell you**.
 
-If you are on the **Windows® Operating System** you will need to **mount** the **ISO file** after it has been downloaded. 
+If you are on the **Windows® Operating System** you will need to **mount** the **ISO file** after it has been downloaded.
 
 1. **Go to File Explorer.**
 2. **Right-click on the File**
-3. **Click 'Mount'.** 
+3. **Click 'Mount'.**
 
 After that, go to File Explorer again and find the **newly mounted folder** (it will probably be next to your **Local Disk C: Drive** in the sidebar). Once you have found this: **Run the WPILIB® Installer**.
 
@@ -39,7 +39,7 @@ Head over to [the official Github website](https://github.com) and **sign up** w
 
 **Open up the Command Line**. If you are unsure about how to do this, **just look it up**! (it is different for each operating system). **Run these 3 commands to configure Git**. Make sure to **swap out** "[Your Name]" with your Github username and "[Your Email]" with your Github-associated email address.
 
-``` 
+```shell
 git config --global user.name "[Your Name]" 
 git config --global user.email "[Your Email]"
 git config --global core.editor "code --wait"
@@ -56,9 +56,11 @@ git config --global core.editor "code --wait"
 7. **Copy the generated token** immediately (you won't be able to see it again)
 8. Open Terminal once again
 9. **Run** the following command:
-```
-git ls-remote https://github.com/fake-username/fake-repo-name.git
-```
+
+   ```shell
+   git ls-remote https://github.com/fake-username/fake-repo-name.git
+   ```
+
 10. When prompted for your password, **enter your PAT instead**.
 
 If you got a "Repository not found" error, **everything went right!** If you get If you get an "Authentication failed" error, **double-check your PAT and try again**.
@@ -69,16 +71,14 @@ How to setup a credential helper:
 
 **For Mac:**
 
-```
+```shell
 git config --global credential.helper store
 ```
 
 **For Windows:**
 
-```
+```shell
 git config --global credential.helper wincred
 ```
 
 >That is all! Farewell young aspiring Sciborgs programmer! Head on to our **[Intro To Java Guide](IntroToJava.md)** if you'd like.
-
-

@@ -25,40 +25,43 @@ Commands represent robot actions with the hardware. They should be used for acti
 Generally when we create commands, we do so using preexisting types of commands, and a set of helpful static methods in a class called `Commands` that return Commands. (Theoretically, you could also make a whole class for each command, but that's almost never a good idea).
 
 Before we talk about types of commands, let's quickly go over what the technical definition of a Command is. The class `Command` is what all Command classes inherit from, and it has four primary methods that different Command classes override in order to define their behavior:
+
 - `public void initialize()`
-	- Called when the command is started
+  - Called when the command is started
 - `public void execute()`
-	- Called every tick (every 0.02 seconds) while the command is running
+  - Called every tick (every 0.02 seconds) while the command is running
 - `public void end(boolean interrupted)`
-	- Called when the command is ended
-	- Commands can end either because their end condition is met or because they are interrupted by another command on the same subsystem. `end` takes whether or not the command has been interrupted as an input, so that you can change the end behavior of a command based on whether it reached its end condition.
+  - Called when the command is ended
+  - Commands can end either because their end condition is met or because they are interrupted by another command on the same subsystem. `end` takes whether or not the command has been interrupted as an input, so that you can change the end behavior of a command based on whether it reached its end condition.
 - `public boolean isFinished()`
-	- This is the end condition for a command. It is called each tick after a command has been executed, and if it is `isFinished` returns `true`, the command is un-scheduled and `end(false)` is called (`false` because the command has not been interrupted).
+  - This is the end condition for a command. It is called each tick after a command has been executed, and if it is `isFinished` returns `true`, the command is un-scheduled and `end(false)` is called (`false` because the command has not been interrupted).
 
 I used the passive voice for these explanations, but just to be clear, all of these methods are being called by the `CommandScheduler`, which is in turn called periodically by `Robot`.
 
 So, just to summarize the progression:
+
 1. A command `c` is scheduled
 2. `c.initialize()` is called
 3. Each tick until the command is over:
-	1. `c.execute()` is called
-	2. `c.isFinished()` is called, and if it returns `true` the command is over
+   1. `c.execute()` is called
+   2. `c.isFinished()` is called, and if it returns `true` the command is over
 4. `c.end(interrupted)` is called
 
 Commands also have a set of subsystems that they require.
 
 Now, let's go over a two of the most common types of Commands, how they work, and how to make them:
+
 - Run command (`RunCommand`)
-	- `isFinished()` always returns `false`, so it keeps on running forever until it is interrupted.
-	- Constructor: `RunCommand(Runnable toRun, Subsystem... requirements)`
-		- toRun will be run in `execute()`
-		- `requirements` is all of the subsystems that the command requires. The `...` means that you can just add as many as you want.
-	- How to create using `Commands`: `Commands.run(Runnable action, Subsystem... requirements)`
-	- Example: `Command toToOrigin = Commands.run(() -> drive.goTo(0, 0), drive)`
+  - `isFinished()` always returns `false`, so it keeps on running forever until it is interrupted.
+  - Constructor: `RunCommand(Runnable toRun, Subsystem... requirements)`
+    - toRun will be run in `execute()`
+    - `requirements` is all of the subsystems that the command requires. The `...` means that you can just add as many as you want.
+  - How to create using `Commands`: `Commands.run(Runnable action, Subsystem... requirements)`
+  - Example: `Command toToOrigin = Commands.run(() -> drive.goTo(0, 0), drive)`
 - Run once command (`InstantCommand`)
-	- `isFinished` always returns `true`, so it stops immediately after just one execution
-	- How to create using `Commands`: `Commands.runOnce(Runnable action, Subsystem... requirements)`
-	- Example: `Command stop = Commands.runOnce(drive::stop, drive)`
+  - `isFinished` always returns `true`, so it stops immediately after just one execution
+  - How to create using `Commands`: `Commands.runOnce(Runnable action, Subsystem... requirements)`
+  - Example: `Command stop = Commands.runOnce(drive::stop, drive)`
 
 We then build on commands like these using various methods that allow us to combine or modify different commands.
 
@@ -98,7 +101,7 @@ Commands can also be accessed through [WPILib's `Commands`](https://github.wpili
 
 ## Triggers
 
-A big part of the command-based ecosystem are triggers. Users can bind commands and `Runnable` actions to triggers, which are run in specified ways when the trigger is activated. 
+A big part of the command-based ecosystem are triggers. Users can bind commands and `Runnable` actions to triggers, which are run in specified ways when the trigger is activated.
 
 Common operations with trigger commands include, but are not limited to:
 

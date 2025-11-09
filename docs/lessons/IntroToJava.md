@@ -18,16 +18,15 @@ If you are curious on **what apps you're gonna need to get started**, head over 
 
 ## What is a program?
 
-A **program** is **an ordered list of instructions** that are done **one-after-the-other** by the computer. We write **programs** with **code**. Code is **written** in text with a special form of **grammar** called **Syntax**. 
+A **program** is **an ordered list of instructions** that are done **one-after-the-other** by the computer. We write **programs** with **code**. Code is **written** in text with a special form of **grammar** called **Syntax**.
 
 Every program has to be **broken down** into actions that a **CPU** can execute. These actions have to be in **binary** (long list of 1's and 0's) and are predefined **by your CPU** using **specific codes** (ARM and x86 processors are made differently for this reason, **they have different sets of commands**).
 
 > CPU Commands include things like **ADD** and **SUBTRACT**. These commands can be represented with **binary codes** such as 0110 or 0111 that the CPU can **read** and **understand**.
 
-
 ## What is computer memory?
 
-**Memory** is essentially **a space** where our program can **store** and **get** data while doing things. It is a gargantuan array of 1's and 0's that all have locations assigned to them. Storing data is useful because you would most likely want to base your program's **decisions** on **calculations** that you have made previously. 
+**Memory** is essentially **a space** where our program can **store** and **get** data while doing things. It is a gargantuan array of 1's and 0's that all have locations assigned to them. Storing data is useful because you would most likely want to base your program's **decisions** on **calculations** that you have made previously.
 
 >Memory (Primary Storage) is **different** from your **Secondary Storage** (what you would call your *main storage* or *drive*) because it is **much** smaller and **much** faster.
 
@@ -39,17 +38,17 @@ In this guide, and future guides, we will refer to **RAM** as memory and **ROM**
 
 ## What is Java?
 
-**Java** is a **language** that we write code in. Java utilizes **English** words in a syntax that is very reliant on **Curly Braces { }** to define when certain **segments of code** start/stop, **Parentheses ( )** for operations and math, and **SemiColons;** to end specific **actions**. This lets Java code **ignore indentation** (and spacing for that matter) in order to **make writing/editing code easier**. 
+**Java** is a **language** that we write code in. Java utilizes **English** words in a syntax that is very reliant on **Curly Braces { }** to define when certain **segments of code** start/stop, **Parentheses ( )** for operations and math, and **SemiColons;** to end specific **actions**. This lets Java code **ignore indentation** (and spacing for that matter) in order to **make writing/editing code easier**.
 
 >Java also manages and interacts with the computer's **memory** for us (**instead of us having to do it ourselves**), allowing us to **store data** easily.
 
-```
+```java
 class Robot {
-	Drivetrain drive;
-	Arm scoringArm;
-	
-	void goBoom() {
-		Boom = True;
+    Drivetrain drive;
+    Arm scoringArm;
+
+    void goBoom() {
+        Boom = True;
     }
 } 
 ```
@@ -60,19 +59,19 @@ Java employs a very popular **code-organization** technique called **Object-Orie
 
 >In Java, almost **EVERYTHING** is an object!
 
-**Stored data** in objects are called **fields**. **Actions** that are stored in objects are called **methods**. 
+**Stored data** in objects are called **fields**. **Actions** that are stored in objects are called **methods**.
 
-**Classes** define **how** a **chunk of memory** on your computer should be **reserved** to fit these things. You use classes to create **objects** which are essentially **chunks of memory** where you can **store data** and **do things with that data**. 
+**Classes** define **how** a **chunk of memory** on your computer should be **reserved** to fit these things. You use classes to create **objects** which are essentially **chunks of memory** where you can **store data** and **do things with that data**.
 
 >In the Sciborgs code, we have a **Robot** class and classes for **each subsystem** that are then used to make **objects** that we can do stuff with.
 
 ## How do we store things?
 
-**Fields** (places where you can store data) are decently easy to make. All you need to do is **define the class** that you will be using to reserve that *chunk of memory* for your field; and then **create a name** that you can use in your code to **reference** that object. 
+**Fields** (places where you can store data) are decently easy to make. All you need to do is **define the class** that you will be using to reserve that *chunk of memory* for your field; and then **create a name** that you can use in your code to **reference** that object.
 
 You also have the ability to manage **where** fields can be accessed from in the program by adding certain **keywords** to the front of them.
 
-```
+```java
 Number num = 67;
 Robot.setSpeed(num);
 ```
@@ -81,34 +80,36 @@ Robot.setSpeed(num);
 
 ## How do we do things with those stored values?
 
-**Methods** (actions that you can do on data) are also decently easy to make. Methods are special in that you can run them **with parameters** (data that you give the method as you run it) and **get an output** (data that the method spits out) from it. 
+**Methods** (actions that you can do on data) are also decently easy to make. Methods are special in that you can run them **with parameters** (data that you give the method as you run it) and **get an output** (data that the method spits out) from it.
 
 > **For Example:** I can have a method that blows up the robot with an **input** of time (till the robot blows up) and an **output** of whether or not the explosion was successful.
 
-All you need to do to make a method is 
+All you need to do to make a method is
+
 1. **Create a name for your method** (like 'blowUpRobot' or 'startMatch')
 2. **Define the class of the output** (in order to **reserve space** for that output)
 3. **Define the class of the input** (you can't really do much with 10111100110)
 4. **Create names for all of the inputs** (so that you can use them in the method itself).
 
-Methods **do not** have to output anything, nor do they have to have **inputs**. 
->In these cases, you would switch out the output class with the **void** keyword. 
+Methods **do not** have to output anything, nor do they have to have **inputs**.
+>In these cases, you would switch out the output class with the **void** keyword.
 
 Inside methods, you can do a couple of things:
-1. You can create **temporary objects** called **variables**. 
-2. You can **run other methods** that are in your fields/variables. 
-3. You can use **logic** (such as if-then statements) to make decisions. 
-4. You can use the **return** keyword to end the method and **output** stuff. 
+
+1. You can create **temporary objects** called **variables**.
+2. You can **run other methods** that are in your fields/variables.
+3. You can use **logic** (such as if-then statements) to make decisions.
+4. You can use the **return** keyword to end the method and **output** stuff.
 
 When you are **calling** a method that **has an output**, you can treat your method exactly the same as **any other form of stored data** (fields or variables).
 
 > **For example:** If I had a method called **twoPlusOne** which returns **3** (Yes, this is a completely pointless thing to do but bear with me); The statement **twoPlusOne() - 4** is a completely valid math expression (that will return -1).
 
-This is also why you need to define the output's **class**, since you need to  **reserve a space in memory** for the output to exist. 
+This is also why you need to define the output's **class**, since you need to  **reserve a space in memory** for the output to exist.
 
 >You do this by putting the **output class** before the **name**.
 
-You need classes for inputs because your program can't really understand the jumble of 1's and 0's otherwise. When you **specify the class**, those 1's and 0's become actually readable **fields and methods**. 
+You need classes for inputs because your program can't really understand the jumble of 1's and 0's otherwise. When you **specify the class**, those 1's and 0's become actually readable **fields and methods**.
 
 >You put your **inputs** (along with their types) **inside the parentheses**.
 
@@ -116,33 +117,31 @@ You also have the ability to manage **where** methods can be accessed from in th
 
 >You put these keywords **before** the output-class.
 
-```
+```java
 public Number zeroer(Number input) {
-	if (input == 67) {
-		input = 0;
-	} else {
-		input = input + 1;
-	}
+    if (input == 67) {
+        input = 0;
+    } else {
+        input = input + 1;
+    }
 
-	return 0;
+    return 0;
 }
 ```
 
 ## Grammar in Java (Syntax)
 
-Here are some rules for **Java Syntax**: 
+Here are some rules for **Java Syntax**:
 
-```
-1. // Double Slashes create Comments! (these aren't part of the code)
+1. **// Double Slashes create Comments!** (these aren't part of the code)
 
-2. End all of your statements with Semicolons;
+2. End all of your **statements** with **Semicolons**;
 
-3. {Wrap classes, methods, and the insides of logic statements in CurlyBraces}
+3. {Wrap **classes, methods, and the insides of logic statements** in **CurlyBraces**}
 
-4. (Wrap all method inputs and logic inputs in parenthesis)
+4. (Wrap all method **inputs** and logic **inputs** in **parenthesis**)
 
-5. DoNotIncludeSpacesInYourNames (Java can't handle it)
-```
+5. **DoNotIncludeSpacesInYourNames** (Java can't handle it)
 
 ## Primitives and the Main Class
 
@@ -152,15 +151,15 @@ Java is all about **Object-Oriented-Programming**. However, **not everything is 
 
 When you run a Java program, the computer that is running it looks for one thing- **The Main method**. This method has a very unique structure that looks like this:
 
-```
+```java
 public static void main(String[] args) {
-	// This is what will be run first!
+    // This is what will be run first!
 }
 ```
 
-Once the program finds this method, it will start here and go down the list **one-by-one** and run everything. The class that contains the main method is called **the Main Class**. This is the **start point**. 
+Once the program finds this method, it will start here and go down the list **one-by-one** and run everything. The class that contains the main method is called **the Main Class**. This is the **start point**.
 
-Fundamentally, Objects are just **a bunch of 1's and 0's**. Classes are made to tell you **which parts of that bunch mean what** (they assign names to specific clumps of 1's and 0's). 
+Fundamentally, Objects are just **a bunch of 1's and 0's**. Classes are made to tell you **which parts of that bunch mean what** (they assign names to specific clumps of 1's and 0's).
 
 >*If you keep breaking things down into their parts, you will reach a point where **you can't break things down anymore**.*
 
@@ -181,4 +180,3 @@ In order to interact with C++, Java uses these **Java Native Interfaces** or **J
 >We will revisit this much much later on! Don't worry too much about JNI's for now as a lot of it will be hidden from you.
 
 >That is all! Farewell young aspiring Sciborgs programmer! Head over to **[our Intro to Java: Part 2 Guide](IntroToJava2.md)** to continue your journey.
-
