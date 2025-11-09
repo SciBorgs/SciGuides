@@ -4,29 +4,29 @@ A more in-depth guide to Java.
 
 ## Prerequisites
 
-- Comfortable with all of the [goals for Java101](Java101.md#goals).
-- Comfortable with [command-line navigation](../../sheets/CommandLineNavigation.md)
-- Environment set up
-  - [Code directory created](../../sheets/EnvironmentSetup.md#local-code-organization)
-  - [VSCode installed](../../sheets/EnvironmentSetup.md#visual-studio-code-not-wpilib)
-  - [Git & Github set up](../../sheets/EnvironmentSetup.md#git)
+1. Comfortable with all of the [goals for Java101](Java101.md#goals).
+2. Comfortable with [command-line navigation](../../sheets/CommandLineNavigation.md)
+3. Environment set up
+    - [Code directory created](../../sheets/EnvironmentSetup.md#local-code-organization)
+    - [VSCode installed](../../sheets/EnvironmentSetup.md#visual-studio-code-not-wpilib)
+    - [Git & Github set up](../../sheets/EnvironmentSetup.md#git)
 
 ## Goals
 
 Familiarity with the following concepts:
 
-- Classes and Objects
-  - fields
-  - constructors
-  - methods
-  - static
-  - public/private
-- Polymorphism
-  - Interfaces
-  - Generics
-  - Inheritance
-- Functional Interfaces
-- Streams
+1. Classes and Objects
+    - fields
+    - constructors
+    - methods
+    - static
+    - public/private
+2. Polymorphism
+    - Interfaces
+    - Generics
+    - Inheritance
+3. Functional Interfaces
+4. Streams
 
 ## Best Practices
 

@@ -4,13 +4,13 @@ This is a guide to setting up your computer. It includes instructions on organiz
 
 ## Goals
 
-- [Create code folder](#local-code-organization)
-- [Set up git & Github](#git)
-  - Make sure git is installed
-  - Make Github account
-  - Add PAT
-- [Set up regular VSCode](#visual-studio-code-not-wpilib)
-- [Set up WPILib VSCode](#wpilib)
+1. [Create code folder](#local-code-organization)
+2. [Set up git & Github](#git)
+    - Make sure git is installed
+    - Make Github account
+    - Add PAT
+3. [Set up regular VSCode](#visual-studio-code-not-wpilib)
+4. [Set up WPILib VSCode](#wpilib)
 
 ## Local Code Organization
 
@@ -239,21 +239,21 @@ This is going to be for writing non-robotics code. For instance, you can use reg
 ## WPILib
 
 1. [Follow this guide to install WPILib](https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-2/wpilib-setup.html) (we use Java, so ignore the additional C++ installation)
-   - If you have a school laptop and cannot find WPILib VSCode after install, refer to the [FAQ](#faq).
+    - If you have a school laptop and cannot find WPILib VSCode after install, refer to the [FAQ](#faq).
 2. Optional: Change the WPILib VSCode icon to distinguish from regular VSCode
-   - Download [the WPILib logo](images/wpilib.png)
-   - Replace the icon:
-        - For Windows:
+    - Download [the WPILib logo](images/wpilib.png)
+    - Replace the icon:
+         - For Windows:
             1. Right-click on the WPILib VSCode shortcut
             2. Select "Properties"
             3. Click "Change Icon"
             4. Browse to the downloaded WPILib logo and select it
             5. Click "OK" to apply the changes
-        - For Mac:
+         - For Mac:
             1. Locate the WPILib VSCode app in Finder
             2. Right-click (or Control-click) on the app and select "Get Info"
             3. Drag the downloaded WPILib logo onto the icon in the top-left corner of the Get Info window
-        - For Linux:
+         - For Linux:
             1. Locate your .desktop file for WPILib VSCode (usually in ~/.local/share/applications/ or /usr/share/applications/)
             2. Open the .desktop file with a text editor
             3. Find the line starting with "Icon="
@@ -270,6 +270,12 @@ This is going to be for writing non-robotics code. For instance, you can use reg
 I didn't write the [git section](#git). I also didn't write several parts of the [VSCode](#visual-studio-code-not-wpilib) and [WPILib](#wpilib) sections. Instead, I prompted [Claude](https://claude.ai) to do it for me.
 
 The moral of this story is that chat bots like Claude and ChatGPT are fantastic resources when used well. And getting help with git or command line or installing things are all great uses for AI.
+
+## Another secret
+
+While turning this into a website (almost a year after this had been written) I had to go back and fix a whole load of Markdown formatting errors that were made by the AI's.
+
+The moral of this story is that chat bots like Claude and ChatGPT can mess up sometimes and make it annoying for you somewhere down the road.
 
 ## FAQ
 

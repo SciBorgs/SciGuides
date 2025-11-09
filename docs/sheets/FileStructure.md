@@ -22,13 +22,13 @@ One thing you might notice is that the `lib` folders are very populated. That's 
 
 So we're just going to focus on the contents of the `robot` directories. Let's start with `main/java/robot`:
 
-- `Constants.java`: contains constant values that we use in our code. It can have things like field measurements, robot dimensions, etc.
-  - Constant names are written in all caps with underscores between words (i.e. MAX_SPEED)
-  - Currently, there is one constant in this file, called PERIOD (the value is 0.2 seconds). The PERIOD or tick rate represents how often the code is run. In this case, the roboRIO runs our code every 0.2 seconds.
-- `Main.java`: the `main` function in this file is what is actually run when the code starts up. You basically don't have to think about it at all.
-- `Ports.java`: this is where we store the ports of our electrical components. More on this soon!
-  - Since you won't be connecting to a physical robot for this project, you'll be making up random port numbers.
-- `Robot.java`: this is the center of the robot code. `Robot.java` contains instances of all of the subsystems and the Xbox controllers. It runs the CommandScheduler. In fact, all that the `Main.java` really does is start up `Robot.java`.
+1. `Constants.java`: contains constant values that we use in our code. It can have things like field measurements, robot dimensions, etc.
+    - Constant names are written in all caps with underscores between words (i.e. MAX_SPEED)
+    - Currently, there is one constant in this file, called PERIOD (the value is 0.2 seconds). The PERIOD or tick rate represents how often the code is run. In this case, the roboRIO runs our code every 0.2 seconds.
+2. `Main.java`: the `main` function in this file is what is actually run when the code starts up. You basically don't have to think about it at all.
+3. `Ports.java`: this is where we store the ports of our electrical components. More on this soon!
+    - Since you won't be connecting to a physical robot for this project, you'll be making up random port numbers.
+4. `Robot.java`: this is the center of the robot code. `Robot.java` contains instances of all of the subsystems and the Xbox controllers. It runs the CommandScheduler. In fact, all that the `Main.java` really does is start up `Robot.java`.
 
 As you go through a project, you will create more directories and files within `main/java/robot` for your robot code.
 

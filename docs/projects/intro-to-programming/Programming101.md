@@ -12,24 +12,24 @@ As for whether you should skip this tutorial, look at the topics listed in [Goal
 
 Familiarity with the following topics:
 
-- arithmetic, logical, and comparison operations:
-  - / + - *
-  - modulo (%)
-  - == > <
-  - and or not
-- variables
-  - scope
-- basic data types
-  - integers
-  - doubles
-  - booleans
-  - strings
-  - lists/arrays
-- loops
-  - while loops
-  - for each loops
-- functions
-- if statements
+1. arithmetic, logical, and comparison operations:
+    - / + - *
+    - modulo (%)
+    - == > <
+    - and or not
+2. variables
+    - scope
+3. basic data types
+    - integers
+    - doubles
+    - booleans
+    - strings
+    - lists/arrays
+4. loops
+    - while loops
+    - for each loops
+5. functions
+6. if statements
 
 ## Materials
 
@@ -189,8 +189,8 @@ Here's the general structure of a function definition:
 
 ```java
 def functionName(var input) {
- // code
- return output
+    // code
+    return output
 }
 ```
 
@@ -203,7 +203,7 @@ Okay so here's how we'd write that:
 
 ```java
 def f(var x) {
- return 2.0 * x
+    return 2.0 * x
 }
 ```
 
@@ -222,7 +222,7 @@ More specifically, we're going to write a function that takes in an integer and 
 
 ```java
 def isEven(var n) {
- return n % 2 == 0
+    return n % 2 == 0
 }
 ```
 
@@ -246,7 +246,7 @@ Here's `xor`:
 
 ```java
 def xor(var a, var b) {
- return (a && (!b)) || (b && (!a))
+    return (a && (!b)) || (b && (!a))
 }
 ```
 
@@ -276,22 +276,22 @@ Here is a function that takes a function `fun`, and applies that function on the
 
 ```java
 def applyThrice(var fun, var v) {
- return fun(fun(fun(v)))
+    return fun(fun(fun(v)))
 }
 ```
 
 If `applyThrice` is a black box here's what it would look like:
 
 - There would be two input slots:
-  - A square hole for a little black box (`fun`)
-  - A slot for a slip of paper (`v`) with a value scribbled on it.
+    1. A square hole for a little black box (`fun`)
+    2. A slot for a slip of paper (`v`) with a value scribbled on it.
 - On the inside of the black box:
-  - The little black box that (`fun`), once fed through the slot, sits in the center of the big box, held in place
+    1. The little black box that (`fun`), once fed through the slot, sits in the center of the big box, held in place
 
 - The slip of paper (`v`), once fed in, is grasped by a little mechanical arm. Here's what the arm does:
-  1. It brings the paper (`v`) to the little black box (`fun`), and feeds it into `fun` as an input. Out the output slot of `fun` comes another slip of paper with a new value written on it. The mechanical arm grabs the new slip of paper.
-  2. It takes the new slip of paper and moves it to the input side of `fun`, and feeds it in through the `input` slot (just like it did with `v`). A third slip of paper comes out of the output slot of `fun` with yet another new value, and the arm grabs it.
-  3. The arm feeds the third slip of paper to `fun` as an input! A final slip of paper comes out the output slot of `fun`, and the mechanical arm grabs it. But this time, it just takes the paper and sends it out the output slot of the main big black box.
+    1. It brings the paper (`v`) to the little black box (`fun`), and feeds it into `fun` as an input. Out the output slot of `fun` comes another slip of paper with a new value written on it. The mechanical arm grabs the new slip of paper.
+    2. It takes the new slip of paper and moves it to the input side of `fun`, and feeds it in through the `input` slot (just like it did with `v`). A third slip of paper comes out of the output slot of `fun` with yet another new value, and the arm grabs it.
+    3. The arm feeds the third slip of paper to `fun` as an input! A final slip of paper comes out the output slot of `fun`, and the mechanical arm grabs it. But this time, it just takes the paper and sends it out the output slot of the main big black box.
 
 And remember, all of this is happening inside the big black box. So from the perspective of someone using the function, all that happens is someone slides in a little black box and a slip of paper through the input slots of `applyThrice`, and then a different slip of paper comes out through the output slot. They don't see the mechanical arm at all.
 
@@ -321,7 +321,7 @@ When a function takes inputs, variables are defined for each input. The scope of
 ```java
 // x is not defined yet
 def foo(var x) {
- // x is defined
+    // x is defined
 }
 // x is not in scope, and therefore not defined
 ```
@@ -333,9 +333,9 @@ You could also create a new variable inside `foo`, and that variable would also 
 ```java
 // x and y are not defined yet
 def foo(var x) {
- // x is defined, y is not
- var y = 3
- // x and y are both defined and in scope
+    // x is defined, y is not
+    var y = 3
+    // x and y are both defined and in scope
 }
 // x and y are not in scope, and therefore not defined
 ```
@@ -347,9 +347,9 @@ If, however, you defined a variable outside of `foo`, it would be in scope for t
 var z = 8
 // z is defined, x and y are not defined
 def foo(var x) {
- // x and z are is defined, y is not
- var y = z + 2
- // x, y, and z are defined and in scope
+    // x and z are is defined, y is not
+    var y = z + 2
+    // x, y, and z are defined and in scope
 }
 // z is in scope, x and y are not in scope
 ```
@@ -361,10 +361,10 @@ Now, let's say we made a new variable inside of `foo`, and called it `z`. This i
 var z = 8
 // z is defined as 8, x is not defined
 def foo(var x) {
- // x and z are is defined
- var z = 7
- // this z is shadowing the one we defined earlier
- // if we refer to z here we will get 7
+    // x and z are is defined
+    var z = 7
+    // this z is shadowing the one we defined earlier
+    // if we refer to z here we will get 7
 }
 // only the original z remains
 // if we refer to z we will get 8
@@ -475,7 +475,7 @@ Here's the basic structure:
 
 ```java
 while (condition) {
- // code to run
+    // code to run
 }
 ```
 
@@ -490,10 +490,10 @@ var x = 0
 var sum = 0
 // this code will run until x is greater than or equal to 4
 while (x < 4) {
- // first, we add the current value of x to our sum
- sum = sum + x
- // then, we increase x by 1
- x = x + 1
+    // first, we add the current value of x to our sum
+    sum = sum + x
+    // then, we increase x by 1
+    x = x + 1
 }
 ```
 
@@ -517,16 +517,16 @@ Next, let's take the code we just wrote that found the sum of the integers from 
 
 ```java
 def sumBelow(var n) {
- var x = 0
- var sum = 0
- // this code will run until x is greater than or equal to n
- while (x < n) {
-  // first, we add the current value of x to our sum
-  sum = sum + x
-  // then, we increase x by 1
-  x = x + 1
- }
- return sum
+    var x = 0
+    var sum = 0
+    // this code will run until x is greater than or equal to n
+    while (x < n) {
+        // first, we add the current value of x to our sum
+        sum = sum + x
+        // then, we increase x by 1
+        x = x + 1
+    }
+    return sum
 }
 ```
 
@@ -558,10 +558,10 @@ var sum = 0
 var i = 0
 // this code will run until x is greater than or equal to 4
 while (i < 4) {
- // first, we add the ith value of arr to sum
- sum = sum + arr[i]
- // then, we increase i by 1
- i = i + 1
+    // first, we add the ith value of arr to sum
+    sum = sum + arr[i]
+    // then, we increase i by 1
+    i = i + 1
 }
 ```
 
@@ -587,7 +587,7 @@ Here's the format of a for each loop:
 
 ```java
 for (var element : array) {
- // code to run, where element represents an element in the array
+    // code to run, where element represents an element in the array
 }
 ```
 
@@ -597,11 +597,11 @@ Let's try to recreate the second while loop example, where we sum up the element
 
 ```java
 def sumArray(var arr) {
- var sum = 0
- for (var val : arr) {
-  sum = sum + val
- }
- return sum
+    var sum = 0
+    for (var val : arr) {
+        sum = sum + val
+    }
+    return sum
 }
 ```
 
@@ -621,8 +621,8 @@ Let's try an example using some non-numerical data types:
 var arr = [2, 6, 4, 1, 0]
 var allEven = true
 for (var n : arr) {
- var nEven = (n % 2 == 0)
- var allEven = allEven && nEven
+    var nEven = (n % 2 == 0)
+    var allEven = allEven && nEven
 }
 ```
 
@@ -648,12 +648,12 @@ In the last example, we used a loop to check that every value in an array is eve
 
 ```java
 def allDivisible(var arr, var fact) {
- var divisible = true
- for (var n : arr) {
-  var nDivisible = (n % fact == 0)
-  divisible = divisible && nDivisible
- }
- return divisible
+    var divisible = true
+    for (var n : arr) {
+        var nDivisible = (n % fact == 0)
+        divisible = divisible && nDivisible
+    }
+    return divisible
 }
 ```
 
@@ -673,11 +673,11 @@ Let's look at an example of a function that takes an array `arr` and a function 
 
 ```java
 def sumOutputs(var arr, var fun) {
- var sum = 0.0
- for (var n : arr) {
-  sum = sum + fun(n)
- }
- return sum
+    var sum = 0.0
+    for (var n : arr) {
+        sum = sum + fun(n)
+    }
+    return sum
 }
 ```
 
@@ -685,11 +685,11 @@ Now let's say we have the following functions `g` and `h`:
 
 ```java
 def g(var x) {
- return x * x
+    return x * x
 }
 
 def h(var x) {
- return 0.5 * x
+    return 0.5 * x
 }
 ```
 
@@ -735,7 +735,7 @@ var motors = [motor1, motor2, motor3, motor4]
 
 ```java
 def avgSpeed() {
- return sumOutputs(motors, speed) / 4
+    return sumOutputs(motors, speed) / 4
 }
 ```
 
@@ -747,9 +747,9 @@ So we won't return anything.
 
 ```java
 def setAllMotors(var desiredSpeed) {
- for (var motor : motors) {
-  set(motor, desiredSpeed)
- }
+    for (var motor : motors) {
+        set(motor, desiredSpeed)
+    }
 }
 ```
 
@@ -759,7 +759,7 @@ Now let's say we want to write a function that stops all of the motors. That doe
 
 ```java
 def stopMotors() {
- setAllMotors(0)
+    setAllMotors(0)
 }
 ```
 
@@ -771,7 +771,7 @@ Here's the general structure:
 
 ```java
 if (condition) {
- // code to run if condition is true
+    // code to run if condition is true
 }
 ```
 
@@ -779,10 +779,9 @@ There can also be else statements, with code to run if the condition is false:
 
 ```java
 if (condition) {
- // code to run if condition is true
-}
-else {
- // code to run if condition is false
+    // code to run if condition is true
+} else {
+    // code to run if condition is false
 }
 ```
 
@@ -792,13 +791,13 @@ We're going to use an if statement to add all of the values in an array that are
 
 ```java
 def sumEven(var arr) {
- var sum = 0
- for (var n : arr) {
-  if (n % 2 == 0) {
-   sum = sum + n
-  }
- }
- return sum
+    var sum = 0
+    for (var n : arr) {
+        if (n % 2 == 0) {
+            sum = sum + n
+        }
+    }
+    return sum
 }
 ```
 
@@ -810,12 +809,12 @@ Now, with this example, you actually could write a version of this function that
 
 ```java
 def sumEvenNoIf(var arr) {
- var sum = 0
- for (var n : arr) {
-  var nMultiplier = 1 - n % 2 
-  sum = sum + n * nMultiplier
- }
- return n
+    var sum = 0
+    for (var n : arr) {
+        var nMultiplier = 1 - n % 2 
+        sum = sum + n * nMultiplier
+    }
+    return n
 }
 ```
 
@@ -841,17 +840,17 @@ Anyway, we will not be making any attempt to solve the Collatz Conjecture, but w
 
 ```java
 def collatz(var start) {
- var n = start
- var count = 0
- while (n != 1) {
-  if (n % 2 == 1) {
-   n = n * 3 + 1
-  }
-  else {
-   n = n / 2
-  }
- }
- return count
+    var n = start
+    var count = 0
+    while (n != 1) {
+        if (n % 2 == 1) {
+            n = n * 3 + 1
+        }
+        else {
+            n = n / 2
+        }
+    }
+    return count
 }
 ```
 

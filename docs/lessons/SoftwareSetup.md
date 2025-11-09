@@ -57,11 +57,11 @@ git config --global core.editor "code --wait"
 8. Open Terminal once again
 9. **Run** the following command:
 
-   ```shell
-   git ls-remote https://github.com/fake-username/fake-repo-name.git
-   ```
+```shell
+git ls-remote https://github.com/fake-username/fake-repo-name.git
+```
 
-10. When prompted for your password, **enter your PAT instead**.
+When prompted for your password, **enter your PAT instead**.
 
 If you got a "Repository not found" error, **everything went right!** If you get If you get an "Authentication failed" error, **double-check your PAT and try again**.
 

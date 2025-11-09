@@ -2,10 +2,10 @@
 
 ## Contents
 
-- Enums
-- Records
-- [Lambdas & Functional Interfaces](#lambdas-and-functional-interfaces)
-- Switch Expressions
+1. Enums
+2. Records
+3. [Lambdas & Functional Interfaces](#lambdas-and-functional-interfaces)
+4. Switch Expressions
 
 ## Enums
 
@@ -61,7 +61,7 @@ public interface Function<T, R> {
 ```java
 @FunctionalInterface
 public interface Function<T, R> {
- R apply(T t);
+    R apply(T t);
 }
 ```
 
@@ -71,13 +71,13 @@ That is how we can write our `filter` method (you can also use the `Predicate` i
 
 ```java
 public static <T> List<T> filter(List<T> l, Function<T, Boolean> condition) {
- ArrayList<T> filtered = new ArrayList<>();
- for (T element : l) {
-  if (condition.apply(element)) {
-   filtered.add(element);
-  }
- }
- return filtered;
+    ArrayList<T> filtered = new ArrayList<>();
+    for (T element : l) {
+        if (condition.apply(element)) {
+            filtered.add(element);
+        }
+    }
+    return filtered;
 }
 ```
 
@@ -164,9 +164,9 @@ If your lambda expression has multiple lines, you use curly braces. So for insta
 
 ```java
 i -> { 
-  System.out.println(i);
-  return i * 2; 
-   }
+    System.out.println(i);
+    return i * 2; 
+}
 ```
 
 Note that when you have curly braces, if your lambda has an output you need to write `return`!

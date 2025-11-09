@@ -4,23 +4,23 @@ A more Java-Oriented intro to programming.
 
 ## Prerequisites
 
-- Comfortable with all of the [goals for Programming101](Programming101.md#goals).
-- Comfortable with [command-line navigation](../../sheets/CommandLineNavigation.md)
-- Comfortable with git (ignore this one for now!)
-- Environment set up
-  - [Code directory created](../../sheets/EnvironmentSetup.md#local-code-organization)
-  - [VSCode installed](../../sheets/EnvironmentSetup.md#visual-studio-code-not-wpilib)
-  - [Git & Github set up](../../sheets/EnvironmentSetup.md#git)
+1. Comfortable with all of the [goals for Programming101](Programming101.md#goals).
+2. Comfortable with [command-line navigation](../../sheets/CommandLineNavigation.md)
+3. Comfortable with git (ignore this one for now!)
+4. Environment set up
+    - [Code directory created](../../sheets/EnvironmentSetup.md#local-code-organization)
+    - [VSCode installed](../../sheets/EnvironmentSetup.md#visual-studio-code-not-wpilib)
+    - [Git & Github set up](../../sheets/EnvironmentSetup.md#git)
 
 ## Goals
 
 Familiarity with the following topics:
 
-- Java file structure and syntax
-- Printing
-- Types
-- Operations, if statements, variables, loops, functions, and arrays in Java
-  - Multi-dimensional arrays
+1. Java file structure and syntax
+2. Printing
+3. Types
+4. Operations, if statements, variables, loops, functions, and arrays in Java
+    - Multi-dimensional arrays
 
 ## Best Practices
 
@@ -521,21 +521,21 @@ For this example, we're going to be working with [strings](Programming101.md#dat
 
 Before we get to the implementation, we need to introduce a few new things:
 
-- String addition
-  - For strings, we use the `+` operator for concatenation (the process of joining strings)
-    - Example: `"hello " + "world"` &rarr; `"hello world"`
-  - You can also take strings and add onto them values that are not strings. If you do that, the non-string values will be automatically converted into strings.
-    - Example: `"the lowest prime number is " + 2` &rarr; `"the lowest prime number is 2"
-- `"\n"`
-  - This is the newline symbol. If there is `"\n"` in a string and you print that string, there will be an enter or a new line where that symbol is.
-- `+=`
-  - The `+=` operator is an assignment operator, allowing you to easily add to variables. It is shorthand for the following:
-  - `x = x + 3` becomes `x += 3`
-  - There are several other similar assignment operators (`-=`, `/=`, `%=`, `*=`) that can be used to easily adjust variables.
-- `++`
-  - The `++` operator is yet another assignment operator, and it is shorthand for increasing a variable by exactly 1.
-  - Example: `x += 1` &rarr; `x++`
-  - There is also a `--` operator that decreases a variable by 1.
+1. String addition
+    - For strings, we use the `+` operator for concatenation (the process of joining strings)
+        - Example: `"hello " + "world"` &rarr; `"hello world"`
+    - You can also take strings and add onto them values that are not strings. If you do that, the non-string values will be automatically converted into strings.
+        - Example: `"the lowest prime number is " + 2` &rarr; `"the lowest prime number is 2"
+2. `"\n"`
+    - This is the newline symbol. If there is `"\n"` in a string and you print that string, there will be an enter or a new line where that symbol is.
+3. `+=`
+    - The `+=` operator is an assignment operator, allowing you to easily add to variables. It is shorthand for the following:
+    - `x = x + 3` becomes `x += 3`
+    - There are several other similar assignment operators (`-=`, `/=`, `%=`, `*=`) that can be used to easily adjust variables.
+4. `++`
+    - The `++` operator is yet another assignment operator, and it is shorthand for increasing a variable by exactly 1.
+    - Example: `x += 1` &rarr; `x++`
+    - There is also a `--` operator that decreases a variable by 1.
 
 ```java
 public class Main {

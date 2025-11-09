@@ -6,18 +6,18 @@ The command line interface (CLI), also known as the terminal or shell, is a text
 
 Familiarity with the following ideas and commands:
 
-- How a computer organizes files
-- Command Line shortcuts
-- Basic commands
-  - pwd
-  - ls
-  - cd
-  - mkdir
-  - touch/type nul >
-  - cat
-  - cp
-  - mv
-  - rm
+1. How a computer organizes files
+2. Command Line shortcuts
+3. Basic commands
+    - pwd
+    - ls
+    - cd
+    - mkdir
+    - touch/type nul >
+    - cat
+    - cp
+    - mv
+    - rm
 
 This guide is really only scratching the surface on Command Line use, but it should give you what you need to get started.
 

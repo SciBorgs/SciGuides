@@ -4,12 +4,12 @@ Simulation in WPILib allows for code and logic to be tested onboard your compute
 
 There are a few different facets of simulation to take note of before you can start, including:
 
-- [The Simulation GUI](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation)
-- [WPILib's simulation classes](#simulation-classes)
-  - [Physics simulators](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/physics-sim.html)
-  - [Mechanism2d](https://docs.wpilib.org/en/stable/docs/software/dashboards/glass/mech2d-widget.html)
-  - [Field2d](https://docs.wpilib.org/en/stable/docs/software/dashboards/glass/field2d-widget.html)
-- [Logging & Dashboards](#logging-and-dashboards)
+1. [The Simulation GUI](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation)
+2. [WPILib's simulation classes](#simulation-classes)
+    - [Physics simulators](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/physics-sim.html)
+    - [Mechanism2d](https://docs.wpilib.org/en/stable/docs/software/dashboards/glass/mech2d-widget.html)
+    - [Field2d](https://docs.wpilib.org/en/stable/docs/software/dashboards/glass/field2d-widget.html)
+3. [Logging & Dashboards](#logging-and-dashboards)
 
 ## Logging and Dashboards
 
