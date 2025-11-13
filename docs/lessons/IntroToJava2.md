@@ -1,4 +1,4 @@
-# Introduction to Java: Part 2
+# Introduction to Java 2
 
 **Hello young aspiring programmer!** This guide will serve as a practical introduction to **the Java programming language**.
 
@@ -9,7 +9,7 @@ Here is what will be covered here:
 3. **[How to create conditions](#how-to-create-conditions)**
 4. **[Different Types of Numbers](#different-types-of-numbers)**
 5. **[Strings and Characters](#strings-and-characters)**
-6. **[Lists, Arrays, Matrices, and Maps](#lists-arrays-matrices-and-maps)**
+6. **[Lists and Arrays](#lists-and-arrays)**
 7. **[Scopes and Scope Keywords](#scopes-and-scope-keywords)**
 8. **[Constructors and Overloading](#constructors-and-overloading)**
 9. **[Console Input and Output](#console-input-and-output)**
@@ -188,20 +188,176 @@ double weirderNumber = 3.14159265358;
 
 ## Strings and Characters
 
-**Characters** are what makes up **text** . Each character has a specific **whole number** assigned to it that will **represent it in memory**.
+**Characters** are what makes up **text**. Each character has a specific **whole number** assigned to it that will **represent it in memory**.
 
->These numbers are assigned by the *American Standard Code for Information Interchange* also known as **ASCII**.
+>These numbers are assigned by the *American Standard Code for Information Interchange* also known as **ASCII**. 'A' would be represented by a **65**.
 
 **Characters** ```char``` are represented using ```'Single Quotes'``` while **Strings** ```String``` are represented using ```"Double Quotes"```.
 
-Strings are **not** primitives, they are **classes** that hold **a list of characters** (along with a )
+Strings are **not** primitives, they are **classes** that hold **a list of characters**. Strings have many different **utility methods** to aid in working with them.
 
->Hello young aspiring programmer! As you can tell, this part of SciGuides is **under construction**. Stay tuned for more code stuff!
+1. **String.length()** - returns the length of the string
+2. **String.charAt()** - returns the character in a specific position of the string
+3. **String.equals()** - returns whether-or-not two strings are equal.
 
-## Lists, Arrays, Matrices, and Maps
+> **Do not** use '==' when working with strings! (Strings compare memory addresses **instead** of content when using '==')
+
+## Lists and Arrays
+
+**Lists** ```List<Class>``` are used to hold **multiple objects** in an organized fashion (each object has an **position** in the list). Lists can be made of **any object** simply by specifying the **class of those objects** in the ```<Angle Brackets>```. Lists **cannot** hold primitives.
+
+```java
+// There are many different types of lists!
+// Just use ArrayList for now.
+List<Integer> coolList = new ArrayList<>();
+
+coolList.add(5); // Index: 0
+coolList.add(6); // Index: 1
+coolList.add(7); // Index: 2
+
+coolList.get(2); // Returns 7!
+```
+
+**Arrays** ```[]``` are similar to Lists in that they store **an ordered set of objects**. You create arrays by putting their elements in ```{Curly Braces}```. There are some key **differences** between Lists and Arrays.
+
+1. **Arrays can operate on primitives**
+2. **Arrays cannot change in length after they are created**
+3. **Arrays are not classes**
+4. **Arrays are faster to use than Lists**
+
+The reason why **Arrays** are much more **rigid** and **fast** than Lists are is because Arrays are **a fundamental feature of Java** while the List class is written **using Java**.
+
+```java
+// Array with a permanent length of 5.
+int[] coolArray = {0,1,2,3,4};
+
+coolArray[1]; // This returns 1!
+
+coolArray[67]; // This throws an error!
+coolArray[67] = 2; // This also throws an error!
+```
 
 ## Scopes and Scope Keywords
 
+**Scope** describes **where a field/variable can be accessed**. Something with a ```private``` scope can only be accessed **within the object that it has been created inside**. Something with a ```public``` scope can be accessed from **outside the object that it has been created inside**.
+
+```java
+// Here is the "Stephanie" class.
+public class Stephanie {
+    // This class has two fields!
+    private int height = 67;
+    public int labubus = 4;
+
+    public Stephanie() {}
+}
+
+// This is another class!
+public class Main {
+    // Here is a "Stephanie" object made from the "Stephanie" class.
+    Stephanie steph = new Stephanie();
+
+    // You cannot do this!
+    int stephHeight = steph.height;
+
+    // You can do this!
+    int stephLabubus = steph.labubus;
+}
+```
+
+Things are not only scoped **in space**, but also **in time** (according to Einstien). **You cannot use something before it has been created**.
+
+```java
+System.out.print(x); // You can't access 'x' before it has been created!
+
+int x = 5;
+
+System.out.print(x); // Prints out "5".
+```
+
+Because Java utilizes **Object-Oriented-Programming**, all fields and methods are created **simultaneously**.
+
+```java
+public class Arthur {
+    public double getGPA() {
+        return apCSGrade * 0.04;
+    }
+
+    // This doesn't break the laws of special relativity!
+    int apCSGrade = 100;
+}
+```
+
+Only things **inside** of the methods have to worry about the **scope** of their **timing**.
+
 ## Constructors and Overloading
 
+In order to make **objects** using **classes**, we need to define a **constructor method**. A constructor is a **special** type of method that is called using the **new** keyword. The reason why this type of method is special is because **no other method** has the power to **construct objects**.
+
+```java
+// Lets go back to the Stephanie class...
+public class Stephanie {
+    private int height = 67;
+    public int labubus = 4;
+
+    // This is the constructor!
+    public Stephanie() {
+        // This code will be ran when a Stephanie object gets created!
+    }
+}
+```
+
+Constructors have a **special format** that is used **to make them** (so that Java can tell what methods are constructors). They have to **be named after the class** and **not have a specified output-type** 
+
+>Notice how there is no output-type in the above example.
+
+Constructors return **the newly created object** which can then be assigned to **fields/variables** to store them.
+
+```java
+Stephanie steph = new Stephanie();
+```
+
+Another important feature of constructors is that they allow you to run code **immediately** after the object has been created. 
+
+>**Anything in the curly braces will be ran once the Stephanie object has been created**.
+
 ## Console Input and Output
+
+There are many ways in which Java has the power to **interface** (send and receive information) with the user. The **simplest** and **fastest** method is through **the console**. The console is essentially **just a bunch of text that can be manipulated to mean something**. What separates the **console** from the **terminal** is that the console **exclusively** serves to help us interact with our program
+
+>The terminal has the power to do almost anything!
+
+To **write something** into the console we use the ```System.out``` object. There are only two notable methods here:
+
+1. **System.out.print ( )**
+2. **System.out.println ( )**
+
+Regular printing ```print``` prints things **on the same line** while line-printing ```println``` prints out **an entire line**.
+
+```java
+System.out.println("5");
+
+System.out.print("6");
+System.out.print("7");
+```
+
+> **5** ( Line 1 )
+
+> **6 7** ( Line 2 )
+
+**NOTE:** System.out.print will only accept **one type of data** at a time! If you want to print **a number and a letter**, you must convert both to a **String** by adding ```""```
+
+```java
+System.out.println("" + 5 + 'a');
+```
+
+To **read something** from the console (that the user types in), we use the ```System.in``` object along with the ```Scanner``` class.
+
+```java
+// We are scanning System.in for inputs!
+Scanner scanner = new Scanner(System.in);
+
+scanner.nextInt(); // The next number that the user types out.
+scanner.next(); // The next string that the user types out.
+```
+
+>That is all! Farewell young aspiring programmer!

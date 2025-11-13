@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#introduction-to-java-part-2" class="md-skip">
+        <a href="#introduction-to-java-2" class="md-skip">
           Skip to content
         </a>
       
@@ -502,9 +502,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#lists-arrays-matrices-and-maps" class="md-nav__link">
+  <a href="#lists-and-arrays" class="md-nav__link">
     <span class="md-ellipsis">
-      Lists, Arrays, Matrices, and Maps
+      Lists and Arrays
     </span>
   </a>
   
@@ -1286,9 +1286,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#lists-arrays-matrices-and-maps" class="md-nav__link">
+  <a href="#lists-and-arrays" class="md-nav__link">
     <span class="md-ellipsis">
-      Lists, Arrays, Matrices, and Maps
+      Lists and Arrays
     </span>
   </a>
   
@@ -1337,7 +1337,7 @@
 
 
 
-<h1 id="introduction-to-java-part-2">Introduction to Java: Part 2</h1>
+<h1 id="introduction-to-java-2">Introduction to Java 2</h1>
 <p><strong>Hello young aspiring programmer!</strong> This guide will serve as a practical introduction to <strong>the Java programming language</strong>.</p>
 <p>Here is what will be covered here:</p>
 <ol>
@@ -1346,7 +1346,7 @@
 <li><strong><a href="#how-to-create-conditions">How to create conditions</a></strong></li>
 <li><strong><a href="#different-types-of-numbers">Different Types of Numbers</a></strong></li>
 <li><strong><a href="#strings-and-characters">Strings and Characters</a></strong></li>
-<li><strong><a href="#lists-arrays-matrices-and-maps">Lists, Arrays, Matrices, and Maps</a></strong></li>
+<li><strong><a href="#lists-and-arrays">Lists and Arrays</a></strong></li>
 <li><strong><a href="#scopes-and-scope-keywords">Scopes and Scope Keywords</a></strong></li>
 <li><strong><a href="#constructors-and-overloading">Constructors and Overloading</a></strong></li>
 <li><strong><a href="#console-input-and-output">Console Input and Output</a></strong></li>
@@ -1465,19 +1465,146 @@ float weirdNumber = 3.00002f;
 double weirderNumber = 3.14159265358;
 </code></pre>
 <h2 id="strings-and-characters">Strings and Characters</h2>
-<p><strong>Characters</strong> are what makes up <strong>text</strong> . Each character has a specific <strong>whole number</strong> assigned to it that will <strong>represent it in memory</strong>.</p>
+<p><strong>Characters</strong> are what makes up <strong>text</strong>. Each character has a specific <strong>whole number</strong> assigned to it that will <strong>represent it in memory</strong>.</p>
 <blockquote>
-<p>These numbers are assigned by the <em>American Standard Code for Information Interchange</em> also known as <strong>ASCII</strong>.</p>
+<p>These numbers are assigned by the <em>American Standard Code for Information Interchange</em> also known as <strong>ASCII</strong>. 'A' would be represented by a <strong>65</strong>.</p>
 </blockquote>
 <p><strong>Characters</strong> <code>char</code> are represented using <code>'Single Quotes'</code> while <strong>Strings</strong> <code>String</code> are represented using <code>"Double Quotes"</code>.</p>
-<p>Strings are <strong>not</strong> primitives, they are <strong>classes</strong> that hold <strong>a list of characters</strong> (along with a )</p>
+<p>Strings are <strong>not</strong> primitives, they are <strong>classes</strong> that hold <strong>a list of characters</strong>. Strings have many different <strong>utility methods</strong> to aid in working with them.</p>
+<ol>
+<li><strong>String.length()</strong> - returns the length of the string</li>
+<li><strong>String.charAt()</strong> - returns the character in a specific position of the string</li>
+<li><strong>String.equals()</strong> - returns whether-or-not two strings are equal.</li>
+</ol>
 <blockquote>
-<p>Hello young aspiring programmer! As you can tell, this part of SciGuides is <strong>under construction</strong>. Stay tuned for more code stuff!</p>
+<p><strong>Do not</strong> use '==' when working with strings! (Strings compare memory addresses <strong>instead</strong> of content when using '==')</p>
 </blockquote>
-<h2 id="lists-arrays-matrices-and-maps">Lists, Arrays, Matrices, and Maps</h2>
+<h2 id="lists-and-arrays">Lists and Arrays</h2>
+<p><strong>Lists</strong> <code>List&lt;Class&gt;</code> are used to hold <strong>multiple objects</strong> in an organized fashion (each object has an <strong>position</strong> in the list). Lists can be made of <strong>any object</strong> simply by specifying the <strong>class of those objects</strong> in the <code>&lt;Angle Brackets&gt;</code>. Lists <strong>cannot</strong> hold primitives.</p>
+<pre><code class="language-java">// There are many different types of lists!
+// Just use ArrayList for now.
+List&lt;Integer&gt; coolList = new ArrayList&lt;&gt;();
+
+coolList.add(5); // Index: 0
+coolList.add(6); // Index: 1
+coolList.add(7); // Index: 2
+
+coolList.get(2); // Returns 7!
+</code></pre>
+<p><strong>Arrays</strong> <code>[]</code> are similar to Lists in that they store <strong>an ordered set of objects</strong>. You create arrays by putting their elements in <code>{Curly Braces}</code>. There are some key <strong>differences</strong> between Lists and Arrays.</p>
+<ol>
+<li><strong>Arrays can operate on primitives</strong></li>
+<li><strong>Arrays cannot change in length after they are created</strong></li>
+<li><strong>Arrays are not classes</strong></li>
+<li><strong>Arrays are faster to use than Lists</strong></li>
+</ol>
+<p>The reason why <strong>Arrays</strong> are much more <strong>rigid</strong> and <strong>fast</strong> than Lists are is because Arrays are <strong>a fundamental feature of Java</strong> while the List class is written <strong>using Java</strong>.</p>
+<pre><code class="language-java">// Array with a permanent length of 5.
+int[] coolArray = {0,1,2,3,4};
+
+coolArray[1]; // This returns 1!
+
+coolArray[67]; // This throws an error!
+coolArray[67] = 2; // This also throws an error!
+</code></pre>
 <h2 id="scopes-and-scope-keywords">Scopes and Scope Keywords</h2>
+<p><strong>Scope</strong> describes <strong>where a field/variable can be accessed</strong>. Something with a <code>private</code> scope can only be accessed <strong>within the object that it has been created inside</strong>. Something with a <code>public</code> scope can be accessed from <strong>outside the object that it has been created inside</strong>.</p>
+<pre><code class="language-java">// Here is the &quot;Stephanie&quot; class.
+public class Stephanie {
+    // This class has two fields!
+    private int height = 67;
+    public int labubus = 4;
+
+    public Stephanie() {}
+}
+
+// This is another class!
+public class Main {
+    // Here is a &quot;Stephanie&quot; object made from the &quot;Stephanie&quot; class.
+    Stephanie steph = new Stephanie();
+
+    // You cannot do this!
+    int stephHeight = steph.height;
+
+    // You can do this!
+    int stephLabubus = steph.labubus;
+}
+</code></pre>
+<p>Things are not only scoped <strong>in space</strong>, but also <strong>in time</strong> (according to Einstien). <strong>You cannot use something before it has been created</strong>.</p>
+<pre><code class="language-java">System.out.print(x); // You can't access 'x' before it has been created!
+
+int x = 5;
+
+System.out.print(x); // Prints out &quot;5&quot;.
+</code></pre>
+<p>Because Java utilizes <strong>Object-Oriented-Programming</strong>, all fields and methods are created <strong>simultaneously</strong>.</p>
+<pre><code class="language-java">public class Arthur {
+    public double getGPA() {
+        return apCSGrade * 0.04;
+    }
+
+    // This doesn't break the laws of special relativity!
+    int apCSGrade = 100;
+}
+</code></pre>
+<p>Only things <strong>inside</strong> of the methods have to worry about the <strong>scope</strong> of their <strong>timing</strong>.</p>
 <h2 id="constructors-and-overloading">Constructors and Overloading</h2>
+<p>In order to make <strong>objects</strong> using <strong>classes</strong>, we need to define a <strong>constructor method</strong>. A constructor is a <strong>special</strong> type of method that is called using the <strong>new</strong> keyword. The reason why this type of method is special is because <strong>no other method</strong> has the power to <strong>construct objects</strong>.</p>
+<pre><code class="language-java">// Lets go back to the Stephanie class...
+public class Stephanie {
+    private int height = 67;
+    public int labubus = 4;
+
+    // This is the constructor!
+    public Stephanie() {
+        // This code will be ran when a Stephanie object gets created!
+    }
+}
+</code></pre>
+<p>Constructors have a <strong>special format</strong> that is used <strong>to make them</strong> (so that Java can tell what methods are constructors). They have to <strong>be named after the class</strong> and <strong>not have a specified output-type</strong> </p>
+<blockquote>
+<p>Notice how there is no output-type in the above example.</p>
+</blockquote>
+<p>Constructors return <strong>the newly created object</strong> which can then be assigned to <strong>fields/variables</strong> to store them.</p>
+<pre><code class="language-java">Stephanie steph = new Stephanie();
+</code></pre>
+<p>Another important feature of constructors is that they allow you to run code <strong>immediately</strong> after the object has been created. </p>
+<blockquote>
+<p><strong>Anything in the curly braces will be ran once the Stephanie object has been created</strong>.</p>
+</blockquote>
 <h2 id="console-input-and-output">Console Input and Output</h2>
+<p>There are many ways in which Java has the power to <strong>interface</strong> (send and receive information) with the user. The <strong>simplest</strong> and <strong>fastest</strong> method is through <strong>the console</strong>. The console is essentially <strong>just a bunch of text that can be manipulated to mean something</strong>. What separates the <strong>console</strong> from the <strong>terminal</strong> is that the console <strong>exclusively</strong> serves to help us interact with our program</p>
+<blockquote>
+<p>The terminal has the power to do almost anything!</p>
+</blockquote>
+<p>To <strong>write something</strong> into the console we use the <code>System.out</code> object. There are only two notable methods here:</p>
+<ol>
+<li><strong>System.out.print ( )</strong></li>
+<li><strong>System.out.println ( )</strong></li>
+</ol>
+<p>Regular printing <code>print</code> prints things <strong>on the same line</strong> while line-printing <code>println</code> prints out <strong>an entire line</strong>.</p>
+<pre><code class="language-java">System.out.println(&quot;5&quot;);
+
+System.out.print(&quot;6&quot;);
+System.out.print(&quot;7&quot;);
+</code></pre>
+<blockquote>
+<p><strong>5</strong> ( Line 1 )</p>
+<p><strong>6 7</strong> ( Line 2 )</p>
+</blockquote>
+<p><strong>NOTE:</strong> System.out.print will only accept <strong>one type of data</strong> at a time! If you want to print <strong>a number and a letter</strong>, you must convert both to a <strong>String</strong> by adding <code>""</code></p>
+<pre><code class="language-java">System.out.println(&quot;&quot; + 5 + 'a');
+</code></pre>
+<p>To <strong>read something</strong> from the console (that the user types in), we use the <code>System.in</code> object along with the <code>Scanner</code> class.</p>
+<pre><code class="language-java">// We are scanning System.in for inputs!
+Scanner scanner = new Scanner(System.in);
+
+scanner.nextInt(); // The next number that the user types out.
+scanner.next(); // The next string that the user types out.
+</code></pre>
+<blockquote>
+<p>That is all! Farewell young aspiring programmer!</p>
+</blockquote>
 
 
 
