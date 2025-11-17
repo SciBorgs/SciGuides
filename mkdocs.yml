@@ -19,10 +19,10 @@ nav:
   - Home: index.md
   - Lessons: 
     - About: ./lessons/README.md
-    - Intro To Software: ./lessons/IntroToSoftware.md
+    - Intro to Software: ./lessons/IntroToSoftware.md
     - Setting up Software: ./lessons/SoftwareSetup.md
-    - Intro To Java: ./lessons/IntroToJava.md
-    - Intro To Java 2: ./lessons/IntroToJava2.md
+    - Intro to Java: ./lessons/IntroToJava.md
+    - Intro to Java 2: ./lessons/IntroToJava2.md
   - Projects: 
     - About: ./projects/README.md
     - Intro To Programming: 

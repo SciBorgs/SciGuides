@@ -28,13 +28,13 @@ Every program has to be **broken down** into actions that a **CPU** can execute.
 
 **Memory** is essentially **a space** where our program can **store** and **get** data while doing things. It is a gargantuan array of 1's and 0's that all have locations assigned to them. Storing data is useful because you would most likely want to base your program's **decisions** on **calculations** that you have made previously.
 
->Memory (Primary Storage) is **different** from your **Secondary Storage** (what you would call your *main storage* or *drive*) because it is **much** smaller and **much** faster.
+Memory (Primary Storage) is **different** from your **Secondary Storage** (what you would call your *main storage* or *drive*) because it is **much** smaller and **much** faster.
+
+>Another name for memory is **RAM**, and another name for secondary storage is **ROM**.
 
 Our programs interact with memory **much more** than they interact with secondary storage (**because we don't store a lot of data when coding a robot**). Whenever we refer to **storing things** or **stored data** we are referring to storing **in memory**.
 
->Another name for memory is **RAM**. **RAM** stands for **Random-Access-Memory**. What this means is that our program can **directly access this memory**. Things stored in **ROM** (Read-Only-Memory, or secondary storage) are much slower to get to, but **do not get nuked after the program ends**.
-
-In this guide, and future guides, we will refer to **RAM** as memory and **ROM** as secondary storage.
+![RAM Diagram](./images/RAM.svg)
 
 ## What is Java?
 
@@ -42,56 +42,42 @@ In this guide, and future guides, we will refer to **RAM** as memory and **ROM**
 
 >Java also manages and interacts with the computer's **memory** for us (**instead of us having to do it ourselves**), allowing us to **store data** easily.
 
-```java
-class Robot {
-    Drivetrain drive;
-    Arm scoringArm;
-
-    void goBoom() {
-        Boom = True;
-    }
-} 
-```
+![Robot Class Image](./images/ROBOTCLASS.svg)
 
 ## How is Java code organized?
 
 Java employs a very popular **code-organization** technique called **Object-Oriented-Programming**. In this type of programming we split our **actions** (like driving the robot) and **stored data** (like the joystick position from our Xbox Controllers) among **objects**. Objects can both **store data**, and **act on that stored data**.
 
->In Java, almost **EVERYTHING** is an object!
+>For example: we can have an **Arm** object that **controls the arm**
 
-**Stored data** in objects are called **fields**. **Actions** that are stored in objects are called **methods**.
+**Things we store** in objects are called **fields**. **Actions that we add to** objects are called **methods**. **Classes** define **how** a **chunk of memory** on your computer should be **reserved** to fit an object. You use classes to create **objects**.
 
-**Classes** define **how** a **chunk of memory** on your computer should be **reserved** to fit these things. You use classes to create **objects** which are essentially **chunks of memory** where you can **store data** and **do things with that data**.
-
->In the Sciborgs code, we have a **Robot** class and classes for **each subsystem** that are then used to make **objects** that we can do stuff with.
+![Object Oriented Programming Diagram](./images/OOP.svg)
 
 ## How do we store things?
 
-**Fields** (places where you can store data) are decently easy to make. All you need to do is **define the class** that you will be using to reserve that *chunk of memory* for your field; and then **create a name** that you can use in your code to **reference** that object.
+**Fields** (places where you can store data) are easy to make. All you need to do is **define the class** that you will be using to reserve that *chunk of memory* for your field; and then **create a name** that you can use in your code to **reference** that *chunk of memory* (or object).
 
-You also have the ability to manage **where** fields can be accessed from in the program by adding certain **keywords** to the front of them.
+![Field Diagram](./images/FIELDS.svg)
 
-```java
-Number num = 67;
-Robot.setSpeed(num);
-```
-
-> Number is a **class**, 'num' is the **name of the field**, and 67 is the **value of the field**. 'setSpeed' is a **method**.
+> **For Example:** I can have a field in my **Robot** object that stores a **Drivetrain** object.
 
 ## How do we do things with those stored values?
 
-**Methods** (actions that you can do on data) are also decently easy to make. Methods are special in that you can run them **with parameters** (data that you give the method as you run it) and **get an output** (data that the method spits out) from it.
+**Methods** (actions) are also easy to make. Methods are special in that you can run them **with parameters** (data that you give the method as you run it) and **get an output** (data that the method spits out).
+
+![Method Diagram](./images/METHODS.svg)
 
 > **For Example:** I can have a method that blows up the robot with an **input** of time (till the robot blows up) and an **output** of whether or not the explosion was successful.
 
-All you need to do to make a method is
+All you need to do to make a method is...
 
 1. **Create a name for your method** (like 'blowUpRobot' or 'startMatch')
 2. **Define the class of the output** (in order to **reserve space** for that output)
 3. **Define the class of the input** (you can't really do much with 10111100110)
 4. **Create names for all of the inputs** (so that you can use them in the method itself).
 
-Methods **do not** have to output anything, nor do they have to have **inputs**.
+Methods **do not** have to output anything nor do they have to have **inputs**.
 >In these cases, you would switch out the output class with the **void** keyword.
 
 Inside methods, you can do a couple of things:
@@ -105,29 +91,9 @@ When you are **calling** a method that **has an output**, you can treat your met
 
 > **For example:** If I had a method called **twoPlusOne** which returns **3** (Yes, this is a completely pointless thing to do but bear with me); The statement **twoPlusOne() - 4** is a completely valid math expression (that will return -1).
 
-This is also why you need to define the output's **class**, since you need to  **reserve a space in memory** for the output to exist.
+This is also why you need to define the output's **class**, since you need to  **reserve a space in memory** for the output to exist. You do this by putting the **output class** before the **name**.
 
->You do this by putting the **output class** before the **name**.
-
-You need classes for inputs because your program can't really understand the jumble of 1's and 0's otherwise. When you **specify the class**, those 1's and 0's become actually readable **fields and methods**.
-
->You put your **inputs** (along with their types) **inside the parentheses**.
-
-You also have the ability to manage **where** methods can be accessed from in the program by adding certain **keywords** to the front of them (just like in fields).
-
->You put these keywords **before** the output-class.
-
-```java
-public Number zeroer(Number input) {
-    if (input == 67) {
-        input = 0;
-    } else {
-        input = input + 1;
-    }
-
-    return 0;
-}
-```
+You need classes for inputs because your program can't really understand the jumble of 1's and 0's otherwise. When you **specify the class**, those 1's and 0's become actually readable **fields and methods**. You put your **inputs** (along with their types) **inside the parentheses**.
 
 ## Grammar in Java (Syntax)
 
@@ -141,33 +107,27 @@ Here are some rules for **Java Syntax**:
 
 4. (Wrap all method **inputs** and logic **inputs** in **parenthesis**)
 
-5. **DoNotIncludeSpacesInYourNames** (Java can't handle it)
+5. **Do_Not_Include_Spaces_In_Your_Names** (Java can't handle it)
 
 ## Primitives and the Main Class
 
-Java is all about **Object-Oriented-Programming**. However, **not everything is an object**.
-
->You can't have *"object inside objects inside objects inside objects inside objects-"* go on forever! There must be a **start point** and a **stop point**.
+Java is all about **Object-Oriented-Programming**. However, **not everything is an object**. You cannot have *"object inside objects inside objects inside objects inside objects-"* go on forever! There must be a **start point** and a **stop point**.
 
 When you run a Java program, the computer that is running it looks for one thing- **The Main method**. This method has a very unique structure that looks like this:
 
-```java
-public static void main(String[] args) {
-    // This is what will be run first!
-}
-```
+![Main Method](./images/MAIN.svg)
 
 Once the program finds this method, it will start here and go down the list **one-by-one** and run everything. The class that contains the main method is called **the Main Class**. This is the **start point**.
 
-Fundamentally, Objects are just **a bunch of 1's and 0's**. Classes are made to tell you **which parts of that bunch mean what** (they assign names to specific clumps of 1's and 0's).
+Fundamentally, Objects are just **a bunch of 1's and 0's**. Classes are made to tell you **which parts of that bunch mean what** (they assign names to specific clumps of 1's and 0's). *If you keep breaking things down into their parts, you will reach a point where **you can't break things down anymore**.*
 
->*If you keep breaking things down into their parts, you will reach a point where **you can't break things down anymore**.*
-
-There will be a certain amount of times you can slice up those 1's and 0's before you find things that you **can't really break down further**. Physics draws this line at the **individual 1's and 0's** (You can't have some value be *half-true* or *half-on*). However, Java is a **programming language** that is meant to be **actually readable**. Because the entire point of having a programming language is so you **don't** have to interact with 1's and 0's, Java decides to draw this line at **numbers, letters, and booleans**.
-
->Booleans are values that can be either **True/False**.
+There will be a certain amount of times you can slice up those 1's and 0's before you find things that you **can't really break down further**. Physics draws this line at the **individual 1's and 0's** (You can't have some transistor be *half-on*). However, Java is a **programming language** that is meant to be **actually readable**. Because the entire point of having a programming language is so you **don't** have to interact with 1's and 0's, Java decides to draw this line at **numbers, letters, and booleans**.
 
 These values are called **primitives**. Primitives are the only types of data that **are not** considered objects. They **do not** have parts to them and **cannot** be broken down further unless you are a **crazy psychopath** that likes to use C++. This is the **stop point**.
+
+![Class Diagram](./images/CLASS.svg)
+
+>Without a class, this would all just be a jumble of 1's and 0's!
 
 ## Java Native Interface and Signaling
 
@@ -178,5 +138,7 @@ So, we have our objects, our main method, our classes, our numbers and letters; 
 In order to interact with C++, Java uses these **Java Native Interfaces** or **JNI**'s which essentially **holds C++ code** in a way that **can be used in your Java program**. These JNI's are almost all hidden from you while coding the robot (**WPILIB® manages them for us**). When the time comes to apply voltage to a motor or change the color of an LED, We run the code in the **.jni** file (with some **special methods**) and the computer sends a stream of 1's and 0's down the wires into the electronics devices.
 
 >We will revisit this much much later on! Don't worry too much about JNI's for now as a lot of it will be hidden from you.
+
+![Class Diagram](./images/JNI.svg)
 
 >That is all! Farewell young aspiring programmer! Head over to **[our Intro to Java 2](IntroToJava2.md)** to continue your journey.

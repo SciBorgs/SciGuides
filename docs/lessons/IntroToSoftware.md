@@ -62,11 +62,11 @@ Code-Collaboration in the professional sphere is not at all like Google Slides o
 
 3. **Sometimes we have 10+ people working on the code simultaneously, you can imagine how this would be problematic.**
 
->Because of this, **we divide up the work beforehand** and designate certain people to do certain things. We also **code our parts separately** and then **combine them later on**. Additionally, all of our edits have to be **accessible from anywhere** in order for everyone to be able to see what is happening.  This is why we **store our code online**.
+Because of this, **we divide up the work beforehand** and designate certain people to do certain things. We also **code our parts separately** and then **combine them later on**. Additionally, all of our edits have to be **accessible from anywhere** in order for everyone to be able to see what is happening.  This is why we **store our code online**.
 
 ## What do we use to collaborate?
 
-This is why we use **Git Project Management Software**. Git gives us commands that allow us to:
+To collaborate, we use **Git Project Management Software**. Git gives us commands that allow us to:
 
 1. **Upload our code to the internet**
 2. **Download our code from the internet**
