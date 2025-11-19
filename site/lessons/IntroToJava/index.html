@@ -20,7 +20,7 @@
     
     
       
-        <title>Intro To Java - SciGuides</title>
+        <title>Intro to Java - SciGuides</title>
       
     
     
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Intro To Java
+              Intro to Java
             
           </span>
         </div>
@@ -301,7 +301,7 @@
   
   
   <span class="md-ellipsis">
-    Intro To Software
+    Intro to Software
     
   </span>
   
@@ -356,7 +356,7 @@
   
   
   <span class="md-ellipsis">
-    Intro To Java
+    Intro to Java
     
   </span>
   
@@ -369,7 +369,7 @@
   
   
   <span class="md-ellipsis">
-    Intro To Java
+    Intro to Java
     
   </span>
   
@@ -493,7 +493,7 @@
   
   
   <span class="md-ellipsis">
-    Intro To Java 2
+    Intro to Java 2
     
   </span>
   
@@ -1276,60 +1276,45 @@
 </blockquote>
 <h2 id="what-is-computer-memory">What is computer memory?</h2>
 <p><strong>Memory</strong> is essentially <strong>a space</strong> where our program can <strong>store</strong> and <strong>get</strong> data while doing things. It is a gargantuan array of 1's and 0's that all have locations assigned to them. Storing data is useful because you would most likely want to base your program's <strong>decisions</strong> on <strong>calculations</strong> that you have made previously.</p>
-<blockquote>
 <p>Memory (Primary Storage) is <strong>different</strong> from your <strong>Secondary Storage</strong> (what you would call your <em>main storage</em> or <em>drive</em>) because it is <strong>much</strong> smaller and <strong>much</strong> faster.</p>
+<blockquote>
+<p>Another name for memory is <strong>RAM</strong>, and another name for secondary storage is <strong>ROM</strong>.</p>
 </blockquote>
 <p>Our programs interact with memory <strong>much more</strong> than they interact with secondary storage (<strong>because we don't store a lot of data when coding a robot</strong>). Whenever we refer to <strong>storing things</strong> or <strong>stored data</strong> we are referring to storing <strong>in memory</strong>.</p>
-<blockquote>
-<p>Another name for memory is <strong>RAM</strong>. <strong>RAM</strong> stands for <strong>Random-Access-Memory</strong>. What this means is that our program can <strong>directly access this memory</strong>. Things stored in <strong>ROM</strong> (Read-Only-Memory, or secondary storage) are much slower to get to, but <strong>do not get nuked after the program ends</strong>.</p>
-</blockquote>
-<p>In this guide, and future guides, we will refer to <strong>RAM</strong> as memory and <strong>ROM</strong> as secondary storage.</p>
+<p><img alt="RAM Diagram" src="../images/RAM.svg" /></p>
 <h2 id="what-is-java">What is Java?</h2>
 <p><strong>Java</strong> is a <strong>language</strong> that we write code in. Java utilizes <strong>English</strong> words in a syntax that is very reliant on <strong>Curly Braces { }</strong> to define when certain <strong>segments of code</strong> start/stop, <strong>Parentheses ( )</strong> for operations and math, and <strong>SemiColons;</strong> to end specific <strong>actions</strong>. This lets Java code <strong>ignore indentation</strong> (and spacing for that matter) in order to <strong>make writing/editing code easier</strong>.</p>
 <blockquote>
 <p>Java also manages and interacts with the computer's <strong>memory</strong> for us (<strong>instead of us having to do it ourselves</strong>), allowing us to <strong>store data</strong> easily.</p>
 </blockquote>
-<pre><code class="language-java">class Robot {
-    Drivetrain drive;
-    Arm scoringArm;
-
-    void goBoom() {
-        Boom = True;
-    }
-} 
-</code></pre>
+<p><img alt="Robot Class Image" src="../images/ROBOTCLASS.svg" /></p>
 <h2 id="how-is-java-code-organized">How is Java code organized?</h2>
 <p>Java employs a very popular <strong>code-organization</strong> technique called <strong>Object-Oriented-Programming</strong>. In this type of programming we split our <strong>actions</strong> (like driving the robot) and <strong>stored data</strong> (like the joystick position from our Xbox Controllers) among <strong>objects</strong>. Objects can both <strong>store data</strong>, and <strong>act on that stored data</strong>.</p>
 <blockquote>
-<p>In Java, almost <strong>EVERYTHING</strong> is an object!</p>
+<p>For example: we can have an <strong>Arm</strong> object that <strong>controls the arm</strong></p>
 </blockquote>
-<p><strong>Stored data</strong> in objects are called <strong>fields</strong>. <strong>Actions</strong> that are stored in objects are called <strong>methods</strong>.</p>
-<p><strong>Classes</strong> define <strong>how</strong> a <strong>chunk of memory</strong> on your computer should be <strong>reserved</strong> to fit these things. You use classes to create <strong>objects</strong> which are essentially <strong>chunks of memory</strong> where you can <strong>store data</strong> and <strong>do things with that data</strong>.</p>
-<blockquote>
-<p>In the Sciborgs code, we have a <strong>Robot</strong> class and classes for <strong>each subsystem</strong> that are then used to make <strong>objects</strong> that we can do stuff with.</p>
-</blockquote>
+<p><strong>Things we store</strong> in objects are called <strong>fields</strong>. <strong>Actions that we add to</strong> objects are called <strong>methods</strong>. <strong>Classes</strong> define <strong>how</strong> a <strong>chunk of memory</strong> on your computer should be <strong>reserved</strong> to fit an object. You use classes to create <strong>objects</strong>.</p>
+<p><img alt="Object Oriented Programming Diagram" src="../images/OOP.svg" /></p>
 <h2 id="how-do-we-store-things">How do we store things?</h2>
-<p><strong>Fields</strong> (places where you can store data) are decently easy to make. All you need to do is <strong>define the class</strong> that you will be using to reserve that <em>chunk of memory</em> for your field; and then <strong>create a name</strong> that you can use in your code to <strong>reference</strong> that object.</p>
-<p>You also have the ability to manage <strong>where</strong> fields can be accessed from in the program by adding certain <strong>keywords</strong> to the front of them.</p>
-<pre><code class="language-java">Number num = 67;
-Robot.setSpeed(num);
-</code></pre>
+<p><strong>Fields</strong> (places where you can store data) are easy to make. All you need to do is <strong>define the class</strong> that you will be using to reserve that <em>chunk of memory</em> for your field; and then <strong>create a name</strong> that you can use in your code to <strong>reference</strong> that <em>chunk of memory</em> (or object).</p>
+<p><img alt="Field Diagram" src="../images/FIELDS.svg" /></p>
 <blockquote>
-<p>Number is a <strong>class</strong>, 'num' is the <strong>name of the field</strong>, and 67 is the <strong>value of the field</strong>. 'setSpeed' is a <strong>method</strong>.</p>
+<p><strong>For Example:</strong> I can have a field in my <strong>Robot</strong> object that stores a <strong>Drivetrain</strong> object.</p>
 </blockquote>
 <h2 id="how-do-we-do-things-with-those-stored-values">How do we do things with those stored values?</h2>
-<p><strong>Methods</strong> (actions that you can do on data) are also decently easy to make. Methods are special in that you can run them <strong>with parameters</strong> (data that you give the method as you run it) and <strong>get an output</strong> (data that the method spits out) from it.</p>
+<p><strong>Methods</strong> (actions) are also easy to make. Methods are special in that you can run them <strong>with parameters</strong> (data that you give the method as you run it) and <strong>get an output</strong> (data that the method spits out).</p>
+<p><img alt="Method Diagram" src="../images/METHODS.svg" /></p>
 <blockquote>
 <p><strong>For Example:</strong> I can have a method that blows up the robot with an <strong>input</strong> of time (till the robot blows up) and an <strong>output</strong> of whether or not the explosion was successful.</p>
 </blockquote>
-<p>All you need to do to make a method is</p>
+<p>All you need to do to make a method is...</p>
 <ol>
 <li><strong>Create a name for your method</strong> (like 'blowUpRobot' or 'startMatch')</li>
 <li><strong>Define the class of the output</strong> (in order to <strong>reserve space</strong> for that output)</li>
 <li><strong>Define the class of the input</strong> (you can't really do much with 10111100110)</li>
 <li><strong>Create names for all of the inputs</strong> (so that you can use them in the method itself).</li>
 </ol>
-<p>Methods <strong>do not</strong> have to output anything, nor do they have to have <strong>inputs</strong>.</p>
+<p>Methods <strong>do not</strong> have to output anything nor do they have to have <strong>inputs</strong>.</p>
 <blockquote>
 <p>In these cases, you would switch out the output class with the <strong>void</strong> keyword.</p>
 </blockquote>
@@ -1344,28 +1329,8 @@ Robot.setSpeed(num);
 <blockquote>
 <p><strong>For example:</strong> If I had a method called <strong>twoPlusOne</strong> which returns <strong>3</strong> (Yes, this is a completely pointless thing to do but bear with me); The statement <strong>twoPlusOne() - 4</strong> is a completely valid math expression (that will return -1).</p>
 </blockquote>
-<p>This is also why you need to define the output's <strong>class</strong>, since you need to  <strong>reserve a space in memory</strong> for the output to exist.</p>
-<blockquote>
-<p>You do this by putting the <strong>output class</strong> before the <strong>name</strong>.</p>
-</blockquote>
-<p>You need classes for inputs because your program can't really understand the jumble of 1's and 0's otherwise. When you <strong>specify the class</strong>, those 1's and 0's become actually readable <strong>fields and methods</strong>.</p>
-<blockquote>
-<p>You put your <strong>inputs</strong> (along with their types) <strong>inside the parentheses</strong>.</p>
-</blockquote>
-<p>You also have the ability to manage <strong>where</strong> methods can be accessed from in the program by adding certain <strong>keywords</strong> to the front of them (just like in fields).</p>
-<blockquote>
-<p>You put these keywords <strong>before</strong> the output-class.</p>
-</blockquote>
-<pre><code class="language-java">public Number zeroer(Number input) {
-    if (input == 67) {
-        input = 0;
-    } else {
-        input = input + 1;
-    }
-
-    return 0;
-}
-</code></pre>
+<p>This is also why you need to define the output's <strong>class</strong>, since you need to  <strong>reserve a space in memory</strong> for the output to exist. You do this by putting the <strong>output class</strong> before the <strong>name</strong>.</p>
+<p>You need classes for inputs because your program can't really understand the jumble of 1's and 0's otherwise. When you <strong>specify the class</strong>, those 1's and 0's become actually readable <strong>fields and methods</strong>. You put your <strong>inputs</strong> (along with their types) <strong>inside the parentheses</strong>.</p>
 <h2 id="grammar-in-java-syntax">Grammar in Java (Syntax)</h2>
 <p>Here are some rules for <strong>Java Syntax</strong>:</p>
 <ol>
@@ -1382,29 +1347,21 @@ Robot.setSpeed(num);
 <p>(Wrap all method <strong>inputs</strong> and logic <strong>inputs</strong> in <strong>parenthesis</strong>)</p>
 </li>
 <li>
-<p><strong>DoNotIncludeSpacesInYourNames</strong> (Java can't handle it)</p>
+<p><strong>Do_Not_Include_Spaces_In_Your_Names</strong> (Java can't handle it)</p>
 </li>
 </ol>
 <h2 id="primitives-and-the-main-class">Primitives and the Main Class</h2>
-<p>Java is all about <strong>Object-Oriented-Programming</strong>. However, <strong>not everything is an object</strong>.</p>
-<blockquote>
-<p>You can't have <em>"object inside objects inside objects inside objects inside objects-"</em> go on forever! There must be a <strong>start point</strong> and a <strong>stop point</strong>.</p>
-</blockquote>
+<p>Java is all about <strong>Object-Oriented-Programming</strong>. However, <strong>not everything is an object</strong>. You cannot have <em>"object inside objects inside objects inside objects inside objects-"</em> go on forever! There must be a <strong>start point</strong> and a <strong>stop point</strong>.</p>
 <p>When you run a Java program, the computer that is running it looks for one thing- <strong>The Main method</strong>. This method has a very unique structure that looks like this:</p>
-<pre><code class="language-java">public static void main(String[] args) {
-    // This is what will be run first!
-}
-</code></pre>
+<p><img alt="Main Method" src="../images/MAIN.svg" /></p>
 <p>Once the program finds this method, it will start here and go down the list <strong>one-by-one</strong> and run everything. The class that contains the main method is called <strong>the Main Class</strong>. This is the <strong>start point</strong>.</p>
-<p>Fundamentally, Objects are just <strong>a bunch of 1's and 0's</strong>. Classes are made to tell you <strong>which parts of that bunch mean what</strong> (they assign names to specific clumps of 1's and 0's).</p>
-<blockquote>
-<p><em>If you keep breaking things down into their parts, you will reach a point where </em><em>you can't break things down anymore</em><em>.</em></p>
-</blockquote>
-<p>There will be a certain amount of times you can slice up those 1's and 0's before you find things that you <strong>can't really break down further</strong>. Physics draws this line at the <strong>individual 1's and 0's</strong> (You can't have some value be <em>half-true</em> or <em>half-on</em>). However, Java is a <strong>programming language</strong> that is meant to be <strong>actually readable</strong>. Because the entire point of having a programming language is so you <strong>don't</strong> have to interact with 1's and 0's, Java decides to draw this line at <strong>numbers, letters, and booleans</strong>.</p>
-<blockquote>
-<p>Booleans are values that can be either <strong>True/False</strong>.</p>
-</blockquote>
+<p>Fundamentally, Objects are just <strong>a bunch of 1's and 0's</strong>. Classes are made to tell you <strong>which parts of that bunch mean what</strong> (they assign names to specific clumps of 1's and 0's). <em>If you keep breaking things down into their parts, you will reach a point where </em><em>you can't break things down anymore</em><em>.</em></p>
+<p>There will be a certain amount of times you can slice up those 1's and 0's before you find things that you <strong>can't really break down further</strong>. Physics draws this line at the <strong>individual 1's and 0's</strong> (You can't have some transistor be <em>half-on</em>). However, Java is a <strong>programming language</strong> that is meant to be <strong>actually readable</strong>. Because the entire point of having a programming language is so you <strong>don't</strong> have to interact with 1's and 0's, Java decides to draw this line at <strong>numbers, letters, and booleans</strong>.</p>
 <p>These values are called <strong>primitives</strong>. Primitives are the only types of data that <strong>are not</strong> considered objects. They <strong>do not</strong> have parts to them and <strong>cannot</strong> be broken down further unless you are a <strong>crazy psychopath</strong> that likes to use C++. This is the <strong>stop point</strong>.</p>
+<p><img alt="Class Diagram" src="../images/CLASS.svg" /></p>
+<blockquote>
+<p>Without a class, this would all just be a jumble of 1's and 0's!</p>
+</blockquote>
 <h2 id="java-native-interface-and-signaling">Java Native Interface and Signaling</h2>
 <p>So, we have our objects, our main method, our classes, our numbers and letters; <strong>how do these things work to control a physical robot</strong>? Well, Java doesn't really have a way of interacting with the <strong>motors</strong> and <strong>other electronics</strong> directly. Instead, Java uses <strong>C++</strong> to do it for us.</p>
 <blockquote>
@@ -1413,6 +1370,9 @@ Robot.setSpeed(num);
 <p>In order to interact with C++, Java uses these <strong>Java Native Interfaces</strong> or <strong>JNI</strong>'s which essentially <strong>holds C++ code</strong> in a way that <strong>can be used in your Java program</strong>. These JNI's are almost all hidden from you while coding the robot (<strong>WPILIB® manages them for us</strong>). When the time comes to apply voltage to a motor or change the color of an LED, We run the code in the <strong>.jni</strong> file (with some <strong>special methods</strong>) and the computer sends a stream of 1's and 0's down the wires into the electronics devices.</p>
 <blockquote>
 <p>We will revisit this much much later on! Don't worry too much about JNI's for now as a lot of it will be hidden from you.</p>
+</blockquote>
+<p><img alt="Class Diagram" src="../images/JNI.svg" /></p>
+<blockquote>
 <p>That is all! Farewell young aspiring programmer! Head over to <strong><a href="../IntroToJava2/">our Intro to Java 2</a></strong> to continue your journey.</p>
 </blockquote>
 
@@ -1461,13 +1421,13 @@ Robot.setSpeed(num);
         
         
           
-          <a href="../IntroToJava2/" class="md-footer__link md-footer__link--next" aria-label="Next: Intro To Java 2">
+          <a href="../IntroToJava2/" class="md-footer__link md-footer__link--next" aria-label="Next: Intro to Java 2">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Intro To Java 2
+                Intro to Java 2
               </div>
             </div>
             <div class="md-footer__button md-icon">
