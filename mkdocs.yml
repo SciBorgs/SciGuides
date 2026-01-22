@@ -22,7 +22,9 @@ nav:
     - Programming 101: ./projects/intro-to-programming/Programming101.md
     - Java 101: ./projects/intro-to-programming/Java101.md
     - Java 102: ./projects/intro-to-programming/Java102.md
-  - Differential Drive: ./projects/DifferentialDrive.md
+  - Projects: 
+    - Differential Drive: ./projects/DifferentialDrive.md
+    - Elevator Bot: ./projects/ElevatorBot.md
   - Reference Sheets:
     - About: ./reference-sheets/README.md
     - Advanced Java: ./reference-sheets/AdvancedJava.md

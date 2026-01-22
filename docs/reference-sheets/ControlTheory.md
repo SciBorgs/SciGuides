@@ -32,3 +32,5 @@ Only after you have read all of the linked documents, watch the following video.
 [Video with everything + more](https://www.youtube.com/watch?v=UOuRx9Ujsog) (Watch until 9:00).
 
 If you want to further indulge yourself into the art of control, there is an [amzaing textbook](https://file.tavsys.net/control/controls-engineering-in-frc.pdf) specifically for control theory and its applications for FRC.
+
+If you want to try tuning some mechansims, [this interactive blog](https://trickingrockstothink.com/blog_posts/2019/10/19/tuning_pid.html) and its subsequent are fantastic ways to get a little experience for yourself.
