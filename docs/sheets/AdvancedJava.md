@@ -15,9 +15,25 @@ coming soon!
 
 coming soon!
 
-## Lambdas and Functional Interfaces
-
 ## Functional Interfaces
+
+A function interface is an interface that contains exactly one abstract method (a method with no method body). 
+
+```java
+public interface Printable {
+
+  //no curly brackets, so no method body.
+  //other classes which implement Printable will provide the body (implementation)
+  public void print();
+
+} 
+```
+
+## Lambdas 
+
+https://www.youtube.com/watch?v=tj5sLSFjVj4
+
+Lambdas expression are simplified expressions 
 
 ### Example: filtering a list
 
