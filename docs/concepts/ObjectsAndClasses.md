@@ -11,7 +11,6 @@ Here is what will be covered here:
 5. **[How are things stored?](#how-are-things-stored)**
 6. **[How are actions stored?](#how-are-actions-stored)**
 8. **[How does our program run?](#how-does-our-program-run)**
-9. **[How does our program interact with the Robot?](#how-does-our-program-interact-with-the-robot)**
 
 ## What is a program?
 
@@ -115,20 +114,10 @@ Fundamentally, Objects are just **a bunch of 1's and 0's**. Classes are made to 
 
 There will be a certain amount of times you can slice up those 1's and 0's before you find things that you **can't really break down further**. Physics draws this line at the **individual 1's and 0's** (You can't have some transistor be *half-on*). However, Java is a **programming language** that is meant to be **actually readable**. Because the entire point of having a programming language is so you **don't** have to interact with 1's and 0's, Java decides to draw this line at **numbers, letters, and booleans**.
 
-These values are called **primitives**. Primitives are the only types of data that **are not** considered objects. They **do not** have parts to them and **cannot** be broken down further unless you are a **crazy psychopath** that likes to use C++. This is the **stop point**.
+These values are called **primitives**. Primitives are the only types of data that **are not** considered objects. They **do not** have parts to them and **cannot** be broken down further unless you are a weird C++ user. This is the **stop point**.
 
 ![Class Diagram](./images/CLASS.svg)
 
 >Without a class, this would all just be a jumble of 1's and 0's!
-
-## How does our program interact with the Robot?
-
-So, we have our objects, our main method, our classes, our numbers and letters; **how do these things work to control a physical robot**? Well, Java doesn't really have a way of interacting with the **motors** and **other electronics** directly. Instead, Java uses **C++** to do it for us.
-
->C++ has the power to send raw data through wires!
-
-In order to interact with C++, Java uses these **Java Native Interfaces** or **JNI**'s which essentially **holds C++ code** in a way that **can be used in your Java program**. These JNI's are almost all hidden from you while coding the robot (**WPILIB® manages them for us**). When the time comes to apply voltage to a motor or change the color of an LED, We run the code in the **.jni** file (with some **special methods**) and the computer sends a stream of 1's and 0's down the wires into the electronics devices.
-
-![Class Diagram](./images/JNI.svg)
 
 *Guide written by Ankit Kumar (Class of 2027)*
