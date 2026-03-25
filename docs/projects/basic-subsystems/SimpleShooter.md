@@ -10,7 +10,7 @@ This project is going to cover how to make a basic shooter subsystem, as well as
 
 Generally, you want to be familiar with:
 
-- Java102 (specifically interfaces)
+- [functional interfaces / lambda functions](https://docs.wpilib.org/en/stable/docs/software/basic-programming/functions-as-data.html)
 - what a subsystem is
 - how command based structure works 
 - general subsystem file structure 
@@ -60,7 +60,7 @@ These values will probably change as you actually finalize the robot, but we'll 
 ## ShooterConstants // Constants
 
 
-Lets get the boring bits out of the way first. There are a bunch of constants we'll need (most of which you'll get from your construction teammates) to put in a file for later use. For now, since we probably don't have most of them yet, we'll just declare the important ones we'll need.
+Lets get the boring bits out of the way first. There are a bunch of constants we'll need (some of which you'll get from your construction teammates) to put in a file for later use. 
 
 (Note: All of these should be final since they're constants, as well as doubles unless explicitly stated)
 
@@ -73,8 +73,9 @@ Your robot constants:
 - CURRENT_LIMIT (Current)
 - DEFAULT_VELOCITY (AngularVelocity)
 - MAX_VELOCITY (AngularVelocity)
-- PERIOD 
-- MAX_VOLTAGE
+- PERIOD = 0.2
+- MAX_VOLTAGE = 12
+- MOI / moment of inertia
 
 Your PID and Feedforward constants:
 
@@ -122,7 +123,6 @@ public interface ShooterIO {
 
 }
 ```
-<small> -> Note: whenever you make a file implement ShooterIO it might give you an error saying along the lines of "x method is missing". For now, just use quick fix to add those methods and delete their filler method bodies </small>
 
 ## NoShooter // Fake Instance
 
@@ -180,14 +180,12 @@ public class SimShooter implements ShooterIO {
     ...
     public SimShooter() {
 
-        shooter = new FlywheelSim(LinearSystemId.identifyVelocitySystem(K_V, K_A), DCMotor.getNeoVortex(2), GEARING);
+        shooter = new FlywheelSim(LinearSystemId.createFlywheelSystem(DCMotor.getNeoVortex(2), MOI, GEARING), DCMotor.getNeoVortex(2));
 
     }
 
 }
 ```
-
-The parameters for the FlywheelSim might look a bit confusing <small>(specifically the linear system stuff)</small>, but for us all you'll need to understand is that it uses some of the feedforward constants we declared earlier to set up how a shooter should behave.
 
 After that, we'll also implement our methods from ShooterIO like we did in NoShooter. Unlike what we did in NoShooter, however, we'll actually have these methods interact with the simulation. To do that, we'll add some method bodies setting the voltage and getting the velocity of our simulation.
 
@@ -202,7 +200,7 @@ For setVoltage, it will use the method "setInputVoltage" on our shooter object t
 For getVelocity, it will use the method "getAngularVelocityRadPerSec" on our shooter object to get its angular velocity.
 
 ```java
-    public void getVelocity() {
+    public double getVelocity() {
         shooter.getAngularVelocityRadPerSec();
     }
 ```
@@ -212,7 +210,7 @@ And that'll be our SimShooter :> We will actually be coming back here to add one
 ## RealShooter // Real Instance
 
 
-The realShooter.java file is responsible for handling our code when connected to the physical robot. It requires an object to be made for each motor we use (the type should be either CANspark/SparkMax or TalonFX) and uses those objects to affect the physical motors on the robot. This also means that the number of motors will vary based on the design of your shooter so meaning that the number of motor objects in here will vary (we'll just use two).
+The RealShooter.java file is responsible for handling our code when connected to the physical robot. It requires an object to be made for each motor we use (the type should be either CANspark/SparkMax or TalonFX) and uses those objects to affect the physical motors on the robot. This also means that the number of motors will vary based on the design of your shooter so meaning that the number of motor objects in here will vary (we'll just use two).
 
 
 As always, lets declare and construct our motors: one named leader and one named follower (for this guide, they will be SparkMax motors). We'll also make an encoder using our leading motor to get the velocity later.
@@ -286,10 +284,7 @@ public class RealShooter implements ShooterIO {
 
    ...
     leader.configure(config, SparkBase.ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    follower.configure(config, SparkBase.ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-
-    //to make sure both motors spin the same way.
-    follower.setInverted(true);
+    follower.configure(config.inverted(true).follow(leader), SparkBase.ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
    ...
 
 }
@@ -304,7 +299,7 @@ public class RealShooter implements ShooterIO{
 
    public void setVoltage(double voltage) {
        leader.setVoltage(voltage);
-       follower.setVoltage(voltage)
+       
    }
 
    public double getVelocity() {
@@ -349,7 +344,7 @@ We'll call it Shooter, and have it take in a ShooterIO parameter so it knows whi
 public final class Shooter extends SubsystemBase {
 
     ...
-    public Shooter(ShooterIO hardware) {
+    private Shooter(ShooterIO hardware) {
 
     this.hardware = hardware;
 
@@ -360,7 +355,7 @@ public final class Shooter extends SubsystemBase {
 ```
 
 
-There will be two constructors: one handling creating the real/sim instances called "create" and another handling the fake instance called "none". The first constructor, returning either a RealShooter subsystem or a SimShooter subsystem, will decide which one through an if statement checking if we are connected to a physical robot (literally Robot.isReal()), while the second one just always returns a NoShooter.
+There will be two constructors: one handling creating the real/sim instances called "create" and another handling the fake instance called "none".  The first constructor, returning either a RealShooter subsystem or a SimShooter subsystem, will decide which one through an if statement checking if we are connected to a physical robot (literally Robot.isReal()), while the second one just always returns a NoShooter.
 
 ```java
 public final class Shooter extends SubsystemBase {
@@ -377,6 +372,7 @@ public final class Shooter extends SubsystemBase {
 
 }
 ```
+<small>-> These are examples of "factory methods": methods which just return an object.</small>
 
 This bit should look familiar now: a getVelocity method. It will be the exact same as we previously did in this guide, just using hardware as the object instead (Why is there no setVoltage? Wait and you'll see).
 
@@ -393,7 +389,7 @@ public final class Shooter extends SubsystemBase {
 ```
 
 
-Next, we'll make an update method using the PID and FF systems we made earlier. This method will run every tick, allowing it to constantly update the velocity setpoint (velocity we want the motor to go to) so that the motor is always aiming to go to at correct speed. Essentially, it will constantly find the voltages to get to a desired speed, then set the voltage to that found voltage.
+Next, we'll make an update method using the PID and FF systems we made earlier. This method will run every tick when it is called by our commands periodically, allowing it to constantly update the velocity setpoint (velocity we want the motor to go to) so that the motor is always aiming to go to at correct speed. Essentially, it will constantly find the voltages to get to a desired speed, then set the voltage to that found voltage.
 
 ```java
 public final class Shooter extends SubsystemBase {
@@ -456,7 +452,7 @@ All in all, this method should:
 
 ```
 
-The second runShooter method (the "double" one) will just call the DoubleSupplier one with a lambda. This will be the one we want to actually want to call when we call "runShooter", since we can actually give it a double velocity.
+The second runShooter method (the "double" one) will just call the DoubleSupplier one with a lambda. 
 
 ```java
 
