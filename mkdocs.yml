@@ -17,19 +17,14 @@ theme:
 
 nav:
   - Home: index.md
-  - Lessons: 
-    - About: ./lessons/README.md
-    - Intro to Software: ./lessons/IntroToSoftware.md
-    - Setting up Software: ./lessons/SoftwareSetup.md
-    - Intro to Java: ./lessons/IntroToJava.md
-    - Intro to Java 2: ./lessons/IntroToJava2.md
+  - Concepts: 
+    - About: ./concepts/README.md
+    - Intro to Software: ./concepts/IntroToSoftware.md
+    - Setting up Software: ./concepts/SoftwareSetup.md
+    - Objects and Classes: ./concepts/ObjectsAndClasses.md
+    - Making and Managing Data: ./concepts/MakingAndManagingData.md
   - Projects: 
     - About: ./projects/README.md
-    - Intro To Programming: 
-      - About: ./projects/intro-to-programming/README.md
-      - Programming 101: ./projects/intro-to-programming/Programming101.md
-      - Java 101: ./projects/intro-to-programming/Java101.md
-      - Java 102: ./projects/intro-to-programming/Java102.md
     - Basic Subsystems: 
       - About: ./projects/basic-subsystems/README.md
       - General Subsystem Structure: ./projects/basic-subsystems/GeneralSubsystemStructure.md
@@ -37,11 +32,9 @@ nav:
       - Simple Shooter: ./projects/basic-subsystems/SimpleShooter.md
   - Reference Sheets: 
     - About: ./sheets/README.md
-    - Advanced Java: ./sheets/AdvancedJava.md
     - Command Based Programming: ./sheets/CommandBased.md
     - Command Line Navigation: ./sheets/CommandLineNavigation.md
     - Control Theory: ./sheets/ControlTheory.md
-    - Environment Setup: ./sheets/EnvironmentSetup.md
     - File Structure: ./sheets/FileStructure.md
     - Git Guide: ./sheets/GitGuide.md
     - Sensors: ./sheets/Sensors.md

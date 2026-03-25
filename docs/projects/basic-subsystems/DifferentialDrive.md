@@ -4,13 +4,6 @@
 
 This project is going to cover how to make both a basic and an advanced differential drive.
 
-## Prerequisites
-
-- Comfortable with all the [goals](../intro-to-programming/Java102.md#goals) and [prerequisites](../intro-to-programming/Java102.md#prerequisites) of Java102.
-- Comfortable with [functional interfaces & lambdas](../../sheets/AdvancedJava.md#lambdas-and-functional-interfaces)
-- Familiarity with types of [sensors](../../sheets/Sensors.md)
-- [WPILib installed](../../sheets/EnvironmentSetup.md#wpilib)
-
 ## Goals
 
 Some understanding of and familiarity with:
