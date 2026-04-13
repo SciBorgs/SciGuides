@@ -52,5 +52,7 @@ You can run both at the same time by inputting
 ```
 in your terminal.
 
+(Please note, these shortcuts are Sciborgs specific)
+
 ## Where is Gradle used inside the project?
 In FRC repositories, you will see a build.gradle file and a gradle-wrapper file, which configure Gradle. These allow for the use of gradle and gradle wrapper.
