@@ -1,6 +1,6 @@
 # Introduction to Software
 
-**Hello young aspiring programmer!** This guide will go over **what** software we will use in this course and **why** we use it.
+**Hello young aspiring programmer!** This guide will go over **what** software we use and **why** we use it.
 
 Here is what will be covered here:
 
@@ -10,45 +10,34 @@ Here is what will be covered here:
 4. **[How do we collaborate with each other?](#how-do-we-collaborate-with-each-other)**
 5. **[What do we use to collaborate?](#what-do-we-use-to-collaborate)**
 
-If you want to just **get to the point** on **downloading your software**, head over to [our Software Setup Guide](SoftwareSetup.md).
-
 ## What is FIRST® Robotics?
 
-As you may have already learned from our wonderful *Core Mechanics Presentation*, **FIRST® Robotics** is an organization that hosts massive global robotics competitions with **1000’s of teams once every year**. These competitions are split up into **3 divisions** based on difficulty level.
+As you may have already learned, **FIRST® Robotics** is an organization that hosts massive global robotics competitions with **1000’s of teams once every year**. These competitions are split up into **2 divisions** based on difficulty level.
 
-**1. FRC aka. FIRST® Robotics Competition**
-
-*Grades 9-12 (The Sciborgs compete in this!)*
-
-**2. FTC aka. FIRST® Tech Challenge**
-
-*Grades 7-12 (Apiero competes in this!)*
-
-**3. FLL aka. FIRST® Lego League**
-
-*Grades 4-10 (We don't compete in this!)*
+ - FIRST® Robotics Competition (SciBorgs and FeMaidens compete in this!)
+ - FIRST® Tech Challenge (Apeiro competes in this!)
 
 *This programming course, along with the accompanying electronics and mechanical courses, are all based around **FRC robots**.*
 
 ## What do we use to interact with our robot?
 
-FIRST® Robotics created a **special control system** called **WPILIB®** which we use to control their robots. WPILIB® supports 3 programming languages **C++**, **Java**, and **Python**.*
+FIRST® Robotics created a **special control system** called **WPILIB®** which we use to control their robots. WPILIB® supports 3 programming languages **C++**, **Java**, and **Python**.
 
-Due to the fact that **python is incredibly annoying** (all my homies **HATE** python), and that we are **too stupid for C++**, our school has collectively decided to use **Java as our language**.
+We don't use python because **it is the slowest language to run**, it **doesn't have OOP**, and **indentations make your code VERY annoying to handle**.
 
-> To clarify, we don't use python because **it is the slowest language to run**, it **doesn't have OOP**, and **indentations make your code VERY annoying to handle**.
+We don't use C++ because **it is very difficult**, it is **very easy to break**, and we do not have any C++ courses in our school.
 
-> To clarify further, we don't use C++ because **it is very difficult**, it is **very easy to break**, and **we have an entire Java course in this school (AP® Computer Science).**
+We do use Java because it is **Object-Oriented**, **moderately fast**, and **easy to manage**. In addition, we have an entire Java course in this school (AP® Computer Science).**
 
 ## What do we use to edit our code?
 
 In the **Java code-editing sphere** there are two very prominent competitors **Visual Studio Code** (by Microsoft) and **Intellij IDEA** (by Jetbrains). We choose Visual Studio Code (VSCode for short) for **a couple of reasons**.
 
 1. **Non-cluttered and customizable**
-2. **Literally everybody else uses it**
+2. **Everybody else uses it**
 3. **It is the only one officially supported by FIRST®**
 
-(They created an official extension for Visual Studio Code as well as use it in their tutorials)
+(Visual Studio code is integrated into WPILIB® with an extension)
 
 > Note that **Visual Studio** and **Visual Studio Code** are very different apps.
 
