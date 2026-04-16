@@ -29,7 +29,6 @@ In the file:
 
 The IO file (Input/Output) is a interface that the fake, sim, and real files implement. It contains the core methods necessary for the subsystem.
 
-
 In the file:
 
 - Methods are instantiated
@@ -65,6 +64,13 @@ In the file:
 ## "Main" Subsystem File
 
 The "Main" Subsystem file is a file which extends SubsystemBase, and is responsible for deciding which of the three files that extend the IO (fake, sim, real) is used. It is the file which controls the hardware of the subsystem.
+
+In this file:
+
+- An object representing hardware of the robot is created.
+- Fake, sim, and real factory methods are written
+- Commands are written
+- x
 
 
 
