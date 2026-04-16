@@ -386,7 +386,7 @@ All in all, this method should:
 
 ```
 
-The second runShooter method (the "double" one) will just call the DoubleSupplier one with a lambda. 
+The second runShooter method (the "double" one) will just return the DoubleSupplier one with its double velocity. 
 
 ```java
     public Command runShooter(double velocity) {
