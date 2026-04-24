@@ -35,8 +35,7 @@ In the file:
 
 ## Fake File
 
-The fake file is a file which implements the IO file, but all methods within it either return zero or have a empty body (does nothing).
-It serves as both a way to test the robot without needing to load a specific subsystem or as an "emergency stop" in the case of some kind of failure to prevent damage.
+The fake file is a file which implements the IO file, but all methods within it either return zero or have a empty body (does nothing). It serves as both a way to test the robot without needing to load a specific subsystem or as an "emergency stop" in the case of some kind of failure to prevent damage.
 
 In the file:
 
@@ -45,7 +44,7 @@ In the file:
 
 ## Sim File
 
-The sim file is a file which implements the IO file, and sets up a simulated version of the subsystem.nIt serves as a way to test the subsystem virtually, without connecting to the physical robot. (very useful because physical robot testing time is very small)
+The sim file is a file which implements the IO file, and sets up a simulated version of the subsystem. It serves as a way to test the subsystem virtually, without connecting to the physical robot. (very useful because physical robot testing time is very small)
 
 In the file:
 
@@ -70,7 +69,6 @@ In this file:
 - An object representing hardware of the robot is created.
 - Fake, sim, and real factory methods are written
 - Commands are written
-- x
 
 
 

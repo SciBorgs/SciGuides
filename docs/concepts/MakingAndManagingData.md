@@ -247,13 +247,15 @@ Strings are **not** primitives, they are **classes** that hold **a list of chara
 
 > **Do not** use '==' when working with strings! (Strings compare memory addresses **instead** of content when using '==')
 
+Strings can be **combined** (the fancy programmer word is *concatenated*) using the ```+``` sign and, unlike other objects, can be created using **literals**. That means you don't need to do ```String x = new String()```. Instead, you can just do ```String x = ""```.
+
 ## Lists and Arrays
 
 **Lists** ```List<Class>``` are used to hold **multiple objects** in an organized fashion (each object has an **position** in the list). Lists can be made of **any object** simply by specifying the **class of those objects** in the ```<Angle Brackets>```. Lists **cannot** hold primitives.
 
 ```java
 // There are many different types of lists!
-// Just use ArrayList for now.
+// ArrayList is the simplest one (functions like an array but expandable).
 List<Integer> coolList = new ArrayList<>();
 
 coolList.add(5); // Index: 0
@@ -319,7 +321,7 @@ int x = 5;
 System.out.print(x); // Prints out "5".
 ```
 
-Because Java utilizes **Object-Oriented-Programming**, all fields and methods are created **simultaneously**.
+Because Java utilizes **Object-Oriented-Programming**, all fields are created **before** methods.
 
 ```java
 public class Robot {
@@ -327,7 +329,7 @@ public class Robot {
         return name;
     }
 
-    // This doesn't break the laws of special relativity!
+    // This doesn't break the laws of physics!
     String name = "SciDuck";
 }
 ```
@@ -341,7 +343,7 @@ In order to make **objects** using **classes**, we need to define a **constructo
 ```java
 // Lets go back to the Robot class...
 public class Robot {
-    private int secretStrategyNumber = 67;
+    private int secretStrategyNumber = 1155;
     public int height = 4;
 
     // This is the constructor!

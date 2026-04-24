@@ -1108,15 +1108,14 @@
 <li>Methods are instantiated</li>
 </ul>
 <h2 id="fake-file">Fake File</h2>
-<p>The fake file is a file which implements the IO file, but all methods within it either return zero or have a empty body (does nothing).
-It serves as both a way to test the robot without needing to load a specific subsystem or as an "emergency stop" in the case of some kind of failure to prevent damage.</p>
+<p>The fake file is a file which implements the IO file, but all methods within it either return zero or have a empty body (does nothing). It serves as both a way to test the robot without needing to load a specific subsystem or as an "emergency stop" in the case of some kind of failure to prevent damage.</p>
 <p>In the file:</p>
 <ul>
 <li>Methods from IO file are added.</li>
 <li>All methods from the IO file return zero / are left empty.</li>
 </ul>
 <h2 id="sim-file">Sim File</h2>
-<p>The sim file is a file which implements the IO file, and sets up a simulated version of the subsystem.nIt serves as a way to test the subsystem virtually, without connecting to the physical robot. (very useful because physical robot testing time is very small)</p>
+<p>The sim file is a file which implements the IO file, and sets up a simulated version of the subsystem. It serves as a way to test the subsystem virtually, without connecting to the physical robot. (very useful because physical robot testing time is very small)</p>
 <p>In the file:</p>
 <ul>
 <li>An object representing the simulated subsystem is created (with proper parameters).</li>
@@ -1131,6 +1130,12 @@ It serves as both a way to test the robot without needing to load a specific sub
 </ul>
 <h2 id="main-subsystem-file">"Main" Subsystem File</h2>
 <p>The "Main" Subsystem file is a file which extends SubsystemBase, and is responsible for deciding which of the three files that extend the IO (fake, sim, real) is used. It is the file which controls the hardware of the subsystem.</p>
+<p>In this file:</p>
+<ul>
+<li>An object representing hardware of the robot is created.</li>
+<li>Fake, sim, and real factory methods are written</li>
+<li>Commands are written</li>
+</ul>
 
 
 

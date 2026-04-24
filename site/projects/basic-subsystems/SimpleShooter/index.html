@@ -1443,7 +1443,7 @@ public final class Shooter extends SubsystemBase {
     }
 
 </code></pre>
-<p>The second runShooter method (the "double" one) will just call the DoubleSupplier one with a lambda. </p>
+<p>The second runShooter method (the "double" one) will just return the DoubleSupplier one with its double velocity. </p>
 <pre><code class="language-java">    public Command runShooter(double velocity) {
         return runShooter(() -&gt; velocity)
     }

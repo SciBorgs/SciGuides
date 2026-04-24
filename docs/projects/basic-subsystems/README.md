@@ -7,5 +7,7 @@ These projects cover step-by-step instructions on how to code **specific mechani
 1. [Differential Drivetrain](DifferentialDrive.md)
 2. [Simple Shooter](./SimpleShooter.md)
 
+I'd recommend reading [the General Subsystem Guide](GeneralSubsystemStructure.md) to start!
+
 *The Sciborgs Programming Department*
 

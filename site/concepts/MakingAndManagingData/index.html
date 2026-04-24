@@ -1594,10 +1594,11 @@ double weirderNumber = 3.14159265358d;
 <blockquote>
 <p><strong>Do not</strong> use '==' when working with strings! (Strings compare memory addresses <strong>instead</strong> of content when using '==')</p>
 </blockquote>
+<p>Strings can be <strong>combined</strong> (the fancy programmer word is <em>concatenated</em>) using the <code>+</code> sign and, unlike other objects, can be created using <strong>literals</strong>. That means you don't need to do <code>String x = new String()</code>. Instead, you can just do <code>String x = ""</code>.</p>
 <h2 id="lists-and-arrays">Lists and Arrays</h2>
 <p><strong>Lists</strong> <code>List&lt;Class&gt;</code> are used to hold <strong>multiple objects</strong> in an organized fashion (each object has an <strong>position</strong> in the list). Lists can be made of <strong>any object</strong> simply by specifying the <strong>class of those objects</strong> in the <code>&lt;Angle Brackets&gt;</code>. Lists <strong>cannot</strong> hold primitives.</p>
 <pre><code class="language-java">// There are many different types of lists!
-// Just use ArrayList for now.
+// ArrayList is the simplest one (functions like an array but expandable).
 List&lt;Integer&gt; coolList = new ArrayList&lt;&gt;();
 
 coolList.add(5); // Index: 0
@@ -1652,13 +1653,13 @@ int x = 5;
 
 System.out.print(x); // Prints out &quot;5&quot;.
 </code></pre>
-<p>Because Java utilizes <strong>Object-Oriented-Programming</strong>, all fields and methods are created <strong>simultaneously</strong>.</p>
+<p>Because Java utilizes <strong>Object-Oriented-Programming</strong>, all fields are created <strong>before</strong> methods.</p>
 <pre><code class="language-java">public class Robot {
     public String getName() {
         return name;
     }
 
-    // This doesn't break the laws of special relativity!
+    // This doesn't break the laws of physics!
     String name = &quot;SciDuck&quot;;
 }
 </code></pre>
@@ -1667,7 +1668,7 @@ System.out.print(x); // Prints out &quot;5&quot;.
 <p>In order to make <strong>objects</strong> using <strong>classes</strong>, we need to define a <strong>constructor method</strong>. A constructor is a <strong>special</strong> type of method that is called using the <strong>new</strong> keyword. The reason why this type of method is special is because <strong>no other method</strong> has the power to <strong>construct objects</strong>.</p>
 <pre><code class="language-java">// Lets go back to the Robot class...
 public class Robot {
-    private int secretStrategyNumber = 67;
+    private int secretStrategyNumber = 1155;
     public int height = 4;
 
     // This is the constructor!
