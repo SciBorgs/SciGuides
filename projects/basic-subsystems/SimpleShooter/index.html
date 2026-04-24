@@ -1,0 +1,1559 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../DifferentialDrive/">
+      
+      
+        <link rel="next" href="../../../sheets/">
+      
+      
+      <link rel="icon" href="../../../images/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>Simple Shooter - SciGuides</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="yellow" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#simple-shooter" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="SciGuides" class="md-header__button md-logo" aria-label="SciGuides" data-md-component="logo">
+      
+  <img src="../../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SciGuides
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Simple Shooter
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="SciGuides" class="md-nav__button md-logo" aria-label="SciGuides" data-md-component="logo">
+      
+  <img src="../../../images/logo.png" alt="logo">
+
+    </a>
+    SciGuides
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Concepts
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Concepts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/IntroToSoftware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Intro to Software
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/SoftwareSetup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setting up Software
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/ObjectsAndClasses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Objects and Classes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/MakingAndManagingData/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Making and Managing Data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Projects
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Projects
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Basic Subsystems
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Basic Subsystems
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GeneralSubsystemStructure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    General Subsystem Structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DifferentialDrive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Differential Drive
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Simple Shooter
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Simple Shooter
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Notes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shooter-subsystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shooter Subsystem
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ports
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shooterconstants-constants" class="md-nav__link">
+    <span class="md-ellipsis">
+      ShooterConstants // Constants
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shooterio-io-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      ShooterIO // IO File
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#noshooter-fake-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoShooter // Fake Instance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simshooter-sim-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      SimShooter // Sim Instance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#realshooter-real-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      RealShooter // Real Instance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shooter-main-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shooter // Main File
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secret-simshooter-jumpscare" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secret SimShooter jumpscare
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Reference Sheets
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Reference Sheets
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sheets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sheets/CommandBased/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command Based Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sheets/CommandLineNavigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command Line Navigation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sheets/ControlTheory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Control Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sheets/FileStructure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sheets/GitGuide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Git Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sheets/Sensors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sensors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sheets/Simulation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Simulation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sheets/Telemetry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Telemetry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sheets/Trigonometry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Trig Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Notes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shooter-subsystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shooter Subsystem
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ports
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shooterconstants-constants" class="md-nav__link">
+    <span class="md-ellipsis">
+      ShooterConstants // Constants
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shooterio-io-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      ShooterIO // IO File
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#noshooter-fake-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoShooter // Fake Instance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simshooter-sim-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      SimShooter // Sim Instance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#realshooter-real-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      RealShooter // Real Instance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shooter-main-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shooter // Main File
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secret-simshooter-jumpscare" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secret SimShooter jumpscare
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="simple-shooter">Simple Shooter</h1>
+<h2 id="introduction">Introduction</h2>
+<p>This project is going to cover how to make a basic shooter subsystem, as well as the general structure of a standard subsystem. </p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Generally, you want to be familiar with:</p>
+<ul>
+<li><a href="https://docs.wpilib.org/en/stable/docs/software/basic-programming/functions-as-data.html">functional interfaces / lambda functions</a></li>
+<li>what a subsystem is</li>
+<li>how command based structure works </li>
+<li>general subsystem file structure </li>
+<li>PID and FF    </li>
+</ul>
+<h2 id="quick-notes">Quick Notes</h2>
+<p>Some general reminders / self troubleshooting:</p>
+<p>-&gt; Use tab/autofill to automatically get imports when using certain methods.</p>
+<p>-&gt; Make sure to check your imports when something is not resolved.</p>
+<p>-&gt; Some methods have multiple variants. Make sure you're using the correct one.</p>
+<h2 id="shooter-subsystem">Shooter Subsystem</h2>
+<p>The shooter subsystem, as the name suggest, controls our shooter. It does this by sending a voltage to the motors, which then spin the rollers of the shooter which ultimately launch the gamepiece. This is what we'll essentially be writing methods for. </p>
+<h2 id="ports">Ports</h2>
+<p>For our motors to actually work, we'll have to tell the robot what port they're connected to so it knows which motors to send voltage to. To do this, we'll just add a class in the Ports.java for our shooter and put some values representing what ports we're using.</p>
+<pre><code class="language-java">public final class Ports {
+    ...
+        public static final class Shooter { 
+
+            public static final int leader = 10;
+            public static final int follower = 11;
+
+        }
+    ...
+}
+</code></pre>
+<p>These values will probably change as you actually finalize the robot, but we'll leave them as these for now.</p>
+<h2 id="shooterconstants-constants">ShooterConstants // Constants</h2>
+<p>Lets get the boring bits out of the way first. There are a bunch of constants we'll need (some of which you'll get from your construction teammates) to put in a file for later use. </p>
+<p>(Note: All of these should be final since they're constants, as well as doubles unless explicitly stated)</p>
+<p>In the ShooterConstants file, we'll declare:</p>
+<p>Your robot constants:</p>
+<ul>
+<li>GEARING </li>
+<li>RADIUS </li>
+<li>CURRENT_LIMIT (Current)</li>
+<li>DEFAULT_VELOCITY (AngularVelocity)</li>
+<li>MAX_VELOCITY (AngularVelocity)</li>
+<li>PERIOD = 0.2</li>
+<li>MAX_VOLTAGE = 12</li>
+<li>MOI / moment of inertia</li>
+</ul>
+<p>Your PID and Feedforward constants:</p>
+<ul>
+<li>K_P</li>
+<li>K_I</li>
+<li>K_D</li>
+<li>K_S</li>
+<li>K_V</li>
+<li>K_A</li>
+</ul>
+<p>We'll just leave these for later :&gt;</p>
+<h2 id="shooterio-io-file">ShooterIO // IO File</h2>
+<p>Lets setup the IO file.</p>
+<p>First, the file type should be changed from a class to an interface.</p>
+<p>This file will serve as a blueprint for three other files (No, Real, and SimShooter) so it will need to contain the basic methods we need for a shooter.</p>
+<p>To get a shooter to actually shoot <small>(waow)</small>, a voltage needs to be sent to the motors. This leads us to our first method: setVoltage. Since the method is just doing something (setting a voltage), it'll be of return type void and have a parameter double voltage.</p>
+<p>Our second method will just return the velocity of the shooter motor as a double, hence we'll just call it getVelocity.</p>
+<p>Your file should look something like this when you're done.</p>
+<pre><code class="language-java">public interface ShooterIO {
+   public void setVoltage(double voltage);
+   public double getVelocity();
+}
+</code></pre>
+<h2 id="noshooter-fake-instance">NoShooter // Fake Instance</h2>
+<p>The NoShooter.java file, as mentioned previously, implements ShooterIO.java and has all methods within it either return zero or left empty.</p>
+<p><small>So, lets do that (・∀・)</small></p>
+<p>in NoShooter.java, implement the ShooterIO interface we just made, import its methods, and make sure all methods within it either return zero or left empty.</p>
+<pre><code class="language-java">public class NoShooter implements ShooterIO{
+   public void setVoltage(double voltage) {}
+
+   public double getVelocity() {
+       return 0;
+   }
+}
+</code></pre>
+<h2 id="simshooter-sim-instance">SimShooter // Sim Instance</h2>
+<p>The SimShooter.java file is, as the name suggests, responsible for creating our simulation. It will first require an object to be created, representing our simulated part. It will then use that object in its methods to affect things in the simulation. For our shooter, this will be a <i>FlywheelSim</i> (A WPILib class thats given to us through the WPILib extension).</p>
+<p>First, lets declare our object.</p>
+<pre><code class="language-java">public class SimShooter implements ShooterIO {
+   private final FlywheelSim shooter;
+}
+</code></pre>
+<p>Next, write the constructor that will create our simulated shooter object.</p>
+<pre><code class="language-java">public class SimShooter implements ShooterIO {
+
+    ...
+    public SimShooter() {
+
+        shooter = new FlywheelSim(LinearSystemId.createFlywheelSystem(DCMotor.getNeoVortex(2), MOI, GEARING), DCMotor.getNeoVortex(2));
+
+    }
+}
+</code></pre>
+<p>After that, we'll also implement our methods from ShooterIO like we did in NoShooter. Unlike what we did in NoShooter, however, we'll actually have these methods interact with the simulation. To do that, we'll add some method bodies setting the voltage and getting the velocity of our simulation.</p>
+<p>For setVoltage, it will use the method "setInputVoltage" on our shooter object to set it to our input voltage.</p>
+<pre><code class="language-java">    public void setVoltage(double voltage) {
+        shooter.setInputVoltage(voltage);
+    }
+</code></pre>
+<p>For getVelocity, it will use the method "getAngularVelocityRadPerSec" on our shooter object to get its angular velocity.</p>
+<pre><code class="language-java">    public double getVelocity() {
+        shooter.getAngularVelocityRadPerSec();
+    }
+</code></pre>
+<p>And that'll be our SimShooter :&gt; We will actually be coming back here to add one more thing towards the end of this guide, but we'll cross that bridge when we get to it.</p>
+<h2 id="realshooter-real-instance">RealShooter // Real Instance</h2>
+<p>The RealShooter.java file is responsible for handling our code when connected to the physical robot. It requires an object to be made for each motor we use (the type should be either CANspark/SparkMax or TalonFX) and uses those objects to affect the physical motors on the robot. This also means that the number of motors will vary based on the design of your shooter so meaning that the number of motor objects in here will vary (we'll just use two).</p>
+<p>As always, lets declare and construct our motors: one named leader and one named follower (for this guide, they will be SparkMax motors). We'll also make an encoder using our leading motor to get the velocity later.</p>
+<pre><code class="language-java">public class RealShooter implements ShooterIO {
+
+   private final SparkMax leader;
+   private final SparkMax follower;
+   private final RelativeEncoder encoder;
+
+   public RealShooter() {
+       leader = new SparkMax(LEADER, MotorType.kBrushless);
+       follower = new SparkMax(FOLLOWER, MotorType.kBrushless);
+       encoder = leader.getEncoder();
+
+   }
+}
+</code></pre>
+<p>ok settings time</p>
+<p>Next we need to configure our motors so they actually behave how we want them to. We'll do this using a SparkMaxConfig object, changing it, and then applying it to each of our motors.</p>
+<p>First, make our config inside the constructor.</p>
+<pre><code class="language-java">public class RealShooter implements ShooterIO {
+
+   ...
+   public RealShooter() {
+       leader = new SparkMax(LEADER, MotorType.kBrushless);
+       follower = new SparkMax(FOLLOWER, MotorType.kBrushless);
+       encoder = leader.getEncoder();
+
+       SparkMaxConfig config = new SparkMaxConfig();
+
+   }
+
+}
+</code></pre>
+<p>Next, use Spark's methods on the config object to set our settings right under our config object.</p>
+<pre><code class="language-java">public class RealShooter implements ShooterIO {
+   ...
+   config
+       .smartCurrentLimit(CURRENT_LIMIT)
+       .idleMode(IdleMode.kBrake);
+   ...
+}
+</code></pre>
+<p>And then apply them using the configure method.</p>
+<pre><code class="language-java">public class RealShooter implements ShooterIO {
+   ...
+    leader.configure(config, SparkBase.ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    follower.configure(config.inverted(true).follow(leader), SparkBase.ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+   ...
+}
+</code></pre>
+<p>Ok, and back to our methods from ShooterIO. These will be similar to what we've seen previously, just using methods given by Spark to set the voltage of our motors and get the velocity of our encoder.</p>
+<pre><code class="language-java">public class RealShooter implements ShooterIO{
+
+   public void setVoltage(double voltage) {
+       leader.setVoltage(voltage);
+
+   }
+
+   public double getVelocity() {
+       return encoder.getVelocity();
+   }
+
+}
+</code></pre>
+<p>And that'll be our RealShooter :&gt;</p>
+<h2 id="shooter-main-file">Shooter // Main File</h2>
+<p>And finally, we'll need to write our "main" subsystem file that oversees the real, sim, and fake instances of our shooter as well as controlling the PID required to correctly send voltage to our motors. This file will be the one to <u>extend subsystem base</u>, and will contain several methods which return commands to integrate with our command based code structure. </p>
+<p>lets go :D</p>
+<p>As always, our first step will involve us declaring our motor (this time called hardware) with type ShooterIO. We'll also add our PID and FF objects, which we'll use later.</p>
+<pre><code class="language-java">/// extend lets it essentially be part of the subsystem structure
+/// it lets it use certain methods from SubsystemBase
+public final class Shooter extends SubsystemBase {
+    private final ShooterIO hardware;
+
+    private final PIDController pid = new PIDController(P, I, D);
+    private final SimpleMotorFeedforward ff = new SimpleMotorFeedforward(S, V, A, PERIOD.in(Seconds));
+}
+</code></pre>
+<p><small>-&gt; Your P, I, D, S, V, A, and period constants should all come from your ShooterConstants file.</small></p>
+<p>Since our shooter.java file decides which instance (fake, real, sim) to use, it'll need to create those instances, so lets make a constructor to make those instances. </p>
+<p>We'll call it Shooter, and have it take in a ShooterIO parameter so it knows which one we want it to make. </p>
+<pre><code class="language-java">public final class Shooter extends SubsystemBase {
+    ...
+    private Shooter(ShooterIO hardware) {
+
+    this.hardware = hardware;
+
+    }
+    ...
+}
+</code></pre>
+<p>There will be two constructors: one handling creating the real/sim instances called "create" and another handling the fake instance called "none".  The first constructor, returning either a RealShooter subsystem or a SimShooter subsystem, will decide which one through an if statement checking if we are connected to a physical robot (literally Robot.isReal()), while the second one just always returns a NoShooter.</p>
+<pre><code class="language-java">public final class Shooter extends SubsystemBase {
+    ...
+    public static Shooter create() {
+        return Robot.isReal() ? new Shooter(new RealShooter()) : new Shooter(new SimShooter());
+    }
+
+    public static Shooter none() {
+        return new Shooter(NoShooter());
+    }
+    ...
+}
+</code></pre>
+<p><small>-&gt; These are examples of "factory methods": methods which just return an object.</small></p>
+<p>This bit should look familiar now: a getVelocity method. It will be the exact same as we previously did in this guide, just using hardware as the object instead (Why is there no setVoltage? Wait and you'll see).</p>
+<pre><code class="language-java">public final class Shooter extends SubsystemBase {
+    ...
+    public double getVelocity() {
+        return hardware.velocity();
+    }
+    ...
+}
+</code></pre>
+<p>Next, we'll make an update method using the PID and FF systems we made earlier. This method will run every tick when it is called by our commands periodically, allowing it to constantly update the velocity setpoint (velocity we want the motor to go to) so that the motor is always aiming to go to at correct speed. Essentially, it will constantly find the voltages to get to a desired speed, then set the voltage to that found voltage.</p>
+<pre><code class="language-java">public final class Shooter extends SubsystemBase {
+    ...
+    public void update(double velocitySetpoint) {
+
+    //makes sure the velocity it tries to go to does not exceed the max/min
+    double velocity =
+        MathUtil.clamp(
+            velocitySetpoint,
+            -MAX_VELOCITY.in(RadiansPerSecond),
+            MAX_VELOCITY.in(RadiansPerSecond));
+
+    //calculated the needed voltages using PID and FF 
+    double ffVolts = feedforward.calculate(velocity);
+    double pidVolts = controller.calculate(getVelocity(), velocity);
+
+    hardware.setVoltage(MathUtil.clamp(pidVolts + ffVolts, -MAX_VOLTAGE, MAX_VOLTAGE));
+
+    }
+    ...
+}
+</code></pre>
+<p><small>-&gt; "Clamp" makes sure a value does not go beyond a set max/min.</small></p>
+<p>Lastly, we'll add our commands which will be used to control the shooter in our central control Robot.java file. This part might a bit unfamiliar, since its dealing with lambdas, but the rest should look relatively fine.</p>
+<p>ok lets doig it</p>
+<p>First, we'll make two methods, both named runShooter, which both return a command. Where these two will differ, however, is in their inputs: one will be take in a DoubleSupplier velocity, while the other will take in just a double velocity.</p>
+<pre><code class="language-java">    public Command runShooter(DoubleSupplier velocity) {}
+
+    public Command runShooter(double velocity) {}
+</code></pre>
+<p>Lets make the DoubleSupplier-using method first. This one will be the one to actually return the command which runs the shooter (which is why it takes in a DoubleSupplier so the input can constantly update to the correct velocity instead of just staying stuck at one value) using the "run" and "update" method. </p>
+<p>Since we need to return a command (a type of action), we can't just return a method as that will just return one value. Instead, we will need to use two things: the "run" method and a lambda function. The lambda allows the update <i>method</i>, the action we want to perform, to essentially act as a "Runnable" <i>object</i>, allowing us to use "run" on it and return it as a command.</p>
+<p>All in all, this method should:</p>
+<ul>
+<li>return a Command using the run method </li>
+<li>with the parameter of run being a lambda calling our update method </li>
+<li>and using the DoubleSupplier voltage as its input</li>
+</ul>
+<p><small>-&gt; use getAsDouble of velocity since the update method only accepts doubles.</small></p>
+<pre><code class="language-java">
+    public Command runShooter(DoubleSupplier velocity) {
+        return run(() -&gt; update(velocity.getAsDouble()))
+    }
+
+</code></pre>
+<p>The second runShooter method (the "double" one) will just return the DoubleSupplier one with its double velocity. </p>
+<pre><code class="language-java">    public Command runShooter(double velocity) {
+        return runShooter(() -&gt; velocity)
+    }
+
+</code></pre>
+<h2 id="secret-simshooter-jumpscare">Secret SimShooter jumpscare</h2>
+<p>Hopefully you still remember that I said we'd be coming back to SimShooter, because there was one thing we didn't understand previously that we'll add now. </p>
+<p>In your method body for setVoltage, add a second line calling the update method on our shooter object with "PERIOD" in seconds as our input.</p>
+<pre><code class="language-java">    ...
+    public void setVoltage(double voltage) {
+        shooter.setInputVoltage(voltage);
+        shooter.update(PERIOD.in(Seconds));
+
+    }
+    ...
+</code></pre>
+<p><img alt="thumbs up" src="../images/CUPTOASTTHUMBSUP.jpeg" /> Cogleruntiations! You made the code for a simple shooter.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../DifferentialDrive/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Differential Drive">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Differential Drive
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../../sheets/" class="md-footer__link md-footer__link--next" aria-label="Next: About">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                About
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.footer"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
