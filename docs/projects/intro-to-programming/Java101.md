@@ -2,12 +2,12 @@
 ## Prerequisites
 
 - Comfortable with all of the [goals for Programming101](Programming101.md#goals).
-- Comfortable with [command-line navigation](../../reference-sheets/CommandLineNavigation.md)
+- Comfortable with [command-line navigation](../../sheets/CommandLineNavigation.md)
 - Comfortable with git (ignore this one for now!)
 - Environment set up
-	- [Code directory created](../../reference-sheets/EnvironmentSetup.md#local-code-organization)
-	- [VSCode installed](../../reference-sheets/EnvironmentSetup.md#visual-studio-code-not-wpilib)
-	- [Git & Github set up](../../reference-sheets/EnvironmentSetup.md#git)
+	- [Code directory created](../../sheets/EnvironmentSetup.md#local-code-organization)
+	- [VSCode installed](../../sheets/EnvironmentSetup.md#visual-studio-code-not-wpilib)
+	- [Git & Github set up](../../sheets/EnvironmentSetup.md#git)
 ## Goals
 
 Familiarity with the following topics:

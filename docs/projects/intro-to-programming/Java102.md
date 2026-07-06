@@ -3,11 +3,11 @@
 ## Prerequisites
 
 - Comfortable with all of the [goals for Java101](Java101.md#goals).
-- Comfortable with [command-line navigation](../../reference-sheets/CommandLineNavigation.md)
+- Comfortable with [command-line navigation](../../sheets/CommandLineNavigation.md)
 - Environment set up
-	- [Code directory created](../../reference-sheets/EnvironmentSetup.md#local-code-organization)
-	- [VSCode installed](../../reference-sheets/EnvironmentSetup.md#visual-studio-code-not-wpilib)
-	- [Git & Github set up](../../reference-sheets/EnvironmentSetup.md#git)
+	- [Code directory created](../../sheets/EnvironmentSetup.md#local-code-organization)
+	- [VSCode installed](../../sheets/EnvironmentSetup.md#visual-studio-code-not-wpilib)
+	- [Git & Github set up](../../sheets/EnvironmentSetup.md#git)
 ## Goals
 
 Familiarity with the following concepts:
@@ -311,7 +311,7 @@ Also, if you haven't yet, now would be a great time to commit and push your chan
 
 Write a non-static method that calculates and returns the angle in degrees between a point and the positive x axis. Or more specifically, the angle of point p is the angle from the positive x axis to the line that goes through the origin and point p. Counterclockwise is positive. 
 
-This will require trigonometry. If you're not familiar with basic trig, look at [this doc](../../reference-sheets/Trigonometry.md).
+This will require trigonometry. If you're not familiar with basic trig, look at [this doc](../../sheets/Trigonometry.md).
 
 You can look up how to perform trigonometric functions in Java (the Java trig functions generally operate in radians, so you'll need to use `Math.toDegrees` and `Math.toRadians` to make sure you're being consistent about units).
 
