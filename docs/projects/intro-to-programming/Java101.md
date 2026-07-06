@@ -20,8 +20,6 @@ Familiarity with the following topics:
 
 ## Best Practices
 
-As always, follow the general [best practices](../../index.md#best-practices).
-
 For this guide, you should be following along on your own computer. When there are pieces of example code, first think about out how the code works, and then try running it yourself. After each section, try to play around with the concepts you've learned! Make your own examples similar to the ones given.
 
 There will be some practice problems, but not as consistently, so it's really important that you actually are following along, experimenting on your own, and just making sure you really understand what's happening.
