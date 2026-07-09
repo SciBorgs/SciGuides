@@ -655,11 +655,11 @@ public class Square {
 	}
 
 	public double area() {
-		// write this
+		// TODO: write this
 	}
 	
 	public double perimeter() {
-		// write this
+		// TODO: write this
 	}
 	
 	/** 
@@ -676,7 +676,7 @@ public class Square {
 	* @return Whether point p part of/on the border of the square.
 	*/
 	public boolean isOn(Point p) {
-		// write this
+		// TODO: write this
 	}
 	
 	/** 
@@ -685,7 +685,7 @@ public class Square {
 	* @return The sqaure that results from the translation.
 	*/
 	public Square translate(double x, double y) {
-		// write this
+		// TODO: write this
 	}
 
 	/** 
@@ -696,7 +696,7 @@ public class Square {
 	}
 
 	public Point[] corners() {
-		// write this
+		// TODO: write this
 	}
 
 	@Override
