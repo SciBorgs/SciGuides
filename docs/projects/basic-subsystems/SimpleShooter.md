@@ -66,9 +66,9 @@ Your robot constants:
 - CURRENT_LIMIT (Current)
 - DEFAULT_VELOCITY (AngularVelocity)
 - MAX_VELOCITY (AngularVelocity)
-- PERIOD = 0.2
 - MAX_VOLTAGE = 12
 - MOI / moment of inertia
+- PERIOD = 0.02 (in robot/Constants.java not robot/shooter/ShooterConstants)
 
 Your PID and Feedforward constants:
 
