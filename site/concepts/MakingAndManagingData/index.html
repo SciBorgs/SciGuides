@@ -1,0 +1,2253 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../ObjectsAndClasses/">
+      
+      
+        <link rel="next" href="../../projects/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../images/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Making and Managing Data - SciGuides</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="yellow" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#making-and-managing-data" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="SciGuides" class="md-header__button md-logo" aria-label="SciGuides" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SciGuides
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Making and Managing Data
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SciGuides" class="md-nav__button md-logo" aria-label="SciGuides" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    SciGuides
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../IntroToSoftware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intro to Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SoftwareSetup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setting up Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ObjectsAndClasses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objects and Classes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Making and Managing Data
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Making and Managing Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-boolean-data-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Boolean Data Type
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-making-with-booleans" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision Making with Booleans
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decision Making with Booleans">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-if-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The If-Statement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-while-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The While-Statement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-for-each-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The For-Each-Statement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-for-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The For-Statement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-create-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Create Conditions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How to Create Conditions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#equations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Equations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#negations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Negations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disjunctions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disjunctions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conjunctions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conjunctions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inequalities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inequalities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#different-types-of-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Different Types of Numbers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Different Types of Numbers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bytes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bytes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shorts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shorts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#longs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Longs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#floats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Floats
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#doubles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Doubles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strings-and-characters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strings and Characters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lists-and-arrays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lists and Arrays
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scopes-and-scope-keywords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scopes and Scope Keywords
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constructors-and-overloading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constructors and Overloading
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#console-input-and-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Console Input and Output
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intro To Programming
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Intro To Programming
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/intro-to-programming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/intro-to-programming/Programming101/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Programming 101
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/intro-to-programming/Java101/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java 101
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/intro-to-programming/Java102/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java 102
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Subsystems
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Basic Subsystems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/basic-subsystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/basic-subsystems/GeneralSubsystemStructure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General Subsystem Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/basic-subsystems/DifferentialDrive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Differential Drive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/basic-subsystems/SimpleShooter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Simple Shooter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference Sheets
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference Sheets
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sheets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sheets/CommandBased/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command Based Programming
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sheets/CommandLineNavigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command Line Navigation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sheets/ControlTheory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Control Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sheets/EnvironmentSetup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sheets/FileStructure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sheets/GitGuide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sheets/Sensors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sensors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sheets/Simulation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Simulation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sheets/Telemetry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Telemetry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sheets/Trigonometry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trig Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-boolean-data-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Boolean Data Type
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-making-with-booleans" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision Making with Booleans
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decision Making with Booleans">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-if-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The If-Statement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-while-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The While-Statement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-for-each-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The For-Each-Statement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-for-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The For-Statement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-create-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Create Conditions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How to Create Conditions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#equations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Equations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#negations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Negations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disjunctions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disjunctions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conjunctions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conjunctions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inequalities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inequalities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#different-types-of-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Different Types of Numbers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Different Types of Numbers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bytes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bytes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shorts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shorts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#longs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Longs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#floats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Floats
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#doubles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Doubles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strings-and-characters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strings and Characters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lists-and-arrays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lists and Arrays
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scopes-and-scope-keywords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scopes and Scope Keywords
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constructors-and-overloading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constructors and Overloading
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#console-input-and-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Console Input and Output
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="making-and-managing-data">Making and Managing Data</h1>
+<p><strong>Hello young aspiring programmer!</strong> This guide will serve as a conceptual introduction to <strong>the Java programming language</strong> through the lens of <strong>making and managing data</strong>.</p>
+<p>Here is what will be covered here:</p>
+<ol>
+<li><strong><a href="#the-boolean-data-type">The Boolean Data Type</a></strong></li>
+<li><strong><a href="#decision-making-with-booleans">Decision Making with Booleans</a></strong></li>
+<li><strong><a href="#how-to-create-conditions">How to create conditions</a></strong></li>
+<li><strong><a href="#different-types-of-numbers">Different Types of Numbers</a></strong></li>
+<li><strong><a href="#strings-and-characters">Strings and Characters</a></strong></li>
+<li><strong><a href="#lists-and-arrays">Lists and Arrays</a></strong></li>
+<li><strong><a href="#scopes-and-scope-keywords">Scopes and Scope Keywords</a></strong></li>
+<li><strong><a href="#constructors-and-overloading">Constructors and Overloading</a></strong></li>
+<li><strong><a href="#console-input-and-output">Console Input and Output</a></strong></li>
+</ol>
+<h2 id="the-boolean-data-type">The Boolean Data Type</h2>
+<p>Booleans are <strong>the absolute simplest form of data storage possible</strong>. A boolean is represented by a singular <strong>1</strong> or <strong>0</strong>. This represents the value of <strong>one singular transistor</strong> in the computer. However, to save time, Java only operates with <strong>bytes</strong> or chunks of <strong>8 bits</strong> (8 transistors). Therefore, Java takes up <strong>1 byte</strong> to store <strong>1 boolean value</strong>, however it will only take up <strong>1 byte</strong> to store <strong>8 boolean values</strong>.</p>
+<blockquote>
+<p>Similar to how a number can be used to represent both <strong>the price of a RoboRIO</strong> or <strong>the amount of members on the Sciborgs robotics team</strong>, a boolean can also be interpreted in many ways!</p>
+</blockquote>
+<p>A boolean can used to represent:</p>
+<ol>
+<li><strong>The Answer to a Yes or No Question</strong></li>
+<li><strong>Whether a mechanism is on or off</strong></li>
+<li><strong>Whether a statement is true of false</strong></li>
+</ol>
+<p>Booleans are heavily used in <strong>decision-making</strong> because, surprisingly, nearly everything in logic comes down to <strong>statements</strong> being either <strong>true or false</strong>.</p>
+<h2 id="decision-making-with-booleans">Decision Making with Booleans</h2>
+<p>There are a couple of different <strong>decision making techniques</strong> that can be used in Java.</p>
+<h3 id="the-if-statement">The If-Statement</h3>
+<p><strong>If</strong> something is true, <strong>then</strong> do something.</p>
+<pre><code class="language-java">boolean something = true;
+
+if (something == true) {
+    // This will only run one time.
+    someObject.doSomething();
+}
+</code></pre>
+<h3 id="the-while-statement">The While-Statement</h3>
+<p><strong>While</strong> something is true, <strong>keep doing</strong> something.</p>
+<pre><code class="language-java">boolean something = true;
+
+while (something == true) {
+    // This will run repeatedly.
+    // Probably will crash the PC.
+    someObject.doSomething();
+}
+</code></pre>
+<h3 id="the-for-each-statement">The For-Each-Statement</h3>
+<p><strong>For</strong> each element in a list, <strong>keep doing</strong> something.</p>
+<pre><code class="language-java">Number[] someDataSet = new Number[]{0, 1, 2, 3, 4, 5}; 
+
+for (Number number: someDataSet) {
+    // This will run for every element in the dataset.
+    someObject.doSomethingWithN(number);
+}
+</code></pre>
+<h3 id="the-for-statement">The For-Statement</h3>
+<p><strong>For</strong> some condition, <strong>keep doing</strong> something.</p>
+<ul>
+<li>The <strong>first</strong> segment runs once at the start</li>
+<li>The <strong>second</strong> segment is used to determine when the loop should stop</li>
+<li>The <strong>third</strong> segment is ran <strong>after</strong> each iteration</li>
+</ul>
+<pre><code class="language-java">// Each segment is separated with a semicolon.
+for (int iteration = 0; iteration &lt; 10; iteration++) {
+    // This will run 10 times over.
+    someObject.doSomethingWithN(iteration);
+}
+</code></pre>
+<h2 id="how-to-create-conditions">How to Create Conditions</h2>
+<p>Java gives us a very specific way to make our conditions (what we put into the <strong>parenthesis</strong> of our <strong>decision-making structures</strong>).</p>
+<h3 id="equations">Equations</h3>
+<p>Use two equal sign symbols <code>==</code> to create an <strong>equation</strong> between two boolean values <strong>or</strong> two objects.</p>
+<pre><code class="language-java">True == False; // This is false!
+False == False; // This is true!
+True == True; // This is true!
+</code></pre>
+<h3 id="negations">Negations</h3>
+<p>Use the exclamation mark <code>!</code> symbol to <strong>negate</strong> a boolean value.</p>
+<pre><code class="language-java">!True == False; // This is true!
+!False == False; // This is false!
+!False == True; // This is true!
+</code></pre>
+<h3 id="disjunctions">Disjunctions</h3>
+<p>Use two vertical bars <code>||</code> to create a <strong>disjunction</strong> between two boolean values (this is equivalent to using the word <strong>"or"</strong>).</p>
+<pre><code class="language-java">True || False; // This is true!
+True || True; // This is true!
+False || False; // This is false!
+</code></pre>
+<h3 id="conjunctions">Conjunctions</h3>
+<p>Use two ampersand symbols <code>&amp;&amp;</code> to create a <strong>conjunction</strong> between two boolean values.</p>
+<pre><code class="language-java">True &amp;&amp; True; // This is true!
+True &amp;&amp; False; // This is false!
+False &amp;&amp; False; // This is false!
+</code></pre>
+<h3 id="inequalities">Inequalities</h3>
+<p>Use the greater-than <code>&gt;</code> and less-than symbols <code>&lt;</code> to create an <strong>inequality</strong> between two numbers.</p>
+<pre><code class="language-java">6 &lt; 7; // This is true!
+6 &gt; 7; // This is false!
+</code></pre>
+<p>Use the greater-than or equal-to <code>&gt;=</code> as well as the less-than or equal-to <code>&lt;=</code> to create an <strong>inclusive inequality</strong>.</p>
+<pre><code class="language-java">7 &gt;= 7; // This is true!
+7 &lt;= 7; // This is true!
+
+7 &gt; 7; // This is false!
+7 &lt; 7; // This is false!
+</code></pre>
+<h2 id="different-types-of-numbers">Different Types of Numbers</h2>
+<p>There are <strong>multiple</strong> types of numbers in Java. All of these types of  numbers have different <strong>memory sizes</strong> and <strong>ranges of values</strong> that it can store.</p>
+<pre><code class="language-java">Number number = 5; // This is not real!
+</code></pre>
+<h3 id="bytes">Bytes</h3>
+<p><strong>Bytes</strong> <code>byte</code> are <strong>whole numbers</strong> that take up <strong>8 bits</strong> in size. They are the <strong>smallest</strong> form of number storage; only being able to store values from <strong>-128 to 127</strong>. The reason why values only go up to 127 is because <strong>1 bit</strong> is reserved by Java in order to describe <strong>whether the number is positive or negative</strong>.</p>
+<pre><code class="language-java">// Positive/Negative Bit --&gt; *0* 0101000
+byte coolNumber = 40; 
+</code></pre>
+<h3 id="shorts">Shorts</h3>
+<p><strong>Shorts</strong> <code>short</code> are <strong>whole numbers</strong> that take up <strong>16-bits</strong> in size. They are the <strong>second-smallest</strong> form of number storage; being able to store values from <strong>-32768 to 32767</strong>. Once again, one bit is reserved for the <strong>signature</strong>.</p>
+<pre><code class="language-java">// 0000000110111000
+short coolNumber = 440; 
+</code></pre>
+<h3 id="integers">Integers</h3>
+<p><strong>Integers</strong> <code>int</code> are <strong>whole numbers</strong> that take up <strong>32-bits</strong> in size. They are <strong>much bigger</strong> than shorts; being able to store values from <strong>-2147483648 to 2147483647</strong>. Once again, one bit is reserved for the <strong>signature</strong>.</p>
+<pre><code class="language-java">// 00000000000000001010110110011000
+int coolNumber = 44440; 
+</code></pre>
+<h3 id="longs">Longs</h3>
+<p><strong>Longs</strong> <code>long</code> are <strong>whole numbers</strong> that take up <strong>64-bits</strong> in size. They are <strong>much bigger</strong> than integers; being able to store values from <strong>-9223372036854775808 to 9223372036854775807</strong>. Once again, one bit is reserved for the <strong>signature</strong>.</p>
+<pre><code class="language-java">// 00000000 00000000
+// 00000000 00000000
+// 00001100 01101011
+// 11110100 01000010
+
+// Make sure to add the 'L'!
+long coolNumber = 4444444440L; 
+</code></pre>
+<h3 id="floats">Floats</h3>
+<p><strong>Floats</strong> <code>float</code> are <strong>fractional numbers</strong> that take up <strong>32-bits</strong> in size. They are the same size as integers. Floats are <strong>very</strong> complicated, but important to understand as many <em>seemingly random</em> errors can be traced back to floating-point arithmetic. I will link a video down below that describes this phenomenon in more detail. Any decimal past <strong>6 or 7 digits</strong> may not be accurately represented.</p>
+<pre><code class="language-java">// I am not even going to try this one.
+float weirdNumber = 3.00002f;
+</code></pre>
+<h3 id="doubles">Doubles</h3>
+<p><strong>Doubles</strong> <code>double</code> are <strong>fractional numbers</strong> that take up <strong>64-bits</strong> in size. They are the same size as longs. Doubles are <strong>structured</strong> and <strong>function</strong> the same as floats, except they are <strong>twice as large</strong>. This allows for precision up to <strong>16 decimal digits</strong>. I will link a video down below that describes floating-point arithmetic in more detail.</p>
+<pre><code class="language-java">// I am not even going to try this one either these numbers are weird.
+double weirderNumber = 3.14159265358d;
+</code></pre>
+<div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0;">
+  <iframe 
+    src="https://www.youtube.com/embed/bbkcEiUjehk?si=FufOOmDNtoD55AGL"
+    title="Floating Point Representation"
+    frameborder="0"
+    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+  </iframe>
+</div>
+
+<p><em>Here is a much more in-depth video on floating-point representation</em></p>
+<h2 id="strings-and-characters">Strings and Characters</h2>
+<p><strong>Characters</strong> are what makes up <strong>text</strong>. Each character has a specific <strong>whole number</strong> assigned to it that will <strong>represent it in memory</strong>.</p>
+<blockquote>
+<p>These numbers are assigned by the <em>American Standard Code for Information Interchange</em> also known as <strong>ASCII</strong>. 'A' would be represented by a <strong>65</strong>.</p>
+</blockquote>
+<p><strong>Characters</strong> <code>char</code> are represented using <code>'Single Quotes'</code> while <strong>Strings</strong> <code>String</code> are represented using <code>"Double Quotes"</code>.</p>
+<p>Strings are <strong>not</strong> primitives, they are <strong>classes</strong> that hold <strong>a list of characters</strong>. Strings have many different <strong>utility methods</strong> to aid in working with them.</p>
+<ol>
+<li><strong>String.length()</strong> - returns the length of the string</li>
+<li><strong>String.charAt()</strong> - returns the character in a specific position of the string</li>
+<li><strong>String.equals()</strong> - returns whether-or-not two strings are equal.</li>
+</ol>
+<blockquote>
+<p><strong>Do not</strong> use '==' when working with strings! (Strings compare memory addresses <strong>instead</strong> of content when using '==')</p>
+</blockquote>
+<p>Strings can be <strong>combined</strong> (the fancy programmer word is <em>concatenated</em>) using the <code>+</code> sign and, unlike other objects, can be created using <strong>literals</strong>. That means you don't need to do <code>String x = new String()</code>. Instead, you can just do <code>String x = ""</code>.</p>
+<h2 id="lists-and-arrays">Lists and Arrays</h2>
+<p><strong>Lists</strong> <code>List&lt;Class&gt;</code> are used to hold <strong>multiple objects</strong> in an organized fashion (each object has an <strong>position</strong> in the list). Lists can be made of <strong>any object</strong> simply by specifying the <strong>class of those objects</strong> in the <code>&lt;Angle Brackets&gt;</code>. Lists <strong>cannot</strong> hold primitives.</p>
+<pre><code class="language-java">// There are many different types of lists!
+// ArrayList is the simplest one (functions like an array but expandable).
+List&lt;Integer&gt; coolList = new ArrayList&lt;&gt;();
+
+coolList.add(5); // Index: 0
+coolList.add(6); // Index: 1
+coolList.add(7); // Index: 2
+
+coolList.get(2); // Returns 7!
+</code></pre>
+<p><strong>Arrays</strong> <code>[]</code> are similar to Lists in that they store <strong>an ordered set of objects</strong>. You create arrays by putting their elements in <code>{Curly Braces}</code>. There are some key <strong>differences</strong> between Lists and Arrays.</p>
+<ol>
+<li><strong>Arrays can operate on primitives</strong></li>
+<li><strong>Arrays cannot change in length after they are created</strong></li>
+<li><strong>Arrays are not classes</strong></li>
+<li><strong>Arrays are faster to use than Lists</strong></li>
+</ol>
+<p>The reason why <strong>Arrays</strong> are much more <strong>rigid</strong> and <strong>fast</strong> than Lists are is because Arrays are <strong>a fundamental feature of Java</strong> while the List class is written <strong>using Java</strong>.</p>
+<pre><code class="language-java">// Array with a permanent length of 5.
+int[] coolArray = {0,1,2,3,4};
+
+coolArray[1]; // This returns 1!
+
+coolArray[10]; // This throws an error!
+coolArray[10] = 2; // This also throws an error!
+</code></pre>
+<h2 id="scopes-and-scope-keywords">Scopes and Scope Keywords</h2>
+<p><strong>Scope</strong> describes <strong>where a field/variable can be accessed</strong>. Something with a <code>private</code> scope can only be accessed <strong>within the object that it has been created inside</strong>. Something with a <code>public</code> scope can be accessed from <strong>outside the object that it has been created inside</strong>.</p>
+<pre><code class="language-java">// Here is the &quot;Robot&quot; class.
+public class Robot {
+    // This class has two fields!
+    private int secretStrategyNumber = 67;
+    public int height = 4;
+
+    public Robot() {}
+}
+
+// This is another class!
+public class Main {
+    // Here is a &quot;robot&quot; object made from the &quot;Robot&quot; class.
+    Robot robot = new Robot();
+
+    // You cannot do this!
+    int strategy = robot.secretStrategyNumber;
+
+    // You can do this!
+    int height = robot.height;
+}
+</code></pre>
+<p>Things are not only scoped <strong>in space</strong>, but also <strong>in time</strong> (according to Einstein). <strong>You cannot use something before it has been created</strong>.</p>
+<pre><code class="language-java">System.out.print(x); // You can't access 'x' before it has been created!
+
+int x = 5;
+
+System.out.print(x); // Prints out &quot;5&quot;.
+</code></pre>
+<p>Because Java utilizes <strong>Object-Oriented-Programming</strong>, all fields are created <strong>before</strong> methods.</p>
+<pre><code class="language-java">public class Robot {
+    public String getName() {
+        return name;
+    }
+
+    // This doesn't break the laws of physics!
+    String name = &quot;SciDuck&quot;;
+}
+</code></pre>
+<p>Only things <strong>inside</strong> of the methods have to worry about the <strong>scope</strong> of their <strong>timing</strong>.</p>
+<h2 id="constructors-and-overloading">Constructors and Overloading</h2>
+<p>In order to make <strong>objects</strong> using <strong>classes</strong>, we need to define a <strong>constructor method</strong>. A constructor is a <strong>special</strong> type of method that is called using the <strong>new</strong> keyword. The reason why this type of method is special is because <strong>no other method</strong> has the power to <strong>construct objects</strong>.</p>
+<pre><code class="language-java">// Lets go back to the Robot class...
+public class Robot {
+    private int secretStrategyNumber = 1155;
+    public int height = 4;
+
+    // This is the constructor!
+    public Robot() {
+        // This code will be ran when a Robot object gets created!
+    }
+}
+</code></pre>
+<p>Constructors have a <strong>special format</strong> that is used <strong>to make them</strong> (so that Java can tell what methods are constructors). They have to <strong>be named after the class</strong> and <strong>not have a specified output-type</strong>. Notice how there is no output-type in the above example. Constructors return <strong>the newly created object</strong> which can then be assigned to <strong>fields/variables</strong> to store them.</p>
+<pre><code class="language-java">Robot robot = new Robot();
+</code></pre>
+<p>Another important feature of constructors is that they allow you to run code <strong>immediately</strong> after the object has been created. </p>
+<blockquote>
+<p>Anything in the curly braces will be ran once the Robot object has been created</p>
+</blockquote>
+<h2 id="console-input-and-output">Console Input and Output</h2>
+<p>There are many ways in which Java has the power to <strong>interface</strong> (send and receive information) with the user. The <strong>simplest</strong> and <strong>fastest</strong> method is through <strong>the console</strong>. The console is essentially <strong>just a bunch of text that can be manipulated to mean something</strong>. What separates the <strong>console</strong> from the <strong>terminal</strong> is that the console <strong>exclusively</strong> serves to help us interact with our program.</p>
+<blockquote>
+<p>The terminal has the power to do almost anything!</p>
+</blockquote>
+<p>To <strong>write something</strong> into the console we use the <code>System.out</code> object. There are only two notable methods here:</p>
+<ol>
+<li><strong>System.out.print ( )</strong></li>
+<li><strong>System.out.println ( )</strong></li>
+</ol>
+<p>Regular printing <code>print</code> prints things <strong>on the same line</strong> while line-printing <code>println</code> prints out <strong>an entire line</strong>.</p>
+<pre><code class="language-java">System.out.println(&quot;11&quot;);
+
+System.out.print(&quot;5&quot;);
+System.out.print(&quot;5&quot;);
+</code></pre>
+<pre><code class="language-console">11
+55
+</code></pre>
+<p><strong>NOTE:</strong> System.out.print will only accept <strong>one type of data</strong> at a time! If you want to print <strong>a number and a letter</strong>, you must convert both to a <strong>String</strong> by adding <code>""</code></p>
+<pre><code class="language-java">System.out.println(&quot;&quot; + 5 + 'a');
+</code></pre>
+<p>To <strong>read something</strong> from the console (that the user types in), we use the <code>System.in</code> object along with the <code>Scanner</code> class.</p>
+<pre><code class="language-java">// We are scanning System.in for inputs!
+Scanner scanner = new Scanner(System.in);
+
+scanner.nextInt(); // The next number that the user types out.
+scanner.next(); // The next string that the user types out.
+</code></pre>
+<p><em>Guide written by Ankit Kumar (Class of 2027)</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../ObjectsAndClasses/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Objects and Classes">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Objects and Classes
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../projects/" class="md-footer__link md-footer__link--next" aria-label="Next: About">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                About
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

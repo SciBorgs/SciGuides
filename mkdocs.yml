@@ -1,0 +1,49 @@
+site_name: SciGuides
+theme: 
+  name: material
+  custom_dir: overrides
+  logo: images/logo.png
+  favicon: images/logo.png
+  palette:
+    scheme: slate
+    primary: yellow
+    accent: amber
+  font:
+    text: Roboto
+    code: Roboto mono
+  features:
+    - navigation.footer
+  footer: ""
+
+nav:
+  - Home: index.md
+  - Concepts: 
+    - About: ./concepts/README.md
+    - Intro to Software: ./concepts/IntroToSoftware.md
+    - Setting up Software: ./concepts/SoftwareSetup.md
+    - Objects and Classes: ./concepts/ObjectsAndClasses.md
+    - Making and Managing Data: ./concepts/MakingAndManagingData.md
+  - Projects: 
+    - About: ./projects/README.md
+    - Intro To Programming:
+      - About: ./projects/intro-to-programming/README.md
+      - Programming 101: ./projects/intro-to-programming/Programming101.md
+      - Java 101: ./projects/intro-to-programming/Java101.md
+      - Java 102: ./projects/intro-to-programming/Java102.md
+    - Basic Subsystems: 
+      - About: ./projects/basic-subsystems/README.md
+      - General Subsystem Structure: ./projects/basic-subsystems/GeneralSubsystemStructure.md
+      - Differential Drive: ./projects/basic-subsystems/DifferentialDrive.md
+      - Simple Shooter: ./projects/basic-subsystems/SimpleShooter.md
+  - Reference Sheets: 
+    - About: ./sheets/README.md
+    - Command Based Programming: ./sheets/CommandBased.md
+    - Command Line Navigation: ./sheets/CommandLineNavigation.md
+    - Control Theory: ./sheets/ControlTheory.md
+    - Environment Setup: ./sheets/EnvironmentSetup.md
+    - File Structure: ./sheets/FileStructure.md
+    - Git Guide: ./sheets/GitGuide.md
+    - Sensors: ./sheets/Sensors.md
+    - Simulation: ./sheets/Simulation.md
+    - Telemetry: ./sheets/Telemetry.md
+    - Trig Guide: ./sheets/Trigonometry.md
