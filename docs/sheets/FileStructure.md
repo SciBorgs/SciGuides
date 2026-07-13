@@ -2,7 +2,7 @@
 
 This guide explains the structure of a typical robotics project, focusing on how files and directories are organized to maintain a clear codebase. It covers the distribution of library versus robot-specific code and the purpose of each major file.
 
-All of the source code for a project is in the [src](https://github.com/SciBorgs/SciGuidesRobotBase/tree/main/src) folder. Within that folder, there is the following directory structure:
+All of the source code for a project is in the [src](https://github.com/SciBorgs/SciGuidesRobotBase-2026/tree/main/src) folder. Within that folder, there is the following directory structure:
 
 ![](./images/sciguides-robot-base-file-tree-dirs.png)
 

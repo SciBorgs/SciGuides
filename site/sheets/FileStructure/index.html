@@ -1254,7 +1254,7 @@
 
 <h1 id="file-structure">File Structure</h1>
 <p>This guide explains the structure of a typical robotics project, focusing on how files and directories are organized to maintain a clear codebase. It covers the distribution of library versus robot-specific code and the purpose of each major file.</p>
-<p>All of the source code for a project is in the <a href="https://github.com/SciBorgs/SciGuidesRobotBase/tree/main/src">src</a> folder. Within that folder, there is the following directory structure:</p>
+<p>All of the source code for a project is in the <a href="https://github.com/SciBorgs/SciGuidesRobotBase-2026/tree/main/src">src</a> folder. Within that folder, there is the following directory structure:</p>
 <p><img alt="" src="../images/sciguides-robot-base-file-tree-dirs.png" /></p>
 <p>There are two top level directories under <code>src</code>: <code>main</code>, for code that runs on the robot, and <code>test</code>, for unit tests.</p>
 <p>We're going to ignore the <code>deploy</code> directory, since it isn't very relevant to us right now. That leaves us with the contents of <code>main/java</code> and <code>test/java</code> (both of which contain Java files). The robot code in <code>main/java</code> is split into a <code>lib</code> folder, which contains library code that is not specific to one particular robot, and a <code>robot</code> folder, which contains the code to control a particular robot. Classes in the robot folder generally use lib classes.</p>

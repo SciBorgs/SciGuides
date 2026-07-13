@@ -29,7 +29,7 @@ A differential drive is a type of robot drivetrain where two separately-driven g
 To move the robot forward/backward, both wheels must move at the same speed in the same direction. To turn, the wheels must move at different speeds or in opposite directions.
 ## Creating your project repo
 
-The first step will be to create a repository for this project. We'll be using [this](https://github.com/SciBorgs/SciGuidesRobotBase) base template for this project (and all other robot code projects in SciGuides). Follow the instructions in the README to create a new repository based on the template. Give your repository a descriptive name such as "Differential Drive Bot".
+The first step will be to create a repository for this project. We'll be using [this](https://github.com/SciBorgs/SciGuidesRobotBase-2026) base template for this project (and all other robot code projects in SciGuides). Follow the instructions in the README to create a new repository based on the template. Give your repository a descriptive name such as "Differential Drive Bot".
 
 In the README of your new repository, link [this guide](https://github.com/SciBorgs/SciGuides/blob/main/projects/DifferentialDrive.md).
 
