@@ -97,7 +97,7 @@ Next, we have to give Git permissions from your Github account.
 5. **Name** your token and **set the expiration date**
 6. **Select** the *repo* scope
 6. **Click** "Generate token" at the bottom of the page
-7. **Copy the generated token** immediately (you won't be able to see it again)
+7. **Copy the generated token** imediately (you won't be able to see it again)
 
 ![PAT](./images/PAT.svg)
 
