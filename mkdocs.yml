@@ -17,9 +17,4 @@ theme:
 
 nav:
   - Home: index.md
-  - Concepts: 
-    - About: ./concepts/README.md
-    - Intro to Software: ./concepts/IntroToSoftware.md
-    - Setting up Software: ./concepts/SoftwareSetup.md
-    - Objects and Classes: ./concepts/ObjectsAndClasses.md
-    - Making and Managing Data: ./concepts/MakingAndManagingData.md
+  - Software Setup: SoftwareSetup.md
