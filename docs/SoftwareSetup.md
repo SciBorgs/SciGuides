@@ -8,7 +8,7 @@
 
 ## Visual Studio Code
 
-![VSCODE-GUI](./images/VSCODE-GUI.svg)
+![VSCODE-GUI](./images/software-setup/VSCODE-GUI.svg)
 
 **Visual Studio Code** (VSCode) is a code editor developed by **Microsoft**. Not to be confused with **Visual Studio** (purple logo). While there are many different code editors to choose from, VSCode is unique for a few reasons.
 
@@ -18,7 +18,7 @@
 
 ## Git and Github
 
-![GIT-AND-GITHUB](./images/GIT-AND-GITHUB.svg)
+![GIT-AND-GITHUB](./images/software-setup/GIT-AND-GITHUB.svg)
 
 Writing code with other people is complicated. Changes to one part of the codebase may completely break another part of the codebase. And if any part of the code has an error, **it won't even run** (i.e. if someone were to have an error in their part of the code, then you have to fix their mistake before being able to test your own code).
 
@@ -36,13 +36,13 @@ Every person has their own copy of VSCode and Git, but they share one **reposito
 
 **WPILIB** is a collection of apps and libraries made by students at *Worcester Polytechnic Institute* (a university) in collaboration with *FIRST Robotics* in order to simplify the process of programming a robot. Everything you need is contained within a single download shipped every year.
 
-![WPILIB-VSCODE](./images/WPILIB-VSCODE.svg)
+![WPILIB-VSCODE](./images/software-setup/WPILIB-VSCODE.svg)
 
 WPILIB includes an augmented copy of VSCode. This version of VSCode includes various extensions that are relevant to robotics, in addition to pre-configured settings that simplify the setup process. While the extensions and settings *can* be applied manually to any existing copy of VSCode, it is a hassle and is generally not advised.
 
 Writing Java applications also requires a **Java Development Kit (JDK)**. Normally, for other purposes, people install the JDK manually. However, writing code for the *FIRST Robotics Competition* requires a *specific version* of the JDK that is only included in WPILIB.
 
-![WPILIB-APPS](./images/WPILIB-APPS.svg)
+![WPILIB-APPS](./images/software-setup/WPILIB-APPS.svg)
 
 In addition to VSCode, several other apps are included for various purposes. For example, **AdvantageScope** (top left of the image above) gives you a graphical interface for simulating certain robot actions.
 
@@ -54,11 +54,11 @@ Information about these apps will be introduced gradually in the coming lessons.
 
 Head over to [the Github repository for WPILIB](https://github.com/wpilibsuite/allwpilib) and click on whatever release it shows you up front.
 
-![WPILIB-GITHUB-RELEASE](./images/WPILIB-GITHUB-RELEASE.svg)
+![WPILIB-GITHUB-RELEASE](./images/software-setup/WPILIB-GITHUB-RELEASE.svg)
 
 Next, scroll down to find the **"Downloads"** section. From here, pick your favorite operating system and **click the link** to install the ISO / DMG file. 
 
-![WPILIB-GITHUB-DOWNLOAD](./images/WPILIB-GITHUB-DOWNLOAD.svg)
+![WPILIB-GITHUB-DOWNLOAD](./images/software-setup/WPILIB-GITHUB-DOWNLOAD.svg)
 
 **MAC:** Open the *DMG* file you just downloaded and then run the installer. If you are unsure of which link to use, [follow this guide to find out what processor you have](https://www.howtogeek.com/706226/how-to-check-if-your-mac-is-using-an-intel-or-apple-silicon-processor/). If you have an **Apple/M-Series** processor, use the **ARM** download. If you have an **Intel** processor, use the **Intel** download.
 
@@ -66,11 +66,11 @@ Next, scroll down to find the **"Downloads"** section. From here, pick your favo
 
 **LINUX:** Good luck 🫡
 
-![WINDOWS-MOUNT](./images/WINDOWS-MOUNT.svg)
+![WINDOWS-MOUNT](./images/software-setup/WINDOWS-MOUNT.svg)
 
 The installer will provide you with several options for what exactly to install. It is recommended to pick *everything* for *this user only* (if this is not your own private computer) and *download VS Code for your computer only*.
 
-![WPILIB-INSTALLER](./images/WPILIB-INSTALLER.svg)
+![WPILIB-INSTALLER](./images/software-setup/WPILIB-INSTALLER.svg)
 
 ## Setting up Git and Github
 
@@ -99,7 +99,7 @@ Next, we have to give Git permissions from your Github account.
 6. **Click** "Generate token" at the bottom of the page
 7. **Copy the generated token** immediately (you won't be able to see it again)
 
-![PAT](./images/PAT.svg)
+![PAT](./images/software-setup/PAT.svg)
 
 Open Terminal once again and run the following command:
 
