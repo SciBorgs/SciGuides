@@ -50,7 +50,7 @@ Information about these apps will be introduced gradually in the coming lessons.
 
 ## Setting up WPILIB
 
-***NOTE: IF YOU ARE USING A SCHOOL COMPUTER, WPILIB SHOULD ALREADY BE INSTALLED FOR YOU***
+***NOTE: IF YOU ARE USING A SCHOOL COMPUTER THAT WAS PROVIDED TO YOU FOR ROBOTICS, GIT SHOULD ALREADY BE INSTALLED FOR YOU***
 
 Head over to [the Github repository for WPILIB](https://github.com/wpilibsuite/allwpilib) and click on whatever release it shows you up front.
 
@@ -74,7 +74,7 @@ The installer will provide you with several options for what exactly to install.
 
 ## Setting up Git and Github
 
-***NOTE: IF YOU ARE USING A SCHOOL COMPUTER, GIT SHOULD ALREADY BE INSTALLED FOR YOU***
+***NOTE: IF YOU ARE USING A SCHOOL COMPUTER THAT WAS PROVIDED TO YOU FOR ROBOTICS, GIT SHOULD ALREADY BE INSTALLED FOR YOU***
 
 Head over to [the official Github website](https://github.com) and *sign up* with any email you would like (aside from NYCStudents). You don't have to worry about the settings for now, just make sure to **remember your email and username**.
 
