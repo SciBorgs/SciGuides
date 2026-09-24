@@ -5,6 +5,8 @@
 1. **[Visual Studio Code](#visual-studio-code)**
 2. **[Git and Github](#git-and-github)**
 3. **[WPILIB](#wpilib)**
+4. **[Setting up WPILIB](#setting-up-wpilib)**
+5. **[Setting up Git and Github](#setting-up-git-and-github)**
 
 ## Visual Studio Code
 
