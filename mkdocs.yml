@@ -9,7 +9,7 @@ theme:
     primary: yellow
     accent: amber
   font:
-    text: Roboto
+    text: Sen
     code: Roboto mono
   features:
     - navigation.footer
