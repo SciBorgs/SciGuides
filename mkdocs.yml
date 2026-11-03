@@ -46,3 +46,4 @@ nav:
     - Simulation: ./sheets/Simulation.md
     - Telemetry: ./sheets/Telemetry.md
     - Trig Guide: ./sheets/Trigonometry.md
+    - Basic Gradle: ./sheets/BasicGradle.md
