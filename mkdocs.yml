@@ -1,4 +1,5 @@
 site_name: SciGuides
+site_url: https://sciborgs1155.com
 theme: 
   name: material
   custom_dir: overrides
