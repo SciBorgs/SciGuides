@@ -1,16 +1,16 @@
 # Contributing to SciGuides
 
-SciGuides is a ***living document***. Both it and [SciGuidesRobotBase](https://github.com/SciBorgs/SciGuidesRobotBase) should be updated yearly to reflect current team programming standards and all changes to WPILib, external docs, and vendor libs.
+SciGuides is a ***living document***. Both it and [our template repository](https://github.com/SciBorgs/JVRobotBase.git) should be updated yearly to reflect current team programming standards and all changes to WPILib, external docs, and vendor libs.
 
-Members of 2265 should feel free to add or modify any contents of SciGuides and its template repository as needed through a PR to improve the learning experience for team members and JV students.
+We welcome contributions and feedback from anyone. If you are in JV or just an interested reader, welcome! Make sure to see our [guide](#outside-contributions) for outside contributions
 
 ## Getting Started
 
-If you have changes you'd like to make, discuss with a mentor or programming leadership before making them.
+All of our guides here are written in markdown and then deployed to Github Pages through [mkdocs](https://www.mkdocs.org/). Make sure your .md file is in the docs directory, and update the mkdocs.yml nav section so that your page will appear on the sidebar. Before pushing your guide, you should run ```mkdocs build``` in the terminal so it will update the site.
 
-Use any editor of your choice, whether that be VSCode, Obsidian, or whatever else.
+### Proper Procedure
 
-All changes must undergo the review process as listed below.
+If you have changes you'd like to make, discuss with a mentor or programming leadership before making them. Make sure to follow the review process as listed below.
 
 1. Please create your own branch and pull request (PR) to make changes from.
 2. Request a review from relevant members of leadership, and respond.
@@ -26,19 +26,17 @@ See the [summary](#tldr-too-long-didnt-read) for quick reference.
 
 We hope to maintain a quality standard for our work, so all writing should roughly follow the below guidelines:
 
-- Don't reinvent the wheel.
-  - It's a waste of time to recreate and maintain documentation that others have already created in-depth, so we heavily reference existing documentation from vendors, libraries, and WPILib.
-  - Minimize what must be changed from year-to-year! Avoid restating existing documentation; we recommend including only a few sentences for the purposes of introduction, before linking to it.
-- Experiencing is the heart of learning.
-  - It is our firm belief that people learn best when actually **writing** and **seeing** code and images on the screen. Code examples, code examples, code examples (and the occasional image and gif, too!)
-  - In the same vein, aim to be as concise and to-the-point as possible. Gigantic text walls are daunting and difficult to follow.
-- Make sure your guides are **functional** and **working**.
-  - The code created by following your guide should actually work. For projects, write the code and copy-paste the necessary code examples into the doc.
-  - Even better, you may want to write the code first and base your doc on the steps you take. It's good practice, I swear!
-- Keep to typical standards of documentation.
-  - Please look over your grammar, punctuation, and spelling before submitting your PR for review. At a baseline, errors should not obstruct understanding or behave as a distraction.
-- These guidelines are not immutable.
-  - Use your own discretion (or that of your fellow team members) to determine what is best for this repository to achieve its goals.
+- Your guides should be professional
+    - Check over your grammar
+    - keep everything updated 
+    - use ```code formatting```
+    - make sure your code actually works
+    - Have someone (or yourself) follow the guide so you can check that every step works and flows
+- Link to existing documentation (WPIlib, Photonvision, CTRE) whenever you can
+- Practice project-based learning
+    - People do not want to read what you've written; they want to make something
+    - The best guides are ones that let people follow along and while creating a project of their own
+    - Avoid walls of text like the plague
 
 #### Specifics
 
@@ -102,3 +100,9 @@ So, if you find yourself writing something too long (which you should avoid rega
 - Keep your documents readable - no text walls (they hurt the eyes!)
   - Take advantage of text-spacing techniques with newlines, codeblocks, images, & other styling elements (like this list!)
 - See the specific [style section](#style) above.
+
+## Outside Contributions
+
+In addition to the rest of this guide, we want to make sure outside contributors know how the review process works when you aren't part of our organization. We would love your contributions, but your project might already be in progress internally or we simply won't notice your PR. Please make sure to contact us before starting. Our email is sciborgs-leadership@bxscience.edu.
+
+Contributing to this repository (and other open source projects) requires making a [fork](https://docs.github.com/en/pull-requests/how-tos/work-with-forks/fork-a-repo). When you've made your guide following all the rules above, make a pull request from the forked repository instead and select the upstream repository to merge into. Then you can follow the review process outlined above
