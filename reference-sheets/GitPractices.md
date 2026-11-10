@@ -74,20 +74,20 @@ Can you guess which commit messages are good and which ones are bad?
 `"idk if its even worth it anymore. like idk if i have the capacity to keep going"`
 
 Answers:
-Bad: not descriptive
-Good: descriptive and explains the changes made
-Bad: g
-Bad: Commit messages are meant to be brief. This one is... not brief.
-Good: Spotless is a commonly used formatter. The message says Spotless was used.
-Bad: gibberish
-Bad: It happens to the best of us. It's alright every once and a while but keep it to a minimum.
-Good: explains the changes made
-Good: explains the changes made, and even explains why
-Bad: I hope you feel better soon, but unfortunately this commit message is not very helpful.
+- Bad: not descriptive
+- Good: descriptive and explains the changes made
+- Bad: g
+- Bad: Commit messages are meant to be brief. This one is... not brief.
+- Good: Spotless is a commonly used formatter. The message says Spotless was used.
+- Bad: gibberish
+- Bad: It happens to the best of us. It's alright every once and a while but keep it to a minimum.
+- Good: explains the changes made
+- Good: explains the changes made, and even explains why
+- Bad: I hope you feel better soon, but unfortunately this commit message is not very helpful.
 
 ### Pushing and Pulling
 
-Commits are **local changes**, which means that they **aren't** put onto the cloud, or Github. This is mostly so you can go to a previous commit, before adding your changes to your branch.
+Commits are **local changes**, which means that they **aren't** put onto the cloud, or GitHub. This is mostly so you can go to a previous commit, before adding your changes to your branch.
 
 When we add our previous commits to the branch, we call this **"pushing our changes,"** because you are taking all of your changes and applying them to the **remote branch**. Put simply, you are taking your **local changes** and making them **remote**, or uploading them to the cloud (GitHub).
 
@@ -117,13 +117,13 @@ A repository admin will look over your code, indirectly humble your coding skill
 
 Merging is how you transfer code from **branch to branch**.
 
-This, of course, will include transferring code **from** main **to** your branch, to stay updated with recent changes to main.
+This, of course, will include transferring code **from** `main` **to** your branch, to stay updated with recent changes to `main`.
 
 If other people make a pull request and it gets approved, then the main branch will have some new code that is **not** currently in your working branch. This means that you are **not** up to date with main. Therefore, you need to **merge main into your branch** every now and again to make sure that everything is up to date.
 
-When you merge main into your branch, there may be conflicts, especially if the file being edited by both you and the other contributor are the same. These are called **Merge Conflicts**, and can happen when merging **or** pulling changes from a branch. You must sort these out manually, deciding which changes to keep and which changes to toss. It's a little annoying to do, but if you do it often enough and efficiently enough then it doesn't become that big of a problem.
+When you merge main into your branch, there may be conflicts, especially if the file being edited by both you and the other contributor are the same. These are called **merge conflicts**, and can happen when merging **or** pulling changes from a branch. You must sort these out manually, deciding which changes to keep and which changes to toss. It's a little annoying to do, but if you do it often enough and efficiently enough then it doesn't become that big of a problem.
 
-There is another way to merge main into your code called **Rebasing**, but it's complicated to explain in writing and you'll never use it with a team as small as a high school robotics team.
+There is another way to merge main into your code called **rebasing**, but it's complicated to explain in writing and you'll never use it with a team as small as a high school robotics team.
 
 You rewrite your commit history during a rebase, and **instead** of branching off of the main branch that was four commits ago, you are **now** technically branched off of the newest main commit. It's useful for organizing commits to turn the visualization from a web to a tree, but when you're doing such small changes to a tiny codebase like used in robotics, it doesn't even matter.
 
@@ -131,10 +131,9 @@ You rewrite your commit history during a rebase, and **instead** of branching of
 
 Looks like you got through all the conceptualization. Nice job! However, that means absolutely nothing if you don't know how to put it into practice. So, in this section, we will go over the actual git command line inputs.
 
-Opening the command line isn't a difficult task. Visual Studio Code has one built in (accessible by pressing ctrl+\`), which makes using git much easier.
-If you're not using VSCode:
-- Windows: Press *Win + X* to open the Command Prompt.
-- Mac: Press *Cmd + Space* to open spotlight search, then type "Terminal" to open the Terminal.
+Opening the command line isn't a difficult task. Visual Studio Code has one built in (accessible by pressing ctrl+\`), which makes using git much easier. If you're not using VSCode:
+- Windows: Press `Win + X` to open the Command Prompt.
+- Mac: Press `Cmd + Space` to open spotlight search, then type "Terminal" to open the Terminal.
 - Linux: Spin around five times and then sing Mary Had A Little Lamb.
 
 ---
@@ -153,7 +152,7 @@ Type this text into the command line:
 
 It should look something like this:
 
-`git clone https://github.com/SciBorgs/SciGuides.git`
+`git clone https://GitHub.com/SciBorgs/SciGuides.git`
 
 This would clone this repository, SciGuides, onto your computer in your working directory.
 
@@ -173,18 +172,17 @@ Make sure that your chosen branch name follows the naming standards! Your name s
 
 So, these would be fine:
 
-- drivetrain
-- auto-align
-- feeder-fix
+- `drivetrain`
+- `auto-align`
+- `feeder-fix`
 
 But these wouldn't:
 
-- Drivetrain
-- auto_align
-- i-hate-git
+- `Drivetrain`
+- `auto_align`
+- `i-hate-git`
 
-However, after you decide to create the branch, you still need to switch to that branch!
-To do that, type into the command line:
+However, after you decide to create the branch, you still need to switch to that branch! To do that, type into the command line:
 
 `git checkout <branch name>`
 
@@ -204,7 +202,7 @@ Once your changes are staged, we will want to commit those staged changes. Type 
 
 `git commit -m "Put your message here"`
 
-This will commit all of your changes, and the commit message on this commit will be '*Put your message here*'. Make sure that your message is always useful and indicative of what you did in that commit!
+This will commit all of your changes, and the commit message on this commit will be `Put your message here`. Make sure that your message is always useful and indicative of what you did in that commit!
 
 ---
 
