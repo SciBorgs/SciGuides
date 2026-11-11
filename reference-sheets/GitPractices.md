@@ -4,7 +4,7 @@ Git is a version control system that helps you track changes to files, especiall
 
 Conceptualizing the way git is structured can be difficult for people who are new to the subject, but this guide should make it easy and digestible! After we introduce key concepts and definitions, the [usage](#usage) section will teach readers how to use git in the command line. With enough practice, they become second nature to a programmer.
 
-This aims to be a brief, central introduction to git. For a very in-depth look, see the [official Git documentation](https://git-scm.com/book/en/v2).
+This aims to be a fairly brief, central introduction to git. It is a bit long, but please read it in order as each section builds on the last! For a very in-depth look, see the [official Git documentation](https://git-scm.com/book/en/v2).
 
 # Conceptualization
 
@@ -119,19 +119,22 @@ Merging is how you transfer code from **branch to branch**.
 
 This, of course, will include transferring code **from** `main` **to** your branch, to stay updated with recent changes to `main`.
 
-If other people make a pull request and it gets approved, then the main branch will have some new code that is **not** currently in your working branch. This means that you are **not** up to date with main. Therefore, you need to **merge main into your branch** every now and again to make sure that everything is up to date.
+If other people make a pull request and it gets approved, then the main branch will have some new code that is **not** currently in your working branch. This means that you are **not** up to date with main. Therefore, you need to **merge main into your branch** every now and again to make sure that everything is up to date (this also lowers the chance of an evil merge conflict!).
 
 When you merge main into your branch, there may be conflicts, especially if the file being edited by both you and the other contributor are the same. These are called **merge conflicts**, and can happen when merging **or** pulling changes from a branch. You must sort these out manually, deciding which changes to keep and which changes to toss. It's a little annoying to do, but if you do it often enough and efficiently enough then it doesn't become that big of a problem.
 
+### Rebasing
+
 There is another way to merge main into your code called **rebasing**, but it's complicated to explain in writing and you'll never use it with a team as small as a high school robotics team.
 
-You rewrite your commit history during a rebase, and **instead** of branching off of the main branch that was four commits ago, you are **now** technically branched off of the newest main commit. It's useful for organizing commits to turn the visualization from a web to a tree, but when you're doing such small changes to a tiny codebase like used in robotics, it doesn't even matter.
+You rewrite your commit history during a rebase, and **instead** of branching off of the main branch that was four commits ago, you are **now** technically branched off of the newest main commit. It's useful for organizing commits to turn the visualization from a web to a tree, but when you're doing such small changes to a (relatively) tiny codebase like used in robotics, it doesn't even matter. Of course, feel free to read up on this!
 
 # Usage
 
 Looks like you got through all the conceptualization. Nice job! However, that means absolutely nothing if you don't know how to put it into practice. So, in this section, we will go over the actual git command line inputs.
 
 Opening the command line isn't a difficult task. Visual Studio Code has one built in (accessible by pressing ctrl+\`), which makes using git much easier. If you're not using VSCode:
+
 - Windows: Press `Win + X` to open the Command Prompt.
 - Mac: Press `Cmd + Space` to open spotlight search, then type "Terminal" to open the Terminal.
 - Linux: Spin around five times and then sing Mary Had A Little Lamb.
@@ -219,7 +222,7 @@ Well, this is git we're talking about. If it so happens that the branch you're p
 
 `git push --set-upstream origin <branch>`
 
-Instead of "<branch\>" put your branch name and you should have no problem pushing from that point on with that branch.
+Instead of "<branch\>" put your branch name and you should have no problem pushing from that point on with that branch. You can avoid this issue by creating a branch through the GitHub site and pulling (then, of course, go to your branch!). What's pulling? I'm glad you asked...
 
 ---
 
@@ -283,4 +286,4 @@ After that, click the "Create pull request" button and you're done! Now other pe
 
 # Conclusion
 
-Well. That's it! You now know all of the essentials for using git in projects. Now, the only thing you can do is get experience with it! Get one or two friends and start a collaborative project on GitHub, then get to it. Happy Coding!
+Well. That's it! You now know all of the essentials for using git in projects. Now, the only thing you can do is get experience with it! Get one or two friends and start a collaborative project on GitHub, then get to it. Happy coding!
