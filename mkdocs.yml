@@ -46,5 +46,6 @@ nav:
     - Sensors: ./sheets/Sensors.md
     - Simulation: ./sheets/Simulation.md
     - Telemetry: ./sheets/Telemetry.md
+    - Unit Testing: ./sheets/UnitTesting.md
     - Trig Guide: ./sheets/Trigonometry.md
     - Basic Gradle: ./sheets/BasicGradle.md
