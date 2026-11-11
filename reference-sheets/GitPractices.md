@@ -135,6 +135,7 @@ Opening the command line isn't a difficult task. Visual Studio Code has one buil
 - Windows: Press `Win + X` to open the Command Prompt.
 - Mac: Press `Cmd + Space` to open spotlight search, then type "Terminal" to open the Terminal.
 - Linux: Spin around five times and then sing Mary Had A Little Lamb.
+  - (In more seriousness, if you're running Linux, you probably know how to research this for your setup!)
 
 ---
 
