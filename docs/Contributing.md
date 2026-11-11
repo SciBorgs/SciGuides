@@ -2,11 +2,11 @@
 
 SciGuides is a ***living document***. Both it and [our template repository](https://github.com/SciBorgs/JVRobotBase.git) should be updated yearly to reflect current team programming standards and all changes to WPILib, external docs, and vendor libs.
 
-We welcome contributions and feedback from anyone. If you are in JV or just an interested reader, welcome! Make sure to see our [guide](#outside-contributions) for outside contributions
+We welcome contributions and feedback from anyone. If you are in JV or just an interested reader, welcome! Make sure to see our [guide](#outside-contributions) for outside contributions.
 
 ## Getting Started
 
-All of our guides here are written in markdown and then deployed to Github Pages through [mkdocs](https://www.mkdocs.org/). Make sure your .md file is in the docs directory, and update the mkdocs.yml nav section so that your page will appear on the sidebar. Before pushing your guide, you should run ```mkdocs build``` in the terminal so it will update the site.
+All of our guides here are written in markdown and then deployed to GitHub Pages through [mkdocs](https://www.mkdocs.org/). Make sure your .md file is in the docs directory, and update the mkdocs.yml nav section so that your page will appear on the sidebar. Before pushing your guide, you should run ```mkdocs build``` in the terminal so it will update the site.
 
 ### Proper Procedure
 
@@ -28,20 +28,35 @@ We hope to maintain a quality standard for our work, so all writing should rough
 
 - Your guides should be professional
     - Check over your grammar
-    - keep everything updated 
-    - use ```code formatting```
-    - make sure your code actually works
+    - Keep everything updated 
+    - Use ```code formatting```
+    - Make sure your code actually works
     - Have someone (or yourself) follow the guide so you can check that every step works and flows
 - Link to existing documentation (WPIlib, Photonvision, CTRE) whenever you can
+    - We want our yearly maintenance work minimized. If we avoid re-writing what is already in these other sources, we can save ourselves a lot of time
 - Practice project-based learning
-    - People do not want to read what you've written; they want to make something
-    - The best guides are ones that let people follow along and while creating a project of their own
+    - People do not want to just sit and read what you've written; they want to make something
+    - The best guides are ones that let people follow along while creating a project of their own
     - Avoid walls of text like the plague
 
 #### Specifics
 
 For GitHub & editor compability purposes, all comments should be formatted like so:
 `[comment]: # (YOUR-COMMENT-HERE)`
+
+#### AI Policy
+
+AI can be very helpful when writing long articles, researching, correcting grammar, and much more. As you'll see in other [articles](./sheets/EnvironmentSetup.md/#a-secret), we do not discourage the use of AI. With that in mind, we still have guidelines concerning AI.
+
+These guides are still considered your work, and anything AI writes should be reviewed and edited by you. You are accountable for...
+
+  - Fixing mistakes the AI makes
+  - Changing its tone to fit the style of our guides in general
+  - Carefully considering whether to add or subtract from the content it chooses to include
+
+Consider whether you have written a paragraph or simply approved what the AI wrote. Where necessary, indicate the use of AI like we did [here](#spacing-techniques).
+
+In general, AI should not replace your thinking. We mantain that it is best used as a workhorse for writing tedious sections or used in an advisory role.
 
 ### Style & Writing Tips
 
@@ -103,6 +118,6 @@ So, if you find yourself writing something too long (which you should avoid rega
 
 ## Outside Contributions
 
-In addition to the rest of this guide, we want to make sure outside contributors know how the review process works when you aren't part of our organization. We would love your contributions, but your project might already be in progress internally or we simply won't notice your PR. Please make sure to contact us before starting. Our email is sciborgs-leadership@bxscience.edu.
+In addition to the rest of this guide, we want to make sure outside contributors know how the review process works when you aren't part of our organization. We would love your contributions, but your project might already be in progress internally or we simply won't notice your PR. Please make sure to contact us before starting and either open an issue or address one that is already there. Our email is sciborgs-leadership@bxscience.edu.
 
-Contributing to this repository (and other open source projects) requires making a [fork](https://docs.github.com/en/pull-requests/how-tos/work-with-forks/fork-a-repo). When you've made your guide following all the rules above, make a pull request from the forked repository instead and select the upstream repository to merge into. Then you can follow the review process outlined above
+Contributing to this repository (and other open source projects) requires making a [fork](https://docs.github.com/en/pull-requests/how-tos/work-with-forks/fork-a-repo). When you've made your guide following all the rules above, make a pull request from the forked repository instead and select the upstream repository to merge into. Then you can follow the review process outlined above.
