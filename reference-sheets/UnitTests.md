@@ -1,6 +1,6 @@
 # Introduction
 
-"Unit testing is a software development practice where individual components or functions of a program are tested in isolation to ensure they work correctly. It involves writing and running automated tests for specific units of code to verify their behavior, catch bugs early, and facilitate easier maintenance and refactoring of the codebase." - Claude.ai
+> Unit testing is a software development practice where individual components or functions of a program are tested in isolation to ensure they work correctly. It involves writing and running automated tests for specific units of code to verify their behavior, catch bugs early, and facilitate easier maintenance and refactoring of the codebase." - Claude.ai
 ## JUnit
 
 JUnit is a common unit testing framework for Java. We use JUnit 5 Jupiter.
