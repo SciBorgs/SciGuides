@@ -43,6 +43,7 @@ nav:
     - Environment Setup: ./sheets/EnvironmentSetup.md
     - File Structure: ./sheets/FileStructure.md
     - Git Guide: ./sheets/GitGuide.md
+    - Git Practices: ./sheets/GitPractices.md
     - Sensors: ./sheets/Sensors.md
     - Simulation: ./sheets/Simulation.md
     - Telemetry: ./sheets/Telemetry.md
