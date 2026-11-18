@@ -30,6 +30,7 @@ nav:
       - Programming 101: ./projects/intro-to-programming/Programming101.md
       - Java 101: ./projects/intro-to-programming/Java101.md
       - Java 102: ./projects/intro-to-programming/Java102.md
+      - Tic Tac Toe: ./projects/intro-to-programming/TicTacToe.md
     - Basic Subsystems: 
       - About: ./projects/basic-subsystems/README.md
       - General Subsystem Structure: ./projects/basic-subsystems/GeneralSubsystemStructure.md
