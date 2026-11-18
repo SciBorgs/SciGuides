@@ -6,8 +6,7 @@ You'll also write your first unit tests. Tests are little bits of code that chec
 ## Prerequisites
 
 - Comfortable with all of the [goals for Java102](Java102.md#goals)
-- Read the [Unit Testing](../../sheets/UnitTesting.md) sheet, up to "How does JUnit work?"
-	- Install the VSCode extension "Test Runner for Java"
+- The VSCode extension "Test Runner for Java" installed (the [Unit Testing](../../sheets/UnitTesting.md) sheet has more on testing if you're curious)
 ## Goals
 
 By the end, you'll be comfortable with:
@@ -32,6 +31,7 @@ If you did [Java101](Java101.md) and [Java102](Java102.md), use the same reposit
 	- Click the testing tab (the test tube icon) on the left side of VSCode
 	- Click "Enable Java Tests"
 	- At the top of the screen, pick "JUnit Jupiter"
+	- A `lib` folder will show up in your repo. That's JUnit. Leave it there.
 
 *Package note: `Board.java` and `Game.java` are in the `tictactoe` package, so start those files with `package tictactoe;`. `BoardTest.java` is in the `test` subfolder and is in `tictactoe.test`, so start it with `package tictactoe.test;`.*
 
@@ -77,6 +77,8 @@ public class Board {
 	private final int[][] board = new int[3][3];
 }
 ```
+
+`final` here means `board` will always be the same array. You can still change the numbers inside it.
 
 Notice there's no constructor. Every new board looks the same (empty), so you don't need one. When you leave the constructor out, Java gives you a *default constructor* for free. It takes no inputs and just makes a new `Board`.
 ### toString
@@ -167,7 +169,7 @@ public void playerToString() {
 
 The `() ->` part is called a lambda. Don't worry about it yet. Just know it lets you hand a piece of code to `assertThrows` so it can run it. If you're curious, [here's more on lambdas](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html).
 
-Run the test! Click the little green play button next to `@Test`, or use the testing tab. Green check = passing.
+Run the test! Click the little green play button in the left margin next to `public void playerToString()`, or use the testing tab. Green check = passing.
 
 Now test `toString`. An empty board should turn into three rows of dashes:
 
@@ -214,8 +216,11 @@ public void testMove() {
 
 Once that passes, make `move` stricter. It should throw a `RuntimeException` if:
 
-1. the square is already taken
-2. `player` isn't `1` or `-1`
+1. `player` isn't `1` or `-1`
+2. `row` or `column` isn't between `0` and `2`
+3. the square is already taken
+
+Do the checks in that order, before you change the square. (Check 2 has to come before check 3. If `row` is `5`, looking at `board[5]` would crash.)
 
 Swap your test for this one and get it passing:
 
@@ -227,21 +232,18 @@ public void testMove() {
 	assertEquals(1, b.get(2, 0));
 	b.move(-1, 1, 1);
 	assertEquals(-1, b.get(1, 1));
-	// can't play in a square that's already taken
-	assertThrows(RuntimeException.class, () -> b.move(-1, 2, 0));
 	// player has to be 1 or -1
 	assertThrows(RuntimeException.class, () -> b.move(0, 2, 2));
+	// square has to be on the board
+	assertThrows(RuntimeException.class, () -> b.move(1, 3, 0));
+	// can't play in a square that's already taken
+	assertThrows(RuntimeException.class, () -> b.move(-1, 2, 0));
 }
 ```
 
 *Hint: copy the `throw new RuntimeException(...)` line from `playerToString` and change the message.*
 
-Before changing the square, check for both kinds of invalid input:
-
-1. Is `player` `1` or `-1`?
-2. Is `row` between `0` and `2`, and `column` between `0` and `2`?
-
-You can also let Java detect a bad array index, but an explicit check gives your player a clearer error and is a good place to practice conditions.
+*Careful: `player != 1 || player != -1` is always true, so every move would throw. You want `&&`.*
 ### Update the toString test
 
 Now that you can change a board, make sure `toString` works on a board that isn't empty:
@@ -277,7 +279,7 @@ private boolean rowOrColWon(int i) {
 
 /** @return whether either diagonal has been won */
 private boolean diagonalWon() {
-	// write this!
+	return false; // replace this!
 }
 
 public int winner() {
@@ -292,6 +294,8 @@ public int winner() {
 	return 0;
 }
 ```
+
+That `return false` is only there so your code compiles. You'll replace it with your own code.
 
 Grab a pen and paper and draw a board with the row and column numbers on it. Then go through the code.
 
@@ -349,9 +353,11 @@ You can use `winner()` for the first one. For the second, loop over every square
 
 ```java
 public boolean over() {
-	// your code here!
+	return false; // replace this!
 }
 ```
+
+Same deal as before: `return false` just keeps your code compiling until you write the real thing.
 
 It should pass this test:
 
@@ -388,7 +394,7 @@ o o x
 x x o
 ```
 
-The board is full and nobody won. That's a tie, and ties are easy to forget about, so we test them. If you want to see how the loop builds that pattern, step through it on paper.
+The board is full and nobody won. That's a tie, and ties are easy to forget about, so we test them. If you want to check it, play those nine moves on paper.
 ### Update move (again)
 
 Once someone wins, nobody should be able to keep playing. Update `move` so it throws an exception if the game is already over.
@@ -403,10 +409,12 @@ public void testMove() {
 	assertEquals(1, b.get(2, 0));
 	b.move(-1, 1, 1);
 	assertEquals(-1, b.get(1, 1));
-	// can't play in a square that's already taken
-	assertThrows(RuntimeException.class, () -> b.move(-1, 2, 0));
 	// player has to be 1 or -1
 	assertThrows(RuntimeException.class, () -> b.move(0, 2, 2));
+	// square has to be on the board
+	assertThrows(RuntimeException.class, () -> b.move(1, 3, 0));
+	// can't play in a square that's already taken
+	assertThrows(RuntimeException.class, () -> b.move(-1, 2, 0));
 	b.move(1, 0, 0);
 	b.move(1, 1, 0);
 	// can't move after someone already won
@@ -439,7 +447,7 @@ public class Game {
 
 - `board` is the one board for this game.
 - `currentPlayer` is whose turn it is. x (`1`) goes first.
-- `sc` is a `Scanner`. It reads what the player types. Take a couple of minutes to [read the Java `Scanner` documentation](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Scanner.html).
+- `sc` is a `Scanner`. It reads what the player types. You'll only need `sc.nextInt()`, which reads the next number they type. (Here are the [Scanner docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Scanner.html) if you're curious.)
 ### Version 1
 
 Start with the simplest game that works. Use a `while` loop that keeps going until the board is over. Each time through the loop is one turn.
@@ -460,7 +468,7 @@ public static void main(String[] args) {
 }
 ```
 
-Two tips below will help with steps 3 and the end.
+Two tips below will help with step 3 and the end.
 #### Getting the row and column
 
 Use `sc.nextInt()` to read a number. People count from 1, but Java arrays count from 0, so subtract 1:
