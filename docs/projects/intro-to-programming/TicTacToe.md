@@ -12,7 +12,7 @@ You'll also write your first unit tests. Tests are little bits of code that chec
 By the end, you'll be comfortable with:
 
 - writing a class from scratch
-- throwing exceptions
+- throwing and catching exceptions
 - JUnit tests
 - getting input from the user with `Scanner`
 - ternary operators
@@ -110,7 +110,7 @@ public static String playerToString(int player) {
 Two new things here:
 
 - It's `static` because it doesn't care about any specific board. You call it like `Board.playerToString(1)`.
-- It **throws an exception**. If someone passes in `7`, something has gone wrong. Throwing an exception stops the program and shows your message, so you find the bug right away instead of later.
+- It **throws an exception**. If someone passes in `7`, something has gone wrong. Throwing an exception stops the program and shows your message, so you find the bug right away instead of later. ([More on exceptions](https://docs.oracle.com/javase/tutorial/essential/exceptions/) if you're curious.)
 
 Now the real `toString`:
 
@@ -164,7 +164,7 @@ public void playerToString() {
 ```
 
 - `@Test` tells JUnit "this method is a test, run it".
-- `assertEquals(expected, actual)` fails the test if the two don't match.
+- `assertEquals(expected, actual)` fails the test if the two don't match. ([Here are all the assertions](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions).)
 - `assertThrows` checks that the code throws an exception. Here we *want* `playerToString(2)` to blow up.
 
 The `() ->` part is called a lambda. Don't worry about it yet. Just know it lets you hand a piece of code to `assertThrows` so it can run it. If you're curious, [here's more on lambdas](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html).
@@ -191,7 +191,7 @@ public int get(int row, int column) {
 }
 ```
 
-The array uses Java's row and column numbers: `0`, `1`, and `2`. That means the top-left square is `(0, 0)`, and the bottom-right square is `(2, 2)`.
+Rows and columns are numbered `0`, `1`, `2`, so the top-left square is `(0, 0)`, and the bottom-right square is `(2, 2)`.
 
 `move` takes which player is moving and where. Here's the header:
 
@@ -205,7 +205,7 @@ public void move(int player, int row, int column) {
 
 ```java
 @Test
-public void testMove() {
+public void move() {
 	Board b = new Board();
 	b.move(1, 2, 0);
 	assertEquals(1, b.get(2, 0));
@@ -220,13 +220,13 @@ Once that passes, make `move` stricter. It should throw a `RuntimeException` if:
 2. `row` or `column` isn't between `0` and `2`
 3. the square is already taken
 
-Do the checks in that order, before you change the square. (Check 2 has to come before check 3. If `row` is `5`, looking at `board[5]` would crash.)
+Do the checks in that order, before you change the square. (Check 2 has to come before check 3. If `row` is `5`, Java can't look at `board[5]`, so it throws its own confusing error. Your check throws a clear one instead.)
 
 Swap your test for this one and get it passing:
 
 ```java
 @Test
-public void testMove() {
+public void move() {
 	Board b = new Board();
 	b.move(1, 2, 0);
 	assertEquals(1, b.get(2, 0));
@@ -309,7 +309,7 @@ The answer to that last one is how you write `diagonalWon`. When you're done, th
 
 ```java
 @Test
-public void testWinner() {
+public void winner() {
 	Board b1 = new Board();
 	b1.move(1, 0, 1);
 	b1.move(-1, 1, 1);
@@ -363,7 +363,7 @@ It should pass this test:
 
 ```java
 @Test
-public void testOver() {
+public void over() {
 	Board bWon = new Board();
 	bWon.move(1, 0, 2);
 	bWon.move(1, 1, 1);
@@ -399,11 +399,11 @@ The board is full and nobody won. That's a tie, and ties are easy to forget abou
 
 Once someone wins, nobody should be able to keep playing. Update `move` so it throws an exception if the game is already over.
 
-Here's the final version of `testMove`:
+Here's the final version of the `move` test:
 
 ```java
 @Test
-public void testMove() {
+public void move() {
 	Board b = new Board();
 	b.move(1, 2, 0);
 	assertEquals(1, b.get(2, 0));

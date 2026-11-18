@@ -1591,7 +1591,7 @@
 <p>By the end, you'll be comfortable with:</p>
 <ul>
 <li>writing a class from scratch</li>
-<li>throwing exceptions</li>
+<li>throwing and catching exceptions</li>
 <li>JUnit tests</li>
 <li>getting input from the user with <code>Scanner</code></li>
 <li>ternary operators</li>
@@ -1687,7 +1687,7 @@ public class Board {
 <p>Two new things here:</p>
 <ul>
 <li>It's <code>static</code> because it doesn't care about any specific board. You call it like <code>Board.playerToString(1)</code>.</li>
-<li>It <strong>throws an exception</strong>. If someone passes in <code>7</code>, something has gone wrong. Throwing an exception stops the program and shows your message, so you find the bug right away instead of later.</li>
+<li>It <strong>throws an exception</strong>. If someone passes in <code>7</code>, something has gone wrong. Throwing an exception stops the program and shows your message, so you find the bug right away instead of later. (<a href="https://docs.oracle.com/javase/tutorial/essential/exceptions/">More on exceptions</a> if you're curious.)</li>
 </ul>
 <p>Now the real <code>toString</code>:</p>
 <pre><code class="language-java">@Override
@@ -1729,7 +1729,7 @@ public void playerToString() {
 </code></pre>
 <ul>
 <li><code>@Test</code> tells JUnit "this method is a test, run it".</li>
-<li><code>assertEquals(expected, actual)</code> fails the test if the two don't match.</li>
+<li><code>assertEquals(expected, actual)</code> fails the test if the two don't match. (<a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions">Here are all the assertions</a>.)</li>
 <li><code>assertThrows</code> checks that the code throws an exception. Here we <em>want</em> <code>playerToString(2)</code> to blow up.</li>
 </ul>
 <p>The <code>() -&gt;</code> part is called a lambda. Don't worry about it yet. Just know it lets you hand a piece of code to <code>assertThrows</code> so it can run it. If you're curious, <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">here's more on lambdas</a>.</p>
@@ -1747,7 +1747,7 @@ public void boardToString() {
     return board[row][column];
 }
 </code></pre>
-<p>The array uses Java's row and column numbers: <code>0</code>, <code>1</code>, and <code>2</code>. That means the top-left square is <code>(0, 0)</code>, and the bottom-right square is <code>(2, 2)</code>.</p>
+<p>Rows and columns are numbered <code>0</code>, <code>1</code>, <code>2</code>, so the top-left square is <code>(0, 0)</code>, and the bottom-right square is <code>(2, 2)</code>.</p>
 <p><code>move</code> takes which player is moving and where. Here's the header:</p>
 <pre><code class="language-java">public void move(int player, int row, int column) {
     // your code here!
@@ -1755,7 +1755,7 @@ public void boardToString() {
 </code></pre>
 <p><strong>Your turn.</strong> For now, just put <code>player</code> into the right spot in <code>board</code>. Then add this test to <code>BoardTest</code>:</p>
 <pre><code class="language-java">@Test
-public void testMove() {
+public void move() {
     Board b = new Board();
     b.move(1, 2, 0);
     assertEquals(1, b.get(2, 0));
@@ -1769,10 +1769,10 @@ public void testMove() {
 <li><code>row</code> or <code>column</code> isn't between <code>0</code> and <code>2</code></li>
 <li>the square is already taken</li>
 </ol>
-<p>Do the checks in that order, before you change the square. (Check 2 has to come before check 3. If <code>row</code> is <code>5</code>, looking at <code>board[5]</code> would crash.)</p>
+<p>Do the checks in that order, before you change the square. (Check 2 has to come before check 3. If <code>row</code> is <code>5</code>, Java can't look at <code>board[5]</code>, so it throws its own confusing error. Your check throws a clear one instead.)</p>
 <p>Swap your test for this one and get it passing:</p>
 <pre><code class="language-java">@Test
-public void testMove() {
+public void move() {
     Board b = new Board();
     b.move(1, 2, 0);
     assertEquals(1, b.get(2, 0));
@@ -1840,7 +1840,7 @@ public int winner() {
 </ul>
 <p>The answer to that last one is how you write <code>diagonalWon</code>. When you're done, this test should pass:</p>
 <pre><code class="language-java">@Test
-public void testWinner() {
+public void winner() {
     Board b1 = new Board();
     b1.move(1, 0, 1);
     b1.move(-1, 1, 1);
@@ -1886,7 +1886,7 @@ public void testWinner() {
 <p>Same deal as before: <code>return false</code> just keeps your code compiling until you write the real thing.</p>
 <p>It should pass this test:</p>
 <pre><code class="language-java">@Test
-public void testOver() {
+public void over() {
     Board bWon = new Board();
     bWon.move(1, 0, 2);
     bWon.move(1, 1, 1);
@@ -1916,9 +1916,9 @@ x x o
 <p>The board is full and nobody won. That's a tie, and ties are easy to forget about, so we test them. If you want to check it, play those nine moves on paper.</p>
 <h3 id="update-move-again">Update move (again)</h3>
 <p>Once someone wins, nobody should be able to keep playing. Update <code>move</code> so it throws an exception if the game is already over.</p>
-<p>Here's the final version of <code>testMove</code>:</p>
+<p>Here's the final version of the <code>move</code> test:</p>
 <pre><code class="language-java">@Test
-public void testMove() {
+public void move() {
     Board b = new Board();
     b.move(1, 2, 0);
     assertEquals(1, b.get(2, 0));
