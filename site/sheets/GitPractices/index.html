@@ -1,0 +1,1406 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://sciguides.sciborgs1155.com/sheets/GitPractices/">
+      
+      
+        <link rel="prev" href="../GitGuide/">
+      
+      
+        <link rel="next" href="../Sensors/">
+      
+      
+      <link rel="icon" href="../../images/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Git Practices - SciGuides</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="yellow" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="SciGuides" class="md-header__button md-logo" aria-label="SciGuides" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SciGuides
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Git Practices
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SciGuides" class="md-nav__button md-logo" aria-label="SciGuides" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    SciGuides
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Concepts
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Concepts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/SoftwareSetup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Software Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/ObjectsAndClasses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Objects and Classes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/MakingAndManagingData/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Making and Managing Data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Projects
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Projects
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Intro To Programming
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Intro To Programming
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/intro-to-programming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/intro-to-programming/Programming101/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Programming 101
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/intro-to-programming/Java101/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Java 101
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/intro-to-programming/Java102/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Java 102
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/intro-to-programming/TicTacToe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tic Tac Toe
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Basic Subsystems
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Basic Subsystems
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/basic-subsystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/basic-subsystems/GeneralSubsystemStructure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    General Subsystem Structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/basic-subsystems/DifferentialDrive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Differential Drive
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/basic-subsystems/SimpleShooter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Simple Shooter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Reference Sheets
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Reference Sheets
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CommandBased/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command Based Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CommandLineNavigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command Line Navigation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ControlTheory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Control Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EnvironmentSetup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environment Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FileStructure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GitGuide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Git Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Git Practices
+    
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Sensors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sensors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Simulation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Simulation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Telemetry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Telemetry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UnitTesting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Unit Testing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Trigonometry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Trig Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BasicGradle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Basic Gradle
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="introduction">Introduction</h1>
+<p>Git is a version control system that helps you track changes to files, especially in code projects. It allows multiple people to work simultaneously without overwriting each other's work.</p>
+<p>Conceptualizing the way git is structured can be difficult for people who are new to the subject, but this guide should make it easy and digestible! After we introduce key concepts and definitions, the <a href="#usage">usage</a> section will teach readers how to use git in the command line. With enough practice, they become second nature to a programmer.</p>
+<p>This aims to be a fairly brief, central introduction to git. It is a bit long, but please read it in order as each section builds on the last! For a very in-depth look, see the <a href="https://git-scm.com/book/en/v2">official Git documentation</a>.</p>
+<h1 id="conceptualization">Conceptualization</h1>
+<p>Conceptualizing the ideas behind the various command line inputs is key to remembering them. Although it is possible to learn <strong>how</strong> to use git and program with that, it is much better to learn <strong>how git works</strong> and then build onto that.</p>
+<p>Therefore, before going over the individual command line inputs, we will go over the main concepts, what they mean, and how they contribute to programming for your team.</p>
+<h3 id="repositories">Repositories</h3>
+<p>If more than one person is working on a codebase, the codebase needs a place to be stored. We call this a <strong>repository</strong>, where folders and files are stored which is <strong>accessible by git</strong>. Each repository is its own <strong>git project</strong>, or a unit of storage on git.</p>
+<p>Those were some fancy magic words, but to put it simply, it's a place on the internet where your team's code will go.</p>
+<p>If your team's repository has something called <strong>branch protections</strong> (for us, it likely will), then you won't be able to edit the code directly. We will cover how to contribute later.</p>
+<p>When your team makes a project on GitHub, you'll need to <strong>clone</strong> it to interact with the files and directories. Cloning <strong>downloads</strong> a git project, or repository, onto your computer for easy editing using an <strong>Integrated Development Environment</strong> (IDE) such as <strong>Visual Studio Code</strong>.</p>
+<h3 id="branches">Branches</h3>
+<p>When many different people work on a single repository, it often happens that different people make conflicting changes.</p>
+<p>Making changes directly to the main codebase creates some pretty serious issues, and can break the code entirely.
+Also, if multiple people are working on the same file and have a <strong>conflict</strong> in their code, editing the main codebase directly can cause the code to break.</p>
+<p>So, contributors to a repository should be given their own little sandbox to work out their changes before they're added to the <strong>main codebase</strong>.</p>
+<p><strong>Branches</strong> are a great solution. When someone makes a <strong>new branch</strong>, they get a copy of the <strong>entire</strong> codebase at that time, and any changes made to that branch will <strong>not</strong> affect the main codebase. Changes made on a branch can be accepted onto the main codebase when they are deemed worthy.</p>
+<p>Repositories usually consist of many branches, with the main branch at the center. The main branch is the main codebase, and all changes made to that branch must first go through a rigorous process of <strong>review</strong>.</p>
+<p>Changes are proposed, then reviewed, then proposed, then reviewed...  </p>
+<p>...with this cycle repeating until the changes are perfect. This keeps the main branch perfect, with any possible code-breaking glitches being sussed out far before the changes are added to the main branch.</p>
+<h3 id="commits">Commits</h3>
+<p>Saving <strong>versions</strong> of anything you make as you go along is very useful for big projects.</p>
+<p>It can help organize the changes that have been made, and also help you go back to a <strong>previous version</strong> in case something goes wrong. If something stops working, it's useful to be able to go back to a previous version to see why it stopped working.</p>
+<p>A <strong>commit</strong>, put simply, is a <strong>version of the codebase.</strong> Commits keep track of the <strong>changes</strong> that have been made to the code, bundles them up and slaps a <strong>message</strong> on them. When going back to previous versions, if the commit was labeled with a commit message, it makes it much easier to figure out where you went wrong, or where to return to. Changes that are made locally on the device that have not been committed yet are named <strong>working changes</strong>.</p>
+<p>Rather than bundling all the code, git simply keeps track of the <strong>changes you've made</strong>. However, when committing, git doesn't know the changes you want to commit. So, you first have to <strong>stage</strong> those changes in the terminal (we will go over this later) and then you can commit.</p>
+<p>Make sure to commit with a <strong>message</strong>! If committing either without a message or with a irrelevant one then it takes out half of the reason you're committing in the first place, and makes it difficult for you and <strong>people reviewing your changes</strong> to determine what you did in each commit!</p>
+<p>Can you guess which commit messages are good and which ones are bad?</p>
+<p><code>"Made some changes"</code></p>
+<p><code>"Added a function getVelocity() that returns the velocity of the motor"</code></p>
+<p><code>"g"</code></p>
+<p><code>"I made three functions. The first one is called spotTrigger() which takes in a time value for an event marker and returns a trigger that will activate for twenty milliseconds when its event marker is reached. The second one is called spanTrigger(), which takes in two times and will activate while in between the time of event marker 1 and the time of event marker 2. This means that the event will occur completely between those two time periods during the designated auto period and can be used for things like intaking, while spotTrigger() can be used for things like shooting.</code></p>
+<p><code>"spotless"</code></p>
+<p><code>"a;sldkfj"</code></p>
+<p><code>"its not working why isnt it working it was working like five minutes ago"</code></p>
+<p><code>"found the sysid values"</code></p>
+<p><code>"deleted all of Kishan's code because I felt like it"</code></p>
+<p><code>"idk if its even worth it anymore. like idk if i have the capacity to keep going"</code></p>
+<p>Answers:
+- Bad: not descriptive
+- Good: descriptive and explains the changes made
+- Bad: g
+- Bad: Commit messages are meant to be brief. This one is... not brief.
+- Good: Spotless is a commonly used formatter. The message says Spotless was used.
+- Bad: gibberish
+- Bad: It happens to the best of us. It's alright every once and a while but keep it to a minimum.
+- Good: explains the changes made
+- Good: explains the changes made, and even explains why
+- Bad: I hope you feel better soon, but unfortunately this commit message is not very helpful.</p>
+<h3 id="pushing-and-pulling">Pushing and Pulling</h3>
+<p>Commits are <strong>local changes</strong>, which means that they <strong>aren't</strong> put onto the cloud, or GitHub. This is mostly so you can go to a previous commit, before adding your changes to your branch.</p>
+<p>When we add our previous commits to the branch, we call this <strong>"pushing our changes,"</strong> because you are taking all of your changes and applying them to the <strong>remote branch</strong>. Put simply, you are taking your <strong>local changes</strong> and making them <strong>remote</strong>, or uploading them to the cloud (GitHub).</p>
+<p>Pushing changes place them in the GitHub repository, and are <strong>public</strong> to others working on the repository. When you push changes for the first time on a branch, it establishes the branch on the repository that allows others to view and edit it. So, make sure to push regularly so that others can keep track of what you're doing.</p>
+<p>When you push changes on one device, other device won't know that those changes have been pushed. To get those changes, you need to <strong>pull</strong> them.</p>
+<p><strong>Pulling changes</strong> is especially useful when working with <strong>multiple people</strong> on the <strong>same branch</strong>. If one person pushes their changes, then another, they will have <strong>conflicts</strong>. So, it's important to pull before pushing changes, such that each new push is up-to-date.</p>
+<p>Pull extremely regularly. Conflicts between two users' code will stack up extremely quickly, and eventually it will be faster just to abandon and rewrite the entire branch than to sort out each and every one of those changes. I'm speaking from experience. Pull regularly.</p>
+<h3 id="stashing">Stashing</h3>
+<p>Sometimes you'll be working on a branch, then realize that you need those changes that your friend pushed five minutes ago in order to finish your code. If you decide to commit now and pull after, then you will have to sort out a bunch of annoying merge conflicts, and have an unfinished commit in the tree, but if you decide to pull, then all of <strong>your</strong> working changes will need to be <strong>undone</strong> first. So, there should be a way to <strong>store</strong> your changes locally <strong>without</strong> committing, so that you can pull your <strong>friend's</strong> changes and then apply <strong>your</strong> changes, so <strong>both</strong> changes will be applied in the next commit.</p>
+<p>Thankfully, the git overlords have gifted us the ability to <strong>stash</strong> our changes. Stashing bundles all your working changes into the git stash and removes all those changes from your files; it reverts you to the most recent commit. When you want those changes back, you can simply reapply them to your code, even if you're a commit forward.</p>
+<p>Removing your changes from the stash and placing them back in your working changes is called <strong>popping</strong> the changes.</p>
+<p>Two people on a branch is not the only situation when you'd use stash. Sometimes, you want to write something a different way, but want to keep your changes just in case you change your mind. Here, you can stash your working changes, then rewrite it all, and if you don't like the rewrite, all you have to do is pop.</p>
+<h3 id="merging">Merging</h3>
+<p>When you're finally done with your changes on a branch, and you are sure that it is absolutely perfect, you create a <strong>Pull Request</strong> on GitHub to merge it to the main branch and add it to the main codebase.</p>
+<p>A repository admin will look over your code, indirectly humble your coding skills, and then tell you what to change before your code can be added to main. After the person reviewing your code approves it, you can then <strong>merge your code into main</strong>, bringing your changes officially into the codebase!</p>
+<p>Merging is how you transfer code from <strong>branch to branch</strong>.</p>
+<p>This, of course, will include transferring code <strong>from</strong> <code>main</code> <strong>to</strong> your branch, to stay updated with recent changes to <code>main</code>.</p>
+<p>If other people make a pull request and it gets approved, then the main branch will have some new code that is <strong>not</strong> currently in your working branch. This means that you are <strong>not</strong> up to date with main. Therefore, you need to <strong>merge main into your branch</strong> every now and again to make sure that everything is up to date (this also lowers the chance of an evil merge conflict!).</p>
+<p>When you merge main into your branch, there may be conflicts, especially if the file being edited by both you and the other contributor are the same. These are called <strong>merge conflicts</strong>, and can happen when merging <strong>or</strong> pulling changes from a branch. You must sort these out manually, deciding which changes to keep and which changes to toss. It's a little annoying to do, but if you do it often enough and efficiently enough then it doesn't become that big of a problem.</p>
+<h3 id="rebasing">Rebasing</h3>
+<p>There is another way to merge main into your code called <strong>rebasing</strong>, but it's complicated to explain in writing and you'll never use it with a team as small as a high school robotics team.</p>
+<p>You rewrite your commit history during a rebase, and <strong>instead</strong> of branching off of the main branch that was four commits ago, you are <strong>now</strong> technically branched off of the newest main commit. It's useful for organizing commits to turn the visualization from a web to a tree, but when you're doing such small changes to a (relatively) tiny codebase like used in robotics, it doesn't even matter. Of course, feel free to read up on this!</p>
+<h1 id="usage">Usage</h1>
+<p>Looks like you got through all the conceptualization. Nice job! However, that means absolutely nothing if you don't know how to put it into practice. So, in this section, we will go over the actual git command line inputs.</p>
+<p>Opening the command line isn't a difficult task. Visual Studio Code has one built in (accessible by pressing ctrl+`), which makes using git much easier. If you're not using VSCode:</p>
+<ul>
+<li>Windows: Press <code>Win + X</code> to open the Command Prompt.</li>
+<li>Mac: Press <code>Cmd + Space</code> to open spotlight search, then type "Terminal" to open the Terminal.</li>
+<li>Linux: Spin around five times and then sing Mary Had A Little Lamb.</li>
+<li>(In more seriousness, if you're running Linux, you probably know how to research this for your setup!)</li>
+</ul>
+<hr />
+<h3 id="cloning">Cloning</h3>
+<p>There are a few ways to clone a GitHub repository onto your computer, but the best way and the way that we'll be going over is by using the command line.</p>
+<p>Go onto the GitHub website, then find the repository. There should be a green button that says "Code". Click that, and then copy the link that shows up under it. This will be used in the command. It tells git what exactly to clone off of the internet.</p>
+<p>Next, navigate using the command line to the target folder where you want your cloned repository to be on your computer. You can alternatively move the cloned folder after your clone it, but moving around using the command line makes me feel like a hacker so i do that instead.</p>
+<p>Type this text into the command line:</p>
+<p><code>git clone &lt;copied link&gt;</code></p>
+<p>It should look something like this:</p>
+<p><code>git clone https://GitHub.com/SciBorgs/SciGuides.git</code></p>
+<p>This would clone this repository, SciGuides, onto your computer in your working directory.</p>
+<hr />
+<h3 id="branching">Branching</h3>
+<p>To make a branch, type into the command line:</p>
+<p><code>git branch &lt;branch name&gt;</code></p>
+<p>Make sure that your chosen branch name follows the naming standards! Your name should be:</p>
+<ol>
+<li>Relevant: something indicative of what the branch is for</li>
+<li>All lowercase</li>
+<li>Spaces replaced with dashes</li>
+</ol>
+<p>So, these would be fine:</p>
+<ul>
+<li><code>drivetrain</code></li>
+<li><code>auto-align</code></li>
+<li><code>feeder-fix</code></li>
+</ul>
+<p>But these wouldn't:</p>
+<ul>
+<li><code>Drivetrain</code></li>
+<li><code>auto_align</code></li>
+<li><code>i-hate-git</code></li>
+</ul>
+<p>However, after you decide to create the branch, you still need to switch to that branch! To do that, type into the command line:</p>
+<p><code>git checkout &lt;branch name&gt;</code></p>
+<p>You can also switch to a branch that isn't yours using <code>checkout</code>. If your friend was coding something and told you to go to their branch, you could just use checkout and it would work.</p>
+<hr />
+<h3 id="committing">Committing</h3>
+<p>Remember when we talked about staging our changes before committing? Well, to do that, type into the command line:</p>
+<p><code>git add .</code></p>
+<p>This will stage all of your working changes and make them ready for committing. The "." in this situation means all of your working changes in the current directory (which is defaulted to your project directory).</p>
+<p>Once your changes are staged, we will want to commit those staged changes. Type into the command line:</p>
+<p><code>git commit -m "Put your message here"</code></p>
+<p>This will commit all of your changes, and the commit message on this commit will be <code>Put your message here</code>. Make sure that your message is always useful and indicative of what you did in that commit!</p>
+<hr />
+<h3 id="pushing">Pushing</h3>
+<p>This one is very simple. Once you've committed and are ready to push your commits to the branch, just type into the command line:</p>
+<p><code>git push</code></p>
+<p>Super easy right?</p>
+<p>Well, this is git we're talking about. If it so happens that the branch you're pushing to is local and not remote, meaning that you're pushing for the first time on a new branch, then git will raise an eyebrow and confirm that you are really trying to push this new branch, since technically you are pushing to a branch that doesn't particularly exist yet. In this case, it yells at you and tells you to type a certain command in, which should look somewhat like this:</p>
+<p><code>git push --set-upstream origin &lt;branch&gt;</code></p>
+<p>Instead of "&lt;branch&gt;" put your branch name and you should have no problem pushing from that point on with that branch. You can avoid this issue by creating a branch through the GitHub site and pulling (then, of course, go to your branch!). What's pulling? I'm glad you asked...</p>
+<hr />
+<h3 id="pulling">Pulling</h3>
+<p><code>git pull</code></p>
+<p>Yep. That's it. Just make sure that you have no working changes, or it won't work.</p>
+<hr />
+<h3 id="merging_1">Merging</h3>
+<p>This one seems simple at first, too, but unfortunately we are using git.</p>
+<p>Before we can merge the more recent changes to main with our branch, it is necessary for us to get the changes from main first. So, we're going to do just that. Type into the command line:</p>
+<p><code>git checkout main</code></p>
+<p><code>git pull</code></p>
+<p>Now that we have fetched the changes from the cloud, we can go back to our branch to merge.</p>
+<p><code>git checkout &lt;branch&gt;</code></p>
+<p><code>git merge main</code></p>
+<p>That second command will move those fetched changes from main to our branch. This will make a merge commit, meaning that it will commit for you. It still hasn't pushed these changes, though, so make sure you do that once you are ready to push.</p>
+<hr />
+<h3 id="stashing_1">Stashing</h3>
+<p>Stashing is easy. Type into the command line:</p>
+<p><code>git stash</code></p>
+<p>And it's stashed. If you want those changes back, then type into the command line:</p>
+<p><code>git stash pop</code></p>
+<p>And your changes are popped.</p>
+<hr />
+<h3 id="pull-requests">Pull Requests</h3>
+<p>There's no command line input for making a pull request. For this we'll have to go to the GitHub website.</p>
+<p>At the top of the website, the third option from the left should say Pull Requests. click that one.</p>
+<p>There should be a green button that says "New Pull Request."</p>
+<p>It'll bring up a menu of branches. Click your branch.</p>
+<p>After that, it'll bring up all your changes. Click the green "New Pull Request" button.</p>
+<p>After that, pour your soul out in a wonderful paragraph description of what you did. It should be relatively brief; don't go over every last thing. Just say the main function of what you added.</p>
+<p>After that, click the "Create pull request" button and you're done! Now other people will review your changes, and once that's done, they can be merged.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>Well. That's it! You now know all of the essentials for using git in projects. Now, the only thing you can do is get experience with it! Get one or two friends and start a collaborative project on GitHub, then get to it. Happy coding!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../GitGuide/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Git Guide">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Git Guide
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../Sensors/" class="md-footer__link md-footer__link--next" aria-label="Next: Sensors">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Sensors
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>
